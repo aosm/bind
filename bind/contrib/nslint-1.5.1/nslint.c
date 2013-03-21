@@ -23,7 +23,7 @@ char copyright[] =
     "@(#) Copyright (c) 1992, 1993, 1994, 1995, 1996\n\
 The Regents of the University of California.  All rights reserved.\n";
 static char rcsid[] =
-    "@(#) $Header: /cvs/Darwin/Services/bind/bind/contrib/nslint-1.5.1/nslint.c,v 1.1.1.2 2001/01/31 03:59:07 zarzycki Exp $ (LBL)";
+    "@(#) $Header: /cvs/Darwin/src/live/bind/bind/contrib/nslint-1.5.1/nslint.c,v 1.1.1.2 2001/01/31 03:59:07 zarzycki Exp $ (LBL)";
 #endif
 /*
  * nslint - perform consistency checks on dns files

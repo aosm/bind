@@ -71,7 +71,7 @@ MANDIR = cat
 # their `real' extensions use 
 #	CATEXT = $$N
 #
-CATEXT = 0
+CATEXT = $$N
 
 #
 # Command to install manual entries

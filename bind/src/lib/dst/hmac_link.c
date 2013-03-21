@@ -1,6 +1,6 @@
 #ifdef HMAC_MD5
 #ifndef LINT
-static const char rcsid[] = "$Header: /cvs/Darwin/Services/bind/bind/src/lib/dst/hmac_link.c,v 1.1.1.3 2001/01/31 04:00:14 zarzycki Exp $";
+static const char rcsid[] = "$Header: /cvs/Darwin/src/live/bind/bind/src/lib/dst/hmac_link.c,v 1.1.1.3 2001/01/31 04:00:14 zarzycki Exp $";
 #endif
 /*
  * Portions Copyright (c) 1995-1998 by Trusted Information Systems, Inc.

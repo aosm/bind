@@ -2,7 +2,7 @@
 
 # Originally written by Paul Vixie of DEC WRL on June 28 1991
 
-# $Header: /cvs/Darwin/Services/bind/bind/contrib/decwrl/mkservers.pl,v 1.1.1.2 2001/01/31 03:58:38 zarzycki Exp $
+# $Header: /cvs/Darwin/src/live/bind/bind/contrib/decwrl/mkservers.pl,v 1.1.1.2 2001/01/31 03:58:38 zarzycki Exp $
 
 if ($#ARGV != 0) {
 	print stderr "usage:  $0 serverfile\n";

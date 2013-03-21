@@ -261,7 +261,7 @@ sed 's/^X//' << 'SHAR_EOF' > Makefile &&
 X# Makefile -	For updating/installing DNS data files
 X#
 X# $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X# $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X# $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X#
 X# DESCRIPTION
 X#	If you add a new file, you must add it to the appropriate
@@ -427,7 +427,7 @@ X#!/usr/local/bin/perl
 X# make-SOA -	Generate a DNS SOA record for a domain
 X#
 X# $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X# $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X# $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X#
 X# SYNOPSIS
 X#	make-SOA -o SOA-file domain-file
@@ -638,7 +638,7 @@ X#!/usr/local/bin/perl
 X# make-depend -	Output SOA-file dependencies, in make(1) format
 X#
 X# $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X# $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X# $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X#
 X# SYNOPSIS
 X#	make-depend SOA-file ...
@@ -695,7 +695,7 @@ sed 's/^X//' << 'SHAR_EOF' > 0.0.127.IN-ADDR.ARPA.zone &&
 X; 0.0.127.IN-ADDR.ARPA.zone -	DNS zone for resolving 127.0.0.1 address
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X;
@@ -736,7 +736,7 @@ sed 's/^X//' << 'SHAR_EOF' > 1.254.191.IN-ADDR.ARPA.zone &&
 X; 1.254.191.IN-ADDR.ARPA.zone -	DNS data for 1.254.191.IN-ADDR.ARPA.
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE 1.254.191.SOA
@@ -771,7 +771,7 @@ sed 's/^X//' << 'SHAR_EOF' > 16.254.191.IN-ADDR.ARPA.zone &&
 X; 16.254.191.IN-ADDR.ARPA.zone -	DNS data for 16.254.191.IN-ADDR.ARPA.
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE 16.254.191.SOA
@@ -803,7 +803,7 @@ sed 's/^X//' << 'SHAR_EOF' > 17.254.191.IN-ADDR.ARPA.zone &&
 X; 17.254.191.IN-ADDR.ARPA.zone -	DNS data for 17.254.191.IN-ADDR.ARPA.
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE 17.254.191.SOA
@@ -833,7 +833,7 @@ sed 's/^X//' << 'SHAR_EOF' > 253.191.IN-ADDR.ARPA.zone &&
 X; 253.191.IN-ADDR.ARPA.zone -	DNS data for 254.191.IN-ADDR.ARPA.
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE 253.191.SOA
@@ -859,7 +859,7 @@ sed 's/^X//' << 'SHAR_EOF' > 254.191.IN-ADDR.ARPA.zone &&
 X; 254.191.IN-ADDR.ARPA.zone -	DNS data for 254.191.IN-ADDR.ARPA.
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE 254.191.SOA
@@ -886,7 +886,7 @@ sed 's/^X//' << 'SHAR_EOF' > client.org.au.zone &&
 X; client.org.au.zone -	DNS data for client.org.au
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X; example.org.au provides DNS services to client.org.au
 X;
@@ -920,7 +920,7 @@ sed 's/^X//' << 'SHAR_EOF' > example.org.au.zone &&
 X; example.org.au.zone -	DNS data for example.org.au
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE example.org.au.SOA
@@ -966,7 +966,7 @@ sed 's/^X//' << 'SHAR_EOF' > localhost.zone &&
 X; localhost.zone -	DNS data for resolving "localhost" to 127.0.0.1
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X;
@@ -1004,7 +1004,7 @@ sed 's/^X//' << 'SHAR_EOF' > net.example.org.au.zone &&
 X; net.example.org.au.zone -	DNS data for net.example.org.au
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE net.example.org.au.SOA
@@ -1042,7 +1042,7 @@ sed 's/^X//' << 'SHAR_EOF' > sub.example.org.au.zone &&
 X; sub.example.org.au.zone -	DNS data for sub.example.org.au
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X$INCLUDE sub.example.org.au.SOA
@@ -1101,7 +1101,7 @@ sed 's/^X//' << 'SHAR_EOF' > MX.generic &&
 X; MX.generic -	A list of MX entries for $INCLUDE-ing anywhere
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X@	IN	MX	10	mailhub.example.org.au.
@@ -1125,7 +1125,7 @@ sed 's/^X//' << 'SHAR_EOF' > NS.generic &&
 X; NS.generic -	Generic NS records, to be $INCLUDE-ed in all zones
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 X;
@@ -1152,7 +1152,7 @@ sed 's/^X//' << 'SHAR_EOF' > sub-pcs.example.org.au.inc &&
 X; sub-pcs.example.org.au.inc -	PC's in sub.example.org.au.
 X;
 X; $Id: soa-easy.shar,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $
-X; $Source: /cvs/Darwin/Services/bind/bind/contrib/misc/soa-easy.shar,v $
+X; $Source: /cvs/Darwin/src/live/bind/bind/contrib/misc/soa-easy.shar,v $
 X;
 X
 Xgroucho		IN	A	191.254.16.100

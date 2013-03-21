@@ -18,7 +18,7 @@
  * WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OF
  * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.
  *
- * @(#) $Header: /cvs/Darwin/Services/bind/bind/contrib/nslint-1.5.1/lbl/os-solaris2.h,v 1.1.1.2 2001/01/31 03:59:08 zarzycki Exp $ (LBL)
+ * @(#) $Header: /cvs/Darwin/src/live/bind/bind/contrib/nslint-1.5.1/lbl/os-solaris2.h,v 1.1.1.2 2001/01/31 03:59:08 zarzycki Exp $ (LBL)
  */
 
 /* Signal routines are this type */

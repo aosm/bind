@@ -6,8 +6,8 @@
  * Use this code however you want, as long as you don't try to make
  * money off of it and as long as you don't claim it's yours.
  *
- *	$Header: /cvs/Darwin/Services/bind/bind/contrib/ninit/ninit.c,v 1.1.1.2 2001/01/31 03:59:06 zarzycki Exp $
- * 	$Source: /cvs/Darwin/Services/bind/bind/contrib/ninit/ninit.c,v $
+ *	$Header: /cvs/Darwin/src/live/bind/bind/contrib/ninit/ninit.c,v 1.1.1.2 2001/01/31 03:59:06 zarzycki Exp $
+ * 	$Source: /cvs/Darwin/src/live/bind/bind/contrib/ninit/ninit.c,v $
  *
  * Note that ninit requires that named be modified so that it accepts
  * the -n option.  This option to named asks named not to fork into

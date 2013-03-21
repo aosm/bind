@@ -26,7 +26,7 @@ and directly follow the soa, e.g.:
 		Craig
 ------
 #!/bin/csh -f
-# @(#) $Header: /cvs/Darwin/Services/bind/bind/contrib/misc/update-soa.csh,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $ (LBL)
+# @(#) $Header: /cvs/Darwin/src/live/bind/bind/contrib/misc/update-soa.csh,v 1.1.1.2 2001/01/31 03:59:05 zarzycki Exp $ (LBL)
 #
 # updateserial - Update the SOA serial in the specified files.
 #

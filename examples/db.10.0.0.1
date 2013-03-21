@@ -1,0 +1,294 @@
+
+Title
+
+Mac OS X Server 10.1: Configuring DNS in a NAT environment (db.10.0.1).
+
+Summary
+
+This article provides an example address-to-name lookup database file.  For more information on this article, please see article  ÒMac OS X Server 10.1: Configuring DNS in a NAT environment (Instructions).Ó
+
+
+Discussion
+
+[Disclaimer from Apple Legal]
+
+------ Copy Below This Line --------
+$TTL 38400
+; db.10.0.1 file from the Apple Knowledge Base from Apple Knowledge Base Article Number
+;
+; CAUTION: Users should be aware that the incorrect configuration of DNS
+; settings can result in serious system issues. It is recommended that only
+; experienced users manipulate these settings.
+
+;
+
+1.0.10.in-addr.arpa. IN SOA server.example.com. admin.server.example.com. (
+                          1        ; Serial
+                          10800    ; Refresh after 3 hours
+                          3600     ; Retry after 1 hour
+                          604800   ; Expire after 1 week
+                          86400 )  ; Minimum TTL of 1 day
+
+; Name servers
+
+1.0.10.in-addr.arpa.    IN NS    server.example.com.
+
+; Addresses point to canonical names
+
+2.1.0.10.in-addr.arpa.    IN PTR    server.example.com.
+3.1.0.10.in-addr.arpa.    IN PTR    host3.example.com.
+4.1.0.10.in-addr.arpa.    IN PTR    host4.example.com.
+5.1.0.10.in-addr.arpa.    IN PTR    host5.example.com.
+6.1.0.10.in-addr.arpa.    IN PTR    host6.example.com.
+7.1.0.10.in-addr.arpa.    IN PTR    host7.example.com.
+8.1.0.10.in-addr.arpa.    IN PTR    host8.example.com.
+9.1.0.10.in-addr.arpa.    IN PTR    host9.example.com.
+10.1.0.10.in-addr.arpa.    IN PTR    host10.example.com.
+11.1.0.10.in-addr.arpa.    IN PTR    host11.example.com.
+12.1.0.10.in-addr.arpa.    IN PTR    host12.example.com.
+13.1.0.10.in-addr.arpa.    IN PTR    host13.example.com.
+14.1.0.10.in-addr.arpa.    IN PTR    host14.example.com.
+15.1.0.10.in-addr.arpa.    IN PTR    host15.example.com.
+16.1.0.10.in-addr.arpa.    IN PTR    host16.example.com.
+17.1.0.10.in-addr.arpa.    IN PTR    host17.example.com.
+18.1.0.10.in-addr.arpa.    IN PTR    host18.example.com.
+19.1.0.10.in-addr.arpa.    IN PTR    host19.example.com.
+20.1.0.10.in-addr.arpa.    IN PTR    host20.example.com.
+21.1.0.10.in-addr.arpa.    IN PTR    host21.example.com.
+22.1.0.10.in-addr.arpa.    IN PTR    host22.example.com.
+23.1.0.10.in-addr.arpa.    IN PTR    host23.example.com.
+24.1.0.10.in-addr.arpa.    IN PTR    host24.example.com.
+25.1.0.10.in-addr.arpa.    IN PTR    host25.example.com.
+26.1.0.10.in-addr.arpa.    IN PTR    host26.example.com.
+27.1.0.10.in-addr.arpa.    IN PTR    host27.example.com.
+28.1.0.10.in-addr.arpa.    IN PTR    host28.example.com.
+29.1.0.10.in-addr.arpa.    IN PTR    host29.example.com.
+30.1.0.10.in-addr.arpa.    IN PTR    host30.example.com.
+31.1.0.10.in-addr.arpa.    IN PTR    host31.example.com.
+32.1.0.10.in-addr.arpa.    IN PTR    host32.example.com.
+33.1.0.10.in-addr.arpa.    IN PTR    host33.example.com.
+34.1.0.10.in-addr.arpa.    IN PTR    host34.example.com.
+35.1.0.10.in-addr.arpa.    IN PTR    host35.example.com.
+36.1.0.10.in-addr.arpa.    IN PTR    host36.example.com.
+37.1.0.10.in-addr.arpa.    IN PTR    host37.example.com.
+38.1.0.10.in-addr.arpa.    IN PTR    host38.example.com.
+39.1.0.10.in-addr.arpa.    IN PTR    host39.example.com.
+40.1.0.10.in-addr.arpa.    IN PTR    host40.example.com.
+41.1.0.10.in-addr.arpa.    IN PTR    host41.example.com.
+42.1.0.10.in-addr.arpa.    IN PTR    host42.example.com.
+43.1.0.10.in-addr.arpa.    IN PTR    host43.example.com.
+44.1.0.10.in-addr.arpa.    IN PTR    host44.example.com.
+45.1.0.10.in-addr.arpa.    IN PTR    host45.example.com.
+46.1.0.10.in-addr.arpa.    IN PTR    host46.example.com.
+47.1.0.10.in-addr.arpa.    IN PTR    host47.example.com.
+48.1.0.10.in-addr.arpa.    IN PTR    host48.example.com.
+49.1.0.10.in-addr.arpa.    IN PTR    host49.example.com.
+50.1.0.10.in-addr.arpa.    IN PTR    host50.example.com.
+51.1.0.10.in-addr.arpa.    IN PTR    host51.example.com.
+52.1.0.10.in-addr.arpa.    IN PTR    host52.example.com.
+53.1.0.10.in-addr.arpa.    IN PTR    host53.example.com.
+54.1.0.10.in-addr.arpa.    IN PTR    host54.example.com.
+55.1.0.10.in-addr.arpa.    IN PTR    host55.example.com.
+56.1.0.10.in-addr.arpa.    IN PTR    host56.example.com.
+57.1.0.10.in-addr.arpa.    IN PTR    host57.example.com.
+58.1.0.10.in-addr.arpa.    IN PTR    host58.example.com.
+59.1.0.10.in-addr.arpa.    IN PTR    host59.example.com.
+60.1.0.10.in-addr.arpa.    IN PTR    host60.example.com.
+61.1.0.10.in-addr.arpa.    IN PTR    host61.example.com.
+62.1.0.10.in-addr.arpa.    IN PTR    host62.example.com.
+63.1.0.10.in-addr.arpa.    IN PTR    host63.example.com.
+64.1.0.10.in-addr.arpa.    IN PTR    host64.example.com.
+65.1.0.10.in-addr.arpa.    IN PTR    host65.example.com.
+66.1.0.10.in-addr.arpa.    IN PTR    host66.example.com.
+67.1.0.10.in-addr.arpa.    IN PTR    host67.example.com.
+68.1.0.10.in-addr.arpa.    IN PTR    host68.example.com.
+69.1.0.10.in-addr.arpa.    IN PTR    host69.example.com.
+70.1.0.10.in-addr.arpa.    IN PTR    host70.example.com.
+71.1.0.10.in-addr.arpa.    IN PTR    host71.example.com.
+72.1.0.10.in-addr.arpa.    IN PTR    host72.example.com.
+73.1.0.10.in-addr.arpa.    IN PTR    host73.example.com.
+74.1.0.10.in-addr.arpa.    IN PTR    host74.example.com.
+75.1.0.10.in-addr.arpa.    IN PTR    host75.example.com.
+76.1.0.10.in-addr.arpa.    IN PTR    host76.example.com.
+77.1.0.10.in-addr.arpa.    IN PTR    host77.example.com.
+78.1.0.10.in-addr.arpa.    IN PTR    host78.example.com.
+79.1.0.10.in-addr.arpa.    IN PTR    host79.example.com.
+80.1.0.10.in-addr.arpa.    IN PTR    host80.example.com.
+81.1.0.10.in-addr.arpa.    IN PTR    host81.example.com.
+82.1.0.10.in-addr.arpa.    IN PTR    host82.example.com.
+83.1.0.10.in-addr.arpa.    IN PTR    host83.example.com.
+84.1.0.10.in-addr.arpa.    IN PTR    host84.example.com.
+85.1.0.10.in-addr.arpa.    IN PTR    host85.example.com.
+86.1.0.10.in-addr.arpa.    IN PTR    host86.example.com.
+87.1.0.10.in-addr.arpa.    IN PTR    host87.example.com.
+88.1.0.10.in-addr.arpa.    IN PTR    host88.example.com.
+89.1.0.10.in-addr.arpa.    IN PTR    host89.example.com.
+90.1.0.10.in-addr.arpa.    IN PTR    host90.example.com.
+91.1.0.10.in-addr.arpa.    IN PTR    host91.example.com.
+92.1.0.10.in-addr.arpa.    IN PTR    host92.example.com.
+93.1.0.10.in-addr.arpa.    IN PTR    host93.example.com.
+94.1.0.10.in-addr.arpa.    IN PTR    host94.example.com.
+95.1.0.10.in-addr.arpa.    IN PTR    host95.example.com.
+96.1.0.10.in-addr.arpa.    IN PTR    host96.example.com.
+97.1.0.10.in-addr.arpa.    IN PTR    host97.example.com.
+98.1.0.10.in-addr.arpa.    IN PTR    host98.example.com.
+99.1.0.10.in-addr.arpa.    IN PTR    host99.example.com.
+100.1.0.10.in-addr.arpa.    IN PTR    host100.example.com.
+101.1.0.10.in-addr.arpa.    IN PTR    host101.example.com.
+102.1.0.10.in-addr.arpa.    IN PTR    host102.example.com.
+103.1.0.10.in-addr.arpa.    IN PTR    host103.example.com.
+104.1.0.10.in-addr.arpa.    IN PTR    host104.example.com.
+105.1.0.10.in-addr.arpa.    IN PTR    host105.example.com.
+106.1.0.10.in-addr.arpa.    IN PTR    host106.example.com.
+107.1.0.10.in-addr.arpa.    IN PTR    host107.example.com.
+108.1.0.10.in-addr.arpa.    IN PTR    host108.example.com.
+109.1.0.10.in-addr.arpa.    IN PTR    host109.example.com.
+110.1.0.10.in-addr.arpa.    IN PTR    host110.example.com.
+111.1.0.10.in-addr.arpa.    IN PTR    host111.example.com.
+112.1.0.10.in-addr.arpa.    IN PTR    host112.example.com.
+113.1.0.10.in-addr.arpa.    IN PTR    host113.example.com.
+114.1.0.10.in-addr.arpa.    IN PTR    host114.example.com.
+115.1.0.10.in-addr.arpa.    IN PTR    host115.example.com.
+116.1.0.10.in-addr.arpa.    IN PTR    host116.example.com.
+117.1.0.10.in-addr.arpa.    IN PTR    host117.example.com.
+118.1.0.10.in-addr.arpa.    IN PTR    host118.example.com.
+119.1.0.10.in-addr.arpa.    IN PTR    host119.example.com.
+120.1.0.10.in-addr.arpa.    IN PTR    host120.example.com.
+121.1.0.10.in-addr.arpa.    IN PTR    host121.example.com.
+122.1.0.10.in-addr.arpa.    IN PTR    host122.example.com.
+123.1.0.10.in-addr.arpa.    IN PTR    host123.example.com.
+124.1.0.10.in-addr.arpa.    IN PTR    host124.example.com.
+125.1.0.10.in-addr.arpa.    IN PTR    host125.example.com.
+126.1.0.10.in-addr.arpa.    IN PTR    host126.example.com.
+127.1.0.10.in-addr.arpa.    IN PTR    host127.example.com.
+128.1.0.10.in-addr.arpa.    IN PTR    host128.example.com.
+129.1.0.10.in-addr.arpa.    IN PTR    host129.example.com.
+130.1.0.10.in-addr.arpa.    IN PTR    host130.example.com.
+131.1.0.10.in-addr.arpa.    IN PTR    host131.example.com.
+132.1.0.10.in-addr.arpa.    IN PTR    host132.example.com.
+133.1.0.10.in-addr.arpa.    IN PTR    host133.example.com.
+134.1.0.10.in-addr.arpa.    IN PTR    host134.example.com.
+135.1.0.10.in-addr.arpa.    IN PTR    host135.example.com.
+136.1.0.10.in-addr.arpa.    IN PTR    host136.example.com.
+137.1.0.10.in-addr.arpa.    IN PTR    host137.example.com.
+138.1.0.10.in-addr.arpa.    IN PTR    host138.example.com.
+139.1.0.10.in-addr.arpa.    IN PTR    host139.example.com.
+140.1.0.10.in-addr.arpa.    IN PTR    host140.example.com.
+141.1.0.10.in-addr.arpa.    IN PTR    host141.example.com.
+142.1.0.10.in-addr.arpa.    IN PTR    host142.example.com.
+143.1.0.10.in-addr.arpa.    IN PTR    host143.example.com.
+144.1.0.10.in-addr.arpa.    IN PTR    host144.example.com.
+145.1.0.10.in-addr.arpa.    IN PTR    host145.example.com.
+146.1.0.10.in-addr.arpa.    IN PTR    host146.example.com.
+147.1.0.10.in-addr.arpa.    IN PTR    host147.example.com.
+148.1.0.10.in-addr.arpa.    IN PTR    host148.example.com.
+149.1.0.10.in-addr.arpa.    IN PTR    host149.example.com.
+150.1.0.10.in-addr.arpa.    IN PTR    host150.example.com.
+151.1.0.10.in-addr.arpa.    IN PTR    host151.example.com.
+152.1.0.10.in-addr.arpa.    IN PTR    host152.example.com.
+153.1.0.10.in-addr.arpa.    IN PTR    host153.example.com.
+154.1.0.10.in-addr.arpa.    IN PTR    host154.example.com.
+155.1.0.10.in-addr.arpa.    IN PTR    host155.example.com.
+156.1.0.10.in-addr.arpa.    IN PTR    host156.example.com.
+157.1.0.10.in-addr.arpa.    IN PTR    host157.example.com.
+158.1.0.10.in-addr.arpa.    IN PTR    host158.example.com.
+159.1.0.10.in-addr.arpa.    IN PTR    host159.example.com.
+160.1.0.10.in-addr.arpa.    IN PTR    host160.example.com.
+161.1.0.10.in-addr.arpa.    IN PTR    host161.example.com.
+162.1.0.10.in-addr.arpa.    IN PTR    host162.example.com.
+163.1.0.10.in-addr.arpa.    IN PTR    host163.example.com.
+164.1.0.10.in-addr.arpa.    IN PTR    host164.example.com.
+165.1.0.10.in-addr.arpa.    IN PTR    host165.example.com.
+166.1.0.10.in-addr.arpa.    IN PTR    host166.example.com.
+167.1.0.10.in-addr.arpa.    IN PTR    host167.example.com.
+168.1.0.10.in-addr.arpa.    IN PTR    host168.example.com.
+169.1.0.10.in-addr.arpa.    IN PTR    host169.example.com.
+170.1.0.10.in-addr.arpa.    IN PTR    host170.example.com.
+171.1.0.10.in-addr.arpa.    IN PTR    host171.example.com.
+172.1.0.10.in-addr.arpa.    IN PTR    host172.example.com.
+173.1.0.10.in-addr.arpa.    IN PTR    host173.example.com.
+174.1.0.10.in-addr.arpa.    IN PTR    host174.example.com.
+175.1.0.10.in-addr.arpa.    IN PTR    host175.example.com.
+176.1.0.10.in-addr.arpa.    IN PTR    host176.example.com.
+177.1.0.10.in-addr.arpa.    IN PTR    host177.example.com.
+178.1.0.10.in-addr.arpa.    IN PTR    host178.example.com.
+179.1.0.10.in-addr.arpa.    IN PTR    host179.example.com.
+180.1.0.10.in-addr.arpa.    IN PTR    host180.example.com.
+181.1.0.10.in-addr.arpa.    IN PTR    host181.example.com.
+182.1.0.10.in-addr.arpa.    IN PTR    host182.example.com.
+183.1.0.10.in-addr.arpa.    IN PTR    host183.example.com.
+184.1.0.10.in-addr.arpa.    IN PTR    host184.example.com.
+185.1.0.10.in-addr.arpa.    IN PTR    host185.example.com.
+186.1.0.10.in-addr.arpa.    IN PTR    host186.example.com.
+187.1.0.10.in-addr.arpa.    IN PTR    host187.example.com.
+188.1.0.10.in-addr.arpa.    IN PTR    host188.example.com.
+189.1.0.10.in-addr.arpa.    IN PTR    host189.example.com.
+190.1.0.10.in-addr.arpa.    IN PTR    host190.example.com.
+191.1.0.10.in-addr.arpa.    IN PTR    host191.example.com.
+192.1.0.10.in-addr.arpa.    IN PTR    host192.example.com.
+193.1.0.10.in-addr.arpa.    IN PTR    host193.example.com.
+194.1.0.10.in-addr.arpa.    IN PTR    host194.example.com.
+195.1.0.10.in-addr.arpa.    IN PTR    host195.example.com.
+196.1.0.10.in-addr.arpa.    IN PTR    host196.example.com.
+197.1.0.10.in-addr.arpa.    IN PTR    host197.example.com.
+198.1.0.10.in-addr.arpa.    IN PTR    host198.example.com.
+199.1.0.10.in-addr.arpa.    IN PTR    host199.example.com.
+200.1.0.10.in-addr.arpa.    IN PTR    host200.example.com.
+201.1.0.10.in-addr.arpa.    IN PTR    host201.example.com.
+202.1.0.10.in-addr.arpa.    IN PTR    host202.example.com.
+203.1.0.10.in-addr.arpa.    IN PTR    host203.example.com.
+204.1.0.10.in-addr.arpa.    IN PTR    host204.example.com.
+205.1.0.10.in-addr.arpa.    IN PTR    host205.example.com.
+206.1.0.10.in-addr.arpa.    IN PTR    host206.example.com.
+207.1.0.10.in-addr.arpa.    IN PTR    host207.example.com.
+208.1.0.10.in-addr.arpa.    IN PTR    host208.example.com.
+209.1.0.10.in-addr.arpa.    IN PTR    host209.example.com.
+210.1.0.10.in-addr.arpa.    IN PTR    host210.example.com.
+211.1.0.10.in-addr.arpa.    IN PTR    host211.example.com.
+212.1.0.10.in-addr.arpa.    IN PTR    host212.example.com.
+213.1.0.10.in-addr.arpa.    IN PTR    host213.example.com.
+214.1.0.10.in-addr.arpa.    IN PTR    host214.example.com.
+215.1.0.10.in-addr.arpa.    IN PTR    host215.example.com.
+216.1.0.10.in-addr.arpa.    IN PTR    host216.example.com.
+217.1.0.10.in-addr.arpa.    IN PTR    host217.example.com.
+218.1.0.10.in-addr.arpa.    IN PTR    host218.example.com.
+219.1.0.10.in-addr.arpa.    IN PTR    host219.example.com.
+220.1.0.10.in-addr.arpa.    IN PTR    host220.example.com.
+221.1.0.10.in-addr.arpa.    IN PTR    host221.example.com.
+222.1.0.10.in-addr.arpa.    IN PTR    host222.example.com.
+223.1.0.10.in-addr.arpa.    IN PTR    host223.example.com.
+224.1.0.10.in-addr.arpa.    IN PTR    host224.example.com.
+225.1.0.10.in-addr.arpa.    IN PTR    host225.example.com.
+226.1.0.10.in-addr.arpa.    IN PTR    host226.example.com.
+227.1.0.10.in-addr.arpa.    IN PTR    host227.example.com.
+228.1.0.10.in-addr.arpa.    IN PTR    host228.example.com.
+229.1.0.10.in-addr.arpa.    IN PTR    host229.example.com.
+230.1.0.10.in-addr.arpa.    IN PTR    host230.example.com.
+231.1.0.10.in-addr.arpa.    IN PTR    host231.example.com.
+232.1.0.10.in-addr.arpa.    IN PTR    host232.example.com.
+233.1.0.10.in-addr.arpa.    IN PTR    host233.example.com.
+234.1.0.10.in-addr.arpa.    IN PTR    host234.example.com.
+235.1.0.10.in-addr.arpa.    IN PTR    host235.example.com.
+236.1.0.10.in-addr.arpa.    IN PTR    host236.example.com.
+237.1.0.10.in-addr.arpa.    IN PTR    host237.example.com.
+238.1.0.10.in-addr.arpa.    IN PTR    host238.example.com.
+239.1.0.10.in-addr.arpa.    IN PTR    host239.example.com.
+240.1.0.10.in-addr.arpa.    IN PTR    host240.example.com.
+241.1.0.10.in-addr.arpa.    IN PTR    host241.example.com.
+242.1.0.10.in-addr.arpa.    IN PTR    host242.example.com.
+243.1.0.10.in-addr.arpa.    IN PTR    host243.example.com.
+244.1.0.10.in-addr.arpa.    IN PTR    host244.example.com.
+245.1.0.10.in-addr.arpa.    IN PTR    host245.example.com.
+246.1.0.10.in-addr.arpa.    IN PTR    host246.example.com.
+247.1.0.10.in-addr.arpa.    IN PTR    host247.example.com.
+248.1.0.10.in-addr.arpa.    IN PTR    host248.example.com.
+249.1.0.10.in-addr.arpa.    IN PTR    host249.example.com.
+250.1.0.10.in-addr.arpa.    IN PTR    host250.example.com.
+251.1.0.10.in-addr.arpa.    IN PTR    host251.example.com.
+252.1.0.10.in-addr.arpa.    IN PTR    host252.example.com.
+253.1.0.10.in-addr.arpa.    IN PTR    host253.example.com.
+254.1.0.10.in-addr.arpa.    IN PTR    host254.example.com.
+------ Copy Above This Line --------
+
+
+

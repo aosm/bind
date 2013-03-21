@@ -1,4 +1,4 @@
-dnl @(#) $Header: /cvs/Darwin/Services/bind/bind/contrib/nslint-1.5.1/aclocal.m4,v 1.1.1.2 2001/01/31 03:59:07 zarzycki Exp $ (LBL)
+dnl @(#) $Header: /cvs/Darwin/src/live/bind/bind/contrib/nslint-1.5.1/aclocal.m4,v 1.1.1.2 2001/01/31 03:59:07 zarzycki Exp $ (LBL)
 dnl
 dnl Copyright (c) 1995, 1996
 dnl	The Regents of the University of California.  All rights reserved.

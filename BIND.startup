@@ -1,0 +1,13 @@
+#!/bin/sh
+
+##
+# cron executes commands listed in /etc/crontab at specified times.
+##
+
+. /etc/rc.common
+
+if [ "${DNSSSERVER:=-NO-}" = "-YES-" ]; then
+	ConsoleMessage "Starting named"
+
+	named
+fi

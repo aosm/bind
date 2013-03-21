@@ -1,4 +1,4 @@
-/* $Header: /cvs/Darwin/Services/bind/bind/contrib/dns_signer/parse/pkg_internal_dns_parse.h,v 1.1.1.3 2001/01/31 03:58:40 zarzycki Exp $ */
+/* $Header: /cvs/Darwin/src/live/bind/bind/contrib/dns_signer/parse/pkg_internal_dns_parse.h,v 1.1.1.3 2001/01/31 03:58:40 zarzycki Exp $ */
 #ifndef __pkg_internal_dns_parse_h__
 #define __pkg_internal_dns_parse_h__
 

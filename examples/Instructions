@@ -1,0 +1,239 @@
+Configuring DNS in a NAT environment on Mac OS X and Mac OS X Server
+
+
+SUMMARY
+
+This article describes how to create a basic DNS (Domain Name System)
+configuration using BIND for a typical network behind a Network Address
+Translation (NAT) device.
+
+
+DISCUSSION
+
+The Apple Mail Server and some configurations of the Web Server (Apache)
+require the presence of a correctly configured DNS Server on your network. 
+Mac OS X and Mac OS X Server can benefit from the availability of valid
+forward and reverse name resolution.
+
+Other Mac OS X Server services including File Sharing (AFP, NFS, SMB/CIFS
+and FTP), Print Service, IP Filtering, NetBoot, Macintosh Manager, SLP
+Directory Agent, DHCP serving, and NetInfo Domain hosting do not require
+the presence of DNS.  However, if DNS is available and not configured
+properly, some server services may not function or their performance can be
+significantly diminished.
+
+If you have an Internet service provider, or you are in a business or
+school with with an information services department, they may already be
+able to provide DNS services for your server.  Please contact your internal
+support or Internet Service Provider to determine if this service is
+available to you.
+
+
+BACKGROUND
+
+BIND (Berkeley Internet Name Domain) is an implementation of the Domain
+Name System (DNS) protocols.  It is included with Mac OS X and Mac OS X
+Server, allowing a Mac to act as a DNS server.  Configuring a complete DNS
+using BIND can be a complex process.  If this generic configuration example
+does not meet your needs, we recommend that you do not attempt to configure
+DNS on your own and seek out a professional consultant or additional
+documentation
+
+
+MORE INFORMATION
+
+If you are configuring DNS on Mac OS X Server, please see the DNS chapter
+of the Mac OS X Server Admininstrator's Guide, "DNS Server" (Chapter 14 at
+last check).
+
+
+How to locate a network consultant to help you implement DNS:
+
+Apple Professional Services
+    <http://www.apple.com/services/>
+
+Apple Solutions Experts
+    <http://experts.apple.com/>
+
+
+External sites with information on BIND:
+
+Official BIND Site
+    <http://www.isc.org/products/BIND/>
+BIND Version 8 Online Documentation
+    <http://www.ludd.luth.se/~kavli/BIND8/index.html>
+Domain Name System (DNS) Information
+    <http://www.scit.wlv.ac.uk/~jphb/comms/dns.html>
+How Stuff Works on DNS
+    <http://www.howstuffworks.com/dns.htm>
+
+
+Third Party Publications with information on BIND:
+
+DNS and BIND, 4th Edition
+    <http://www.oreilly.com/catalog/dns4/>
+
+The Concise Guide to DNS and BIND
+    <http://www.quepublishing.com/catalog/product.asp?product_id={B0D70165-4210-4E72-933B-2C798BB92F02}>
+
+UNIX System Administration Handbook 
+    <http://vig.pearsoned.com/store/product/1,3498,store-562_isbn-0130206016,00.html?>
+
+
+There are also commercial and free alternatives for configuring BIND:
+
+QuickDNS Pro
+    <http://www.miceandmen.com/2000/2000_products.html>
+DNS Expert
+    <http://www.miceandmen.com/2000/2000_products.html>
+Webmin (DNS module)
+    <http://www.webmin.com/>
+mysqlBind
+    <http://freshmeat.net/projects/mysqlbind/>
+
+
+DISCLAIMER
+
+    **** CAUTION ****
+
+Users should be aware that the incorrect configuration of DNS settings can
+result in serious system issues. It is recommended that only experienced
+users manipulate these settings.
+
+    **** CAUTION ****
+
+
+BEFORE YOU START
+
+In the following example, we assume that your network has a dedicated
+router or gateway and that device is using NAT.  The port (Cable
+Modem/DSL/Dial-up/etc.) that is connected to your ISP is defined as the WAN
+port.  The port that is connected to you internal network is defined as the
+LAN port.
+
+* The IP address of the WAN port is determined by your ISP.
+* The IP address of the LAN port is 10.0.1.1
+* The IP address of the Mac OS X or Mac OS X Server machine that will be
+  used as the DNS server is 10.0.1.2.
+* The IP addresses for client computers are 10.0.1.3 through 10.0.1.254.
+
+If IP address assignment is provided by the NAT device via DHCP, it needs
+to be configured with the above information.  Please consult your router or
+gateway manual for instructions on configuring its DHCP Server.
+
+If your NAT device connects to the Internet, you also need to know the DNS
+server addresses provided by your ISP.
+
+
+CONFIGURING DNS SERVICE
+
+The sample files assume a domain name of "example.com" behind the NAT. This
+may be changed but must be changed in ALL modified configuration files.
+This includes renaming "/var/named/db.example.com" (from step 7) to the
+given domain name, for example, "/var/named/db.foo.org".
+
+ 1) Log into the DNS server machine as root.
+
+ 2) Choose Go To Folder from the Go menu.
+
+ 3) In the "Go to the folder:" sheet, enter "/etc" <no quotes> and click
+ 	the Go button.
+
+ 4) Locate the file "named.conf" and rename it "named.conf.OLD".
+
+ 5) Launch the TextEdit application located in /Applications.
+
+ 6) Copy the contents of "/usr/share/named/examples/db.10.0.1.sample" into
+ 	a new file. Save the file as "/var/named/db.10.0.1" (no quotes).
+
+ 7) Copy the contents of "/usr/share/named/examples/db.example.com.sample"
+ 	into a new file. Save the file as "/var/named/db.example.com".
+
+ 8) Copy the contents of "/usr/share/named/examples/named.conf.sample" into
+ 	a new file.
+
+ 9) Follow the instructions in the sample file to apply edits appropriate
+ 	to your specific installation, then save the file as
+ 	"/etc/named.conf".
+
+
+On Mac OS X Server:
+10) Log out, and log back in as an administrator user.
+
+11) Using Server Settings, via the Network tab, start the DNS service.
+
+13) In the Network preference pane of the System Preferences, change the
+	Domain Name Servers to only list the IP address of the new DNS server,
+	10.0.1.2.
+
+
+On Mac OS X:
+10) Open "/etc/hostconfig".
+
+11) Add the following line to the end of the file:
+    DNSSSERVER=-YES-
+
+12) Save the file.
+
+13) In the Network preference pane of the System Preferences, change the
+	Domain Name Servers to only list the IP address of the new DNS server,
+	10.0.1.2.
+
+14) Reboot the machine.
+
+
+CONFIGURING CLIENTS
+
+If the IP addresses of your client computers are statically assigned,
+change the Domain Name Servers of their Network preference pane to only
+list the new server's IP address, 10.0.1.2.
+
+
+If you are using Mac OS X Server as your DHCP Server:
+
+1) Using Server Settings, choose Configure DHCP from the Network tab.
+
+2) On the Subnet tab, edit the Built-in Ethernet port (default).
+
+3) In the General tab, enter the following information:
+
+    Start:             10.0.1.3 
+    End:               10.0.1.254
+    Subnet Mask:       255.255.255.0
+    Router:            10.0.1.1
+
+4) Select the DNS tab and enter the following information:
+
+    Default Domain:    example.com
+    DNS Servers:        10.0.1.2
+
+5) Click the Save button and log out of Server Settings.
+
+Note: The client computers may not immediately populate with the new IP
+configuration information.  This will depend upon when their DHCP leases
+expire.  It may be necessary to restart the client computers for the
+changes to populate.
+
+
+CHECK YOUR CONFIGURATION
+
+To verify the steps were successful, launch the Terminal application
+located in /Applications/Utilities and enter the following commands
+(substituting the local domain name for "example.com" if different):
+    nslookup server.example.com
+    nslookup 10.0.1.2
+
+
+
+Mention of third-party products, companies and web sites is for
+informational purposes only and constitutes neither an endorsement nor a
+recommendation. Apple assumes no responsibility with regard to the
+selection, performance or use of information or products found at third
+party web sites. Apple provides this only as a convenience to our users.
+Apple has not tested the information found on these sites and makes no
+representations regarding its accuracy or reliability. There are dangers
+inherent in the use of any information or products found on the Internet,
+and Apple assumes no responsibility in this regard. Please understand that
+a third party site is independent from Apple and that Apple has no control
+over the content on that web site.
+

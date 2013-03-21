@@ -1,4 +1,4 @@
-/* @(#) $Header: /cvs/Darwin/Services/bind/bind/contrib/nslint-1.5.1/lbl/gnuc.h,v 1.1.1.2 2001/01/31 03:59:08 zarzycki Exp $ (LBL) */
+/* @(#) $Header: /cvs/Darwin/src/live/bind/bind/contrib/nslint-1.5.1/lbl/gnuc.h,v 1.1.1.2 2001/01/31 03:59:08 zarzycki Exp $ (LBL) */
 
 /* Define __P() macro, if necessary */
 #ifndef __P

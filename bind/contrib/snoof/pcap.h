@@ -30,7 +30,7 @@
  * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
  * SUCH DAMAGE.
  *
- * @(#) $Header: /cvs/Darwin/Services/bind/bind/contrib/snoof/pcap.h,v 1.1.1.2 2001/01/31 03:59:12 zarzycki Exp $ (LBL)
+ * @(#) $Header: /cvs/Darwin/src/live/bind/bind/contrib/snoof/pcap.h,v 1.1.1.2 2001/01/31 03:59:12 zarzycki Exp $ (LBL)
  */
 
 #ifndef lib_pcap_h

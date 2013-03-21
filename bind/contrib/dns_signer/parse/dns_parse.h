@@ -1,4 +1,4 @@
-/* $Header: /cvs/Darwin/Services/bind/bind/contrib/dns_signer/parse/dns_parse.h,v 1.1.1.2 2001/01/31 03:58:38 zarzycki Exp $ */
+/* $Header: /cvs/Darwin/src/live/bind/bind/contrib/dns_signer/parse/dns_parse.h,v 1.1.1.2 2001/01/31 03:58:38 zarzycki Exp $ */
 #ifndef __DNS_PARSE_H__
 #define __DNS_PARSE_H__
 

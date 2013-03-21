@@ -14,7 +14,7 @@
 #define HAVE_CHROOT
 #define CAN_CHANGE_ID
 #define MISSING_IN6ADDR_ANY
-#define HAVE_NETINFO
+//#define HAVE_NETINFO
 
 #define _TIMEZONE timezone
 

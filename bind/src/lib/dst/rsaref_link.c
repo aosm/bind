@@ -1,5 +1,5 @@
 #ifdef RSAREF
-static const char rcsid[] = "$Header: /cvs/Darwin/Services/bind/bind/src/lib/dst/rsaref_link.c,v 1.1.1.3 2001/01/31 04:00:15 zarzycki Exp $";
+static const char rcsid[] = "$Header: /cvs/Darwin/src/live/bind/bind/src/lib/dst/rsaref_link.c,v 1.1.1.3 2001/01/31 04:00:15 zarzycki Exp $";
 
 /*
  * Portions Copyright (c) 1995-1998 by Trusted Information Systems, Inc.

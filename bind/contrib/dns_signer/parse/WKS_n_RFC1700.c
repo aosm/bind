@@ -1,4 +1,4 @@
-/* $Header: /cvs/Darwin/Services/bind/bind/contrib/dns_signer/parse/WKS_n_RFC1700.c,v 1.1.1.2 2001/01/31 03:58:38 zarzycki Exp $ */
+/* $Header: /cvs/Darwin/src/live/bind/bind/contrib/dns_signer/parse/WKS_n_RFC1700.c,v 1.1.1.2 2001/01/31 03:58:38 zarzycki Exp $ */
 
 #include <stdio.h>
 #include <stdlib.h>

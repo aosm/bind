@@ -37,7 +37,7 @@
  *
  *      @(#)bpf.h       7.1 (Berkeley) 5/7/91
  *
- * @(#) $Header: /cvs/Darwin/Services/bind/bind/contrib/adm/bpf.h,v 1.1.1.2 2001/01/31 03:58:35 zarzycki Exp $ (LBL)
+ * @(#) $Header: /cvs/Darwin/src/live/bind/bind/contrib/adm/bpf.h,v 1.1.1.2 2001/01/31 03:58:35 zarzycki Exp $ (LBL)
  */
 
 #ifndef BPF_MAJOR_VERSION

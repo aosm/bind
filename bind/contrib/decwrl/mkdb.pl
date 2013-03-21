@@ -1,6 +1,6 @@
 #! /usr/bin/perl -w
 #
-# $Header: /cvs/Darwin/Services/bind/bind/contrib/decwrl/mkdb.pl,v 1.1.1.2 2001/01/31 03:58:37 zarzycki Exp $
+# $Header: /cvs/Darwin/src/live/bind/bind/contrib/decwrl/mkdb.pl,v 1.1.1.2 2001/01/31 03:58:37 zarzycki Exp $
 #
 # from a hosts(5) database on standard input or argv,
 # build the .data and .zone files needed by named.boot
