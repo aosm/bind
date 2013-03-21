@@ -38,7 +38,7 @@ typedef struct {
 int A_RSA_CRT2Init PROTO_LIST ((A_RSA_CRT2_CTX *, A_RSA_CRT_KEY *));
 int A_RSA_CRT2Update PROTO_LIST
   ((A_RSA_CRT2_CTX *, unsigned char *, unsigned int *, unsigned int,
-    unsigned char *, unsigned int, A_SURRENDER_CTX *));
+    const unsigned char *, unsigned int, A_SURRENDER_CTX *));
 int A_RSA_CRT2Final PROTO_LIST ((A_RSA_CRT2_CTX *));
 void A_RSA_CRT2GetMaxOutputLen PROTO_LIST
   ((A_RSA_CRT2_CTX *, unsigned int *, unsigned int));

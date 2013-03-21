@@ -2,6 +2,7 @@
 #undef WANT_IRS_PW
 #undef WANT_IRS_GR
 #define SIG_FN void
+#define ISC_SOCKLEN_T int
 
 /* The ORD_32 define breaks DNSSEC on HP-UX 10.20.  */
 /* #define ORD_32 */
@@ -19,6 +20,8 @@
 #define GROUP_R_ENT_ARGS FILE **f
 #define GROUP_R_OK 0
 #define GROUP_R_BAD (-1)
+#define GETGROUPLIST_ARGS const char *name, gid_t basegid, gid_t *groups, \
+		      int *ngroups
 
 #define HOST_R_RETURN int
 #define HOST_R_SET_RETURN int
@@ -98,3 +101,9 @@
 #define SERVENT_DATA
 
 #include <limits.h>	/* _POSIX_PATH_MAX */
+#ifdef __GNUC__
+#define ISC_FORMAT_PRINTF(fmt, args) \
+	__attribute__((__format__(__printf__, fmt, args)))
+#else
+#define ISC_FORMAT_PRINTF(fmt, args)
+#endif

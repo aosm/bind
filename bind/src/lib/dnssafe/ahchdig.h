@@ -24,7 +24,7 @@ void AHChooseDigestDestructor PROTO_LIST ((THIS_DIGEST *));
 int AHChooseDigestInit PROTO_LIST
   ((THIS_DIGEST *, B_Key *, B_ALGORITHM_CHOOSER, A_SURRENDER_CTX *));
 int AHChooseDigestUpdate PROTO_LIST
-  ((THIS_DIGEST *, unsigned char *, unsigned int, A_SURRENDER_CTX *));
+  ((THIS_DIGEST *, const unsigned char *, unsigned int, A_SURRENDER_CTX *));
 int AHChooseDigestFinal PROTO_LIST
   ((THIS_DIGEST *, unsigned char *, unsigned int *, unsigned int,
     A_SURRENDER_CTX *));

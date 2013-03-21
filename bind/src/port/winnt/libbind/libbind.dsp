@@ -70,7 +70,7 @@ LINK32=link.exe
 # PROP Target_Dir ""
 # ADD BASE CPP /nologo /MTd /W3 /Gm /GX /Zi /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /YX /FD /c
 # ADD CPP /nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR /FD /c
-# SUBTRACT CPP /FA<none> /YX
+# SUBTRACT CPP /YX
 # ADD BASE MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD MTL /nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32
 # ADD BASE RSC /l 0x409 /d "_DEBUG"
@@ -194,6 +194,10 @@ SOURCE=..\..\..\lib\isc\eventlib.c
 # Begin Source File
 
 SOURCE=..\..\..\lib\isc\heap.c
+# End Source File
+# Begin Source File
+
+SOURCE=..\..\..\lib\isc\hex.c
 # End Source File
 # Begin Source File
 
@@ -565,6 +569,10 @@ SOURCE=..\..\..\lib\inet\inet_cidr_pton.c
 # End Source File
 # Begin Source File
 
+SOURCE=..\..\..\lib\inet\inet_data.c
+# End Source File
+# Begin Source File
+
 SOURCE=..\..\..\lib\inet\inet_lnaof.c
 # End Source File
 # Begin Source File
@@ -726,10 +734,6 @@ SOURCE=.\interface.c
 # Begin Source File
 
 SOURCE=.\ioctl_if.c
-# End Source File
-# Begin Source File
-
-SOURCE=.\movefile.c
 # End Source File
 # Begin Source File
 
@@ -1903,6 +1907,10 @@ SOURCE=..\..\..\lib\dnssafe\surrendr.c
 # Begin Source File
 
 SOURCE=.\libbind.def
+# End Source File
+# Begin Source File
+
+SOURCE=.\libbind.rc
 # End Source File
 # End Target
 # End Project

@@ -18,7 +18,7 @@
 static int MD5Query PROTO_LIST ((unsigned int *, POINTER));
 static int MD5Init PROTO_LIST ((POINTER, POINTER, A_SURRENDER_CTX*));
 static int MD5Update PROTO_LIST
-  ((POINTER, unsigned char *, unsigned int, A_SURRENDER_CTX*));
+  ((POINTER, const unsigned char *, unsigned int, A_SURRENDER_CTX*));
 static int MD5Final PROTO_LIST
   ((POINTER, unsigned char *, unsigned int *, unsigned int, A_SURRENDER_CTX*));
 static int MD5GetMaxOutputLen PROTO_LIST ((POINTER, unsigned int *));
@@ -62,7 +62,7 @@ UNUSED_ARG (surrenderContext)
  */
 static int MD5Update (context, input, inputLen, surrenderContext)
 POINTER context;
-unsigned char *input;
+const unsigned char *input;
 unsigned int inputLen;
 A_SURRENDER_CTX *surrenderContext;
 {

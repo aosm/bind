@@ -74,7 +74,7 @@ A_SURRENDER_CTX *surrenderContext;
 
 int AHChooseDigestUpdate (handler, partIn, partInLen, surrenderContext)
 AHChooseDigest *handler;
-unsigned char *partIn;
+const unsigned char *partIn;
 unsigned int partInLen;
 A_SURRENDER_CTX *surrenderContext;
 {

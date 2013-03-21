@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char rcsid[] = "$Id: irp_ho.c,v 1.1.1.2 2000/06/09 23:13:38 wsanchez Exp $";
+static const char rcsid[] = "$Id: irp_ho.c,v 1.1.1.3 2002/11/18 22:27:32 bbraun Exp $";
 #endif /* LIBC_SCCS and not lint */
 
 /* Imports. */
@@ -79,7 +79,8 @@ static void		ho_rewind(struct irs_ho *this);
 static void		ho_minimize(struct irs_ho *this);
 
 static void		free_host(struct hostent *ho);
-
+static struct addrinfo * ho_addrinfo(struct irs_ho *this, const char *name,
+				     const struct addrinfo *pai);
 
 /* Public. */
 
@@ -121,6 +122,7 @@ irs_irp_ho(struct irs_acc *this) {
 	ho->next = ho_next;
 	ho->rewind = ho_rewind;
 	ho->minimize = ho_minimize;
+	ho->addrinfo = ho_addrinfo;
 
 	return (ho);
 }
@@ -416,3 +418,12 @@ free_host(struct hostent *ho) {
 	}
 }
 
+/* dummy */
+static struct addrinfo *
+ho_addrinfo(struct irs_ho *this, const char *name, const struct addrinfo *pai)
+{
+	UNUSED(this);
+	UNUSED(name);
+	UNUSED(pai);
+	return(NULL);
+}

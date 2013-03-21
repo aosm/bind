@@ -1,4 +1,4 @@
-.\" $Id: getnetent.3,v 1.1.1.1 1999/10/04 22:26:17 wsanchez Exp $
+.\" $Id: getnetent.3,v 1.1.1.2 2002/11/18 22:26:26 bbraun Exp $
 .\"
 .\"Copyright (c) 1995,1996,1999 by Internet Software Consortium
 .\"
@@ -30,11 +30,11 @@
 .Ft struct netent *
 .Fn getnetent
 .Ft struct netent *
-.Fn getnetbyname "char name";
+.Fn getnetbyname "char name"
 .Ft struct netent *
-.Fn getnetbyaddr "unsigned long net" "int type";
+.Fn getnetbyaddr "unsigned long net" "int type"
 .Ft void 
-.Fn setnetent "int stayopen";
+.Fn setnetent "int stayopen"
 .Ft void 
 .Fn endnetent
 .Sh DESCRIPTION
@@ -145,7 +145,8 @@ The
 .Fn "setnetent" , 
 and
 .Fn "endnetent"
-functions appeared in 4.2BSD.
+functions appeared in
+.Bx 4.2 .
 .Sh BUGS
 The data space used by these functions is static; if future use requires the
 data, it should be copied before any subsequent calls to these functions

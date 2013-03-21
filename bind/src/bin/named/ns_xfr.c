@@ -1,5 +1,5 @@
 #if !defined(lint) && !defined(SABER)
-static const char rcsid[] = "$Id: ns_xfr.c,v 1.1.1.3 2001/01/31 03:59:52 zarzycki Exp $";
+static const char rcsid[] = "$Id: ns_xfr.c,v 1.1.1.4 2002/11/18 22:26:56 bbraun Exp $";
 #endif /* not lint */
 
 /*
@@ -82,15 +82,21 @@ ns_xfr(struct qstream *qsp, struct namebuf *znp,
 	ns_deltalist	*changes;
 
 	switch (type) {
-	case ns_t_axfr: /*FALLTHROUGH*/
 	case ns_t_ixfr:
+		ns_info(ns_log_xfer_out,
+			"zone transfer (%s) of \"%s\" (%s) to %s serial %u -> %u",
+			p_type(type), zones[zone].z_origin, p_class(class),
+			sin_ntoa(qsp->s_from), serial_ixfr,
+			zones[zone].z_serial);
+		break;
+	case ns_t_axfr: /*FALLTHROUGH*/
 #ifdef BIND_ZXFR
 	case ns_t_zxfr:
 #endif
 		ns_info(ns_log_xfer_out,
-			"zone transfer (%s) of \"%s\" (%s) to %s",
+			"zone transfer (%s) of \"%s\" (%s) to %s serial %u",
 			p_type(type), zones[zone].z_origin, p_class(class),
-			sin_ntoa(qsp->s_from));
+			sin_ntoa(qsp->s_from), zones[zone].z_serial);
 		break;
 	default:
 		ns_warning(ns_log_xfer_out,
@@ -107,7 +113,7 @@ ns_xfr(struct qstream *qsp, struct namebuf *znp,
 	 * write() data from us.
 	 */
 	(void) setsockopt(qsp->s_rfd, SOL_SOCKET, SO_SNDBUF,
-			  (char *)&sndbuf, sizeof sndbuf);
+			  (const char *)&sndbuf, sizeof sndbuf);
 #endif
 #ifdef SO_SNDLOWAT
 	/*
@@ -115,10 +121,12 @@ ns_xfr(struct qstream *qsp, struct namebuf *znp,
 	 * an XFER_BUFSIZE block of data.
 	 */
 	(void) setsockopt(qsp->s_rfd, SOL_SOCKET, SO_SNDLOWAT,
-			  (char *)&sndlowat, sizeof sndlowat);
+			  (const char *)&sndlowat, sizeof sndlowat);
 #endif
-	if (sq_openw(qsp, 64*1024) == -1)
+	if (sq_openw(qsp, 64*1024) == -1) {
+		ns_error(ns_log_xfer_out, "ns_xfr: out of memory");
 		goto abort;
+	}
 	memset(&qsp->xfr, 0, sizeof qsp->xfr);
 	qsp->xfr.top.axfr = znp;
 	qsp->xfr.zone = zone;
@@ -129,8 +137,10 @@ ns_xfr(struct qstream *qsp, struct namebuf *znp,
 	qsp->xfr.id = id;
 	qsp->xfr.opcode = opcode;
 	qsp->xfr.msg = memget(XFER_BUFSIZE);
-	if (!qsp->xfr.msg)
+	if (!qsp->xfr.msg) {
+		ns_error(ns_log_xfer_out, "ns_xfr: out of memory");
 		goto abort;
+	}
 	qsp->xfr.eom = qsp->xfr.msg + XFER_BUFSIZE;
 	qsp->xfr.cp = NULL;
 	qsp->xfr.state = s_x_firstsoa;
@@ -176,13 +186,15 @@ ns_xfr(struct qstream *qsp, struct namebuf *znp,
 		qsp->xfr.transfer_format = si->transfer_format;
 	else	
 		qsp->xfr.transfer_format = server_options->transfer_format;
-	if (in_tsig == NULL)
+	if (in_tsig == NULL) {
 		qsp->xfr.tsig_state = NULL;
-	else {
+		qsp->xfr.tsig_size = 0;
+	} else {
 		qsp->xfr.tsig_state = memget(sizeof(ns_tcp_tsig_state));
 		ns_sign_tcp_init(in_tsig->key, in_tsig->sig, in_tsig->siglen,
 				 qsp->xfr.tsig_state);
 		qsp->xfr.tsig_skip = 0;
+		qsp->xfr.tsig_size = in_tsig->tsig_size;
 	}
 
 	if (type == ns_t_ixfr) {
@@ -199,6 +211,7 @@ ns_xfr(struct qstream *qsp, struct namebuf *znp,
 		}
 	} else {
 		if (sx_pushlev(qsp, znp) < 0) {
+			ns_error(ns_log_xfer_out, "ns_xfr: out of memory");
  abort:
 			(void) shutdown(qsp->s_rfd, 2);
 			sq_remove(qsp);
@@ -258,8 +271,7 @@ ns_freexfr(struct qstream *qsp) {
 			while ((rp = HEAD(dp->d_changes)) != NULL) {
 				UNLINK(dp->d_changes, rp, r_link);
 				if (rp->r_dp != NULL)
-					db_freedata(rp->r_dp);
-				rp->r_dp = NULL;
+					db_detach(&rp->r_dp);
 				res_freeupdrec(rp);
 			} 
 			memput(dp, sizeof *dp);
@@ -269,6 +281,10 @@ ns_freexfr(struct qstream *qsp) {
 	}
 	while (qsp->xfr.lev)
 		qsp->xfr.lev = sx_freelev(qsp->xfr.lev);
+	if (qsp->xfr.tsig_state != NULL) {
+		memput(qsp->xfr.tsig_state, sizeof(ns_tcp_tsig_state));
+		qsp->xfr.tsig_state = NULL;
+	}
 	zones[qsp->xfr.zone].z_numxfrs--;
 	qsp->flags &= ~(STREAM_AXFR | STREAM_AXFRIXFR);
 }
@@ -385,14 +401,15 @@ sx_addrr(struct qstream *qsp, const char *dname, struct databuf *dp) {
 		}
 	}
 
-	n = make_rr(dname, dp, qsp->xfr.cp, qsp->xfr.eom - qsp->xfr.cp,
-		    0, qsp->xfr.ptrs, edp, 0);
+	n = make_rr(dname, dp, qsp->xfr.cp, qsp->xfr.eom - qsp->xfr.cp -
+		    qsp->xfr.tsig_size, 0, qsp->xfr.ptrs, edp, 0);
 	if (n < 0) {
 		if (sx_flush(qsp) < 0)
 			return (-1);
 		if (qsp->xfr.cp == NULL)
 			sx_newmsg(qsp);
-		n = make_rr(dname, dp, qsp->xfr.cp, qsp->xfr.eom - qsp->xfr.cp,
+		n = make_rr(dname, dp, qsp->xfr.cp, qsp->xfr.eom - 
+			    qsp->xfr.cp - qsp->xfr.tsig_size,
 			    0, qsp->xfr.ptrs, edp, 0);
 		INSIST(n >= 0);
 	}
@@ -411,7 +428,7 @@ sx_addrr(struct qstream *qsp, const char *dname, struct databuf *dp) {
  * side effects:
  *	if progress was made, header and pointers will be advanced.
  */
-int
+static int
 sx_soarr(struct qstream *qsp) {
 	struct databuf *dp;
 	int added_soa = 0;
@@ -835,11 +852,8 @@ static struct qs_x_lev *
 sx_freelev(struct qs_x_lev *lev) {
 	struct qs_x_lev *next = lev->next;
 
-	if (lev->dp) {
-		DRCNTDEC(lev->dp);
-		if (lev->dp->d_rcnt == 0)
-			db_freedata(lev->dp);
-	}
+	if (lev->dp)
+		db_detach(&lev->dp);
 	memput(lev, sizeof *lev);
 	return (next);
 }
@@ -848,10 +862,7 @@ static struct databuf *
 db_next(struct databuf *dp) {
 	struct databuf *next = dp->d_next;
 
-	DRCNTDEC(dp);
-	if (dp->d_rcnt == 0)
-		db_freedata(dp);
-
+	db_detach(&dp);
 	if (next)
 		DRCNTINC(next);
 

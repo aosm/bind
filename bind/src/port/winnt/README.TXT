@@ -1,6 +1,4 @@
-	Windows NT BIND 8.2.3 builds:
-
-Date:22-Nov-2000
+		Windows NT BIND 8 builds             Date: 9-Jan-2002
 
 Before you build BIND:
 **********************
@@ -27,8 +25,9 @@ If you have an old beta of 8.2.2 (pre-T8B):
 *******************************************
 
 - Be sure there are no DLL files in the BIND bin directory 
-  (c:\winnt\system32\dns\bin).  BIND DLLs are placed in the System32 directory 
-  now, and BIND will not work if you have old DLLs hanging around.
+  (c:\winnt\system32\dns\bin).  BIND DLLs are placed in the System32
+  directory  now, and BIND will not work if you have old DLLs hanging
+  around.
 
 To build BIND:
 **************
@@ -39,10 +38,11 @@ Command Line:
 In src/port/winnt, execute "<your_make_util> named.mak [Debug|Release]".
 All targets are built into /src/port/winnt/bin/[Debug|Release].
 
-From Visual Studio:
+>From Visual Studio:
 VC++ 6.0 project files are under src/port/winnt/named, src/port/winnt/xfer, 
-src/port/winnt/libbind, src/port/winnt/bindevt, src/port/winnt/BINDCtrl, and 
-src/port/winnt/BINDInstall
+src/port/winnt/libbind, src/port/winnt/bindevt, src/port/winnt/BINDCtrl,
+src/port/winnt/BINDCmd, src/port/winnt/BINDInstall, and
+src/port/winnt/dnskeygen.
 
 Build each one - they target into src/port/winnt/bin.
 Recommend that you use Build->Batch Build and select the Release or Debug versions 
@@ -50,24 +50,32 @@ of each project.
 
 (Check known issues before you build Release versions)
 
-A VC++ 6.0 workspace containing all seven projects is in src/port/winnt/named.
+A VC++ 6.0 workspace containing all projects is in
+src/port/winnt/BINDBuild.dsw.
 
-Executables in this package
+Binaries created in this package:
 src/port/winnt/named - named.exe
 src/port/winnt/xfer - named-xfer.exe
 src/port/winnt/libbind - libbind.dll
 src/port/winnt/bindevt - bindevt.dll (event log format strings)
 src/port/winnt/BINDCtrl - BINDCtrl.exe (BIND service control panel)
+src/port/winnt/BINDCmd  - BINDCmd.exe (BIND service command-line version)
 src/port/winnt/BINDInstall - BINDInstall.exe (BIND installer)
 src/port/winnt/nsupdate - nsupdate utility.
+src/port/winnt/dig - dig tool.
+src/port/winnt/nslookup - nslookup tool.
+src/port/winnt/host - host tool.
+src/port/winnt/dnskeygen - DNS Key Generation Utility
+
 
 After compiling, run BINDInstall.exe from /src/port/winnt/bin/[Debug|Release]
 BINDInstall will also install itself in the same directory as named.
 You can also use it to uninstall BIND.
 
-You can control named using BINDCtrl located in the same directory as the
-installed files: Systems32\dns\bin.  This is a replacement for ndc which
-is used on Unix systems.
+You can control named using BINDCtrl or its command-line equivalent,
+BINDCmd, located in the same directory as the installed files:
+Systems32\dns\bin.  This is a replacement for ndc which is used on
+Unix systems.
 
 Building the Tools
 ******************

@@ -34,7 +34,7 @@ typedef struct {
 int A_RSAInit PROTO_LIST ((A_RSA_CTX *, A_RSA_KEY *));
 int A_RSAUpdate PROTO_LIST
   ((A_RSA_CTX *, unsigned char *, unsigned int *, unsigned int,
-    unsigned char *, unsigned int, A_SURRENDER_CTX *));
+    const unsigned char *, unsigned int, A_SURRENDER_CTX *));
 int A_RSAFinal PROTO_LIST ((A_RSA_CTX *));
 
 #ifdef __cplusplus

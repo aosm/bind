@@ -1,11 +1,10 @@
-
-NSUPDATE(8)             FreeBSD System Manager's Manual            NSUPDATE(8)
+NSUPDATE(8)               BSD System Manager's Manual              NSUPDATE(8)
 
 NNAAMMEE
      nnssuuppddaattee - update Internet name servers interactively
 
 SSYYNNOOPPSSIISS
-     nnssuuppddaattee [--_k _k_e_y_d_i_r_:_k_e_y_n_a_m_e] [--_d] [--_v] [_f_i_l_e_n_a_m_e]
+     nnssuuppddaattee [--kk _k_e_y_d_i_r_:_k_e_y_n_a_m_e] [--dd] [--vv] [_f_i_l_e_n_a_m_e]
 
 DDEESSCCRRIIPPTTIIOONN
      NNssuuppddaattee is a program to update Internet domain name servers supporting
@@ -44,30 +43,22 @@ IINNPPUUTT FFOORRMMAATT
      pprreerreeqq nnxxddoommaaiinn _d_o_m_a_i_n_-_n_a_m_e Requires that no RR of any type exists with
              name _d_o_m_a_i_n_-_n_a_m_e.
 
-
      pprreerreeqq yyxxddoommaaiinn _d_o_m_a_i_n_-_n_a_m_e Requires that at least one RR named _d_o_m_a_i_n_-
              _n_a_m_e must exist.
-
 
      pprreerreeqq nnxxrrrrsseett _d_o_m_a_i_n_-_n_a_m_e [class] _t_y_p_e Requires that no RR exists of the
              specified _t_y_p_e and _d_o_m_a_i_n_-_n_a_m_e.
 
-
-     pprreerreeqq yyxxrrrrsseett _d_o_m_a_i_n_-_n_a_m_e [class] _t_y_p_e [data...] Requires that a RR ex-
+     pprreerreeqq yyxxrrrrsseett _d_o_m_a_i_n_-_n_a_m_e [_c_l_a_s_s] _t_y_p_e [_d_a_t_a_._._.] Requires that a RR ex-
              ists of the specified _t_y_p_e and _d_o_m_a_i_n_-_n_a_m_e. If _d_a_t_a is specified,
              it must match exactly.
 
-
-     uuppddaattee ddeelleettee _d_o_m_a_i_n_-_n_a_m_e [class] [type [data...]] Deletes RRs named
+     uuppddaattee ddeelleettee _d_o_m_a_i_n_-_n_a_m_e [_c_l_a_s_s] [_t_y_p_e [_d_a_t_a_._._.]] Deletes RRs named
              _d_o_m_a_i_n_-_n_a_m_e. If _t_y_p_e (and possibly _d_a_t_a) is specified, only
              matching records will be deleted.
 
-
-
-     uuppddaattee aadddd _d_o_m_a_i_n_-_n_a_m_e _t_t_l [class] _t_y_p_e _d_a_t_a_._._. Adds a new RR with speci-
+     uuppddaattee aadddd _d_o_m_a_i_n_-_n_a_m_e _t_t_l [_c_l_a_s_s] _t_y_p_e _d_a_t_a_._._. Adds a new RR with speci-
              fied _t_t_l, _t_y_p_e, and _d_a_t_a.
-
-
 
 EEXXAAMMPPLLEESS
      The following example illustrates the interactive use of nnssuuppddaattee to
@@ -81,7 +72,6 @@ EEXXAAMMPPLLEESS
            > update add test.example.com 3600 A 10.1.1.1
            >
 
-
      In this example, a CNAME alias is added to the database only if there are
      no existing A or CNAME records for the domain name.
 
@@ -91,7 +81,6 @@ EEXXAAMMPPLLEESS
            > update add www.example.com 3600 CNAME test.example.com
            >
 
-
      In this example, the nsupdate will be signed with the key "mykey", which
      is in the directory "/var/named/keys".
 
@@ -99,28 +88,23 @@ EEXXAAMMPPLLEESS
            > update add ftp.example.com 60 A 192.168.5.1
            >
 
-
-
 DDIIAAGGNNOOSSTTIICCSS
-     "send error" Typically indicates that the authoritative nameservers could
-             not be reached
+     Qq send error Typically indicates that the authoritative nameservers
+             could not be reached
 
-
-     "failed update packet" Typically indicates that the nameserver has re-
+     Qq failed update packet Typically indicates that the nameserver has re-
              jected the update, either because the nameserver doesn't support
              dynamic update, or due to an authentication failure
 
-
-     "res_mkupdate: packet size = _s_i_z_e" (and no other messages) The update was
-             successfully received and authenticated by the nameserver.  The
-             prerequisites, however, may have prevented the update from actu-
-             ally being performed.  The only way to determine if the update
-             was performed is to use debug mode (--dd) and examine the status
-             field in the nameserver's reply.
+     Qq res_mkupdate: packet size = _s_i_z_e (and no other messages) The update
+             was successfully received and authenticated by the nameserver.
+             The prerequisites, however, may have prevented the update from
+             actually being performed.  The only way to determine if the up-
+             date was performed is to use debug mode (--dd) and examine the sta-
+             tus field in the nameserver's reply.
 
 FFIILLEESS
-     /etc/resolv.conf
-     initial domain name and name server addresses
+     /etc/resolv.conf initial domain name and name server addresses
 
 SSEEEE AALLSSOO
      named(8),  resolver(3),  resolver(5);  RFC-1034, ``Domain Names -
@@ -130,3 +114,4 @@ SSEEEE AALLSSOO
 AAUUTTHHOORR
      Brent Baccala
 
+4th Berkeley Distribution        March 5, 1999                               2

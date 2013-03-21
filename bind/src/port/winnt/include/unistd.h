@@ -49,4 +49,7 @@ long sysconf(int);
 
 void unistdInit();
 void unistdCleanup();
+int fdindex(int fd);
+void fdFileInit();
+
 #endif

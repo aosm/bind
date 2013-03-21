@@ -1,5 +1,4 @@
-
-IRS.CONF(5)               FreeBSD File Formats Manual              IRS.CONF(5)
+IRS.CONF(5)                 BSD Programmer's Manual                IRS.CONF(5)
 
 NNAAMMEE
      iirrss..ccoonnff - Information Retrieval System configuration file
@@ -118,4 +117,4 @@ SSEEEE AALLSSOO
      groups(5),  hosts(5),  netgroup(5),  networks(5),  passwd(5),
      protocols(5),  services(5)
 
-BIND 8.1                       November 16, 1997                             2
+ BIND                          November 16, 1997                             2

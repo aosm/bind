@@ -1,0 +1,8 @@
+
+			mysqlBind
+
+		GPL ISP Quality Bind Manager
+
+mysqlBind is a web based tool for managing a multiple BIND nameservers
+using a SQL (mysql) backend.  Full details and source can be found at:
+http://www.unixservice.com/mysqlBind/

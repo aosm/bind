@@ -62,7 +62,7 @@ int BigUnexp PROTO_LIST
   ((UINT2 *, UINT2 *, UINT2 *, UINT2 *, UINT2 *, UINT2 *, UINT2 *,
     unsigned int, A_SURRENDER_CTX *));
 int CanonicalToBig PROTO_LIST
-  ((UINT2 *, unsigned int, unsigned char *, unsigned int));
+  ((UINT2 *, unsigned int, const unsigned char *, unsigned int));
 
 #ifdef __cplusplus
 }

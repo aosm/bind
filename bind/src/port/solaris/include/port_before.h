@@ -4,7 +4,13 @@
 #undef WANT_IRS_PW
 #undef WANT_IRS_GR
 #define SIG_FN void
+#define ISC_SOCKLEN_T int
+#include "os_version.h"
+#if (OS_MAJOR == 5 && OS_MINOR < 5)
+#undef HAS_PTHREADS
+#else
 #define HAS_PTHREADS
+#endif
 
 #if defined(HAS_PTHREADS) && defined(_REENTRANT)
 #define DO_PTHREADS
@@ -19,6 +25,8 @@
 #undef GROUP_R_ENT_ARGS /*empty*/
 #define GROUP_R_OK gptr
 #define GROUP_R_BAD NULL
+#define GETGROUPLIST_ARGS const char *name, gid_t basegid, gid_t *groups, \
+		      int *ngroups
 
 #define HOST_R_RETURN struct hostent *
 #define HOST_R_SET_RETURN void
@@ -98,3 +106,9 @@
 
 #include <limits.h>	/* _POSIX_PATH_MAX */
 
+#ifdef __GNUC__
+#define ISC_FORMAT_PRINTF(fmt, args) \
+	__attribute__((__format__(__printf__, fmt, args)))
+#else
+#define ISC_FORMAT_PRINTF(fmt, args)
+#endif

@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:59 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:57 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -202,10 +202,9 @@ BP
 /F0 10/Times-Roman@0 SF .322
 (and each return a pointer to a structure \(see belo)72 12 R .322
 (w\) describing an internet host referenced by name or by address, as)
--.25 F .8(the function names indicate.)72 24 R .8(This structure contai\
-ns either the information obtained from the name serv)5.8 F(er)-.15 E
-3.3(,o)-.4 G 3.3(rb)-3.3 G(ro-)-3.3 E -.1(ke)72 36 S .331
-(n-out \214elds from a line in If the local name serv).1 F .33
+-.25 F .8(the function names indicate.)72 24 R .8(This structure contains either the information obtained from the name serv)
+5.8 F(er)-.15 E 3.3(,o)-.4 G 3.3(rb)-3.3 G(ro-)-3.3 E -.1(ke)72 36 S
+.331(n-out \214elds from a line in If the local name serv).1 F .33
 (er is not running, these routines do a lookup in struct)-.15 F .33
 (hostent {)13.78 F 16.29(char *h_name;)108 48 R 2.342(/* of)32.56 F
 2.342(\214cial name of host */)-.25 F 16.29(char **h_aliases;)40.842 F
@@ -229,57 +228,51 @@ ns either the information obtained from the name serv)5.8 F(er)-.15 E
 R(er)-.15 E 2.689(,w)-.4 G .189
 (ill search for the named host in each parent domain gi)-2.689 F -.15
 (ve)-.25 G 2.689(ni).15 G(n)-2.689 E .304(the directi)72 156 R .604 -.15
-(ve o)-.25 H 2.804(fu).15 G .303(nless the name contains a dot If the n\
-ame contains no dot, and if the en)-2.804 F .303(vironment v)-.4 F .303
-(ariable contains)-.25 F .085(the name of an alias \214le, the alias \
-\214le will \214rst be searched for an alias matching the input name.)72
-168 R .086(See for the domain)5.086 F .53
-(search procedure and the alias \214le format.)72 180 R .529(can be tol\
-d to look for IPv4 addresses, IPv6 addresses or both IPv4 and)5.53 F
-2.988(IPv6. If)72 192 R .488(IPv4 addresses only are to be look)2.988 F
-.488(ed up then should be set to otherwise it should be set to There ar\
-e three)-.1 F .053(\215ags that can be set Return IPv4 addresses if no \
-IPv6 addresses are found.)72 204 R .053
-(This \215ag is ignored unless is Return IPv4)5.053 F .41
+(ve o)-.25 H 2.804(fu).15 G .303(nless the name contains a dot If the name contains no dot, and if the en)
+-2.804 F .303(vironment v)-.4 F .303(ariable contains)-.25 F .085(the name of an alias \214le, the alias \214le will \214rst be searched for an alias matching the input name.)
+72 168 R .086(See for the domain)5.086 F .53
+(search procedure and the alias \214le format.)72 180 R .529(can be told to look for IPv4 addresses, IPv6 addresses or both IPv4 and)
+5.53 F 2.988(IPv6. If)72 192 R .488(IPv4 addresses only are to be look)
+2.988 F .488(ed up then should be set to otherwise it should be set to There are three)
+-.1 F .053(\215ags that can be set Return IPv4 addresses if no IPv6 addresses are found.)
+72 204 R .053(This \215ag is ignored unless is Return IPv4)5.053 F .41
 (addresses as well IPv6 addresses if is set.)72 216 R .41
 (This \215ag is ignored unless is Only return addresses of a gi)5.41 F
 -.15(ve)-.25 G 2.91(nt).15 G .41(ype if the)-2.91 F .991
 (system has an acti)72 228 R 1.291 -.15(ve i)-.25 H(nterf).15 E .991
 (ace with that type.)-.1 F .991
 (Also is de\214ned to be will lookup IPv4 mapped and compatible ad-)
-5.991 F .559(dresses in the IPv4 name space and IPv6 name space frees t\
-he hostent structure allocated be and The structures re-)72 240 R .379
-(turned by and should not be passed to as the)72 252 R 2.879(ya)-.15 G
-.379(re pointers to static areas.)-2.879 F .378
-(Name of \214le containing pairs.)5.378 F .378(See Name)5.378 F .063
-(of \214le containing pairs.)72 264 R .064
-(Error return status from and is indicated by return of a null pointer)
-5.063 F 5.064(.I)-.55 G 2.564(nt)-5.064 G .064(his case may then be)
--2.564 F(check)72 276 Q 1.011(ed to see whether this is a temporary f)
--.1 F 1.011(ailure or an in)-.1 F -.25(va)-.4 G 1.01(lid or unkno).25 F
-1.01(wn host.)-.25 F 1.01(can ha)6.01 F 1.31 -.15(ve t)-.2 H 1.01
-(he follo).15 F 1.01(wing v)-.25 F(alues:)-.25 E .062
-(This indicates an internal error in the library)72 288 R 2.562(,u)-.65
-G .062(nrelated to the netw)-2.562 F .062(ork or name service.)-.1 F
-.063(will be v)5.063 F .063(alid in this case; see)-.25 F .331
-(No such host is kno)72 300 R 2.831(wn. This)-.25 F .33
-(is usually a temporary error and means that the local serv)2.831 F .33
-(er did not recei)-.15 F .63 -.15(ve a r)-.25 H(esponse).15 E .457
-(from an authoritati)72 312 R .757 -.15(ve s)-.25 H(erv).15 E(er)-.15 E
-5.457(.A)-.55 G .458(retry at some later time may succeed.)-2.5 F .458
-(Some une)5.458 F .458(xpected serv)-.15 F .458(er f)-.15 F .458
-(ailure w)-.1 F .458(as encoun-)-.1 F 2.648(tered. This)72 324 R .148
-(is a non-reco)2.648 F -.15(ve)-.15 G .147(rable error).15 F 2.647(,a)
--.4 G 2.647(so)-2.647 G .147(ne might e)-2.647 F 2.647(xpect. The)-.15 F
-.147(requested name is v)2.647 F .147(alid b)-.25 F .147(ut does not ha)
--.2 F .447 -.15(ve a)-.2 H 2.647(nI).15 G 2.647(Pa)-2.647 G(d-)-2.647 E
-.05(dress; this is not a temporary error)72 336 R 5.051(.T)-.55 G .051
-(his means that the name is kno)-5.051 F .051(wn to the name serv)-.25 F
-.051(er b)-.15 F .051(ut there is no address as-)-.2 F .883
-(sociated with this name.)72 348 R .883
-(Another type of request to the name serv)5.883 F .882
-(er using this domain name will result in an an-)-.15 F(swer; for e)72
-360 Q(xample, a mail-forw)-.15 E(arder may be re)-.1 E
+5.991 F .559(dresses in the IPv4 name space and IPv6 name space frees the hostent structure allocated be and The structures re-)
+72 240 R .511(turned by and should not be passed to as the)72 252 R
+3.011(ya)-.15 G .511(re pointers to static areas.)-3.011 F .511
+(Name of \214le containing pairs.)5.511 F .51(See Error)5.511 F .053
+(return status from and is indicated by return of a null pointer)72 264
+R 5.053(.I)-.55 G 2.554(nt)-5.053 G .054(his case may then be check)
+-2.554 F .054(ed to see whether this is)-.1 F 2.775(at)72 276 S .275
+(emporary f)-2.775 F .275(ailure or an in)-.1 F -.25(va)-.4 G .274
+(lid or unkno).25 F .274(wn host.)-.25 F .274(can ha)5.274 F .574 -.15
+(ve t)-.2 H .274(he follo).15 F .274(wing v)-.25 F .274
+(alues: This indicates an internal error in)-.25 F .41(the library)72
+288 R 2.91(,u)-.65 G .41(nrelated to the netw)-2.91 F .41
+(ork or name service.)-.1 F .41(will be v)5.41 F .411
+(alid in this case; see No such host is kno)-.25 F 2.911(wn. This)-.25 F
+(is)2.911 E .383
+(usually a temporary error and means that the local serv)72 300 R .383
+(er did not recei)-.15 F .682 -.15(ve a r)-.25 H .382
+(esponse from an authoritati).15 F .682 -.15(ve s)-.25 H(erv).15 E(er)
+-.15 E 5.382(.A)-.55 G .627(retry at some later time may succeed.)72 312
+R .627(Some une)5.627 F .628(xpected serv)-.15 F .628(er f)-.15 F .628
+(ailure w)-.1 F .628(as encountered.)-.1 F .628(This is a non-reco)5.628
+F -.15(ve)-.15 G(rable).15 E(error)72 324 Q 2.9(,a)-.4 G 2.9(so)-2.9 G
+.4(ne might e)-2.9 F 2.9(xpect. The)-.15 F .4(requested name is v)2.9 F
+.4(alid b)-.25 F .4(ut does not ha)-.2 F .7 -.15(ve a)-.2 H 2.9(nI).15 G
+2.9(Pa)-2.9 G .4(ddress; this is not a temporary er)-2.9 F(-)-.2 E(ror)
+72 336 Q 5.002(.T)-.55 G .002(his means that the name is kno)-5.002 F
+.002(wn to the name serv)-.25 F .002(er b)-.15 F .003
+(ut there is no address associated with this name.)-.2 F(Anoth-)5.003 E
+.161(er type of request to the name serv)72 348 R .161
+(er using this domain name will result in an answer; for e)-.15 F .161
+(xample, a mail-forw)-.15 F(arder)-.1 E(may be re)72 360 Q
 (gistered for this domain.)-.15 E EP
 %%Trailer
 end

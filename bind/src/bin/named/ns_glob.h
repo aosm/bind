@@ -1,6 +1,6 @@
 /*
  *	from ns.h	4.33 (Berkeley) 8/23/90
- *	$Id: ns_glob.h,v 1.1.1.3 2001/01/31 03:59:47 zarzycki Exp $
+ *	$Id: ns_glob.h,v 1.1.1.4 2002/11/18 22:26:52 bbraun Exp $
  */
 
 /*
@@ -336,9 +336,11 @@ DECL	char *			user_name		INIT(NULL);
 DECL	gid_t			group_id;
 DECL	char *			group_name		INIT(NULL);
 DECL	char *			chroot_dir		INIT(NULL);
+DECL	char *			working_dir		INIT(NULL);
 
 DECL	int			loading			INIT(0);
 
 DECL	int			xfers_running		INIT(0);
 DECL	int			xfers_deferred		INIT(0);
 DECL	int			qserials_running	INIT(0);
+DECL	int			initial_configuration	INIT(1);

@@ -1,4 +1,4 @@
-/* $Header: /cvs/Darwin/src/live/bind/bind/contrib/dns_signer/signer/signer_directives.c,v 1.1.1.3 2001/01/31 03:58:41 zarzycki Exp $ */
+/* $Header: /cvs/Darwin/src/live/bind/bind/contrib/dns_signer/signer/signer_directives.c,v 1.1.1.4 2002/11/18 22:24:36 bbraun Exp $ */
 #include "signer_directives.h"
 #include "signer_sign.h"
 #include "signer_tree.h"
@@ -316,6 +316,7 @@ int handle_TTL (char *args, struct name_context *context,
 					struct signing_options *options, struct error_data *err)
 {
 	int			index = 0;
+      int                     end_index;
 	u_long	new_ttl;
 
 	while (IS_BLANK(args, index)) index++;
@@ -328,8 +329,18 @@ int handle_TTL (char *args, struct name_context *context,
 		return SIGNER_ERROR;
 	}
 
-	if (ns_parse_ttl(args, &new_ttl) != 0)
+      end_index = index;
+      while (!IS_EOLN(args, end_index))
 	{
+              if (IS_BLANK(args, end_index))
+              {
+                      args[end_index] = '\0';
+                      break;
+              }
+              end_index++;
+      }
+      if (ns_parse_ttl(&args[index], &new_ttl) != 0)
+      {
 		sprintf (debug_message, "%s[%d]: Bad value for $TTL: %s",
 			err->ed_filename, err->ed_curr_line, args);
 		ERROR (debug_message);

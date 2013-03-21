@@ -36,7 +36,7 @@ A_SURRENDER_CTX *surrenderContext;
 
 int B_DigestUpdate (algorithmObject, partIn, partInLen, surrenderContext)
 B_ALGORITHM_OBJ algorithmObject;
-unsigned char *partIn;
+const unsigned char *partIn;
 unsigned int partInLen;
 A_SURRENDER_CTX *surrenderContext;
 {

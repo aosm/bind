@@ -16,7 +16,7 @@
  */
 
 /*
- * $Id: gen_p.h,v 1.1.1.1 1999/10/04 22:24:48 wsanchez Exp $
+ * $Id: gen_p.h,v 1.1.1.2 2002/11/18 22:27:28 bbraun Exp $
  */
 
 /* Notes:
@@ -90,7 +90,7 @@ struct irs_rule {
  * This is the private data for a search access class.
  */
 struct gen_p {
-	const char *		options;
+	char *			options;
 	struct irs_rule *	map_rules[(int)irs_nmap];
 	struct irs_inst		accessors[(int)irs_nacc];
 	struct __res_state *	res;

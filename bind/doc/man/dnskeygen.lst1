@@ -1,11 +1,11 @@
-
-DNSKEYGEN(1)            FreeBSD General Commands Manual           DNSKEYGEN(1)
+DNSKEYGEN(1)                 BSD Reference Manual                 DNSKEYGEN(1)
 
 NNAAMMEE
-     ddnnsskkeeyyggeenn - generate public, private, and shared secret keys for DNS
+     ddnnsskkeeyyggeenn - generate public, private, and shared secret keys for DNS Se-
+     curity
 
 SSYYNNOOPPSSIISS
-     ddnnsskkeeyyggeenn [--[DDHHRR] _s_i_z_e] [--FF] --[zzhhuu] [--aa] [--cc] [--pp _n_u_m] [--ss _n_u_m] --nn _n_a_m_e
+     ddnnsskkeeyyggeenn [--[DDHHRR] _s_i_z_e] [--FF] [--zzhhuu] [--aa] [--cc] [--pp _n_u_m] [--ss _n_u_m] --nn _n_a_m_e
 
 DDEESSCCRRIIPPTTIIOONN
      DDnnsskkeeyyggeenn (DNS Key Generator) is a tool to generate and maintain keys for
@@ -22,7 +22,7 @@ DDEESSCCRRIIPPTTIIOONN
      --RR          Dnskeygen will generate an RRSSAA key.  ``size'' must be between
                  512 and 4096.
 
-     --FF          ((RRSSAA oonnllyy)) Use a large exponent for key generation.
+     --FF          (RRSSAA oonnllyy) Use a large exponent for key generation.
 
      --zz --hh --uu    These flags define the type of key being generated: Zone (DNS
                  validation) key, Host (host or service) key or User (e.g.
@@ -33,14 +33,14 @@ DDEESSCCRRIIPPTTIIOONN
 
      --cc          Indicates that the key CCAANNNNOOTT be used for encryption.
 
-     --pp _n_u_m      Sets the key's protocol field to _n_u_m ; the default is 33
+     --pp _n_u_m      Sets the key's protocol field to _n_u_m; the default is 33
                  (DNSSEC) if ``--zz'' or ``--hh'' is specified and 22 (EMAIL) oth-
                  erwise.  Other accepted values are 11 (TLS), 44 (IPSEC), and
                  225555 (ANY).
 
-     --ss _n_u_m      Sets the key's strength field to _n_u_m_; the default is 00..
+     --ss _n_u_m      Sets the key's strength field to _n_u_m; the default is 00.
 
-     --nn _n_a_m_e     Sets the key's name to _n_a_m_e_.
+     --nn _n_a_m_e     Sets the key's name to _n_a_m_e.
 
    DDEETTAAIILLSS
      DDnnsskkeeyyggeenn stores each key in two files: _K_<_n_a_m_e_>_+_<_a_l_g_>_+_<_f_o_o_t_p_r_i_n_t_>_._p_r_i_v_a_t_e

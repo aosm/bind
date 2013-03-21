@@ -8,9 +8,9 @@
 
 #define EVENTLOG_APP_SUBKEY		"SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application"
 #define BIND_MESSAGE_SUBKEY		"SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\named"
-#define XFER_MESSAGE_SUBKEY		"SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\named-xfer"
+#define XFER_MESSAGE_SUBKEY		"SYSTEM\\CurrentControlSet\\Services\\EventLog\\Application\\named-xfer.exe"
 #define BIND_MESSAGE_NAME		"named"
-#define XFER_MESSAGE_NAME		"named-xfer"
+#define XFER_MESSAGE_NAME		"named-xfer.exe"
 
 #define BIND_CONFIGFILE	0
 #define BIND_DEBUGLEVEL	1

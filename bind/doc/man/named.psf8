@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:57 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:48 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 2
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -226,24 +226,22 @@ F .024(ugging information.)-.2 F(The)5.024 E .14
 (ws for multiple, dis-)-.25 F 1.018(tinct le)72 96 R -.15(ve)-.25 G
 1.018(ls of deb).15 F 1.018(ugging for each of a lar)-.2 F 1.019
 (ge set of cate)-.18 F 1.019(gories of e)-.15 F -.15(ve)-.25 G 1.019
-(nts \(such as queries, transfers in or out, etc.\).).15 F .56(Please r\
-efer to the con\214guration \214le guide included with this distrib)72
-108 R .56(ution for further information about these e)-.2 F(xten-)-.15 E
-(si)72 120 Q .392 -.15(ve n)-.25 H .592 -.25(ew c).15 H 2.592
-(apabilities. Use).25 F .093(the speci\214ed remote port number; this i\
-s the port number to which will send queries.)2.592 F(The)5.093 E(def)72
-132 Q .963(ault v)-.1 F .963(alue is the standard port number)-.25 F
-3.463(,i)-.4 G .963(.e., the port number returned by for service Pre)
--3.463 F(viously)-.25 E 3.462(,t)-.65 G .962(he syntax w)-3.462 F(as)-.1
-E .046(supported; the \214rst port w)72 144 R .046
+(nts \(such as queries, transfers in or out, etc.\).).15 F .56(Please refer to the con\214guration \214le guide included with this distrib)
+72 108 R .56(ution for further information about these e)-.2 F(xten-)
+-.15 E(si)72 120 Q .392 -.15(ve n)-.25 H .592 -.25(ew c).15 H 2.592
+(apabilities. Use).25 F .093(the speci\214ed remote port number; this is the port number to which will send queries.)
+2.592 F(The)5.093 E(def)72 132 Q .963(ault v)-.1 F .963
+(alue is the standard port number)-.25 F 3.463(,i)-.4 G .963
+(.e., the port number returned by for service Pre)-3.463 F(viously)-.25
+E 3.462(,t)-.65 G .962(he syntax w)-3.462 F(as)-.1 E .046
+(supported; the \214rst port w)72 144 R .046
 (as that used when contacting serv)-.1 F .047(ers, and the second one w)
 -.15 F .047(as the service port bound by the)-.1 F .353
-(instance of The current usage is equi)72 156 R -.25(va)-.25 G .352(len\
-t to the old usage without the speci\214ed; this functionality can be s\
-peci\214ed).25 F .822(with the clause of the con\214guration \214le')72
-168 R 3.322(ss)-.55 G 3.322(tatement. Use)-3.322 F .822
-(an alternate this ar)3.322 F .822(gument is o)-.18 F -.15(ve)-.15 G
-.823(rridden by an).15 F 3.323(yw)-.15 G .823(hich is)-3.323 F .188
+(instance of The current usage is equi)72 156 R -.25(va)-.25 G .352(lent to the old usage without the speci\214ed; this functionality can be speci\214ed)
+.25 F .822(with the clause of the con\214guration \214le')72 168 R 3.322
+(ss)-.55 G 3.322(tatement. Use)-3.322 F .822(an alternate this ar)3.322
+F .822(gument is o)-.18 F -.15(ve)-.15 G .823(rridden by an).15 F 3.323
+(yw)-.15 G .823(hich is)-3.323 F .188
 (speci\214ed at the end of the command line.)72 180 R .188(The def)5.188
 F .188(ault v)-.1 F .187(alue is Run this process in the fore)-.25 F
 .187(ground; don')-.15 F 2.687(ta)-.18 G .187(nd daemo-)-2.687 F 3.158
@@ -268,40 +266,35 @@ F .084(tion \214le guide included with this distrib)72 216 R .084
 -.15(ex)72 252 S 2.529(it. Speci\214es).15 F .028(the user the serv)
 2.529 F .028(er should run as after it initializes.)-.15 F .028(The v)
 5.028 F .028(alue speci\214ed may be either a username or a)-.25 F .707
-(numeric user id.)72 264 R .707(If the \215ag is not speci\214ed, then \
-the group id used will be the primary group of the user speci\214ed)
+(numeric user id.)72 264 R .707(If the \215ag is not speci\214ed, then the group id used will be the primary group of the user speci\214ed)
 5.707 F 1.342(\(initgroups\(\) is called, so all of the user')72 276 R
 3.842(sg)-.55 G 1.342(roups will be a)-3.842 F -.25(va)-.2 G 1.341
 (ilable to the serv).25 F 3.841(er\). Speci\214es)-.15 F 1.341
 (the group the serv)3.841 F(er)-.15 E .027
 (should run as after it initializes.)72 288 R .027(The v)5.027 F .028
 (alue speci\214ed may be either a groupname or a numeric group id.)-.25
-F .028(Speci\214es the)5.028 F .163(directory the serv)72 300 R .163(er\
- should chroot\(\) into as soon as it is \214nshed processing command l\
-ine ar)-.15 F 2.662(guments. Sets)-.18 F .162(the w)2.662 F(ork-)-.1 E
-.095(ing directory of the serv)72 312 R(er)-.15 E 5.095(.T)-.55 G .095
+F .028(Speci\214es the)5.028 F .163(directory the serv)72 300 R .163(er should chroot\(\) into as soon as it is \214nshed processing command line ar)
+-.15 F 2.662(guments. Sets)-.18 F .162(the w)2.662 F(ork-)-.1 E .095
+(ing directory of the serv)72 312 R(er)-.15 E 5.095(.T)-.55 G .095
 (he clause of the con\214guration \214le')-5.095 F 2.595(ss)-.55 G .095
 (tatement o)-2.595 F -.15(ve)-.15 G .095(rrides an).15 F 2.595(yv)-.15 G
 .095(alue speci\214ed on the com-)-2.845 F .639(mand line.)72 324 R .639
 (The def)5.639 F .639(ault w)-.1 F .638
 (orking directory is the current directory An)-.1 F 3.138(ya)-.15 G .638
 (dditional ar)-3.138 F .638(gument is tak)-.18 F .638(en as the name of)
--.1 F 1.394(the con\214guration \214le, for compatibility with older im\
-plementations; as noted abo)72 336 R -.15(ve)-.15 G 3.895(,t).15 G 1.395
-(his ar)-3.895 F 1.395(gument o)-.18 F -.15(ve)-.15 G 1.395(rrides an)
-.15 F(y)-.15 E .734(speci\214ed by the use of the or \215ags.)72 348 R
-.734(If no further ar)5.734 F .734(gument is gi)-.18 F -.15(ve)-.25 G
-.734(n, then the def).15 F .733(ault con\214guration \214le is used The)
--.1 F .793(master \214le consists of control information and a list of \
-resource records for objects in the zone of the forms: $IN-)72 360 R
-.523(CLUDE <\214lename> <opt_domain> $ORIGIN <domain> $TTL <ttl> <domai\
-n> <opt_ttl> <opt_class> <type> <re-)72 372 R .77(source_record_data> w\
-here: is for root, for the current origin, or a standard domain name. I\
-f is a standard domain)72 384 R .602(name that does end with the curren\
-t origin is appended to the domain. Domain names ending with are unmodi\
-\214ed.)72 396 R .565(This \214eld is used to de\214ne an origin for th\
-e data in an included \214le.)72 408 R .566(It is equi)5.566 F -.25(va)
--.25 G .566(lent to placing an statement before).25 F .651
+-.1 F 1.394(the con\214guration \214le, for compatibility with older implementations; as noted abo)
+72 336 R -.15(ve)-.15 G 3.895(,t).15 G 1.395(his ar)-3.895 F 1.395
+(gument o)-.18 F -.15(ve)-.15 G 1.395(rrides an).15 F(y)-.15 E .734
+(speci\214ed by the use of the or \215ags.)72 348 R .734
+(If no further ar)5.734 F .734(gument is gi)-.18 F -.15(ve)-.25 G .734
+(n, then the def).15 F .733(ault con\214guration \214le is used The)-.1
+F .793(master \214le consists of control information and a list of resource records for objects in the zone of the forms: $IN-)
+72 360 R .523(CLUDE <\214lename> <opt_domain> $ORIGIN <domain> $TTL <ttl> <domain> <opt_ttl> <opt_class> <type> <re-)
+72 372 R .77(source_record_data> where: is for root, for the current origin, or a standard domain name. If is a standard domain)
+72 384 R .602(name that does end with the current origin is appended to the domain. Domain names ending with are unmodi\214ed.)
+72 396 R .565(This \214eld is used to de\214ne an origin for the data in an included \214le.)
+72 408 R .566(It is equi)5.566 F -.25(va)-.25 G .566
+(lent to placing an statement before).25 F .651
 (the \214rst line of the included \214le.)72 420 R .651
 (The \214eld is optional.)5.651 F .651
 (Neither the \214eld nor statements in the included \214le modify)5.651
@@ -312,31 +305,24 @@ F .657(the current origin for this \214le.)72 432 R 3.157(Ai)5.657 G
 R .718(An optional inte)5.718 F .718(ger number for the time-to-li)-.15
 F 1.018 -.15(ve \214)-.25 H 3.218(eld. If).15 F .717
 (not set the ttl is tak)3.218 F .717(en from the last $TTL state-)-.1 F
-2.716(ment. If)72 456 R .216(no $TTL statement has occured then the SO)
-2.716 F 2.716(Am)-.35 G .217(inimum v)-2.716 F .217
-(alue is used and a w)-.25 F .217(arning is generated.)-.1 F .217
-(The ob-)5.217 F .105(ject address type; currently only one type is sup\
-ported, for objects connected to the D)72 468 R(ARP)-.4 E 2.605(AI)-.92
-G 2.605(nternet. This)-2.605 F .105(\214eld con-)2.605 F .345
-(tains one of the follo)72 480 R .345(wing tok)-.25 F .345
-(ens; the data e)-.1 F .345(xpected in the \214eld is in parentheses: a\
- host address \(dotted-quad IP ad-)-.15 F .255(dress\) an authoritati)72
-492 R .555 -.15(ve n)-.25 H .255(ame serv).15 F .255
-(er \(domain\) a mail e)-.15 F .254
+2.55(ment. If)72 456 R .05(no $TTL statement has occurred then the SO)
+2.55 F 2.55(Am)-.35 G .05(inimum v)-2.55 F .05(alue is used and a w)-.25
+F .05(arning is generated.)-.1 F .05(The ob-)5.05 F .105(ject address type; currently only one type is supported, for objects connected to the D)
+72 468 R(ARP)-.4 E 2.605(AI)-.92 G 2.605(nternet. This)-2.605 F .105
+(\214eld con-)2.605 F .345(tains one of the follo)72 480 R .345
+(wing tok)-.25 F .345(ens; the data e)-.1 F .345(xpected in the \214eld is in parentheses: a host address \(dotted-quad IP ad-)
+-.15 F .255(dress\) an authoritati)72 492 R .555 -.15(ve n)-.25 H .255
+(ame serv).15 F .255(er \(domain\) a mail e)-.15 F .254
 (xchanger \(domain\), preceded by a preference v)-.15 F .254
 (alue \(0..32767\),)-.25 F .408(with lo)72 504 R .408(wer numeric v)-.25
 F .408(alues representing higher logical preferences.)-.25 F .408
-(the canonical name for an alias \(domain\) marks)5.408 F .724(the star\
-t of a zone of authority \(domain of originating host, domain address o\
-f maintainer)72 516 R 3.223(,as)-.4 G .723(erial number and the)-3.223 F
-(follo)72 528 Q .259(wing parameters in seconds: refresh, retry)-.25 F
-2.759(,e)-.65 G .26
-(xpire and minimum TTL \(see RFC 883 and RFC 2308\)\).)-2.909 F 2.76(an)
-5.26 G .26(ull re-)-2.76 F .964(source record \(no format or data\) a R\
-esponsible Person for some domain name \(mailbox, TXT)72 540 R .963
-(-referral\) a domain)-.92 F .16(name pointer \(domain\) host informati\
-on \(cpu_type OS_type\) Resource records normally end at the end of a l\
-ine, b)72 552 R(ut)-.2 E .656
+(the canonical name for an alias \(domain\) marks)5.408 F .724(the start of a zone of authority \(domain of originating host, domain address of maintainer)
+72 516 R 3.223(,as)-.4 G .723(erial number and the)-3.223 F(follo)72 528
+Q .259(wing parameters in seconds: refresh, retry)-.25 F 2.759(,e)-.65 G
+.26(xpire and minimum TTL \(see RFC 883 and RFC 2308\)\).)-2.909 F 2.76
+(an)5.26 G .26(ull re-)-2.76 F .964(source record \(no format or data\) a Responsible Person for some domain name \(mailbox, TXT)
+72 540 R .963(-referral\) a domain)-.92 F .16(name pointer \(domain\) host information \(cpu_type OS_type\) Resource records normally end at the end of a line, b)
+72 552 R(ut)-.2 E .656
 (may be continued across lines between opening and closing parentheses.)
 72 564 R .655(Comments are introduced by semicolons)5.656 F .639
 (and continue to the end of the line.)72 576 R .639
@@ -426,8 +412,8 @@ BP
 (uilt with the option\).)-.2 F(def)6.365 E 1.365(ault name serv)-.1 F
 1.366(er con\214guration \214le the process id dump of the name serv)
 -.15 F(er)-.15 E .931(database deb)72 108 R .931(ug output nameserv)-.2
-F .931(er statistics data RFC 882, RFC 883, RFC 973, RFC 974, RFC 1033,\
- RFC 1034,)-.15 F(RFC 1035, RFC 1123, RFC 2308)72 120 Q EP
+F .931(er statistics data RFC 882, RFC 883, RFC 973, RFC 974, RFC 1033, RFC 1034,)
+-.15 F(RFC 1035, RFC 1123, RFC 2308)72 120 Q EP
 %%Trailer
 end
 %%EOF

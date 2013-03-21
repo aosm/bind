@@ -49,7 +49,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char rcsid[] = "$Id: lcl_pw.c,v 1.1.1.1 1999/10/04 22:24:49 wsanchez Exp $";
+static const char rcsid[] = "$Id: lcl_pw.c,v 1.1.1.2 2002/11/18 22:27:34 bbraun Exp $";
 #endif /* LIBC_SCCS and not lint */
 
 /* Extern */
@@ -119,6 +119,8 @@ struct irs_pw *
 irs_lcl_pw(struct irs_acc *this) {
 	struct irs_pw *pw;
 	struct pvt *pvt;
+
+	UNUSED(this);
 		 
         if (!(pw = memget(sizeof *pw))) {
 		errno = ENOMEM;

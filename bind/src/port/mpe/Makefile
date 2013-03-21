@@ -13,7 +13,7 @@
 # ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 # SOFTWARE.
 
-# $Id: Makefile,v 1.1.1.2 2001/01/31 04:00:29 zarzycki Exp $
+# $Id: Makefile,v 1.1.1.3 2002/11/18 22:28:08 bbraun Exp $
 
 # these are only appropriate for BSD 4.4 or derivatives, and are used in
 # development.  normal builds will be done in the top level directory and
@@ -41,11 +41,13 @@ SUBDIRS= include
 
 SRCS=	bind.c nice.c fcntl.c fsync.c ftruncate.c \
 	recvfrom.c setgid.c setuid.c initgroups.c \
-	endgrent.c endpwent.c getline.c getpass.c
+	endgrent.c endpwent.c getline.c getpass.c \
+	fchown.c longpointer.c
 
 OBJS=	bind.${O} nice.${O} fcntl.${O} fsync.${O} ftruncate.${O} \
 	recvfrom.${O} setgid.${O} setuid.${O} initgroups.${O} \
-	endgrent.${O} endpwent.${O} getline.${O} getpass.${O}
+	endgrent.${O} endpwent.${O} getline.${O} getpass.${O} \
+	fchown.${O} longpointer.${O}
 
 MARGS= DESTDIR="${DESTDIR}" DESTINC="${DESTINC}" INSTALL="${INSTALL}"
 
@@ -87,3 +89,4 @@ install:: FRC
 FRC:
 
 # DO NOT DELETE THIS LINE -- mkdep uses it.
+# DO NOT PUT ANYTHING AFTER THIS LINE, IT WILL GO AWAY.

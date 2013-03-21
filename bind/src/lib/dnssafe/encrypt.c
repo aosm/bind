@@ -107,7 +107,7 @@ B_ALGORITHM_OBJ algorithmObject;
 unsigned char *partOut;
 unsigned int *partOutLen;
 unsigned int maxPartOutLen;
-unsigned char *partIn;
+const unsigned char *partIn;
 unsigned int partInLen;
 B_ALGORITHM_OBJ randomAlgorithm;
 A_SURRENDER_CTX *surrenderContext;

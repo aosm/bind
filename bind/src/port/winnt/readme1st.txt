@@ -1,9 +1,9 @@
-		Window NT/2000 implementation of BIND8.2.3
+		Window NT/2000 implementation of BIND 8.3.x
 
-Date: 6-Jan-2001.
+Date: 9-Jan-2002.
 
-  This is a release of BIND 8.2.3 for Windows NT/2000 systems. This
-  release has undergone a fair amount of testing, but if you choose
+  This is a release of BIND 8.3.x for Windows NT/2000 systems. This
+  release has undergone a some testing, but if you choose
   to install this kit, you should run it first on a test system,
   preferably as a slave server. While I have cleaned up all of the
   NT-specific issues and bugs that I know about, you should report
@@ -33,11 +33,23 @@ Date: 6-Jan-2001.
 
   Windows NT/2000 has a Windows application called BINDCtrl which should
   be a complete replacement for Unix's ndc (named daemon controller)
-  program.  In addition named is installed as a system service and
-  will start up automatically when the system boots. BINDCtrl is
-  placed in the same directory as named:  System32\dns\bin and can
-  be used from there.  The installer does not create a menu shortcut
-  or desktop shortcut, so you may choose to do this yourself.
+  program.  A  command-line version, BINDCmd, is also available and
+  performs almost identical functions as BINDCtrl. In addition named
+  is installed as a system service and will start up automatically
+  when the system boots. BINDCtrl and BINDCmd are placed in the same
+  directory as named:  System32\dns\bin and can be used from there.
+  The installer does not create a menu shortcut or desktop shortcut,
+  so you may choose to do this yourself.
+
+        Troubleshooting
+
+  By default all logging information goes into the application event
+  log.  You can examine this information by going to the event viewer
+  and selecting the Application Event Log. If you have specified
+  a log file in named.conf you should also look into that log file.
+  If the BIND Service fails to start, check to see whether or
+  not you have placed named.conf in the dns\etc directory in the
+  path you specified during the installation.
 
 	DNS Tools
 

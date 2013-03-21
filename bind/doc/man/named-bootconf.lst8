@@ -1,6 +1,4 @@
-
-
-NAMED-BOOTCONF(8)       FreeBSD System Manager's Manual      NAMED-BOOTCONF(8)
+NAMED-BOOTCONF(8)         BSD System Manager's Manual        NAMED-BOOTCONF(8)
 
 NNAAMMEE
      nnaammeedd--bboooottccoonnff - convert name server configuration files
@@ -22,4 +20,4 @@ BBUUGGSS
 SSEEEE AALLSSOO
      named(8),  named.conf(5)
 
-NetBSD                         November 19, 1998                             1
+ NetBSD                        November 19, 1998                             1

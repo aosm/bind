@@ -22,7 +22,7 @@ typedef struct {
 } A_MD5_CTX;
 
 void A_MD5Init PROTO_LIST ((A_MD5_CTX *));
-void A_MD5Update PROTO_LIST ((A_MD5_CTX *, unsigned char *, unsigned int));
+void A_MD5Update PROTO_LIST ((A_MD5_CTX *, const unsigned char *, unsigned int));
 void A_MD5Final PROTO_LIST ((A_MD5_CTX *, unsigned char *));
 
 #ifdef __cplusplus

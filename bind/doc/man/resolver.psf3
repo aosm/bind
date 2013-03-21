@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:58 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:53 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 2
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -199,10 +199,9 @@ def/PL 792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF .558(These routines are used for making, sendin\
-g and interpreting query and reply messages with Internet domain name)72
-12 R(serv)72 24 Q 2.68(ers. State)-.15 F .18(information is k)2.68 F .18
-(ept in and is used to control the beha)-.1 F .18
+/F0 10/Times-Roman@0 SF .558(These routines are used for making, sending and interpreting query and reply messages with Internet domain name)
+72 12 R(serv)72 24 Q 2.68(ers. State)-.15 F .18(information is k)2.68 F
+.18(ept in and is used to control the beha)-.1 F .18
 (vior of these functions.)-.2 F .18(should be set to all zeros)5.18 F
 .419(prior to the \214rst call to an)72 36 R 2.919(yo)-.15 G 2.919(ft)
 -2.919 G .419(hese functions.)-2.919 F .419
@@ -210,18 +209,17 @@ g and interpreting query and reply messages with Internet domain name)72
 5.419 F .893(with old source code.)72 48 R(The)5.894 E 3.394(yu)-.15 G
 .894(se global con\214guration and state information that is k)-3.394 F
 .894(ept in the structure rather than)-.1 F .056
-(that referenced through Most of the v)72 60 R .055(alues in and are in\
-itialized on the \214rst call to / to reasonable def)-.25 F .055
-(aults and can be)-.1 F 2.511(ignored. Options)72 72 R .012
+(that referenced through Most of the v)72 60 R .055(alues in and are initialized on the \214rst call to / to reasonable def)
+-.25 F .055(aults and can be)-.1 F 2.511(ignored. Options)72 72 R .012
 (stored in / are de\214ned in and are as follo)2.511 F 2.512
 (ws. Options)-.25 F .012(are stored as a simple bit mask containing the)
 2.512 F .136(bitwise of the options enabled.)72 84 R -.35(Tr)5.136 G
 .135(ue if the initial name serv).35 F .135(er address and def)-.15 F
-.135(ault domain name are initialized \(i.e., /)-.1 F 1.008
-(has been called\).)72 96 R 1.008(Print deb)6.008 F 1.008
-(ugging messages.)-.2 F 1.009(Accept authoritati)6.009 F 1.309 -.15
-(ve a)-.25 H 1.009(nswers only).15 F 6.009(.s)-.65 G 1.009
-(hould continue until it \214nds an)-6.009 F(authoritati)72 108 Q .829
+.135(ault domain name are initialized \(i.e., /)-.1 F .897
+(has been called\).)72 96 R .897(Print deb)5.897 F .897
+(ugging messages.)-.2 F .897(Accept authoritati)5.897 F 1.197 -.15(ve a)
+-.25 H .897(nswers only).15 F 5.897(.S)-.65 G .898
+(hould continue until it \214nds an)-5.897 F(authoritati)72 108 Q .829
 -.15(ve a)-.25 H .528(nswer or \214nds an error).15 F 5.528(.C)-.55 G
 .528(urrently this is not implemented.)-5.528 F .528
 (Use TCP connections for queries instead)5.528 F .576(of UDP datagrams.)
@@ -240,177 +238,164 @@ itialized on the \214rst call to / to reasonable def)-.25 F .055
 (ault domain name to single-component names)-.1 F .208
 (\(those that do not contain a dot\).)72 168 R .209
 (This option is enabled by def)5.208 F 2.709(ault. If)-.1 F .209
-(this option is set, / will search for host names)2.709 F .29(in the cu\
-rrent domain and in parent domains; see This is used by the standard ho\
-st lookup routine This option is en-)72 180 R .704(abled by def)72 192 R
-3.204(ault. This)-.1 F .704(option turns of)3.204 F 3.205(ft)-.25 G .705
-(he user le)-3.205 F -.15(ve)-.25 G 3.205(la).15 G .705
-(liasing feature controlled by the en)-3.205 F .705(vironment v)-.4 F
-3.205(ariable. Net-)-.25 F -.1(wo)72 204 S .328
-(rk daemons should set this option.).1 F .327(This option causes to loo\
-k for AAAA records before looking for A records if)5.328 F .515
-(none are found.)72 216 R .515
+(this option is set, / will search for host names)2.709 F .29(in the current domain and in parent domains; see This is used by the standard host lookup routine This option is en-)
+72 180 R .704(abled by def)72 192 R 3.204(ault. This)-.1 F .704
+(option turns of)3.204 F 3.205(ft)-.25 G .705(he user le)-3.205 F -.15
+(ve)-.25 G 3.205(la).15 G .705(liasing feature controlled by the en)
+-3.205 F .705(vironment v)-.4 F 3.205(ariable. Net-)-.25 F -.1(wo)72 204
+S .328(rk daemons should set this option.).1 F .327(This option causes to look for AAAA records before looking for A records if)
+5.328 F .515(none are found.)72 216 R .515
 (This options causes the / to rotate the list of nameserv)5.515 F .516
 (ers in / This option causes to lea)-.15 F .816 -.15(ve t)-.2 H .516
-(he mes-).15 F .299(sage unchanged after TSIG v)72 228 R .299
-(eri\214cation; otherwise the TSIG record w)-.15 F .299(ould be remo)-.1
-F -.15(ve)-.15 G 2.799(da).15 G .298(nd the header updated.)-2.799 F
-(The)5.298 E 2.93(/r)72 240 S .43
-(outine reads the con\214guration \214le \(if an)-2.93 F .43
-(y; see to get the def)-.15 F .431
-(ault domain name, search list and the Internet address)-.1 F .947
-(of the local name serv)72 252 R 3.447(er\(s\). If)-.15 F .947(no serv)
-3.447 F .947(er is con\214gured, the host running the resolv)-.15 F .947
-(er is tried.)-.15 F .946(The current domain)5.946 F .767(name is de\
-\214ned by the hostname if not speci\214ed in the con\214guration \214l\
-e; it can be o)72 264 R -.15(ve)-.15 G .768(rridden by the en).15 F
-(vironment)-.4 E -.25(va)72 276 S .376(riable This en).25 F .376
-(vironment v)-.4 F .376(ariable may contain se)-.25 F -.15(ve)-.25 G
-.376(ral blank-separated tok).15 F .376(ens if you wish to o)-.1 F -.15
-(ve)-.15 G .376(rride the on a per).15 F(-)-.2 E .452(process basis.)72
-288 R .452
-(This is similar to the command in the con\214guration \214le.)5.452 F
-.452(Another en)5.452 F .452(vironment v)-.4 F .453
-(ariable can be set to)-.25 F -.15(ove)72 300 S .105
-(rride certain internal resolv).15 F .104(er options which are otherwis\
-e set by changing \214elds in the / structure or are inherited)-.15 F
-.09(from the con\214guration \214le')72 312 R 2.59(sc)-.55 G 2.59
-(ommand. The)-2.59 F .09(syntax of the en)2.59 F .09(vironment v)-.4 F
-.09(ariable is e)-.25 F .09(xplained in Initialization normal-)-.15 F
-.055(ly occurs on the \214rst call to one of the other resolv)72 324 R
-.054(er routines.)-.15 F .054(The / functions pro)5.054 F .054
-(vides interf)-.15 F .054(aces to the serv)-.1 F .054(er query)-.15 F
-3.108(mechanism. The)72 336 R 3.108(yc)-.15 G .608(onstructs a query)
--3.108 F 3.109(,s)-.65 G .609(ends it to the local serv)-3.109 F(er)-.15
-E 3.109(,a)-.4 G -.1(wa)-3.259 G .609(its a response, and mak).1 F .609
-(es preliminary checks)-.1 F .334(on the reply)72 348 R 5.334(.T)-.65 G
-.333(he query requests information of the speci\214ed and for the speci\
-\214ed fully-quali\214ed domain name The)-5.334 F .25
-(reply message is left in the b)72 360 R(uf)-.2 E .25
-(fer with length supplied by the caller)-.25 F 5.25(./)-.55 G .25
-(return -1 on error or the length of the answer)-2.5 F(.)-.55 E .579
-(The / routines mak)72 372 R 3.079(eaq)-.1 G .579(uery and a)-3.079 F
--.1(wa)-.15 G .579(its a response lik).1 F 3.079(e/b)-.1 G .578
-(ut in addition, it implements the def)-3.279 F .578
-(ault and search rules)-.1 F .139(controlled by the and options.)72 384
-R .139(It returns the length of the \214rst successful reply which is s\
-tored in or -1 on error)5.139 F 5.14(.T)-.55 G(he)-5.14 E .118
-(remaining routines are lo)72 396 R(wer)-.25 E(-le)-.2 E -.15(ve)-.25 G
-2.618(lr).15 G .118(outines used by / The / functions constructs a stan\
-dard query message and places)-2.618 F .422
-(it in It returns the size of the query)72 408 R 2.922(,o)-.65 G 2.922
-<72ad>-2.922 G 2.922(1i)-2.922 G 2.922(ft)-2.922 G .422(he query is lar)
--2.922 F .422(ger than The query type is usually b)-.18 F .423
-(ut can be an)-.2 F 2.923(yo)-.15 G 2.923(ft)-2.923 G(he)-2.923 E .108
-(query types de\214ned in The domain name for the query is gi)72 420 R
--.15(ve)-.25 G 2.608(nb).15 G 2.608(yi)-2.608 G 2.608(sc)-2.608 G .108
-(urrently unused b)-2.608 F .108(ut is intended for making up-)-.2 F
-.013(date messages.)72 432 R .013
-(The / / routines sends a pre-formatted query and returns an answer)
-5.013 F 5.013(.I)-.55 G 2.513(tw)-5.013 G .013
-(ill call / if is not set, send the)-2.513 F .762
-(query to the local name serv)72 444 R(er)-.15 E 3.262(,a)-.4 G .762
-(nd handle timeouts and retries.)-3.262 F(Additionally)5.762 E 3.262(,w)
--.65 G .761(ill use TSIG signatures to add au-)-3.262 F .12
-(thentication to the query and v)72 456 R .12(erify the response.)-.15 F
-.12(In this case, only one nameserv)5.12 F .12(er will be contacted.)
--.15 F .12(The length of)5.12 F .099
-(the reply message is returned, or \2551 if there were errors.)72 468 R
-2.599(//a)5.099 G .099
-(nd / return a length that may be bigger than In that case)-2.599 F .05
-(the query should be retried with a bigger b)72 480 R(uf)-.2 E(fer)-.25
-E 5.05(.N)-.55 G -.4(OT)-5.05 G 2.55(Et).4 G .051
-(he answer to the second query may be lar)-2.55 F .051
-(ger still so supply-)-.18 F .079(ing a b)72 492 R(uf)-.2 E .079
-(fer that bigger that the answer returned by the pre)-.25 F .078
-(vious query is recommended.)-.25 F .078(MUST be big enough to re-)5.078
-F(cei)72 504 Q .453 -.15(ve a m)-.25 H .153
-(aximum UDP response from the serv).15 F .153
-(er or parts of the answer will be silently discarded.)-.15 F .154
-(The def)5.154 F .154(ault maxi-)-.1 F .247
-(mum UDP response size is 512 bytes.)72 516 R .247
-(The function returns true when is one of the serv)5.247 F .246
-(ers in / The functions / print)-.15 F .793(out the query and an)72 528
-R 3.293(ya)-.15 G .793(nswer in on is equi)-3.293 F -.25(va)-.25 G .793
-(lent to with set to 512.).25 F .794(The function prints out the acti)
-5.794 F 1.094 -.15(ve \215)-.25 H .794(ag bits in).15 F .498
-(preceeded by the te)72 540 R .497(xt ";; res options:" on The function\
-s / lookup up name in the \214le referred to by the not found or)-.15 F
-.517(an error occurred.)72 552 R .517
-(uses to store the result in, uses a static b)5.517 F(uf)-.2 E(fer)-.25
-E 5.517(.T)-.55 G .517(he functions / tak)-5.517 F 3.017(eal)-.1 G .518
-(ist of ns_updrec Identi\214es)-3.017 F .559(the containing zone for ea\
-ch record and groups the records according to containing zone maintaini\
-ng in zone order)72 564 R .049
-(then sends and update request to the serv)72 576 R .049
-(ers for these zones.)-.15 F .05
-(The number of zones updated is returned or -1 on error)5.05 F(.)-.55 E
-.188(Note that will perform TSIG authenticated dynamic update operation\
-s if the k)72 588 R .487 -.15(ey i)-.1 H 2.687(sn).15 G .187(ot NULL.)
--2.687 F .187(The function disco)5.187 F(v-)-.15 E 1.478(ers the closes\
-t enclosing zone cut for a speci\214ed domain name, and \214nds the IP \
-addresses of the zone')72 600 R 3.978(sm)-.55 G(aster)-3.978 E(serv)72
-612 Q 3.219(ers. The)-.15 F .719(functions / tak)3.219 F 3.219(eal)-.1 G
-(ink)-3.219 E .719(ed list of ns_updrec and construct a UPD)-.1 F -1.11
-(AT)-.4 G 3.219(Em)1.11 G .719(essage in / return the length of)-3.219 F
-.322(the constructed message on no error or one of the follo)72 624 R
-.323(wing error v)-.25 F 2.823(alues. An)-.25 F .323
-(error occurred parsing The b)2.823 F(uf)-.2 E .323(fer w)-.25 F(as)-.1
-E 1.72(too small.)72 636 R 1.72(The \214rst record w)6.72 F 1.72
-(as not a zone section or there w)-.1 F 1.72
-(as a section order problem.)-.1 F 1.72(The section order is)6.72 F 1.61
-(S_ZONE, S_PREREQ and S_UPD)72 648 R -1.11(AT)-.4 G 4.11(E. A)1.11 F
-1.61(number o)4.11 F -.15(ve)-.15 G(r\215o).15 E 4.11(wo)-.25 G 4.11
-(ccurred. Unkno)-4.11 F 1.61(wn operation or no records.)-.25 F(The)6.61
-E .419(functions / close an)72 660 R 2.919(yo)-.15 G .418(pen \214les r\
-eferenced through / The function compresses the domain name and stores \
-it in The)-2.919 F .62
-(size of the compressed name is returned or \2551 if there were errors.)
-72 672 R .62(The size of the array pointed to by is gi)5.62 F -.15(ve)
--.25 G 3.12(nb).15 G(y)-3.12 E .105
-(The compression uses an array of pointers to pre)72 684 R .104
-(viously-compressed names in the current message.)-.25 F .104
-(The \214rst pointer)5.104 F .212(points to to the be)72 696 R .213(gin\
-ning of the message and the list ends with The limit to the array is sp\
-eci\214ed by A side ef)-.15 F .213(fect of)-.25 F .619(is to update the\
- list of pointers for labels inserted into the message as the name is c\
-ompressed.)72 708 R .619(If is names are not)5.619 F 2.716
-(compressed. If)72 720 R .216(is the list of labels is not updated.)
-2.716 F .216(The entry e)5.216 F .216
-(xpands the compressed domain name to a full domain)-.15 F 2.731
-(name. The)72 732 R .231(compressed name is contained in a query or rep\
-ly message; is a pointer to the be)2.731 F .231(ginning of the message.)
--.15 F .955(The uncompressed name is placed in the b)72 744 R(uf)-.2 E
-.956
-(fer indicated by which is of size The size of compressed name is re-)
--.25 F .717(turned or \2551 if there w)72 756 R .716(as an error)-.1 F
-5.716(.T)-.55 G .716(he v)-5.716 F .716(ariables / and e)-.25 F .716
-(xternal v)-.15 F .716(ariable is set whene)-.25 F -.15(ve)-.25 G 3.216
-(ra).15 G 3.216(ne)-3.216 G .716(rror occurs during re-)-3.216 F(solv)72
-768 Q 1.206(er operation.)-.15 F 1.206(The follo)6.206 F 1.206
-(wing de\214nitions are gi)-.25 F -.15(ve)-.25 G 3.707(ni).15 G 3.707
-(n#)-3.707 G 1.207(de\214ne NETDB_INTERN)-3.707 F 1.207(AL -1)-.35 F
-1.207(/* see errno */ #de\214ne)6.207 F 2.713(NETDB_SUCCESS 0)72 780 R
-.213(/* no problem */ #de\214ne HOST_NO)7.713 F .213(T_FOUND 1)-.4 F
-.213(/* Authoritati)7.713 F .513 -.15(ve A)-.25 H .212
-(nswer Host not found).15 F .571(*/ #de\214ne TR)72 792 R(Y_A)-.65 E
-13.071(GAIN 2)-.4 F .571(/* Non-Authoritati)8.071 F .871 -.15(ve n)-.25
-H .571(ot found, or SER).15 F(VF)-.8 E .572(AIL */ #de\214ne NO_RECO)
--.74 F(VER)-.5 E 10.572(Y3)-.65 G(/*)-2.5 E EP
+(he mes-).15 F .16(sage unchanged after TSIG v)72 228 R .159
+(eri\214cation; otherwise the TSIG record w)-.15 F .159(ould be remo)-.1
+F -.15(ve)-.15 G 2.659(da).15 G .159(nd the header updated.)-2.659 F
+(This)5.159 E .555(option causes to not attempt to resolv)72 240 R 3.055
+(eau)-.15 G .555(nquali\214ed name as if it were a top le)-3.055 F -.15
+(ve)-.25 G 3.056(ld).15 G .556(omain \(TLD\).)-3.056 F .556
+(This option can)5.556 F 1.173
+(cause problems if the site has "localhost" as a TLD rather than ha)72
+252 R 1.172(ving localhost on one or more elements of the)-.2 F .356
+(search list.)72 264 R .356(This option has no ef)5.356 F .356
+(fect if neither or is set.)-.25 F .356
+(The / routine reads the con\214guration \214le \(if an)5.356 F .357
+(y; see to get)-.15 F .346(the def)72 276 R .346(ault domain name, search list and the Internet address of the local name serv)
+-.1 F 2.846(er\(s\). If)-.15 F .345(no serv)2.845 F .345
+(er is con\214gured,)-.15 F .854(the host running the resolv)72 288 R
+.854(er is tried.)-.15 F .855(The current domain name is de\214ned by the hostname if not speci\214ed in the)
+5.854 F .728(con\214guration \214le; it can be o)72 300 R -.15(ve)-.15 G
+.727(rridden by the en).15 F .727(vironment v)-.4 F .727
+(ariable This en)-.25 F .727(vironment v)-.4 F .727
+(ariable may contain se)-.25 F -.15(ve)-.25 G(ral).15 E .044
+(blank-separated tok)72 312 R .044(ens if you wish to o)-.1 F -.15(ve)
+-.15 G .044(rride the on a per).15 F .045(-process basis.)-.2 F .045
+(This is similar to the command in the con-)5.045 F .102
+(\214guration \214le.)72 324 R .102(Another en)5.102 F .102(vironment v)
+-.4 F .101(ariable can be set to o)-.25 F -.15(ve)-.15 G .101
+(rride certain internal resolv).15 F .101(er options which are other)
+-.15 F(-)-.2 E .526(wise set by changing \214elds in the / structure or are inherited from the con\214guration \214le')
+72 336 R 3.027(sc)-.55 G 3.027(ommand. The)-3.027 F .527(syntax of)3.027
+F .81(the en)72 348 R .81(vironment v)-.4 F .81(ariable is e)-.25 F .809
+(xplained in Initialization normally occurs on the \214rst call to one of the other resolv)
+-.15 F(er)-.15 E 2.598(routines. The)72 360 R 2.599(/f)2.598 G .099
+(unctions pro)-2.599 F .099(vides interf)-.15 F .099(aces to the serv)
+-.1 F .099(er query mechanism.)-.15 F(The)5.099 E 2.599(yc)-.15 G .099
+(onstructs a query)-2.599 F 2.599(,s)-.65 G .099(ends it to the)-2.599 F
+.748(local serv)72 372 R(er)-.15 E 3.248(,a)-.4 G -.1(wa)-3.398 G .748
+(its a response, and mak).1 F .748(es preliminary checks on the reply)
+-.1 F 5.747(.T)-.65 G .747(he query requests information of the)-5.747 F
+.597(speci\214ed and for the speci\214ed fully-quali\214ed domain name The reply message is left in the b)
+72 384 R(uf)-.2 E .597(fer with length sup-)-.25 F .885
+(plied by the caller)72 396 R 5.885(./)-.55 G .885
+(return -1 on error or the length of the answer)-2.5 F 5.884(.T)-.55 G
+.884(he / routines mak)-5.884 F 3.384(eaq)-.1 G .884(uery and a)-3.384 F
+-.1(wa)-.15 G .884(its a re-).1 F .408(sponse lik)72 408 R 2.908(e/b)-.1
+G .408(ut in addition, it implements the def)-3.108 F .408
+(ault and search rules controlled by the and options.)-.1 F .408
+(It returns the)5.408 F .339(length of the \214rst successful reply which is stored in or -1 on error)
+72 420 R 5.338(.T)-.55 G .338(he remaining routines are lo)-5.338 F(wer)
+-.25 E(-le)-.2 E -.15(ve)-.25 G 2.838(lr).15 G(outines)-2.838 E .048(used by / The / functions constructs a standard query message and places it in It returns the size of the query)
+72 432 R 2.548(,o)-.65 G 2.548<72ad>-2.548 G 2.548(1i)-2.548 G(f)-2.548
+E .29(the query is lar)72 444 R .29
+(ger than The query type is usually b)-.18 F .29(ut can be an)-.2 F 2.79
+(yo)-.15 G 2.79(ft)-2.79 G .29
+(he query types de\214ned in The domain name for)-2.79 F .478
+(the query is gi)72 456 R -.15(ve)-.25 G 2.978(nb).15 G 2.978(yi)-2.978
+G 2.978(sc)-2.978 G .478(urrently unused b)-2.978 F .479
+(ut is intended for making update messages.)-.2 F .479
+(The / / routines sends a pre-)5.479 F .195
+(formatted query and returns an answer)72 468 R 5.195(.I)-.55 G 2.695
+(tw)-5.195 G .194
+(ill call / if is not set, send the query to the local name serv)-2.695
+F(er)-.15 E 2.694(,a)-.4 G .194(nd handle)-2.694 F 1.141
+(timeouts and retries.)72 480 R(Additionally)6.141 E 3.641(,w)-.65 G
+1.142(ill use TSIG signatures to add authentication to the query and v)
+-3.641 F 1.142(erify the re-)-.15 F 3.186(sponse. In)72 492 R .686
+(this case, only one nameserv)3.186 F .686(er will be contacted.)-.15 F
+.685(The length of the reply message is returned, or \2551 if)5.686 F
+.046(there were errors.)72 504 R 2.546(//a)5.046 G .046(nd / return a length that may be bigger than In that case the query should be retried with a big-)
+-2.546 F .708(ger b)72 516 R(uf)-.2 E(fer)-.25 E 5.708(.N)-.55 G -.4(OT)
+-5.708 G 3.208(Et).4 G .707(he answer to the second query may be lar)
+-3.208 F .707(ger still so supplying a b)-.18 F(uf)-.2 E .707
+(fer that bigger that the an-)-.25 F .595(swer returned by the pre)72
+528 R .595(vious query is recommended.)-.25 F .595
+(MUST be big enough to recei)5.595 F .896 -.15(ve a m)-.25 H .596
+(aximum UDP response).15 F .746(from the serv)72 540 R .745
+(er or parts of the answer will be silently discarded.)-.15 F .745
+(The def)5.745 F .745(ault maximum UDP response size is 512)-.1 F 2.634
+(bytes. The)72 552 R .135(function returns true when is one of the serv)
+2.634 F .135(ers in / The functions / print out the query and an)-.15 F
+2.635(ya)-.15 G .135(nswer in)-2.635 F .81(on is equi)72 564 R -.25(va)
+-.25 G .81(lent to with set to 512.).25 F .81
+(The function prints out the acti)5.81 F 1.109 -.15(ve \215)-.25 H .809
+(ag bits in preceeded by the te).15 F .809(xt ";; res op-)-.15 F .029(tions:" on The functions / lookup up name in the \214le referred to by the \214les return a fully quali\214ed hostname if found)
+72 576 R .187(or NULL if not found or an error occurred.)72 588 R .186
+(uses to store the result in, uses a static b)5.186 F(uf)-.2 E(fer)-.25
+E 5.186(.T)-.55 G .186(he functions / tak)-5.186 F 2.686(eal)-.1 G(ist)
+-2.686 E 1.306(of ns_updrec Identi\214es the containing zone for each record and groups the records according to containing zone)
+72 600 R .244
+(maintaining in zone order then sends and update request to the serv)72
+612 R .244(ers for these zones.)-.15 F .244(The number of zones updat-)
+5.244 F .277(ed is returned or -1 on error)72 624 R 5.277(.N)-.55 G .278
+(ote that will perform TSIG authenticated dynamic update operations if the k)
+-5.277 F .578 -.15(ey i)-.1 H 2.778(sn).15 G(ot)-2.778 E 2.611
+(NULL. The)72 636 R .111(function disco)2.611 F -.15(ve)-.15 G .11(rs the closest enclosing zone cut for a speci\214ed domain name, and \214nds the IP address-)
+.15 F .01(es of the zone')72 648 R 2.51(sm)-.55 G .01(aster serv)-2.51 F
+2.51(ers. The)-.15 F .01(functions / tak)2.51 F 2.51(eal)-.1 G(ink)-2.51
+E .011(ed list of ns_updrec and construct a UPD)-.1 F -1.11(AT)-.4 G
+2.511(Em)1.11 G .011(essage in /)-2.511 F 1.112(return the length of the constructed message on no error or one of the follo)
+72 660 R 1.111(wing error v)-.25 F 3.611(alues. An)-.25 F 1.111
+(error occurred)3.611 F .17(parsing The b)72 672 R(uf)-.2 E .17(fer w)
+-.25 F .17(as too small.)-.1 F .17(The \214rst record w)5.17 F .171
+(as not a zone section or there w)-.1 F .171
+(as a section order problem.)-.1 F(The)5.171 E .88
+(section order is S_ZONE, S_PREREQ and S_UPD)72 684 R -1.11(AT)-.4 G
+3.379(E. A)1.11 F .879(number o)3.379 F -.15(ve)-.15 G(r\215o).15 E
+3.379(wo)-.25 G 3.379(ccurred. Unkno)-3.379 F .879(wn operation or no)
+-.25 F 3.393(records. The)72 696 R .893(functions / close an)3.393 F
+3.393(yo)-.15 G .894(pen \214les referenced through / The function compresses the domain name and)
+-3.393 F .458(stores it in The size of the compressed name is returned or \2551 if there were errors.)
+72 708 R .457(The size of the array pointed to)5.458 F .742(by is gi)72
+720 R -.15(ve)-.25 G 3.242(nb).15 G 3.242(yT)-3.242 G .742
+(he compression uses an array of pointers to pre)-3.242 F .743
+(viously-compressed names in the current message.)-.25 F .102
+(The \214rst pointer points to to the be)72 732 R .102(ginning of the message and the list ends with The limit to the array is speci\214ed by)
+-.15 F 2.825(As)72 744 S .325(ide ef)-2.825 F .326(fect of is to update the list of pointers for labels inserted into the message as the name is compressed.)
+-.25 F .326(If is)5.326 F .106(names are not compressed.)72 756 R .106
+(If is the list of labels is not updated.)5.106 F .105(The entry e)5.105
+F .105(xpands the compressed domain name to)-.15 F 2.613(af)72 768 S
+.113(ull domain name.)-2.613 F .114(The compressed name is contained in a query or reply message; is a pointer to the be)
+5.113 F .114(ginning of)-.15 F .524(the message.)72 780 R .523
+(The uncompressed name is placed in the b)5.524 F(uf)-.2 E .523
+(fer indicated by which is of size The size of compressed)-.25 F .769
+(name is returned or \2551 if there w)72 792 R .769(as an error)-.1 F
+5.769(.T)-.55 G .769(he v)-5.769 F .769(ariables / and e)-.25 F .769
+(xternal v)-.15 F .769(ariable is set whene)-.25 F -.15(ve)-.25 G 3.269
+(ra).15 G 3.269(ne)-3.269 G .77(rror occurs)-3.269 F EP
 %%Page: 2 2
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF(Non-Reco)72 12 Q -.15(ve)-.15 G .919
-(rable: FORMERR, REFUSED, NO).15 F .919(TIMP */ #de\214ne NO_D)-.4 F
--1.21 -1.11(AT A)-.4 H 8.419(4/)22.029 G 3.418(*V)-8.419 G .918
-(alid name, no data for re-)-4.528 F .849(quested type */ The function \
-writes a message to the diagnostic output consisting of the string para\
-meter the con-)72 24 R .226
-(stant string ": ", and a message corresponding to the v)72 36 R .226
-(alue of The function returns a string which is the message te)-.25 F
-(xt)-.15 E(corresponding to the v)72 48 Q(alue of the parameter)-.25 E 5
-(.S)-.55 G(ee RFC1032, RFC1033, RFC1034, RFC1035, RFC974; SMM:11,)-5 E
+/F0 10/Times-Roman@0 SF .911(during resolv)72 12 R .911(er operation.)
+-.15 F .911(The follo)5.911 F .911(wing de\214nitions are gi)-.25 F -.15
+(ve)-.25 G 3.411(ni).15 G 3.411(n#)-3.411 G .911(de\214ne NETDB_INTERN)
+-3.411 F .91(AL -1)-.35 F .91(/* see errno */)5.91 F .934
+(#de\214ne NETDB_SUCCESS)72 24 R 8.434(0/)5.934 G 3.434(*n)-8.434 G
+3.434(op)-3.434 G .935(roblem */ #de\214ne HOST_NO)-3.434 F .935
+(T_FOUND 1)-.4 F .935(/* Authoritati)8.435 F 1.235 -.15(ve A)-.25 H .935
+(nswer Host).15 F 1.014(not found */ #de\214ne TR)72 36 R(Y_A)-.65 E
+13.514(GAIN 2)-.4 F 1.014(/* Non-Authoritati)8.514 F 1.314 -.15(ve n)
+-.25 H 1.013(ot found, or SER).15 F(VF)-.8 E 1.013
+(AIL */ #de\214ne NO_RECO)-.74 F -1(V-)-.5 G(ER)72 48 Q 10.546(Y3)-.65 G
+.546(/* Non-Reco)-2.5 F -.15(ve)-.15 G .546(rable: FORMERR, REFUSED, NO)
+.15 F .546(TIMP */ #de\214ne NO_D)-.4 F -1.21 -1.11(AT A)-.4 H 8.047(4/)
+21.657 G 3.047(*V)-8.047 G .547(alid name, no)-4.157 F .51(data for requested type */ The function writes a message to the diagnostic output consisting of the string parameter)
+72 60 R .351
+(the constant string ": ", and a message corresponding to the v)72 72 R
+.352(alue of The function returns a string which is the mes-)-.25 F
+1.433(sage te)72 84 R 1.433(xt corresponding to the v)-.15 F 1.433
+(alue of the parameter)-.25 F 6.433(.S)-.55 G 1.433
+(ee RFC1032, RFC1033, RFC1034, RFC1035, RFC974;)-6.433 F(SMM:11,)72 96 Q
 EP
 %%Trailer
 end

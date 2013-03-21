@@ -53,11 +53,11 @@ void T_free PROTO_LIST ((POINTER));
 /* Routines supplied by the implementor.
  */
 void T_memset PROTO_LIST ((POINTER, int, unsigned int));
-void T_memcpy PROTO_LIST ((POINTER, POINTER, unsigned int));
+void T_memcpy PROTO_LIST ((POINTER, CPOINTER, unsigned int));
 void T_memmove PROTO_LIST ((POINTER, POINTER, unsigned int));
-int T_memcmp PROTO_LIST ((POINTER, POINTER, unsigned int));
+int T_memcmp PROTO_LIST ((CPOINTER, CPOINTER, unsigned int));
 
-unsigned int A_IntegerBits PROTO_LIST ((unsigned char *, unsigned int));
+unsigned int A_IntegerBits PROTO_LIST ((const unsigned char *, unsigned int));
 
 #ifdef __cplusplus
 }

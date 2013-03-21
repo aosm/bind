@@ -11,7 +11,7 @@ typedef struct {
   int (*Init) PROTO_LIST ((POINTER, POINTER, POINTER, A_SURRENDER_CTX *));
   int (*Update) PROTO_LIST
     ((POINTER, unsigned char *, unsigned int *, unsigned int,
-      unsigned char *, unsigned int, A_SURRENDER_CTX *));
+      const unsigned char *, unsigned int, A_SURRENDER_CTX *));
   int (*Final) PROTO_LIST
     ((POINTER, unsigned char *, unsigned int *, unsigned int,
       A_SURRENDER_CTX *));

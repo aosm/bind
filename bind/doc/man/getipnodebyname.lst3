@@ -1,5 +1,4 @@
-
-GETIPNODEBYNAME(3)     FreeBSD Library Functions Manual     GETIPNODEBYNAME(3)
+GETIPNODEBYNAME(3)          BSD Programmer's Manual         GETIPNODEBYNAME(3)
 
 NNAAMMEE
      ggeettiippnnooddeebbyynnaammee, ggeettiippnnooddeebbyyaaddddrr - get network host entry
@@ -92,8 +91,6 @@ EENNVVIIRROONNMMEENNTT
 
 FFIILLEESS
      /etc/hosts     See hosts(5).
-
-     HOSTALIASES    Name of file containing (_h_o_s_t _a_l_i_a_s, _f_u_l_l _h_o_s_t_n_a_m_e) pairs.
 
 DDIIAAGGNNOOSSTTIICCSS
      Error return status from ggeettiippnnooddeebbyynnaammee() and ggeettiippnnooddeebbyyaaddddrr() is indi-

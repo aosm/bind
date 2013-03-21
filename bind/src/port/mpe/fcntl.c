@@ -1,3 +1,5 @@
+#include "port_before.h"
+#undef fcntl
 #include <sys/types.h>
 #include <sys/socket.h>
 

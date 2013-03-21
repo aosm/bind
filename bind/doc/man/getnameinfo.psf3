@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:59 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:56 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -199,9 +199,8 @@ def/PL 792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF .581(The function is de\214ned for protocol-ind\
-ependent address-to-nodename translation.)72 12 R .581
-(It performs functionality of and)5.581 F .784
+/F0 10/Times-Roman@0 SF .581(The function is de\214ned for protocol-independent address-to-nodename translation.)
+72 12 R .581(It performs functionality of and)5.581 F .784
 (in more sophisticated manner)72 24 R 5.784(.T)-.55 G .784(he ar)-5.784
 F .784(guement is a pointer to a generic sock)-.18 F .785
 (et address structure of size The ar)-.1 F(gue-)-.18 E .826
@@ -211,9 +210,8 @@ F .784(guement is a pointer to a generic sock)-.18 F .785
 5.825(.E)-.65 G .825(ither or)-5.825 F .477(may be if the hostname)72 48
 R .477(or service name is not required.)5.477 F .477(The ar)5.477 F .477
 (guement modi\214es the beha)-.18 F .477(viour of as follo)-.2 F .477
-(ws: If is)-.25 F .57(set only the unquali\214ed hostname is returned f\
-or local fully quali\214ed names.)72 60 R .569
-(If is set then the numeric form of the)5.569 F .09
+(ws: If is)-.25 F .57(set only the unquali\214ed hostname is returned for local fully quali\214ed names.)
+72 60 R .569(If is set then the numeric form of the)5.569 F .09
 (hostname is returned.)72 72 R .09
 (If is set, then a error is returned if the hostname cannot be look)5.09
 F .091(ed up.)-.1 F .091(If is set then the service)5.091 F .479
@@ -223,10 +221,10 @@ F .091(ed up.)-.1 F .091(If is set then the service)5.091 F .479
 (son, J. Bound, and W)72 96 R 3.009(.S)-.92 G(te)-3.009 E -.15(ve)-.25 G
 .509(ns, `).15 F .509(`Basic Sock)-.74 F .509(et Interf)-.1 F .509
 (ace Extensions for IPv6,)-.1 F 1.989 -.74('' R)-.7 H .509
-(FC2133, April 1997.).74 F .509(The function)5.509 F 1.755(is de\214ned\
- IEEE POSIX 1003.1g draft speci\214cation, and documented in `)72 108 R
-1.755(`Basic Sock)-.74 F 1.755(et Interf)-.1 F 1.755(ace Extensions for)
--.1 F(IPv6')72 120 Q(')-.74 E EP
+(FC2133, April 1997.).74 F .509(The function)5.509 F 1.755(is de\214ned IEEE POSIX 1003.1g draft speci\214cation, and documented in `)
+72 108 R 1.755(`Basic Sock)-.74 F 1.755(et Interf)-.1 F 1.755
+(ace Extensions for)-.1 F(IPv6')72 120 Q 2.5('\()-.74 G(RFC2133\).)-2.5
+E EP
 %%Trailer
 end
 %%EOF

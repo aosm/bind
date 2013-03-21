@@ -27,9 +27,9 @@ BOOL InitPaths()
 		// Get the named directory
 		if(RegQueryValueEx(hKey, "InstallDir", NULL, NULL, (LPBYTE)namedBase, &baseLen) != ERROR_SUCCESS)
 			keyFound = FALSE;
+
+		RegCloseKey(hKey);
 	}
-	
-	RegCloseKey(hKey);
 
 	GetSystemDirectory(systemDir, MAX_PATH);
 

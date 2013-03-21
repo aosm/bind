@@ -1,4 +1,4 @@
-/* $Header: /cvs/Darwin/src/live/bind/bind/contrib/dns_signer/signer/signer_ns_print.c,v 1.1.1.3 2001/01/31 03:58:42 zarzycki Exp $ */
+/* $Header: /cvs/Darwin/src/live/bind/bind/contrib/dns_signer/signer/signer_ns_print.c,v 1.1.1.4 2002/11/18 22:24:38 bbraun Exp $ */
 /* Altered for the new signer */
 /*
  * Copyright (c) 1996,1999 by Internet Software Consortium.
@@ -252,7 +252,7 @@ ns_sprintrrf_rdata(struct signing_options *options, u_int16_t type, u_char *rdat
 		break;
 
 	case ns_t_nsap: {
-		char t[255*3];
+		char t[2+255*3];
 
 		(void) inet_nsap_ntoa(rdlen, rdata, t);
 		T(addstr(t, strlen(t), &buf, &buflen));

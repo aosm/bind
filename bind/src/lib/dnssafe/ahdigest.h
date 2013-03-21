@@ -27,7 +27,7 @@ typedef struct {
   int (*DigestInit) PROTO_LIST
     ((THIS_DIGEST *, B_Key *, B_ALGORITHM_CHOOSER, A_SURRENDER_CTX *));
   int (*DigestUpdate) PROTO_LIST
-    ((THIS_DIGEST *, unsigned char *, unsigned int, A_SURRENDER_CTX *));
+    ((THIS_DIGEST *, const unsigned char *, unsigned int, A_SURRENDER_CTX *));
   int (*DigestFinal) PROTO_LIST
     ((THIS_DIGEST *, unsigned char *, unsigned int *, unsigned int,
       A_SURRENDER_CTX *));

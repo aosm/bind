@@ -65,9 +65,9 @@ typedef B_ALGORITHM_METHOD **B_ALGORITHM_CHOOSER;
 /* Routines supplied by the implementor.
  */
 void T_CALL T_memset PROTO_LIST ((POINTER, int, unsigned int));
-void T_CALL T_memcpy PROTO_LIST ((POINTER, POINTER, unsigned int));
+void T_CALL T_memcpy PROTO_LIST ((POINTER, CPOINTER, unsigned int));
 void T_CALL T_memmove PROTO_LIST ((POINTER, POINTER, unsigned int));
-int T_CALL T_memcmp PROTO_LIST ((POINTER, POINTER, unsigned int));
+int T_CALL T_memcmp PROTO_LIST ((CPOINTER, CPOINTER, unsigned int));
 POINTER T_CALL T_malloc PROTO_LIST ((unsigned int));
 POINTER T_CALL T_realloc PROTO_LIST ((POINTER, unsigned int));
 void T_CALL T_free PROTO_LIST ((POINTER));
@@ -102,7 +102,7 @@ int T_CALL B_GenerateRandomBytes PROTO_LIST
 int T_CALL B_DigestInit PROTO_LIST
   ((B_ALGORITHM_OBJ, B_KEY_OBJ, B_ALGORITHM_CHOOSER, A_SURRENDER_CTX *));
 int T_CALL B_DigestUpdate PROTO_LIST
-  ((B_ALGORITHM_OBJ, unsigned char *, unsigned int, A_SURRENDER_CTX *));
+  ((B_ALGORITHM_OBJ, const unsigned char *, unsigned int, A_SURRENDER_CTX *));
 int T_CALL B_DigestFinal PROTO_LIST
   ((B_ALGORITHM_OBJ, unsigned char *, unsigned int *, unsigned int,
     A_SURRENDER_CTX *));
@@ -120,7 +120,7 @@ int T_CALL B_DecryptInit PROTO_LIST
   ((B_ALGORITHM_OBJ, B_KEY_OBJ, B_ALGORITHM_CHOOSER, A_SURRENDER_CTX *));
 int T_CALL B_DecryptUpdate PROTO_LIST
   ((B_ALGORITHM_OBJ, unsigned char *, unsigned int *, unsigned int,
-    unsigned char *, unsigned int, B_ALGORITHM_OBJ, A_SURRENDER_CTX *));
+    const unsigned char *, unsigned int, B_ALGORITHM_OBJ, A_SURRENDER_CTX *));
 int T_CALL B_DecryptFinal PROTO_LIST
   ((B_ALGORITHM_OBJ, unsigned char *, unsigned int *, unsigned int,
     B_ALGORITHM_OBJ, A_SURRENDER_CTX *));

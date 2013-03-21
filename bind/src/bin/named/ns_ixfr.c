@@ -1,5 +1,5 @@
 #if !defined(lint) && !defined(SABER)
-static const char rcsid[] = "$Id: ns_ixfr.c,v 1.1.1.3 2001/01/31 03:59:48 zarzycki Exp $";
+static const char rcsid[] = "$Id: ns_ixfr.c,v 1.1.1.4 2002/11/18 22:26:53 bbraun Exp $";
 #endif /* not lint */
 
 /*
@@ -201,10 +201,10 @@ sx_send_ixfr(struct qstream *qsp) {
 		ns_panic(ns_log_update, 1,
 			 "sx_send_ixfr: unable to locate soa");
 	}
-	old_soadp = memget(DATASIZE(soa_dp->d_size));
+	old_soadp = memget(BIND_DATASIZE(soa_dp->d_size));
 	if (old_soadp == NULL)
 		ns_panic(ns_log_update, 1, "sx_send_ixfr: out of memory");
-	memcpy(old_soadp, soa_dp, DATASIZE(soa_dp->d_size));
+	memcpy(old_soadp, soa_dp, BIND_DATASIZE(soa_dp->d_size));
 
  again:
 	switch (qsp->xfr.state) {
@@ -232,8 +232,7 @@ sx_send_ixfr(struct qstream *qsp) {
 					if (sx_addrr(qsp, rp->r_dname,
 						     rp->r_dp) < 0)
 						goto cleanup;
-					db_freedata(rp->r_dp);
-					rp->r_dp = NULL;
+					db_detach(&rp->r_dp);
 					foundsoa = 1;
 					break;
 				}
@@ -268,8 +267,7 @@ sx_send_ixfr(struct qstream *qsp) {
 					    sx_addrr(qsp, rp->r_dname,
 						     rp->r_dp) < 0)
 						goto cleanup;
-					db_freedata(rp->r_dp);
-					rp->r_dp = NULL;
+					db_detach(&rp->r_dp);
 				}
 				rp = NEXT(rp, r_link);
 			}
@@ -292,8 +290,7 @@ sx_send_ixfr(struct qstream *qsp) {
 					if (sx_addrr(qsp, rp->r_dname,
 						     rp->r_dp) < 0)
 						goto cleanup;
-					db_freedata(rp->r_dp);
-					rp->r_dp = NULL;
+					db_detach(&rp->r_dp);
 					foundsoa = 1;
 					break;
 				}
@@ -332,8 +329,7 @@ sx_send_ixfr(struct qstream *qsp) {
 						if (sx_addrr(qsp, rp->r_dname,
 							     rp->r_dp) < 0)
 							goto cleanup;
-						db_freedata(rp->r_dp);
-						rp->r_dp = NULL;
+						db_detach(&rp->r_dp);
 					}
 					rp = NEXT(rp, r_link);
 				}
@@ -344,10 +340,8 @@ sx_send_ixfr(struct qstream *qsp) {
 				/* clean up old update */
 				while ((rp = HEAD(dp->d_changes)) != NULL) {
 					UNLINK(dp->d_changes, rp, r_link);
-					if (rp->r_dp != NULL) {
-						db_freedata(rp->r_dp);
-						rp->r_dp = NULL;
-					}
+					if (rp->r_dp != NULL)
+						db_detach(&rp->r_dp);
 					res_freeupdrec(rp);
 				}
 				memput(dp, sizeof (*dp));
@@ -379,8 +373,7 @@ sx_send_ixfr(struct qstream *qsp) {
 				while ((rp = HEAD(dp->d_changes)) != NULL) {
 					UNLINK(dp->d_changes, rp, r_link);
 					if (rp->r_dp != NULL)
-						db_freedata(rp->r_dp);
-					rp->r_dp = NULL;
+						db_detach(&rp->r_dp);
 					res_freeupdrec(rp);
 				} 
 				memput(dp, sizeof *dp);
@@ -390,7 +383,7 @@ sx_send_ixfr(struct qstream *qsp) {
 		qsp->xfr.top.ixfr = NULL;
 	}
  cleanup:
-	memput(old_soadp, DATASIZE(old_soadp->d_size));
+	memput(old_soadp, BIND_DATASIZE(old_soadp->d_size));
 }
 
 
@@ -411,7 +404,8 @@ ixfr_log_maint(struct zoneinfo *zp) {
 	int error = 0;
 	long seek = 0;
 	FILE *to_fp, *from_fp, *db_fp;
-	static char   *tmpname;
+	char *tmpname;
+	int len;
 	struct stat db_sb;
 	struct stat sb;
 	static char buf[MAXBSIZE];
@@ -431,9 +425,8 @@ ixfr_log_maint(struct zoneinfo *zp) {
 		return (-1);
 	}
 	(void) my_fclose(db_fp);
-	ns_debug(ns_log_default, 3, "%s, size %d blk %d", 
-	     zp->z_source, db_sb.st_size, 
-	     db_sb.st_size);
+	ns_debug(ns_log_default, 3, "%s, size %ld", 
+		 zp->z_source, (long)db_sb.st_size);
 
 	/* open up the zone ixfr log */
 	if ((from_fp = fopen(zp->z_ixfr_base, "r")) == NULL) {
@@ -448,10 +441,8 @@ ixfr_log_maint(struct zoneinfo *zp) {
 		(void) my_fclose(from_fp);
 		return (-1);
 	}
-	ns_debug(ns_log_default, 3, "%s, size %d max %d\n", 
-	     zp->z_ixfr_base, 
-	     sb.st_size, 
-	     zp->z_max_log_size_ixfr);
+	ns_debug(ns_log_default, 3, "%s, size %ld max %ld\n", zp->z_ixfr_base, 
+		 (long)sb.st_size, (long)zp->z_max_log_size_ixfr);
 	if (zp->z_max_log_size_ixfr) {
 		if (sb.st_size > zp->z_max_log_size_ixfr)
 			seek = sb.st_size -
@@ -466,7 +457,7 @@ ixfr_log_maint(struct zoneinfo *zp) {
 		else 
 			 seek = 0;
 	}
-	ns_debug(ns_log_default, 3, "seek: %d", seek);
+	ns_debug(ns_log_default, 3, "seek: %ld", (long)seek);
 	if (seek < 1) {
 		ns_debug(ns_log_default, 3, "%s does not need to be reduced", 
 			zp->z_ixfr_base);
@@ -474,7 +465,8 @@ ixfr_log_maint(struct zoneinfo *zp) {
 		return (-1);
 	}
 
-	tmpname = memget(strlen(zp->z_ixfr_base) + sizeof(".XXXXXX") + 1);
+	len = strlen(zp->z_ixfr_base) + sizeof(".XXXXXX") + 1;
+	tmpname = memget(len);
 	if (!tmpname) {
 		ns_warning(ns_log_default, "memget failed");
 			return (-1);
@@ -488,15 +480,17 @@ ixfr_log_maint(struct zoneinfo *zp) {
 	(void) strcat(tmpname, ".XXXXXX");
 	if ((fd = mkstemp(tmpname)) == -1) {
 		ns_warning(ns_log_db, "can't make tmpfile (%s): %s", 
-				strerror(errno));
-		memput(tmpname, (strlen(zp->z_ixfr_base) + sizeof(".XXXXXX") + 1));
+			   tmpname, strerror(errno));
+		memput(tmpname, len);
+		(void) my_fclose(from_fp);
 	 	return (-1);
 	}
 	if ((to_fp = fdopen(fd, "r+")) == NULL) {
 		ns_warning(ns_log_db, "%s: %s",
 			   tmpname, strerror(errno));
 		(void) unlink(tmpname);
-		memput(tmpname, (strlen(zp->z_ixfr_base) + sizeof(".XXXXXX") + 1));
+		memput(tmpname, len);
+		(void) my_fclose(from_fp);
 		(void) close(fd);
 	 	return (-1);
 	}
@@ -532,14 +526,16 @@ ixfr_log_maint(struct zoneinfo *zp) {
 			break;
 	}
 	if (found) {
-		ns_debug(ns_log_default, 1, "ixfr_log_maint(): found [END_DELTA]");
+		ns_debug(ns_log_default, 1,
+			 "ixfr_log_maint(): found [END_DELTA]");
 	
 		fprintf(to_fp, "%s", LogSignature);
 
 		while ((rcount = fread(buf, sizeof(char), MAXBSIZE, from_fp)) > 0) {
 			wcount = fwrite(buf, sizeof(char), rcount, to_fp);
 			if (rcount != wcount || wcount == -1) {
-					ns_warning(ns_log_default, "ixfr_log_maint: error in writting copy");
+					ns_warning(ns_log_default,
+				     "ixfr_log_maint: error in writting copy");
 					break;
 			}
 		}
@@ -549,46 +545,46 @@ ixfr_log_maint(struct zoneinfo *zp) {
 	}
 	clean_up:
 	(void) my_fclose(to_fp);
-	(void) close(fd);
 	(void) my_fclose(from_fp);
 	if (error == 0) {
 		if (isc_movefile(tmpname, zp->z_ixfr_base) == -1) {
-			ns_warning(ns_log_default, "can not rename %s to %s :%s",
+			ns_warning(ns_log_default,
+				   "can not rename %s to %s :%s",
 				   tmpname, zp->z_ixfr_base, strerror(errno));
 		}
 		if ((from_fp = fopen(zp->z_ixfr_base, "r")) == NULL) {
 			ns_warning(ns_log_db, "%s: %s",
 				   zp->z_ixfr_base, strerror(errno));
+			memput(tmpname, len);
 			return (-1);
 		}
 		if (fstat(fileno(from_fp), &sb) < 0) {
 			ns_warning(ns_log_db, "%s: %s",
 				   zp->z_ixfr_base, strerror(errno));
+			memput(tmpname, len);
 			(void) my_fclose(from_fp);
 			return (-1);
 		}
 		if (sb.st_size <= 0)
 			(void) unlink(zp->z_ixfr_base);
 		else if (chmod(zp->z_ixfr_base, 0644) < 0)
-				ns_error(ns_log_update,
-					"chmod(%s,%o) failed, pressing on: %s",
-					 zp->z_source, sb.st_mode,
-					 strerror(errno));
+			ns_error(ns_log_update,
+				"chmod(%s,%o) failed, pressing on: %s",
+				 zp->z_source, sb.st_mode, strerror(errno));
+		(void) my_fclose(from_fp);
 	}
 	(void) unlink(tmpname);
-	memput(tmpname, (strlen(zp->z_ixfr_base) + sizeof(".XXXXXX") + 1));
-	(void) my_fclose(from_fp);
+	memput(tmpname, len);
 
-	zp->z_serial_ixfr_start = 0; /* signal to read for lowest serial number */	
+	/* signal to read for lowest serial number */	
+	zp->z_serial_ixfr_start = 0;
 
-	ns_debug(ns_log_default, 3, "%s, size %d max %d\n", 
-	     zp->z_ixfr_base, 
-	     sb.st_size, 
-	     zp->z_max_log_size_ixfr);
+	ns_debug(ns_log_default, 3, "%s, size %ld max %ld\n", zp->z_ixfr_base,
+		 (long)sb.st_size, (long)zp->z_max_log_size_ixfr);
 
 	if (error)
 	 	return(-1);
 	else
-	    return (0);
+		return (0);
 }
 

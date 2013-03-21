@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:59 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:54 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -230,15 +230,12 @@ BP
 5.353 F .738(tialization; a call to must be used after the loop.)72 132
 R .737(Both and mak)5.737 F 3.237(ec)-.1 G .737
 (alls to and Null pointer \(0\) returned on or error)-3.237 F(.)-.55 E
-.028(RFC 1101.)72 144 R .028(The and functions appeared in 4.2BSD.)5.028
-F .029
-(The data space used by these functions is static; if future use re-)
-5.028 F .86(quires the data, it should be copied before an)72 156 R
-3.359(ys)-.15 G .859(ubsequent calls to these functions o)-3.359 F -.15
-(ve)-.15 G .859(rwrite it.).15 F .859(Only Internet net-)5.859 F -.1(wo)
-72 168 S .033(rk numbers are currently understood.).1 F .033
-(Expecting netw)5.033 F .033
-(ork numbers to \214t in no more than 32 bits is probably nai)-.1 F -.15
+.209(RFC 1101.)72 144 R .21(The and functions appeared in The data space used by these functions is static; if future use requires the)
+5.209 F .181(data, it should be copied before an)72 156 R 2.681(ys)-.15
+G .181(ubsequent calls to these functions o)-2.681 F -.15(ve)-.15 G .18
+(rwrite it.).15 F .18(Only Internet netw)5.18 F .18(ork numbers)-.1 F
+(are currently understood.)72 168 Q(Expecting netw)5 E
+(ork numbers to \214t in no more than 32 bits is probably nai)-.1 E -.15
 (ve)-.25 G(.).15 E EP
 %%Trailer
 end

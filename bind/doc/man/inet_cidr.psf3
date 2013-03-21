@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:58 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:52 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -204,25 +204,22 @@ BP
 (ork and presentation forms with CIDR \(Classless)-.1 F(Inter)72 24 Q
 .788(-Domain Routing\) representation, embedded net mask.)-.2 F .788
 (130.155.16.1/20 con)77.788 F -.15(ve)-.4 G .788(rts an address).15 F
-.301(from netw)72 36 R .301(ork to presentation format.)-.1 F .3(descri\
-bes the type of address that is being passed in Currently only AF_INET)
+.301(from netw)72 36 R .301(ork to presentation format.)-.1 F .3(describes the type of address that is being passed in Currently only AF_INET)
 5.301 F .719(is supported.)72 48 R .719(is an address in netw)5.719 F
 .719(ork byte order)-.1 F 3.219(,i)-.4 G .719
 (ts length is determined from speci\214es the number of bits in the)
--3.219 F .167(netmask unless it is -1 in which case the CIDR representa\
-tion is omitted.)72 60 R .167(is a caller supplied b)5.167 F(uf)-.2 E
-.167(fer of at least bytes.)-.25 F .315(returns on success or NULL.)72
-72 R .315(Check errno for reason.)5.315 F(con)5.315 E -.15(ve)-.4 G .315
+-3.219 F .167(netmask unless it is -1 in which case the CIDR representation is omitted.)
+72 60 R .167(is a caller supplied b)5.167 F(uf)-.2 E .167
+(fer of at least bytes.)-.25 F .315(returns on success or NULL.)72 72 R
+.315(Check errno for reason.)5.315 F(con)5.315 E -.15(ve)-.4 G .315
 (rts and address from presentation format, with optional).15 F 1.182
 (CIDR reperesentation, to netw)72 84 R 1.182(ork format.)-.1 F 1.182
 (The resulting address is zero \214lled if there were insuf)6.182 F
-1.181(\214cint bits in de-)-.25 F .147(scribes the type of address that\
- is being passed in via and determines the size of is an address in pre\
-sentation format.)72 96 R .069(returns the number of bits in the netmas\
-k or -1 if a CIDR representation w)72 108 R .068(as not supplied.)-.1 F
-.068(returns 0 on succces or -1)5.068 F(on error)72 120 Q 5(.C)-.55 G
-(heck errno for reason.)-5 E(ENOENT indicates an in)5 E -.25(va)-.4 G
-(lid netmask.).25 E EP
+1.181(\214cint bits in de-)-.25 F .147(scribes the type of address that is being passed in via and determines the size of is an address in presentation format.)
+72 96 R .069(returns the number of bits in the netmask or -1 if a CIDR representation w)
+72 108 R .068(as not supplied.)-.1 F .068(returns 0 on succces or -1)
+5.068 F(on error)72 120 Q 5(.C)-.55 G(heck errno for reason.)-5 E
+(ENOENT indicates an in)5 E -.25(va)-.4 G(lid netmask.).25 E EP
 %%Trailer
 end
 %%EOF

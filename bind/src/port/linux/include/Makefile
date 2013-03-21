@@ -68,7 +68,7 @@ all depend clean distclean install::
 all depend:: port_ipv6.h
 
 port_ipv6.h: FRC
-	probe_ipv6
+	CC='${CC}' probe_ipv6
 
 distclean:: clean
 

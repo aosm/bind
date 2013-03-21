@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char rcsid[] = "$Id: dns.c,v 1.1.1.2 2001/01/31 04:00:17 zarzycki Exp $";
+static const char rcsid[] = "$Id: dns.c,v 1.1.1.3 2002/11/18 22:27:26 bbraun Exp $";
 #endif
 
 /*
@@ -58,6 +58,8 @@ struct irs_acc *
 irs_dns_acc(const char *options) {
 	struct irs_acc *acc;
 	struct dns_p *dns;
+
+	UNUSED(options);
 
 	if (!(acc = memget(sizeof *acc))) {
 		errno = ENOMEM;

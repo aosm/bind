@@ -1,7 +1,7 @@
 #ifndef _PRAND_CMD_H_
 #define _PRAND_CMD_H_
 
-const char *cmds[] = {
+static const char *cmds[] = {
 	"/bin/ps -axlw 2>&1",
 	"/usr/etc/arp -a 2>&1",
 	"/usr/ucb/netstat -an 2>&1",
@@ -17,7 +17,7 @@ const char *cmds[] = {
 	NULL
 };
 
-const char *dirs[] = {
+static const char *dirs[] = {
 	"/tmp",
 	"/usr/tmp",
 	".",
@@ -27,7 +27,7 @@ const char *dirs[] = {
 	NULL
 };
 
-const char *files[] = {
+static const char *files[] = {
 	"/usr/adm/messages",
 	"/usr/adm/wtmp",
 	"/usr/adm/lastlog",

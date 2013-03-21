@@ -13,7 +13,7 @@
 ## ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 ## SOFTWARE.
 
-# $Id: Makefile,v 1.4 2001/01/31 04:56:04 zarzycki Exp $
+# $Id: Makefile,v 1.5 2002/11/18 22:42:43 bbraun Exp $
 
 DESTDIR=
 CC= cc
@@ -31,7 +31,8 @@ A=a
 O=o
 EXE=
 LEX = lex -I
-SYSLIBS = -ll -lutil
+SYSLIBS =-lutil
+LIBL=-ll
 DESTBIN = /usr/local/bin
 DESTSBIN = /usr/local/sbin
 DESTEXEC = /usr/local/libexec
@@ -42,7 +43,7 @@ INSTALL_EXEC=
 INSTALL_LIB=-o bin -g bin
 
 LDFLAGS=
-DEFS=	-D_PATH_HELPFILE=\"${DESTDIR}${DESTHELP}/nslookup.help\"
+DEFS=	-D_PATH_HELPFILE=\"${DESTHELP}/nslookup.help\"
 CFLAGS=	${CDEBUG}
 CPPFLAGS=  -I${PORTINCL} -I${INCL} ${DEFS}
 
@@ -56,7 +57,7 @@ all: ${PROG}${EXE}
 
 ${PROG}${EXE}: ${OBJS} ${LIBBIND} Makefile
 	${CC} ${CDEBUG} ${LDFLAGS} ${BOUNDS} -o ${PROG}${EXE} ${OBJS} \
-		${LIBBIND} ${SYSLIBS}
+		${LIBBIND} ${LIBL} ${SYSLIBS}
 
 .c.${O}:
 	${CC} ${CPPFLAGS} ${CFLAGS} ${BOUNDS} -c $*.c

@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:57 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:47 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -208,48 +208,51 @@ BP
 F 1.368(grams lik)72 36 R 3.868(en)-.1 G 1.368
 (stest, nsquery and nslookup.)-3.868 F 1.367(All ar)6.367 F 1.367
 (guments e)-.18 F 1.367(xcept for and are treated without case-sensiti)
--.15 F(vity)-.25 E 6.367(.T)-.65 G(he)-6.367 E(nameserv)72 48 Q .523
-(er to be used in the query)-.15 F 5.523(.N)-.65 G(ameserv)-5.523 E .523
-(ers can appear as either Internet addresses of the form or can appear)
--.15 F .873(as domain names.)72 60 R(\(Def)5.873 E .873
+-.15 F(vity)-.25 E 6.367(.T)-.65 G(he)-6.367 E(nameserv)72 48 Q .649
+(er to be used in the query)-.15 F 5.649(.N)-.65 G(ameserv)-5.649 E .65
+(ers can appear as either Internet addresses of the form or or can ap-)
+-.15 F 1.331(pear as domain names.)72 60 R(\(Def)6.331 E 1.331
 (ault: as speci\214ed in The type of resource record of interest.)-.1 F
--.8(Ty)5.873 G .873(pes include: address name-).8 F(serv)72 72 Q .858
+-.8(Ty)6.33 G 1.33(pes include: address).8 F(nameserv)72 72 Q .129
 (er canonical name domain name pointer start of authority well-kno)-.15
-F .858(wn service host information mailbox infor)-.25 F(-)-.2 E .42
-(mation mail e)72 84 R .42
-(xchange responsible person mail group member DCE or AFS serv)-.15 F .42
-(er wildcard Note that an)-.15 F 2.92(yc)-.15 G .42(ase may)-2.92 F .547
-(be used.)72 96 R(\(Def)5.547 E .547
-(ault: The class of resource records of interest.)-.1 F .548
-(Classes include: Internet Hesiod Chaos wildcard Note)5.548 F .013
-(that an)72 108 R 2.513(yc)-.15 G .013(ase may be used.)-2.513 F(\(Def)
-5.013 E .013(ault: The number of times to retry if the nameserv)-.1 F
-.013(er is not responding.)-.15 F(\(Def)5.013 E 2.513(ault: 4.\))-.1 F
-.101(Period to w)72 120 R .101(ait before timing out.)-.1 F(\(Def)5.101
-E .101(ault: T)-.1 F .101(urn on deb)-.45 F 2.601(ugging. This)-.2 F
-.101(sets the bit of the resolv)2.601 F(er')-.15 E 2.601<738c>-.55 G
-2.601(eld. \(Def)-2.601 F 2.602(ault: no)-.1 F(deb)72 132 Q 2.76
-(ugging.\) Use)-.2 F 2.76(ar)2.76 G .26(ather than a pack)-2.76 F 2.76
-(et. This)-.1 F .26(uses a TCP stream connection with the nameserv)2.76
-F .26(er rather than a UDP)-.15 F 3.14(datagram. This)72 144 R .64
-(sets the bit of the resolv)3.14 F(er')-.15 E 3.14<738c>-.55 G 3.14
-(eld. \(Def)-3.14 F 3.14(ault: UDP)-.1 F 3.14(datagram.\) Synon)3.14 F
-.64(ym for the \215ag.)-.15 F .64(The name of)5.64 F .633
-(the host \(or domain\) of interest.)72 156 R .632(to get the def)5.632
-F .632(ault ns and search lists list of usable RR types and classes lis\
-t of re-)-.1 F(solv)72 168 Q .386(er \215ags If the resolv)-.15 F .386
-(er f)-.15 F .386(ails to answer the query and deb)-.1 F .386
-(ugging has not been turned on, will simply print a mes-)-.2 F .275
-(sage lik)72 180 R .275(e: The v)-.1 F .274(alue of the return code is \
-supplied by Bryan Beecher Queries of a class other than can ha)-.25 F
-.574 -.15(ve i)-.2 H(nterest-).15 E .17
-(ing results since ordinarily a nameserv)72 192 R .17
-(er only has a list of root nameserv)-.15 F .171
-(ers for class resource records.)-.15 F .171(uses a call to)5.171 F .163
-(to determine if the ar)72 204 R .162(gument for the option is a v)-.18
-F .162(alid Internet address.)-.25 F(Unfortunately)5.162 E 2.662(,s)-.65
-G .162(eems to cause a se)-2.662 F(gmentation)-.15 E -.1(fa)72 216 S
-(ult with some \(bad\) IP addresses \(e.g., 1.2.3.4.5\).).1 E EP
+F .13(wn service host information mailbox in-)-.25 F .95
+(formation mail e)72 84 R .95
+(xchange responsible person mail group member DCE or AFS serv)-.15 F .95
+(er wildcard Note that an)-.15 F 3.45(yc)-.15 G(ase)-3.45 E .686
+(may be used.)72 96 R(\(Def)5.686 E .686
+(ault: The class of resource records of interest.)-.1 F .687
+(Classes include: Internet Hesiod Chaos wildcard)5.686 F .592
+(Note that an)72 108 R 3.092(yc)-.15 G .592(ase may be used.)-3.092 F
+(\(Def)5.592 E .591(ault: The number of times to retry if the nameserv)
+-.1 F .591(er is not responding.)-.15 F(\(De-)5.591 E -.1(fa)72 120 S
+3.346(ult: 4.\) Period).1 F .846(to w)3.346 F .846
+(ait before timing out.)-.1 F(\(Def)5.846 E .846(ault: T)-.1 F .846
+(urn on deb)-.45 F 3.346(ugging. This)-.2 F .847
+(sets the bit of the resolv)3.346 F(er')-.15 E 3.347<738c>-.55 G(eld.)
+-3.347 E(\(Def)72 132 Q 2.534(ault: no)-.1 F(deb)2.534 E 2.534
+(ugging.\) Use)-.2 F 2.534(ar)2.534 G .033(ather than a pack)-2.534 F
+2.533(et. This)-.1 F .033
+(uses a TCP stream connection with the nameserv)2.533 F .033(er rather)
+-.15 F .994(than a UDP datagram.)72 144 R .994
+(This sets the bit of the resolv)5.994 F(er')-.15 E 3.495<738c>-.55 G
+3.495(eld. \(Def)-3.495 F 3.495(ault: UDP)-.1 F 3.495(datagram.\) Synon)
+3.495 F .995(ym for the \215ag.)-.15 F .029
+(The name of the host \(or domain\) of interest.)72 156 R .029
+(to get the def)5.029 F .028
+(ault ns and search lists list of usable RR types and classes)-.1 F .174
+(list of resolv)72 168 R .174(er \215ags If the resolv)-.15 F .174(er f)
+-.15 F .174(ails to answer the query and deb)-.1 F .175
+(ugging has not been turned on, will simply print)-.2 F 2.699(am)72 180
+S .199(essage lik)-2.699 F .199(e: The v)-.1 F .199(alue of the return code is supplied by Bryan Beecher Queries of a class other than can ha)
+-.25 F .498 -.15(ve i)-.2 H(n-).15 E .498
+(teresting results since ordinarily a nameserv)72 192 R .498
+(er only has a list of root nameserv)-.15 F .499
+(ers for class resource records.)-.15 F .499(uses a)5.499 F .619
+(call to to determine if the ar)72 204 R .619
+(gument for the option is a v)-.18 F .618(alid Internet address.)-.25 F
+(Unfortunately)5.618 E 3.118(,s)-.65 G .618(eems to cause a se)-3.118 F
+(g-)-.15 E(mentation f)72 216 Q
+(ault with some \(bad\) IP addresses \(e.g., 1.2.3.4.5\).)-.1 E EP
 %%Trailer
 end
 %%EOF

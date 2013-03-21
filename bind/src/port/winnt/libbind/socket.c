@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2000-2001 by Internet Software Consortium.
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
+ * ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
+ * CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
+ * DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+ * PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
+ * ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+ * SOFTWARE.
+ */
+
 #include "port_before.h"
 
 #include <sys/socket.h>
@@ -21,10 +38,6 @@ sockdata sockset[REAL_FD_SETSIZE];
 int sockdescrip[REAL_FD_SETSIZE];
 int sockcount = 0;
 
-/*
- * unistd.c - open file descriptor list
- */
-extern int fdset[FOPEN_MAX];
 
 /*
  * Initialize for FD tracking, ioctl()
@@ -34,12 +47,33 @@ void socketInit()
 	int i;
 	for(i=0; i < REAL_FD_SETSIZE; i++)
 	{
-		sockset[i].sock = 0;
+		sockset[i].sock = INVALID_SOCKET;
 		sockset[i].flags = 0;
 		sockdescrip[i] = 0;
 	}
+	sockcount = 0;
+	/* Do the same for files */
+	fdFileInit();
 }
 
+/*
+ * Find a socket in the list. 
+ * Return -1 if not found.
+ */
+int sockindex(SOCKET s)
+{
+	int i = 0;
+	while(sockset[i].sock != s && i < REAL_FD_SETSIZE)
+		i++;
+
+	if(i < REAL_FD_SETSIZE)
+	{
+	    return(i);
+	}
+	else {
+		return(-1);
+	}
+}
 
 /*
  * Add a socket to the list.  Request can get the index
@@ -47,12 +81,14 @@ void socketInit()
 int sockin(SOCKET s)
 {
 	int i = 0;
-	while(sockset[i].sock > 0)
+	while(sockset[i].sock != INVALID_SOCKET && i < REAL_FD_SETSIZE)
 		i++;
 
 	if(i < REAL_FD_SETSIZE)
 	{
 		sockset[i].sock = s;
+		sockset[i].flags = 0;
+		sockdescrip[i] = 0;
 		sockcount++;
 	}
 	return i;
@@ -63,13 +99,12 @@ int sockin(SOCKET s)
  */
 void sockout(SOCKET s)
 {
-	int i = 0;
-	while(sockset[i].sock != s && i < REAL_FD_SETSIZE)
-		i++;
+	int i = sockindex(s);
 
-	if(i < REAL_FD_SETSIZE)
-	{
-		sockset[i].sock = 0;
+	if(i < REAL_FD_SETSIZE && i >= 0) {
+		sockset[i].sock = INVALID_SOCKET;
+		sockset[i].flags = 0;
+		sockdescrip[i] = 0;
 		sockcount--;
 	}
 }
@@ -90,12 +125,9 @@ int setsockflags(SOCKET s, int flag)
  * We'll just store the requested flags.
  */
 
-	i = 0;
-	while(sockset[i].sock != s && i < REAL_FD_SETSIZE)
-		i++;
+	i = sockindex(s);
 
-	if(i < REAL_FD_SETSIZE)
-	{
+	if(i < REAL_FD_SETSIZE && i >= 0) {
  		sockset[i].flags = flag;
 		return(0);
 	}
@@ -113,12 +145,11 @@ int setsockflags(SOCKET s, int flag)
 
 int getsockflags(SOCKET s)
 {
-	int i = 0;
-	while(sockset[i].sock != s && i < REAL_FD_SETSIZE)
-		i++;
+	int i = sockindex(s);
 
-	if(i < REAL_FD_SETSIZE)
+	if(i < REAL_FD_SETSIZE && i >= 0) {
 	 	return(sockset[i].flags);
+	}
 	else
 	{
 		i = sockin(s);
@@ -134,12 +165,9 @@ int getsockflags(SOCKET s)
  */
 int setsockdescrip(SOCKET s, int flag)
 {
-	int i = 0;
-	while(sockset[i].sock != s && i < REAL_FD_SETSIZE)
-		i++;
+	int i = sockindex(s);
 
-	if(i < REAL_FD_SETSIZE)
-	{
+	if(i < REAL_FD_SETSIZE && i >= 0) {
  		sockdescrip[i] = flag;
 		return(0);
 	}
@@ -157,12 +185,11 @@ int setsockdescrip(SOCKET s, int flag)
 
 int getsockdescrip(SOCKET s)
 {
-	int i = 0;
-	while(sockset[i].sock != s && i < REAL_FD_SETSIZE)
-		i++;
+	int i = sockindex(s);
 
-	if(i < REAL_FD_SETSIZE)
+	if(i < REAL_FD_SETSIZE && i >= 0) {
 	 	return(sockdescrip[i]);
+	}
 	else
 	{
 		i = sockin(s);
@@ -176,31 +203,51 @@ int getsockdescrip(SOCKET s)
 int S_ISSOCK(int fd)
 {
 	int i = 0;
-	SOCKET s = 0;
 
-	/* Search the socket list */
-	while(sockset[i].sock != fd && i < REAL_FD_SETSIZE)
-		i++;
+	/* If we don't have any sockets listed we can skip the check */
+	if(sockcount <=0)
+		return(FALSE);
+	/*
+	 * See first if we have it in the file list. If so we can skip
+	 * the rest, as the eof test would say it's a file. It is not,
+	 * however, necessarily true that if we don't find it, then it's
+	 * a socket as not all file descriptors may have been added to
+	 * the file list.
+	 */
+	if(fdindex(fd) >= 0)
+		return(FALSE);
 
-	/* It's in there */
-	if(i < REAL_FD_SETSIZE)
-		s = sockset[i].sock;
-
-	/* Could have a socket and fd with the same number */
-	/* In this case, take the time to check definitively */
-	if(s > 0 && fd < FOPEN_MAX && fdset[fd])
+	/* See if it's in the socket list */
+	if(sockindex(fd) >= 0)
+		return(TRUE);
+	/* 
+	 * See if it could be a file descriptor
+	 */
+	if(fd > 0)
 	{
 		/* Try EOF */
-		if(_eof(fd) == -1)
-			if(errno == EBADF)
+		if(_eof(fd) == -1) {
+			if(errno == EBADF) {
 				/* EOF says not a valid fd, so we must be a socket */
+				errno = 0;	/* Fix the error code */
 				return(TRUE);
+			}
+			else {
+				/* This is some other error but apparently not a file */
+				return(TRUE);
+			}
+		}
+		else {
+			/* must be a file */
+			return(FALSE);
+		}
 	}
 	/*
-	 * Determine if we have a socket
-	 * Woe if you get here and it is not actually a socket!
+	 * If we got here the file descriptor is invalid
+	 * Set errno and see if something notices
 	 */
-	return(s > 0);
+	errno = EBADF;
+	return(FALSE);
 }
 
 /*
@@ -215,24 +262,24 @@ int fcntlsocket(int fd, int cmd, u_long arg)
 
 	switch(cmd)
 	{
-		/* Set status flags */
-		case F_SETFL:
-            rc = setsockflags(fd, arg);
-			break;
-		/* Get status flags */
-		case F_GETFL:
-            rc = getsockflags(fd);
-			break;
-		/* Set FD flags */
-		case F_SETFD:
-            rc = setsockdescrip(fd, arg);
-			break;
-		/* Get FD flags */
-		case F_GETFD:
-            rc = getsockdescrip(fd);
- 			break;
-		default:
-			break;
+	/* Set status flags */
+	case F_SETFL:
+		rc = setsockflags(fd, arg);
+		break;
+	/* Get status flags */
+	case F_GETFL:
+		rc = getsockflags(fd);
+		break;
+	/* Set FD flags */
+	case F_SETFD:
+		rc = setsockdescrip(fd, arg);
+		break;
+	/* Get FD flags */
+	case F_GETFD:
+		rc = getsockdescrip(fd);
+ 		break;
+	default:
+		break;
 	}
 	return rc;
 }
@@ -331,132 +378,8 @@ BOOL InitSockets()
 	 
  	p___WSAFDIsSet = GetProcAddress(winsockDLLHandle, "__WSAFDIsSet"); 
 	p_WSAIoctl = GetProcAddress(winsockDLLHandle, "WSAIoctl");
+	p_WSAGetLastError = GetProcAddress(winsockDLLHandle, "WSAGetLastError");
 
-	/* Winsock functions not used by us */
-
-/*
-     p_WSAGetLastError = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAccept = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAsyncSelect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSACancelBlockingCall = GetProcAddress(winsockDLLHandle, "");
-	 p_WSACloseEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAConnect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSACreateEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WSADuplicateSocketA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAEnumNetworkEvents = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAEnumProtocolsA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAEventSelect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetOverlappedResult = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetQOSByName = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAHtonl = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAHtons = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAIsBlocking = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAJoinLeaf = GetProcAddress(winsockDLLHandle, "");
-	 p_WSANtohl = GetProcAddress(winsockDLLHandle, "");
-	 p_WSANtohs = GetProcAddress(winsockDLLHandle, "");
-	 p_WSARecv = GetProcAddress(winsockDLLHandle, "");
-	 p_WSARecvDisconnect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSARecvFrom = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAResetEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASend = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASendDisconnect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASendTo = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASetBlockingHook = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASetEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASetLastError = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASocketA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAUnhookBlockingHook = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAWaitForMultipleEvents = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAsyncGetHostByAddr = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAsyncGetHostByName = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAsyncGetProtoByName = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAsyncGetProtoByNumber = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAsyncGetServByName = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAsyncGetServByPort = GetProcAddress(winsockDLLHandle, "");
-	 p_WSACancelAsyncRequest = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPAccept = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPAsyncSelect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPBind = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPCancelBlockingCall = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPCleanup = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPCloseSocket = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPConnect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPDuplicateSocket = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPEnumNetworkEvents = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPEventSelect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPGetOverlappedResult = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPGetPeerName = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPGetSockName = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPGetSockOpt = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPGetQOSByName = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPIoctl = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPJoinLeaf = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPListen = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPRecv = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPRecvDisconnect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPRecvFrom = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPSelect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPSend = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPSendDisconnect = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPSendTo = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPSetSockOpt = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPShutdown = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPSocket = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPStartup = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUCloseEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUCloseSocketHandle = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUCreateEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUCreateSocketHandle = GetProcAddress(winsockDLLHandle, "");
-	 p_WSCDeinstallProvider = GetProcAddress(winsockDLLHandle, "");
-	 p_WSCInstallProvider = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUModifyIFSHandle = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUQueryBlockingCallback = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUQuerySocketHandleContext = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUQueueApc = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUResetEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUSetEvent = GetProcAddress(winsockDLLHandle, "");
-	 p_WSCEnumProtocols = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUGetProviderPath = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUPostMessage = GetProcAddress(winsockDLLHandle, "");
-	 p_WPUFDIsSet = GetProcAddress(winsockDLLHandle, "");
-	 p_WSADuplicateSocketW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAEnumProtocolsW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASocketW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAddressToStringA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAAddressToStringW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAStringToAddressA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAStringToAddressW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSALookupServiceBeginA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSALookupServiceBeginW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSALookupServiceNextA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSALookupServiceNextW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSALookupServiceEnd = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetProcAddressByNameA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetProcAddressByNameW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAInstallServiceClassA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAInstallServiceClassW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASetServiceA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSASetServiceW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSARemoveServiceClass = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetServiceClassInfoA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetServiceClassInfoW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAEnumNameSpaceProvidersA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAEnumNameSpaceProvidersW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetServiceClassNameByClassIdA = GetProcAddress(winsockDLLHandle, "");
-	 p_WSAGetServiceClassNameByClassIdW = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPAddressToString = GetProcAddress(winsockDLLHandle, "");
-	 p_WSPStringToAddress = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPLookupServiceBegin = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPLookupServiceNext = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPLookupServiceEnd = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPGetProcAddressByName = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPInstallServiceClass = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPSetService = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPRemoveServiceClass = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPGetServiceClassInfo = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPEnumNameSpaceProviders = GetProcAddress(winsockDLLHandle, "");
-	 p_NSPGetServiceClassNameByClassId = GetProcAddress(winsockDLLHandle, "");
-*/
 	return(TRUE);
 }
 
@@ -465,6 +388,10 @@ BOOL InitSockets()
  * Could use #defines, but that's not type safe, 
  * and some functions need to do other things, too.
  */
+
+int WSAAPI WSAGetLastError()
+{return(p_WSAGetLastError)();}
+
 int WSAAPI bind(SOCKET s,const struct sockaddr FAR * name,int namelen)
 {return(p_bind)(s,name,namelen);}
 
@@ -473,17 +400,12 @@ int WSAAPI ioctlsocket(SOCKET s,long cmd,u_long FAR* argp)
  
 int WSAAPI closesocket(SOCKET s)
 {
-      if(sockcount > 0)
-      {
-              sockout(s);
-              return(p_closesocket)(s);
-      }
-      else
-      {
-              errno = EBADF;
-              return(-1);
-      }
+	int retval;
 
+    retval = (p_closesocket)(s);
+    if(retval == 0)
+		sockout(s);
+	return (retval);
 }
 
 int WSAAPI setsockopt(SOCKET s,int level,int optname,const char FAR * optval,int optlen)
@@ -497,9 +419,42 @@ int WSAAPI recv(SOCKET s,char FAR * buf,int len,int flags)
 
 int WSAAPI recvfrom(SOCKET s,char FAR * buf,int len,int flags,struct sockaddr FAR * from,int FAR * fromlen)
 {
+	int errval = 0;
 	int rc = (p_recvfrom)(s,buf,len,flags,from,fromlen);
-	if(rc == -1 && GetLastError() == WSAEWOULDBLOCK)
-		errno = EWOULDBLOCK;	
+	if(rc < 0) {
+		errval = WSAGetLastError();
+
+		switch (errval) {
+		case WSAEWOULDBLOCK:
+			errno = EWOULDBLOCK;
+			break;
+		case WSAEINTR:
+			errno = EINTR;
+			break;
+		case WSAEHOSTUNREACH:
+			errno = EHOSTUNREACH;
+			break;
+		case WSAEHOSTDOWN:
+			errno = EHOSTDOWN;
+			break;
+		case WSAENETUNREACH:
+			errno = ENETUNREACH;
+			break;
+		case WSAENETDOWN:
+		case WSAENETRESET:
+		case WSAETIMEDOUT:
+			errno = ENETDOWN;
+			break;
+		case WSAECONNREFUSED:
+			errno = ECONNREFUSED;
+			break;
+		case WSAECONNRESET:
+			errno = ECONNRESET;
+			break;
+		default:
+			errno = errval;
+		}
+	}
 	return(rc);
 }
 
@@ -517,14 +472,14 @@ SOCKET WSAAPI socket(int af,int type,int protocol)
 	if(af == AF_UNIX)
 	{
 		errno = ECONNREFUSED;
-		return((SOCKET)-1);
+		return(SOCKET_ERROR);
 	}
 
       /* Don't allow more sockets than an fd_set can hold */
-      if(sockcount == REAL_FD_SETSIZE)
+      if(sockcount >= REAL_FD_SETSIZE)
       {
               errno = EMFILE;
-              return((SOCKET)-1);
+              return(SOCKET_ERROR);
       }
       else
 
@@ -537,7 +492,7 @@ SOCKET WSAAPI socket(int af,int type,int protocol)
               }
 	}
 	errno = GetLastError();
-	return((SOCKET)-1);
+	return(SOCKET_ERROR);
 }
 
 int WSAAPI select(int nfds,fd_set FAR * readfds,fd_set FAR * writefds,fd_set FAR *exceptfds,const struct timeval FAR * timeout)
@@ -548,14 +503,9 @@ int WSAAPI connect(SOCKET s,const struct sockaddr FAR * name,int namelen)
 
 SOCKET WSAAPI accept(SOCKET s,struct sockaddr FAR * addr,int FAR * addrlen)
 {
-      if(sockcount == REAL_FD_SETSIZE)
-      {
-              errno = EMFILE;
-              return((SOCKET)-1);
-      }
 	s = (p_accept)(s,addr,addrlen);
 	if(s != SOCKET_ERROR)
-		sockin(s);
+		sockin(s);	/* Track the value */
 	return s;
 }
 

@@ -12,6 +12,7 @@
 'LEX=lex -I'
 'YACC=yacc -d'
 'SYSLIBS=-lsocket -lunix'
+'LIBL='
 'INSTALL=/usr/local/bin/install'
 'MANDIR=cat'
 'MANROFF=(tbl|nroff -man)'

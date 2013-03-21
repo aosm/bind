@@ -1,5 +1,4 @@
-
-MAILADDR(7)        FreeBSD Miscellaneous Information Manual        MAILADDR(7)
+MAILADDR(7)                  BSD Reference Manual                  MAILADDR(7)
 
 NNAAMMEE
      mmaaiillaaddddrr - mail addressing description
@@ -88,7 +87,7 @@ DDEESSCCRRIIPPTTIIOONN
      Under some circumstances it may be necessary to route a message through
      several hosts to get it to the final destination.  Normally this routing
      is done automatically, but sometimes it is desirable to route the message
-     manually.  Addresses which show these relays are termed ``route-addrs.''
+     manually.  Addresses which show these relays are termed ``route-addrs''.
      These use the syntax:
 
                  <@hosta,@hostb:user@hostc>

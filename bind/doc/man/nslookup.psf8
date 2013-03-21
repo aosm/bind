@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:58 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:50 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -208,11 +208,11 @@ BP
 (ers for information about v)-.15 F 1.074
 (arious hosts and domains or to print a list of)-.25 F .562
 (hosts in a domain.)72 36 R(Non-interacti)5.562 E .862 -.15(ve m)-.25 H
-.561(ode is used to print just the name and requested information for a\
- host or do-).15 F 2.661(main. Interacti)72 48 R .461 -.15(ve m)-.25 H
-.161(ode is entered in the follo).15 F .162(wing cases: when no ar)-.25
-F .162(guments are gi)-.18 F -.15(ve)-.25 G 2.662(n\().15 G .162
-(the def)-2.662 F .162(ault name serv)-.1 F .162(er will)-.15 F .475
+.561(ode is used to print just the name and requested information for a host or do-)
+.15 F 2.661(main. Interacti)72 48 R .461 -.15(ve m)-.25 H .161
+(ode is entered in the follo).15 F .162(wing cases: when no ar)-.25 F
+.162(guments are gi)-.18 F -.15(ve)-.25 G 2.662(n\().15 G .162(the def)
+-2.662 F .162(ault name serv)-.1 F .162(er will)-.15 F .475
 (be used\), when the \214rst ar)72 60 R .475(gument is a h)-.18 F .475
 (yphen \(-\) and the second ar)-.05 F .475
 (gument is the host name or Internet address of a)-.18 F .104(name serv)
@@ -230,20 +230,17 @@ F 3.098(line. Options)72 108 R .598
 (can also be speci\214ed on the command line if the)3.098 F 3.097(yp)
 -.15 G .597(recede the ar)-3.097 F .597(guments and are pre\214x)-.18 F
 .597(ed with a h)-.15 F(y-)-.05 E 2.681(phen. F)72 120 R .181(or e)-.15
-F .181(xample, to change the def)-.15 F .181(ault query type to host in\
-formation, and the initial timeout to 10 seconds, type:)-.1 F .459
-(nslookup -query=hinfo)108 132 R .459
+F .181(xample, to change the def)-.15 F .181(ault query type to host information, and the initial timeout to 10 seconds, type:)
+-.1 F .459(nslookup -query=hinfo)108 132 R .459
 (-timeout=10 Commands may be interrupted at an)5.459 F 2.958(yt)-.15 G
 .458(ime by typing a control-C.)-2.958 F -.8(To)5.458 G -.15(ex)72 144 S
-.78(it, type a control-D or type The command line length must be less t\
-han 256 characters.).15 F 2.381 -.8(To t)5.781 H .781(reat a b).8 F .781
-(uilt-in com-)-.2 F .127(mand as a host name, precede it with an escape\
- character Look up information for using the current def)72 156 R .127
-(ault serv)-.1 F .127(er or)-.15 F .068(using if speci\214ed.)72 168 R
-.068(If is an Internet address and the query type is or the name of the\
- host is returned.)5.068 F .068(If is a name and)5.068 F .81
-(does not ha)72 180 R 1.11 -.15(ve a t)-.2 H .81
-(railing period, the def).15 F .81
+.78(it, type a control-D or type The command line length must be less than 256 characters.)
+.15 F 2.381 -.8(To t)5.781 H .781(reat a b).8 F .781(uilt-in com-)-.2 F
+.127(mand as a host name, precede it with an escape character Look up information for using the current def)
+72 156 R .127(ault serv)-.1 F .127(er or)-.15 F .068
+(using if speci\214ed.)72 168 R .068(If is an Internet address and the query type is or the name of the host is returned.)
+5.068 F .068(If is a name and)5.068 F .81(does not ha)72 180 R 1.11 -.15
+(ve a t)-.2 H .81(railing period, the def).15 F .81
 (ault domain name is appended to the name.)-.1 F .81(\(This beha)5.81 F
 .81(vior depends on the)-.2 F .602(state of the options and T)72 192 R
 3.102(ol)-.8 G .603
@@ -306,9 +303,9 @@ F .963(viation = T)-.25 F .964(urn deb)-.45 F .964(ugging mode on.)-.2 F
 R .472(Essentially all \214elds of e)5.472 F -.15(ve)-.25 G .472
 (ry pack).15 F .473(et are printed.)-.1 F(\(Def)5.473 E .473
 (ault = Change the def)-.1 F .473(ault domain name to The de-)-.1 F -.1
-(fa)72 420 S .737(ult domain name is appended to a lookup request depen\
-ding on the state of the and options.).1 F .736(The domain search)5.736
-F .426(list contains the parents of the def)72 432 R .426
+(fa)72 420 S .737(ult domain name is appended to a lookup request depending on the state of the and options.)
+.1 F .736(The domain search)5.736 F .426
+(list contains the parents of the def)72 432 R .426
 (ault domain if it has at least tw)-.1 F 2.926(oc)-.1 G .427
 (omponents in its name.)-2.926 F -.15(Fo)5.427 G 2.927(re).15 G .427
 (xample, if the de-)-3.077 F -.1(fa)72 444 S 1.292
@@ -329,11 +326,9 @@ F -.15(ve)-.15 G .795(rrides the def).15 F .795
 (ault domain name and search list of the command.)-.1 F .444
 (Use the command to display the list.)72 504 R(\(Def)5.444 E .444
 (ault = v)-.1 F .444(alue based on or abbre)-.25 F .444
-(viation = If set, append the def)-.25 F .444(ault domain)-.1 F .752(na\
-me to a single-component lookup request \(i.e., one that does not conta\
-in a period\).)72 516 R(\(Def)5.752 E .752(ault = abbre)-.1 F .752
-(viation = If)-.25 F .704
-(the lookup request contains at least one period b)72 528 R .705
+(viation = If set, append the def)-.25 F .444(ault domain)-.1 F .752(name to a single-component lookup request \(i.e., one that does not contain a period\).)
+72 516 R(\(Def)5.752 E .752(ault = abbre)-.1 F .752(viation = If)-.25 F
+.704(the lookup request contains at least one period b)72 528 R .705
 (ut end with a trailing period, append the domain names in the do-)-.2 F
 .517(main search list to the request until an answer is recei)72 540 R
 -.15(ve)-.25 G 3.017(d. \(Def).15 F .517(ault = abbre)-.1 F .517
@@ -376,15 +371,14 @@ F .161(viation = Al)-.25 F -.1(wa)-.1 G .161
 5.755 E .755(ault = abbre)-.1 F .755(viation = If the lookup request w)
 -.25 F(as)-.1 E .548(not successful, an error message is printed.)72 696
 R .548(Possible errors are: The serv)5.548 F .549
-(er did not respond to a request after a cer)-.15 F(-)-.2 E .496(tain a\
-mount of time \(changed with and a certain number of retries \(changed \
-with No name serv)72 708 R .495(er is running on the)-.15 F(serv)72 720
-Q .461(er machine.)-.15 F .461(The serv)5.461 F .461(er does not ha)-.15
-F .761 -.15(ve r)-.2 H .462(esource records of the current query type f\
-or the host, although the host).15 F .617(name is v)72 732 R 3.117
-(alid. The)-.25 F .617(query type is speci\214ed with the command.)3.117
-F .617(The host or domain name does not e)5.617 F 3.117(xist. The)-.15 F
-(con-)3.117 E .114(nection to the name or \214nger serv)72 744 R .115
+(er did not respond to a request after a cer)-.15 F(-)-.2 E .496(tain amount of time \(changed with and a certain number of retries \(changed with No name serv)
+72 708 R .495(er is running on the)-.15 F(serv)72 720 Q .461
+(er machine.)-.15 F .461(The serv)5.461 F .461(er does not ha)-.15 F
+.761 -.15(ve r)-.2 H .462(esource records of the current query type for the host, although the host)
+.15 F .617(name is v)72 732 R 3.117(alid. The)-.25 F .617
+(query type is speci\214ed with the command.)3.117 F .617
+(The host or domain name does not e)5.617 F 3.117(xist. The)-.15 F(con-)
+3.117 E .114(nection to the name or \214nger serv)72 744 R .115
 (er could not be made at the current time.)-.15 F .115
 (This error commonly occurs with and re-)5.115 F 3.412(quests. The)72
 756 R .912(name serv)3.412 F .912(er found an internal inconsistenc)-.15

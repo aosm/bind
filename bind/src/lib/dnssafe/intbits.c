@@ -15,7 +15,7 @@
    IntgerBits (0) = 0.
  */
 unsigned int A_IntegerBits (integer, integerLen)
-unsigned char *integer;
+const unsigned char *integer;
 unsigned int integerLen;
 {
   unsigned char mask, byte;

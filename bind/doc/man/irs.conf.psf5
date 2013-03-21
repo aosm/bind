@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:43:00 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:58 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -204,10 +204,8 @@ BP
 .39(vide access to v)-.15 F .39(arious system maps.)-.25 F .39
 (The maps that irs)5.39 F .302(currently controls are the follo)72 24 R
 .303(wing: passwd, group, services, protocols, hosts, netw)-.25 F .303
-(orks and netgroup.)-.1 F .303(When a pro-)5.303 F .637(gram \214rst ca\
-lls a function that accesses one of these maps, the irs con\214guration\
- \214le is read, and the source of each)72 36 R .188
-(map is determined for the life of the process.)72 48 R .188
+(orks and netgroup.)-.1 F .303(When a pro-)5.303 F .637(gram \214rst calls a function that accesses one of these maps, the irs con\214guration \214le is read, and the source of each)
+72 36 R .188(map is determined for the life of the process.)72 48 R .188
 (If this \214le does not e)5.188 F .188(xist, the irs routines def)-.15
 F .189(ault to using local sources)-.1 F .354
 (for all information, with the e)72 60 R .353
@@ -241,19 +239,17 @@ R 28.903(local Use)6.404 F(a)6.403 E .034
 (continue don')72 204 R 3.655(ts)-.18 G 1.155(top searching if you can')
 -3.655 F 3.655<748c>-.18 G 1.155(nd something mer)-3.655 F 26.155
 (ge don')-.18 F 3.655(ts)-.18 G 1.155(top searching if you CAN \214nd)
--3.655 F .666(something The continue option creates whereby subsequent \
-access methods of the same map type can be tried if a)72 216 R .085
-(name cannot be found using earlier access methods.)72 228 R .085
-(This can be quite confusing in the case of host names, since the)5.085
-F .606(name to address and address to name mappings can be visibly asym\
-metric e)72 240 R -.15(ve)-.25 G 3.106(nt).15 G .607
-(hough the data used by an)-3.106 F 3.107(yg)-.15 G -2.15 -.25(iv e)
--3.107 H(n).25 E 1.384(access method is entirely consistent.)72 252 R
-1.384(This beha)6.384 F 1.384(vior is, therefore, not the def)-.2 F
-3.884(ault. The)-.1 F(mer)3.883 E 1.383(ge option only af)-.18 F(fects)
--.25 E .278(lookups in the groups map.)72 264 R .279(If set, subsequent\
- access methods will be tried in order to cause local users to appear i\
-n)5.278 F .469
+-3.655 F .666(something The continue option creates whereby subsequent access methods of the same map type can be tried if a)
+72 216 R .085(name cannot be found using earlier access methods.)72 228
+R .085(This can be quite confusing in the case of host names, since the)
+5.085 F .606(name to address and address to name mappings can be visibly asymmetric e)
+72 240 R -.15(ve)-.25 G 3.106(nt).15 G .607(hough the data used by an)
+-3.106 F 3.107(yg)-.15 G -2.15 -.25(iv e)-3.107 H(n).25 E 1.384
+(access method is entirely consistent.)72 252 R 1.384(This beha)6.384 F
+1.384(vior is, therefore, not the def)-.2 F 3.884(ault. The)-.1 F(mer)
+3.883 E 1.383(ge option only af)-.18 F(fects)-.25 E .278
+(lookups in the groups map.)72 264 R .279(If set, subsequent access methods will be tried in order to cause local users to appear in)
+5.278 F .469
 (NIS \(or other remote\) groups in addition to the local groups.)72 276
 R 2.968(#G)5.468 G .468(et passw)-2.968 F .468
 (ord entries from local \214le, or f)-.1 F .468(ailing that,)-.1 F
@@ -280,17 +276,15 @@ F .708(es a long)-.1 F .119(time to time out.)72 480 R .119
 (Especially for hosts if you use the option to your serv)5.119 F(er')
 -.15 E 2.619(sd)-.55 G 2.619(aemon. It)-2.619 F .119
 (is important that the \214le con-)2.619 F .607
-(tain an entry for each map.)72 492 R .606(If a map is not mentioned in\
- the \214le, all queries to that map will f)5.607 F 3.106(ail. The)-.1 F
-.606(classic NIS)3.106 F .398(mechanism for specifying union namespaces\
- is to add an entry to a local map \214le whose name is `)72 504 R(`+')
--.74 E 2.898('. In)-.74 F .398(IRS, this)2.898 F .512(is done via `)72
-516 R(`continue')-.74 E 3.011('a)-.74 G .511(nd/or `)-3.011 F(`mer)-.74
-E(ge')-.18 E 3.011('m)-.74 G .511(ap options.)-3.011 F .511
-(While this results in a small incompatibility when local map)5.511 F
-.397(\214les are imported from non-IRS systems to IRS systems, there ar\
-e compensating adv)72 528 R .398(antages in security and con\214g-)-.25
-F(urability)72 540 Q 5(.T)-.65 G(he \214le resides in)-5 E EP
+(tain an entry for each map.)72 492 R .606(If a map is not mentioned in the \214le, all queries to that map will f)
+5.607 F 3.106(ail. The)-.1 F .606(classic NIS)3.106 F .398(mechanism for specifying union namespaces is to add an entry to a local map \214le whose name is `)
+72 504 R(`+')-.74 E 2.898('. In)-.74 F .398(IRS, this)2.898 F .512
+(is done via `)72 516 R(`continue')-.74 E 3.011('a)-.74 G .511(nd/or `)
+-3.011 F(`mer)-.74 E(ge')-.18 E 3.011('m)-.74 G .511(ap options.)-3.011
+F .511(While this results in a small incompatibility when local map)
+5.511 F .397(\214les are imported from non-IRS systems to IRS systems, there are compensating adv)
+72 528 R .398(antages in security and con\214g-)-.25 F(urability)72 540
+Q 5(.T)-.65 G(he \214le resides in)-5 E EP
 %%Trailer
 end
 %%EOF

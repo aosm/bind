@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:58 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:53 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -206,9 +206,8 @@ BP
 (This f)72 36 R .215(amily of functions allo)-.1 F .216
 (ws you to perform lookups of Hesiod information, which is stored as te)
 -.25 F .216(xt records in the)-.15 F .814(Domain Name Service.)72 48 R
-2.414 -.8(To p)5.814 H .814(erform lookups, you must \214rst initialize\
- a an opaque object which stores information).8 F 1.312
-(used internally by the library between calls.)72 60 R 1.313
+2.414 -.8(To p)5.814 H .814(erform lookups, you must \214rst initialize a an opaque object which stores information)
+.8 F 1.312(used internally by the library between calls.)72 60 R 1.313
 (initializes a conte)6.313 F 1.313(xt, storing a pointer to the conte)
 -.15 F 1.313(xt in the location)-.15 F .126(pointed to by the ar)72 72 R
 2.626(gument. frees)-.18 F .126(the resources used by a conte)2.626 F
@@ -223,24 +222,22 @@ BP
 (esponsibility to call to free the resources used by the returned list.)
 -3.07 F(con)5.57 E -.15(ve)-.4 G .57(rts and).15 F .639
 (into the DNS name used by It is the caller')72 108 R 3.139(sr)-.55 G
-.639(esponsibility to free the returned string using If successful, ret\
-urns 0;)-3.139 F .027
-(otherwise it returns \2551 and sets to indicate the error)72 120 R
-5.027(.O)-.55 G 2.527(nf)-5.027 G .027
+.639(esponsibility to free the returned string using If successful, returns 0;)
+-3.139 F .027(otherwise it returns \2551 and sets to indicate the error)
+72 120 R 5.027(.O)-.55 G 2.527(nf)-5.027 G .027
 (ailure, and return NULL and set the global v)-2.627 F .027
 (ariable to indi-)-.25 F .492(cate the error)72 132 R 5.492(.I)-.55 G
 2.992(ft)-5.492 G .492(he en)-2.992 F .492(vironment v)-.4 F .492
 (ariable is set, it will o)-.25 F -.15(ve)-.15 G .493
 (rride the domain in the Hesiod con\214guration \214le.).15 F .493
-(If the)5.493 F(en)72 144 Q .228(vironment v)-.4 F .227(ariable is set,\
- it speci\214es the location of the Hesiod con\214guration \214le.)-.25
-F .227(`Hesiod - Project Athena T)5.227 F(ech-)-.7 E .94(nical Plan -- \
-Name Service', named\(8\), hesiod.conf\(5\) Hesiod calls may f)72 156 R
-.941(ail because of: Insuf)-.1 F .941(\214cient memory w)-.25 F(as)-.1 E
--.2(av)72 168 S .872(ailable to carry out the requested operation.)-.05
-F -.1(fa)5.871 G .871(iled because the Hesiod con\214guration \214le w)
-.1 F .871(as in)-.1 F -.25(va)-.4 G 3.371(lid. f).25 F .871(ailed be-)
--.1 F .103(cause no name serv)72 180 R .103
+(If the)5.493 F(en)72 144 Q .228(vironment v)-.4 F .227(ariable is set, it speci\214es the location of the Hesiod con\214guration \214le.)
+-.25 F .227(`Hesiod - Project Athena T)5.227 F(ech-)-.7 E .94(nical Plan -- Name Service', named\(8\), hesiod.conf\(5\) Hesiod calls may f)
+72 156 R .941(ail because of: Insuf)-.1 F .941(\214cient memory w)-.25 F
+(as)-.1 E -.2(av)72 168 S .872
+(ailable to carry out the requested operation.)-.05 F -.1(fa)5.871 G
+.871(iled because the Hesiod con\214guration \214le w).1 F .871(as in)
+-.1 F -.25(va)-.4 G 3.371(lid. f).25 F .871(ailed be-)-.1 F .103
+(cause no name serv)72 180 R .103
 (er could be contacted to answer the query)-.15 F 5.103(.f)-.65 G .103
 (ailed because the query or response w)-5.203 F .104
 (as too big to \214t)-.1 F .274(into the pack)72 192 R .274(et b)-.1 F

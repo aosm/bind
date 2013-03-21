@@ -45,7 +45,7 @@ int B_AlgorithmGenerateRandomBytes PROTO_LIST
 int B_AlgorithmDigestInit PROTO_LIST
   ((B_Algorithm *, B_Key *, B_ALGORITHM_CHOOSER, A_SURRENDER_CTX *));
 int B_AlgorithmDigestUpdate PROTO_LIST
-  ((B_Algorithm *, unsigned char *, unsigned int, A_SURRENDER_CTX *));
+  ((B_Algorithm *, const unsigned char *, unsigned int, A_SURRENDER_CTX *));
 int B_AlgorithmDigestFinal PROTO_LIST
   ((B_Algorithm *, unsigned char *, unsigned int *, unsigned int,
     A_SURRENDER_CTX *));
@@ -59,7 +59,7 @@ int B_AlgorithmEncryptUpdate PROTO_LIST
     unsigned char *, unsigned int, B_Algorithm *, A_SURRENDER_CTX *));
 int B_AlgorithmDecryptUpdate PROTO_LIST
   ((B_Algorithm *, unsigned char *, unsigned int *, unsigned int,
-    unsigned char *, unsigned int, B_Algorithm *, A_SURRENDER_CTX *));
+    const unsigned char *, unsigned int, B_Algorithm *, A_SURRENDER_CTX *));
 int B_AlgorithmEncryptFinal PROTO_LIST
   ((B_Algorithm *, unsigned char *, unsigned int *, unsigned int,
     B_Algorithm *, A_SURRENDER_CTX *));

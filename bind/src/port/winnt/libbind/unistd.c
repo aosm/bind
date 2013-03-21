@@ -1,3 +1,20 @@
+/*
+ * Copyright (c) 2000-2001 by Internet Software Consortium.
+ *
+ * Permission to use, copy, modify, and distribute this software for any
+ * purpose with or without fee is hereby granted, provided that the above
+ * copyright notice and this permission notice appear in all copies.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS" AND INTERNET SOFTWARE CONSORTIUM DISCLAIMS
+ * ALL WARRANTIES WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES
+ * OF MERCHANTABILITY AND FITNESS. IN NO EVENT SHALL INTERNET SOFTWARE
+ * CONSORTIUM BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL
+ * DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR
+ * PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS
+ * ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
+ * SOFTWARE.
+ */
+
 #include "port_before.h"
 
 #include <unistd.h>
@@ -14,22 +31,43 @@
 #include <lmwksta.h>
 #include <fcntl.h>
 
+#include <res_update.h>
+#include <isc/eventlib.h>
+#include <isc/list.h>
+#include <isc/assertions.h>
+#include <isc/logging.h>
+
+#include "../../../bin/named/ns_defs.h"
+
 #include "port_after.h"
+
+char * GetWSAErrorMessage(int errval);
 
 /* We are going to use these functions here properly,
  * so we undefine them.
  */
 
-#undef rename 
 #undef fopen   
 #undef fclose 
+#undef strerror
+#undef fstat
 
+static char strerrorbuf[256];
+static char strmessagebuf[256];
 /*
  * sockets are file descriptors in UNIX.  This is not so in NT
  * We must keep track of what is a socket and what is an FD to
  * make everything flow right.
  */
-fddata fdset[FOPEN_MAX];
+#define INVALID_FILE  (int)(~0)
+
+/*
+ * This is as much as win32 can handle and is a hardcoded limit
+ * See setmaxstdio for details
+ */
+#define MAX_OPEN_FILES 2048
+
+fddata fdset[MAX_OPEN_FILES];
 int fdcount = 0;
 
 /* Interface data */
@@ -42,19 +80,24 @@ static int numInterfaces = 0;
  * Initialize for FD tracking, ioctl()
  */
 void unistdInit()
-{
-	int nextIndex;
-	int i;
-	for(i=0; i < FOPEN_MAX; i++)
-	{
-		fdset[i].fd = 0;
-		fdset[i].flags = 0;
-		fdset[i].descrip = 0;
-	}
-	
+{	
 	numInterfaces = GetInterfaces(IFData, MAX_INTERFACES);
 }
 
+void fdFileInit()
+{
+	int nextIndex;
+	int i;
+	for(i=0; i < MAX_OPEN_FILES; i++)
+	{
+		fdset[i].fd = INVALID_FILE;
+		fdset[i].flags = 0;
+		fdset[i].descrip = 0;
+	}
+	fdcount = 0;
+	/* Set the max number of possible open files */
+	_setmaxstdio(MAX_OPEN_FILES);
+}
 /*
  * Clean up - free memory allocated by GetInterfaces()
  */
@@ -67,6 +110,24 @@ void unistdCleanup()
 			free(IFData[i]);
 }
 
+/*
+ * Find a file descriptor in the list. 
+ * Return -1 if not found.
+ */
+int fdindex(int fd)
+{
+	int i = 0;
+	while(fdset[i].fd != fd && i < MAX_OPEN_FILES)
+		i++;
+
+	if(i < MAX_OPEN_FILES)
+	{
+	    return(i);
+	}
+	else {
+		return(-1);
+	}
+}
 
 /*
  * Add a fd to the list. Request can get the index
@@ -74,10 +135,10 @@ void unistdCleanup()
 int fdin(int fd)
 {
 	int i = 0;
-	while(fdset[i].fd > 0)
+	while(fdset[i].fd != INVALID_FILE && i< MAX_OPEN_FILES)
 		i++;
 
-	if(i < REAL_FD_SETSIZE)
+	if(i < MAX_OPEN_FILES)
 	{
 		fdset[i].fd = fd;
 		fdcount ++;
@@ -86,20 +147,18 @@ int fdin(int fd)
 }
 
 /*
- * Remove a fd from the list
+ * Remove an fd from the list
  */
 void fdout(int fd)
 {
-	int i = 0;
-	while(fdset[i].fd != fd && i < FOPEN_MAX)
-		i++;
+	int i = fdindex(fd);
 
-	if(i < FOPEN_MAX)
+	if(i < MAX_OPEN_FILES && i >= 0)
 	{
-	    fdset[i].fd = 0;
+		fdset[i].fd = INVALID_FILE;
 		fdset[i].flags = 0;
 		fdset[i].descrip = 0;
-	    fdcount--;
+		fdcount--;
 	}
 }
 
@@ -112,11 +171,9 @@ void fdout(int fd)
 
 int getfdflags(int fd)
 {
-	int i = 0;
-	while(fdset[i].fd != fd && i < FOPEN_MAX)
-		i++;
+	int i = fdindex(fd);
 
-	if(i < FOPEN_MAX)
+	if(i < MAX_OPEN_FILES && i >= 0)
 	 	return(fdset[i].descrip);
 	else		// Not found, let's add it to the list anyway
 	{
@@ -127,11 +184,9 @@ int getfdflags(int fd)
 
 int setfdflags(int fd, int flags)
 {
-	int i = 0;
-	while(fdset[i].fd != fd && i < FOPEN_MAX)
-		i++;
+	int i = fdindex(fd);
 
-	if(i < FOPEN_MAX)
+	if(i < MAX_OPEN_FILES && i >= 0)
 	{
  		fdset[i].descrip = flags;
 		return(0);
@@ -139,7 +194,7 @@ int setfdflags(int fd, int flags)
 	else		// Not found, let's add it to the list anyway
 	{
 		i = fdin(fd);
-		if(i <FOPEN_MAX)
+		if(i <MAX_OPEN_FILES)
 		{
 			fdset[i].descrip = flags;
 			return(0);
@@ -156,11 +211,9 @@ int setfdflags(int fd, int flags)
 
 int getfileflags(int fd)
 {
-	int i = 0;
-	while(fdset[i].fd != fd && i < FOPEN_MAX)
-		i++;
+	int i = fdindex(fd);
 
-	if(i < FOPEN_MAX)
+	if(i < MAX_OPEN_FILES && i >= 0)
 	 	return(fdset[i].flags);
 	else		// Not found, let's add it to the list anyway
 	{
@@ -176,11 +229,9 @@ int getfileflags(int fd)
 
 int setfileflags(int fd, int flags)
 {
-	int i = 0;
-	while(fdset[i].fd != fd && i < FOPEN_MAX)
-		i++;
+	int i = fdindex(fd);
 
-	if(i < FOPEN_MAX)
+	if(i < MAX_OPEN_FILES && i >= 0)
 	{
  		fdset[i].flags = flags;
 		return(0);
@@ -188,7 +239,7 @@ int setfileflags(int fd, int flags)
 	else		// Not found, let's add it to the list anyway
 	{
 		i = fdin(fd);
-		if(i <FOPEN_MAX)
+		if(i <MAX_OPEN_FILES)
 		{
 			fdset[i].flags = flags;
 			return(0);
@@ -301,7 +352,7 @@ long sysconf(int which)
 	switch(which)
 	{
 		case _SC_OPEN_MAX:
-			rc = 16384;
+			rc = REAL_FD_SETSIZE;
 			break;
 		default:
 			break;
@@ -382,7 +433,7 @@ int open(const char *fn, int flags, ...)
 	int pmode;
 	int fd;
 
-       if(fdcount == FOPEN_MAX)
+       if(fdcount >= MAX_OPEN_FILES)
        {
                errno = EMFILE;
                return(-1);
@@ -393,31 +444,44 @@ int open(const char *fn, int flags, ...)
 	fd = _open(fn, flags, pmode);
 
 	/* Only add to the list if we succeeded. */
-	if(fd > 0)
+	if(fd >= 0)
 		fdin(fd);
 	return fd;
 }
 
 int close(int fd)
 {
+	int errval;
+	int errclose;
+
 	if(S_ISSOCK(fd))
 	{
-		return closesocket(fd);
+		errval = closesocket(fd);
+		if(errval == SOCKET_ERROR) {
+
+			/*
+			 * if we get a not-socket error, try just closing the file
+			 */
+			if(WSAGetLastError() == WSAENOTSOCK) {
+				errclose = _close(fd);
+				fdout(fd);
+				return (errclose);
+			}
+		}
+		return (errval);
+
 	}
 	else
 	{
-              if(fdcount > 0)
-              {
-                      fdout(fd);
-                      return _close(fd);
-              }
-              else
-              {
-                      errno = EBADF;
-                      return(-1);
-              }
+
+		errval = _close(fd);
+		if(fdcount > 0) {
+			fdout(fd);
+		}
+		return (errval);
 	}
 }
+
 
 int read(int fd, char *buf, int len)
 {
@@ -454,6 +518,13 @@ int fsync(int fd)
 	}
 }
 
+/*
+ * This is here to ensure it share data space with the FILE struct
+ */
+int NTfstat( int handle, struct _stat *buffer )
+{
+	return(_fstat(handle, buffer));
+}
 /*
  * fopen and fclose need to be handled here in order to
  * register their file descriptors.
@@ -517,14 +588,89 @@ int NTfclose(FILE *fp)
 	return(fclose(fp));
 }
 
-/* Rename is needed to be defined here to ensure that any file with
+/* iscmovefile is needed to be defined here to ensure that any file with
  * the new name is deleted first.
  */
 
-int NTrename(char *from, char *to)
+int isc_movefile(const char *oldname, const char *newname)
 {
-	DeleteFile(to);
-	return(rename(from, to));
+	int status;
+	BOOL filestatus;
+	char buf[512];
+	int buflen;
+	struct stat sbuf;
+	BOOL exists = FALSE;
+	int rptlevel = LOG_WARNING;
+	int tmpfd;
+
+	/*
+	 * Make sure we have something to do
+	 */
+	if(stat(oldname, &sbuf) != 0) {
+		syslog(rptlevel, "isc_movefile: file to move does not exist: %s", oldname);
+		errno = ENOENT;
+		return(-1);
+	}
+
+	/*
+	 * Rename to a backup the new file if it still exists
+	 */
+	if(stat(newname, &sbuf) == 0)
+		exists = TRUE;
+
+	strcpy(buf, newname);
+	strcat(buf, ".XXXXX");
+	tmpfd = mkstemp(buf);
+	if(tmpfd > 0)
+		_close(tmpfd);
+	filestatus = DeleteFile(buf);
+
+	if(exists == TRUE) {
+		if(_chmod(newname, _S_IREAD | _S_IWRITE) != 0)
+			syslog(rptlevel, "isc_movefile: Error modifying protections on File: %s: %s",
+			newname, NTstrerror(errno));
+	}
+
+	filestatus = MoveFile(newname, buf);
+	if(filestatus == 0) {
+		syslog(rptlevel, "isc_movefile: Error moving older file: %s to Backup: %s",
+		newname, NTstrerror(GetLastError()));
+	}
+
+	/* Now rename the file to the new name
+	 */
+	if(_chmod(oldname, _S_IREAD | _S_IWRITE) != 0)
+			syslog(rptlevel, "isc_movefile: Error modifying protections on File: %s: %s",
+			oldname, NTstrerror(errno));
+
+	filestatus = MoveFile(oldname, newname);
+	if(filestatus == 0) {
+		syslog(rptlevel, "isc_movefile: Error Renaming File: %s to new name: %s: %s",
+		oldname, newname, NTstrerror(GetLastError()));
+
+		/* Try and rename the backup back to the original name if the backup got created
+		 */
+		if(exists == TRUE) {
+			filestatus = MoveFile(buf, newname);
+			if(filestatus == 0) {
+				syslog(rptlevel, "isc_movefile: Error returning backup File: %s to original: %s",
+				buf, NTstrerror(GetLastError()));
+				errno = EACCES;
+			}
+		}
+		return(-1);
+	}
+
+	/* Delete the backup file if it got created 
+	 */
+	if(exists == TRUE) {
+		filestatus = DeleteFile(buf);
+		if(filestatus == 0) {
+			syslog(rptlevel, "isc_movefile: Error Deleting New Backup File: %s: %s",
+			buf, NTstrerror(GetLastError()));
+		}
+	}
+	return(0);
 }
 
 int fchown(int fd, uid_t owner, gid_t group)
@@ -558,24 +704,24 @@ int fcntlfile(int fd, int cmd, u_long arg)
 
 	switch(cmd)
 	{
-		/* Set status flags */
-		case F_SETFL:
-            rc = setfileflags(fd, arg);
-			break;
-		/* Get status flags */
-		case F_GETFL:
-            rc = getfileflags(fd);
-			break;
-		/* Set FD flags */
-		case F_SETFD:
-            rc = setfdflags(fd, arg);
-			break;
-		/* Get FD flags */
-		case F_GETFD:
-            rc = getfdflags(fd);
-			break;
-		default:
-			break;
+	/* Set status flags */
+	case F_SETFL:
+		rc = setfileflags(fd, arg);
+		break;
+	/* Get status flags */
+	case F_GETFL:
+		rc = getfileflags(fd);
+		break;
+	/* Set FD flags */
+	case F_SETFD:
+		rc = setfdflags(fd, arg);
+		break;
+	/* Get FD flags */
+	case F_GETFD:
+		rc = getfdflags(fd);
+		break;
+	default:
+		break;
 	}
 	return rc;
 }
@@ -673,3 +819,215 @@ mkstemp(char *path) {
 
 	return (gettemp(path, &fd) ? fd : -1);
 }
+
+char *  __cdecl NTstrMessage(int err)
+{
+	char msg[128];
+	DWORD errval = err; /* Copy the error value first in case of other errors */
+
+	if(errval >= WSABASEERR) {
+		strcpy(strmessagebuf, GetWSAErrorMessage(errval));
+	}
+	else if(errval > _sys_nerr) {
+		FormatMessage( 
+			FORMAT_MESSAGE_FROM_SYSTEM | 
+			FORMAT_MESSAGE_IGNORE_INSERTS,
+			NULL,
+			errval,
+			MAKELANGID(LANG_NEUTRAL, SUBLANG_DEFAULT), // Default language
+			(LPTSTR) msg,
+			128,
+			NULL);
+		strcpy(strmessagebuf, msg);
+	}
+	else
+	{
+
+		strcpy(strmessagebuf, strerror(errval));
+	}
+	return (strmessagebuf);
+}
+char *  __cdecl NTstrerror(int err)
+{
+	char msg[128];
+	DWORD errval = err; /* Copy the error value first in case of other errors */
+
+	sprintf(strerrorbuf, "Errcode: %d: %s\n", errval, NTstrMessage(errval));
+	return (strerrorbuf);
+}
+
+/*
+ * This is a replacement for perror, but it also reports the error value.
+ */
+void __cdecl NTperror(char *errmsg)
+{
+	int errval = errno; /* Copy the error value first in case of other errors */
+
+	fprintf(stderr, "%s: %s\n", errmsg, NTstrMessage(errval));
+
+}
+/*
+ * This function returns the error string related to Winsock2 errors.
+ * This function is necessary since FormatMessage knows nothing about them
+ * and there is no function to get them.
+ */
+
+char * GetWSAErrorMessage(int errval) {
+
+	char *msg;
+
+	switch(errval) {
+
+	case WSAEINTR:			msg = "Interrupted system call";
+							break;
+
+    case WSAEBADF:			msg = "Bad file number";
+							break;
+
+    case WSAEACCES:			msg = "Permission denied";
+							break;
+
+    case WSAEFAULT:			msg = "Bad address";
+							break;
+
+    case WSAEINVAL:			msg = "Invalid argument";
+							break;
+
+    case WSAEMFILE:			msg = "Too many open sockets";
+							break;
+
+    case WSAEWOULDBLOCK:	msg = "Operation would block";
+							break;
+
+    case WSAEINPROGRESS:    msg = "Operation now in progress";
+							break;
+
+    case WSAEALREADY:       msg = "Operation already in progress";
+							break;
+
+    case WSAENOTSOCK:       msg = "Socket operation on non-socket";
+							break;
+
+    case WSAEDESTADDRREQ:   msg = "Destination address required";
+							break;
+
+    case WSAEMSGSIZE:       msg = "Message too long";
+							break;
+
+    case WSAEPROTOTYPE:     msg = "Protocol wrong type for socket";
+							break;
+
+    case WSAENOPROTOOPT:    msg = "Bad protocol option";
+							break;
+
+    case WSAEPROTONOSUPPORT:msg = "Protocol not supported";
+							break;
+
+    case WSAESOCKTNOSUPPORT:msg = "Socket type not supported";
+							break;
+
+    case WSAEOPNOTSUPP:     msg = "Operation not supported on socket";
+							break;
+
+    case WSAEPFNOSUPPORT:   msg = "Protocol family not supported";
+							break;
+
+    case WSAEAFNOSUPPORT:   msg = "Address family not supported";
+							break;
+
+    case WSAEADDRINUSE:     msg = "Address already in use";
+							break;
+
+    case WSAEADDRNOTAVAIL:  msg = "Can't assign requested address";
+							break;
+
+    case WSAENETDOWN:       msg = "Network is down";
+							break;
+
+    case WSAENETUNREACH:    msg = "Network is unreachable";
+							break;
+
+    case WSAENETRESET:      msg = "Net connection reset";
+							break;
+
+    case WSAECONNABORTED:   msg = "Software caused connection abort";
+							break;
+
+    case WSAECONNRESET:     msg = "Connection reset by peer";
+							break;
+
+    case WSAENOBUFS:        msg = "No buffer space available";
+							break;
+
+    case WSAEISCONN:        msg = "Socket is already connected";
+							break;
+
+    case WSAENOTCONN:       msg = "Socket is not connected";
+							break;
+
+    case WSAESHUTDOWN:      msg = "Can't send after socket shutdown";
+							break;
+
+    case WSAETOOMANYREFS:   msg = "Too many references: can't splice";
+							break;
+
+    case WSAETIMEDOUT:      msg = "Connection timed out";
+							break;
+
+    case WSAECONNREFUSED:   msg = "Connection refused";
+							break;
+
+    case WSAELOOP:          msg = "Too many levels of symbolic links";
+							break;
+
+    case WSAENAMETOOLONG:   msg = "File name too long";
+							break;
+
+    case WSAEHOSTDOWN:      msg = "Host is down";
+							break;
+
+    case WSAEHOSTUNREACH:   msg = "No route to host";
+							break;
+
+    case WSAENOTEMPTY:      msg = "Directory not empty";
+							break;
+
+    case WSAEPROCLIM:       msg = "Too many processes";
+							break;
+
+    case WSAEUSERS:         msg = "Too many users";
+							break;
+
+    case WSAEDQUOT:         msg = "Disc quota exceeded";
+							break;
+
+    case WSAESTALE:         msg = "Stale NFS file handle";
+							break;
+
+    case WSAEREMOTE:        msg = "Too many levels of remote in path";
+							break;
+
+    case WSASYSNOTREADY:    msg = "Network system is unavailable";
+							break;
+
+    case WSAVERNOTSUPPORTED:msg = "Winsock version out of range";
+							break;
+
+    case WSANOTINITIALISED: msg = "WSAStartup not yet called";
+							break;
+
+    case WSAEDISCON:        msg = "Graceful shutdown in progress";
+							break;
+/*
+    case WSAHOST_NOT_FOUND: msg = "Host not found";
+							break;
+
+    case WSANO_DATA:        msg = "No host data of that type was found";
+							break;
+*/
+	default:				msg = "Unknown Error";
+							break;
+	}
+	return msg;
+}
+

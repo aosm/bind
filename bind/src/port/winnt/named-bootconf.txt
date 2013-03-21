@@ -1,0 +1,23 @@
+NAMED-BOOTCONF(8)                                           NAMED-BOOTCONF(8)
+
+NAME
+     named-bootconf - convert name server configuration files
+
+SYNOPSIS
+     named-bootconf
+
+DESCRIPTION
+     named-bootconf converts named configuration files from BIND 4 format to
+     BIND 8 format.
+
+EXAMPLES
+     named-bootconf < named.boot > named.conf
+
+BUGS
+     Comments from the source file will not always appear at the appropriate
+     place in the target file.
+
+SEE ALSO
+     named(8),  named.conf(5)
+
+

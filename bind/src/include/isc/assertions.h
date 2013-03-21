@@ -16,7 +16,7 @@
  */
 
 /*
- * $Id: assertions.h,v 1.1.1.2 2001/01/31 03:59:57 zarzycki Exp $
+ * $Id: assertions.h,v 1.1.1.3 2002/11/18 22:27:03 bbraun Exp $
  */
 
 #ifndef ASSERTIONS_H
@@ -26,12 +26,12 @@ typedef enum {
 	assert_require, assert_ensure, assert_insist, assert_invariant
 } assertion_type;
 
-typedef void (*assertion_failure_callback)(char *, int, assertion_type, char *,
-					   int);
+typedef void (*assertion_failure_callback)(const char *, int, assertion_type,
+					   const char *, int);
 
 extern assertion_failure_callback __assertion_failed;
 void set_assertion_failure_callback(assertion_failure_callback f);
-char *assertion_type_to_text(assertion_type type);
+const char *assertion_type_to_text(assertion_type type);
 
 #ifdef CHECK_ALL
 #define CHECK_REQUIRE		1

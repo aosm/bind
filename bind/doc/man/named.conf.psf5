@@ -1,15 +1,15 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:43:00 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:59 2002
 %%DocumentNeededResources: font Times-Roman
 %%+ font Times-Italic
-%%DocumentSuppliedResources: procset grops 1.15 0
-%%Pages: 16
+%%DocumentSuppliedResources: procset grops 1.10 0
+%%Pages: 9
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -202,1438 +202,1432 @@ def/PL 792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron
 BP
 %%EndPageSetup
 /F0 10/Times-Roman@0 SF .736
-(BIND 8 is much more con\214gurable than pre)72 60 R .735
+(BIND 8 is much more con\214gurable than pre)72 12 R .735
 (vious release of BIND.)-.25 F .735(There are entirely ne)5.735 F 3.235
 (wa)-.25 G .735(reas of con\214guration,)-3.235 F .585
-(such as access control lists and cate)72 72 R .585(gorized logging.)
+(such as access control lists and cate)72 24 R .585(gorized logging.)
 -.15 F(Man)5.585 E 3.085(yo)-.15 G .585(ptions that pre)-3.085 F .585
 (viously applied to all zones can no)-.25 F 3.085(wb)-.25 G(e)-3.085 E
-.292(used selecti)72 84 R -.15(ve)-.25 G(ly).15 E 5.292(.T)-.65 G .291(\
-hese features, plus a consideration of future con\214guration needs led\
- to the creation of a ne)-5.292 F 2.791(wc)-.25 G(on-)-2.791 E
-(\214guration \214le format.)72 96 Q 2.522(AB)72 132 S .022
-(IND 8 con\214guration consists of tw)-2.522 F 2.522(og)-.1 G .022
-(eneral features, statements and comments.)-2.522 F .023
-(All statements end with a semi-)5.023 F 2.5(colon. Man)72 144 R 2.5(ys)
--.15 G(tatements can contain substatements, which are each also termina\
-ted with a semicolon.)-2.5 E(The follo)72 168 Q
-(wing statements are supported: speci\214es what the serv)-.25 E
-(er logs, and where the log messages are sent)-.15 E
-(controls global serv)72 192 Q(er con\214guration options and sets def)
--.15 E(aults for other statements)-.1 E(de\214nes a zone)72 216 Q(de\
-\214nes a named IP address matching list, for access control and other \
-uses)72 240 Q(speci\214es k)72 264 Q .3 -.15(ey i)-.1 H
-(nformation for use in authentication and authorization).15 E
-(de\214nes DNSSEC k)72 288 Q -.15(ey)-.1 G 2.5(st).15 G
-(hat are precon\214gured into the serv)-2.5 E(er and implicitly trusted)
--.15 E(sets certain con\214guration options for indi)72 312 Q
-(vidual remote serv)-.25 E(ers)-.15 E
-(declares control channels to be used by the utility)72 336 Q
-(includes another \214le)72 360 Q .443(The and statements may only occu\
-r once per con\214guration, while the rest may appear numerous times.)72
-396 R .442(Further de-)5.443 F(tail on each statement is pro)72 408 Q
-(vided in indi)-.15 E(vidual sections belo)-.25 E -.65(w.)-.25 G .6
-(Comments may appear an)72 432 R .6
-(ywhere that whitespace may appear in a BIND con\214guration \214le.)
--.15 F 2.2 -.8(To a)5.6 H .6(ppeal to program-).8 F
-(mers of all kinds, the)72 444 Q 2.5(yc)-.15 G
-(an be written in C, C++, or shell/perl constructs.)-2.5 E .433
-(C-style comments start with the tw)72 468 R 2.933(oc)-.1 G .432
-(haracters \(slash, star\) and end with \(star)-2.933 F 2.932(,s)-.4 G
-2.932(lash\). Because)-2.932 F(the)2.932 E 2.932(ya)-.15 G .432
-(re completely)-2.932 F(delimited with these characters, the)72 480 Q
-2.5(yc)-.15 G(an be used to comment only a portion of a line or to span\
- multiple lines.)-2.5 E .52(C-style comments cannot be nested.)72 504 R
--.15(Fo)5.52 G 3.02(re).15 G .52(xample, the follo)-3.17 F .521
-(wing is not v)-.25 F .521(alid because the entire comment ends with)
--.25 F(the \214rst)72 516 Q(/* This is the start of a comment.)72 540 Q
-(This is still part of the comment.)79.5 552 Q
-(/* This is an incorrect attempt at nesting a comment. */)5 E
-(This is no longer in an)79.5 564 Q 2.5(yc)-.15 G(omment. */)-2.5 E .687
-(C++-style comments start with the tw)72 588 R 3.187(oc)-.1 G .687
-(haracters \(slash, slash\) and continue to the end of the ph)-3.187 F
-.686(ysical line.)-.05 F(The)5.686 E(y)-.15 E .333
-(cannot be continued across multiple ph)72 600 R .333
-(ysical lines; to ha)-.05 F .633 -.15(ve o)-.2 H .333
-(ne logical comment span multiple lines, each line must).15 F
-(use the pair)72 612 Q 5(.F)-.55 G(or e)-5.15 E(xample:)-.15 E .052
-(// This is the start of a comment.)72 636 R .052(The ne)5.052 F .052
-(xt line // is a ne)-.15 F 2.552(wc)-.25 G .052(omment, e)-2.552 F -.15
-(ve)-.25 G 2.552(nt).15 G .052(hough it is logically // part of the pre)
--2.552 F(vious)-.25 E(comment.)72 648 Q .095(Shell-style \(or perl-styl\
-e, if you prefer\) comments start with the character \(hash or pound or\
- number or octothorpe or)72 672 R(whate)72 684 Q -.15(ve)-.25 G
-(r\) and continue to the end of the ph).15 E(ysical line, lik)-.05 E 2.5
-(eC)-.1 G(++ comments.)-2.5 E -.15(Fo)5 G 2.5(re).15 G(xample:)-2.65 E
-2.62(#T)72 708 S .12(his is the start of a comment.)-2.62 F .119(The ne)
-5.119 F .119(xt line # is a ne)-.15 F 2.619(wc)-.25 G .119(omment, e)
--2.619 F -.15(ve)-.25 G 2.619(nt).15 G .119
-(hough it is logically # part of the pre)-2.619 F(vious)-.25 E(comment.)
-72 720 Q .436(you cannot use the \(semicolon\) character to start a com\
-ment such as you w)72 744 R .437(ould in a zone \214le.)-.1 F .437
-(The semicolon indi-)5.437 F .93
-(cates the end of a con\214guration statement, so whate)72 756 R -.15
-(ve)-.25 G 3.43(rf).15 G(ollo)-3.43 E .93
-(ws it will be interpreted as the start of the ne)-.25 F .93(xt state-)
--.15 F(ment.)72 768 Q EP
+.292(used selecti)72 36 R -.15(ve)-.25 G(ly).15 E 5.292(.T)-.65 G .291(hese features, plus a consideration of future con\214guration needs led to the creation of a ne)
+-5.292 F 2.791(wc)-.25 G(on-)-2.791 E 1.543(\214guration \214le format.)
+72 48 R 4.043(AB)6.543 G 1.543(IND 8 con\214guration consists of tw)
+-4.043 F 4.043(og)-.1 G 1.544(eneral features, statements and comments.)
+-4.043 F(All)6.544 E .437(statements end with a semicolon.)72 60 R(Man)
+5.437 E 2.937(ys)-.15 G .436(tatements can contain substatements, which are each also terminated with)
+-2.937 F 2.541(as)72 72 S 2.541(emicolon. The)-2.541 F(follo)2.541 E
+.042(wing statements are supported: speci\214es what the serv)-.25 F
+.042(er logs, and where the log messages are)-.15 F 1.735
+(sent controls global serv)72 84 R 1.735
+(er con\214guration options and sets def)-.15 F 1.735
+(aults for other statements de\214nes a zone de\214nes a)-.1 F .293(named IP address matching list, for access control and other uses speci\214es k)
+72 96 R .594 -.15(ey i)-.1 H .294(nformation for use in authentication)
+.15 F .044(and authorization de\214nes DNSSEC k)72 108 R -.15(ey)-.1 G
+2.543(st).15 G .043(hat are precon\214gured into the serv)-2.543 F .043
+(er and implicitly trusted sets certain con-)-.15 F .667
+(\214guration options for indi)72 120 R .667(vidual remote serv)-.25 F
+.668(ers declares control channels to be used by the utility includes another)
+-.15 F .442(\214le The and statements may only occur once per con\214guration, while the rest may appear numerous times.)
+72 132 R(Further)5.442 E .356(detail on each statement is pro)72 144 R
+.357(vided in indi)-.15 F .357(vidual sections belo)-.25 F 4.157 -.65
+(w. C)-.25 H .357(omments may appear an).65 F .357
+(ywhere that whitespace)-.15 F .448
+(may appear in a BIND con\214guration \214le.)72 156 R 2.048 -.8(To a)
+5.448 H .448(ppeal to programmers of all kinds, the).8 F 2.947(yc)-.15 G
+.447(an be written in C, C++, or)-2.947 F .05(shell/perl constructs.)72
+168 R .05(C-style comments start with the tw)5.05 F 2.55(oc)-.1 G .05
+(haracters \(slash, star\) and end with \(star)-2.55 F 2.55(,s)-.4 G
+2.55(lash\). Because)-2.55 F(the)72 180 Q 2.767(ya)-.15 G .267
+(re completely delimited with these characters, the)-2.767 F 2.767(yc)
+-.15 G .266(an be used to comment only a portion of a line or to span)
+-2.767 F .258(multiple lines.)72 192 R .259
+(C-style comments cannot be nested.)5.258 F -.15(Fo)5.259 G 2.759(re).15
+G .259(xample, the follo)-2.909 F .259(wing is not v)-.25 F .259
+(alid because the entire com-)-.25 F
+(ment ends with the \214rst /* This is the start of a comment.)72 204 Q
+(This is still part of the comment.)79.5 216 Q
+(/* This is an incorrect attempt at nesting a comment. */)5 E .22
+(This is no longer in an)79.5 228 R 2.72(yc)-.15 G .22
+(omment. */ C++-style comments start with the tw)-2.72 F 2.72(oc)-.1 G
+.22(haracters \(slash, slash\) and continue)-2.72 F .762
+(to the end of the ph)72 240 R .762(ysical line.)-.05 F(The)5.762 E
+3.263(yc)-.15 G .763(annot be continued across multiple ph)-3.263 F .763
+(ysical lines; to ha)-.05 F 1.063 -.15(ve o)-.2 H .763(ne logical com-)
+.15 F .055(ment span multiple lines, each line must use the pair)72 252
+R 5.054(.F)-.55 G .054(or e)-5.204 F .054
+(xample: // This is the start of a comment.)-.15 F .054(The ne)5.054 F
+.054(xt line //)-.15 F .364(is a ne)72 264 R 2.864(wc)-.25 G .364
+(omment, e)-2.864 F -.15(ve)-.25 G 2.864(nt).15 G .364
+(hough it is logically // part of the pre)-2.864 F .364(vious comment.)
+-.25 F .364(Shell-style \(or perl-style, if you pre-)5.364 F .258(fer\) comments start with the character \(hash or pound or number or octothorpe or whate)
+72 276 R -.15(ve)-.25 G .258(r\) and continue to the end).15 F .693
+(of the ph)72 288 R .693(ysical line, lik)-.05 F 3.193(eC)-.1 G .693
+(++ comments.)-3.193 F -.15(Fo)5.693 G 3.193(re).15 G .693
+(xample: # This is the start of a comment.)-3.343 F .693(The ne)5.693 F
+.693(xt line # is a ne)-.15 F(w)-.25 E .716(comment, e)72 300 R -.15(ve)
+-.25 G 3.216(nt).15 G .716(hough it is logically # part of the pre)
+-3.216 F .715(vious comment.)-.25 F .715
+(you cannot use the \(semicolon\) character to)5.715 F .449
+(start a comment such as you w)72 312 R .449(ould in a zone \214le.)-.1
+F .45
+(The semicolon indicates the end of a con\214guration statement, so)5.45
+F(whate)72 324 Q -.15(ve)-.25 G 2.836(rf).15 G(ollo)-2.836 E .335
+(ws it will be interpreted as the start of the ne)-.25 F .335
+(xt statement.)-.15 F .335
+(BIND 4.9.x con\214guration \214les can be con-)5.335 F -.15(ve)72 336 S
+.548(rted to the ne).15 F 3.048(wf)-.25 G .549(ormat by using a shell script that is part of the BIND 8.2.x source kit.)
+-3.048 F .549(Described belo)5.549 F 3.049(wa)-.25 G .549(re ele-)-3.049
+F 1.051
+(ments used throughout the BIND con\214guration \214le documentation.)72
+348 R 1.05(Elements which are only associated with one)6.051 F .001
+(statement are described only in the section describing that statement.)
+72 360 R .001(The name of an as de\214ned by the statement.)5.001 F(A)
+5.002 E .772
+(list of one or more or elements, as described in the section.)72 372 R
+.771(One or more inte)5.771 F .771(gers v)-.15 F .771
+(alued 0 through 255 separated)-.25 F 1.192(only by dots \(`)72 384 R
+(`.)-.74 E -.74('')-.7 G 1.192
+(\), such as or A quoted string which will be used as a DNS name, for e)
+.74 F 1.193(xample A quoted string)-.15 F .153
+(which will be used as a pathname, such as An IP address with e)72 396 R
+.153(xactly four elements in notation.)-.15 F .152(An IP port through)
+5.153 F .438(with v)72 408 R .438(alues belo)-.25 F 2.938(w1)-.25 G .439
+(024 typically restricted to root-o)-2.938 F .439(wned processes.)-.25 F
+.439(In some cases an asterisk \(`)5.439 F(`*')-.74 E .439
+('\) character can)-.74 F .216
+(be used as a placeholder to select a random high-numbered port.)72 420
+R .215(An IP netw)5.215 F .215(ork speci\214ed in form, follo)-.1 F .215
+(wed by)-.25 F -.74(``)5.215 G(/').74 E(')-.74 E .101
+(and then the number of bits in the netmask.)72 432 R 2.601(E.g. is)
+5.101 F .101(the netw)2.601 F .102(ork with netmask is netw)-.1 F .102
+(ork with netmask A string rep-)-.1 F .49
+(resenting the name of a shared k)72 444 R -.15(ey)-.1 G 2.99(,t)-.5 G
+2.99(ob)-2.99 G 2.99(eu)-2.99 G .489(sed for transaction security)-2.99
+F 5.489(.A)-.65 G(non-ne)-2.5 E -.05(ga)-.15 G(ti).05 E .789 -.15(ve i)
+-.25 H(nte).15 E .489(ger with an entire range)-.15 F .645
+(limited by the range of a C language signed inte)72 456 R .645
+(ger \(2,147,483,647 on a machine with 32 bit inte)-.15 F 3.146
+(gers\). Its)-.15 F(accept-)3.146 E .405(able v)72 468 R .405
+(alue might further be limited by the conte)-.25 F .405
+(xt in which it is used.)-.15 F 2.904(At)5.404 G .404(he w)-2.904 F .404
+(ord or the w)-.1 F .404(ord The maximum v)-.1 F(alue)-.25 E .125
+(of is that of unsigned long inte)72 480 R .125(gers on the machine.)
+-.15 F .125(requests unlimited use, or the maximum a)5.125 F -.25(va)-.2
+G .125(ilable amount.).25 F(uses)5.125 E .173(the limit that w)72 492 R
+.173(as in force when the serv)-.1 F .172(er w)-.15 F .172(as started.)
+-.1 F 2.672(Ac)5.172 G .172(an optionally be follo)-2.672 F .172
+(wed by a scaling f)-.25 F .172(actor: or for kilo-)-.1 F .532
+(bytes, or for me)72 504 R -.05(ga)-.15 G .532(bytes, and or for gig).05
+F .532
+(abytes, which scale by 1024, 1024*1024, and 1024*1024*1024 respecti)
+-.05 F -.15(ve)-.25 G(ly).15 E(.)-.65 E(Inte)72 516 Q .145
+(ger storage o)-.15 F -.15(ve)-.15 G(r\215o).15 E 2.645(wi)-.25 G 2.645
+(sc)-2.645 G .145(urrently silently ignored during con)-2.645 F -.15(ve)
+-.4 G .145(rsion of scaled v).15 F .145(alues, resulting in v)-.25 F
+.145(alues less than)-.25 F .181(intended, possibly e)72 528 R -.15(ve)
+-.25 G 2.681(nn).15 G -2.25 -.15(eg a)-2.681 H(ti).15 E -.15(ve)-.25 G
+5.181(.U).15 G .181(sing is the best w)-5.181 F .181
+(ay to safely set a really lar)-.1 F .181(ge number)-.18 F 5.181(.E)-.55
+G .181(ither or The w)-5.181 F .181(ords and)-.1 F .281
+(are also accepted, as are the numbers)72 540 R/F1 10/Times-Italic@0 SF
+(addr)2.781 E(ess_matc)-.37 E(h_list)-.15 E F0 2.781(=1)10.281 G(*)
+-2.781 E F1(addr)A(ess_matc)-.37 E .281(h_element addr)-.15 F(ess_matc)
+-.37 E(h_element)-.15 E F0 2.78(=[)2.78 G("!" ] \()72 552 Q F1(addr)2.5
+E(ess_matc)-.37 E(h_list)-.15 E F0(/)2.5 E F1(ip_addr)157 564 Q(ess)-.37
+E F0(/)2.5 E F1(ip_pr)2.5 E(e\214x)-.37 E F0(/)2.5 E F1(acl_name)157 576
+Q F0 2.928(/")2.928 G -.1(ke)-2.928 G 2.928(y")-.05 G F1 -.1(ke)C(y_id)
+-.2 E F0 2.928(\)")2.928 G .428
+(;" Address match lists are primarily used to determine access con-)
+-2.928 F .613(trol for v)72 588 R .613(arious serv)-.25 F .613
+(er operations.)-.15 F(The)5.612 E 3.112(ya)-.15 G .612
+(re also used to de\214ne priorities for querying other nameserv)-3.112
+F .612(ers and to set)-.15 F .078
+(the addresses on which will listen for queries.)72 600 R .078
+(The elements which constitute an address match list can be an)5.078 F
+2.578(yo)-.15 G 2.578(ft)-2.578 G(he)-2.578 E(follo)72 612 Q .513(wing: an \(in notation, an \(in the '/'-notation\), A as de\214ned by the statement, the name of an address match list)
+-.25 F(pre)72 624 Q .67
+(viously de\214ned with the statement, or another Elements can be ne)
+-.25 F -.05(ga)-.15 G .671(ted with a leading e).05 F .671
+(xclamation mark \(`)-.15 F(`!')-.74 E('\),)-.74 E .674
+(and the match list names and are prede\214ned.)72 636 R .673
+(More information on those names can be found in the description of)
+5.674 F .608(the statement.)72 648 R .609(The addition of the clause made the name of this syntactic element something of a misnomer)
+5.608 F 3.109(,s)-.4 G(ince)-3.109 E .157(security k)72 660 R -.15(ey)
+-.1 G 2.657(sc).15 G .157(an be used to v)-2.657 F .157
+(alidate access without re)-.25 F -.05(ga)-.15 G .157
+(rd to a host or netw).05 F .157(ork address.)-.1 F .156
+(Nonetheless, the term `)5.157 F(`ad-)-.74 E .673(dress match list')72
+672 R 3.173('i)-.74 G 3.173(ss)-3.173 G .673
+(till used throughout the documentation.)-3.173 F .674(When a gi)5.674 F
+-.15(ve)-.25 G 3.174(nI).15 G 3.174(Pa)-3.174 G .674
+(ddress or pre\214x is compared to an)-3.174 F .444
+(address match list, the list is tra)72 684 R -.15(ve)-.2 G .443
+(rsed in order until an element matches.).15 F .443
+(The interpretation of a match depends on)5.443 F .076(whether the list is being used for access control, de\214ning ports, or as a topology)
+72 696 R 2.577(,a)-.65 G .077(nd whether the element w)-2.577 F .077
+(as ne)-.1 F -.05(ga)-.15 G(t-).05 E 3.079(ed. When)72 708 R .579
+(used as an access control list, a non-ne)3.079 F -.05(ga)-.15 G .579
+(ted match allo).05 F .579(ws access and a ne)-.25 F -.05(ga)-.15 G .579
+(ted match denies access.).05 F(If)5.578 E .45
+(there is no match at all in the list, access is denied.)72 720 R .45
+(The clauses and all use address match lists lik)5.45 F 2.95(et)-.1 G
+2.95(his. Similarly)-2.95 F(,)-.65 E .293
+(the option will cause the serv)72 732 R .293
+(er to not accept queries on an)-.15 F 2.793(yo)-.15 G 2.793(ft)-2.793 G
+.293(he machine')-2.793 F 2.793(sa)-.55 G .293
+(ddresses which do not match the list.)-2.793 F .704
+(When used with the option, a non-ne)72 744 R -.05(ga)-.15 G .705(ted match returns a distance based on its position on the list \(the closer the)
+.05 F .777(match is to the start of the list, the shorter the distance is between it and the serv)
+72 756 R 3.277(er\). A)-.15 F(ne)3.277 E -.05(ga)-.15 G .777
+(ted match will be as-).05 F .508
+(signed the maximum distance from the serv)72 768 R(er)-.15 E 5.508(.I)
+-.55 G 3.008(ft)-5.508 G .509
+(here is no match, the address will get a distance which is further)
+-3.008 F .289(than an)72 780 R 2.789(yn)-.15 G(on-ne)-2.789 E -.05(ga)
+-.15 G .289(ted list element, and closer than an).05 F 2.788(yn)-.15 G
+-2.25 -.15(eg a)-2.788 H .288(ted element.).15 F .288
+(Because of the \214rst-match aspect of the al-)5.288 F .44(gorithm, an element that de\214nes a subset of another element in the list should come before the broader element, re-)
+72 792 R EP
 %%Page: 2 2
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF .779
-(BIND 4.9.x con\214guration \214les can be con)72 12 R -.15(ve)-.4 G
-.779(rted to the ne).15 F 3.279(wf)-.25 G .779
-(ormat by using a shell script that is part of the BIND)-3.279 F
-(8.2.x source kit.)72 24 Q .278(Described belo)72 60 R 2.778(wa)-.25 G
-.277(re elements used throughout the BIND con\214guration \214le docume\
-ntation.)-2.778 F .277(Elements which are on-)5.277 F(ly associated wit\
-h one statement are described only in the section describing that state\
-ment.)72 72 Q(The name of an as de\214ned by the statement.)72 96 Q 2.5
-(Al)72 120 S
-(ist of one or more or elements, as described in the section.)-2.5 E
-(One or more inte)72 144 Q(gers v)-.15 E
-(alued 0 through 255 separated only by dots \(`)-.25 E(`.)-.74 E -.74
-('')-.7 G(\), such as or).74 E 2.5(Aq)72 168 S
-(uoted string which will be used as a DNS name, for e)-2.5 E(xample)-.15
-E 2.5(Aq)72 192 S
-(uoted string which will be used as a pathname, such as)-2.5 E
-(An IP address in with e)72 216 Q(xactly four elements in notation.)-.15
-E .6(An IP port through with v)72 240 R .6(alues belo)-.25 F 3.1(w1)-.25
-G .601(024 typically restricted to root-o)-3.1 F .601(wned processes.)
--.25 F .601(In some cases an asterisk)5.601 F(\(`)72 252 Q(`*')-.74 E('\
-\) character can be used as a placeholder to select a random high-numbe\
-red port.)-.74 E .397(An IP netw)72 276 R .397
-(ork speci\214ed in form, follo)-.1 F .396(wed by)-.25 F -.74(``)5.396 G
-(/').74 E 2.896('a)-.74 G .396
-(nd then the number of bits in the netmask.)-2.896 F 2.896(E.g. is)5.396
-F .396(the netw)2.896 F(ork)-.1 E(with netmask is netw)72 288 Q
-(ork with netmask)-.1 E 2.5(As)72 312 S
-(tring representing the name of a shared k)-2.5 E -.15(ey)-.1 G 2.5(,t)
--.5 G 2.5(ob)-2.5 G 2.5(eu)-2.5 G(sed for transaction security)-2.5 E(.)
--.65 E 2.738(An)72 336 S(on-ne)-2.738 E -.05(ga)-.15 G(ti).05 E .539
--.15(ve i)-.25 H(nte).15 E .239(ger with an entire range limited by the\
- range of a C language signed inte)-.15 F .239(ger \(2,147,483,647 on a)
--.15 F(machine with 32 bit inte)72 348 Q 2.5(gers\). Its)-.15 F
-(acceptable v)2.5 E(alue might further be limited by the conte)-.25 E
-(xt in which it is used.)-.15 E 2.5(At)72 372 S(he w)-2.5 E
-(ord or the w)-.1 E(ord)-.1 E .7(The maximum v)72 396 R .7
-(alue of is that of unsigned long inte)-.25 F .7(gers on the machine.)
--.15 F .7(requests unlimited use, or the maximum)5.7 F -.2(av)72 408 S
-(ailable amount.)-.05 E(uses the limit that w)5 E
-(as in force when the serv)-.1 E(er w)-.15 E(as started.)-.1 E 3.629(Ac)
-72 432 S 1.129(an optionally be follo)-3.629 F 1.129(wed by a scaling f)
--.25 F 1.13(actor: or for kilobytes, or for me)-.1 F -.05(ga)-.15 G 1.13
-(bytes, and or for gig).05 F 1.13(abytes, which)-.05 F
-(scale by 1024, 1024*1024, and 1024*1024*1024 respecti)72 444 Q -.15(ve)
--.25 G(ly).15 E(.)-.65 E(Inte)72 468 Q .145(ger storage o)-.15 F -.15
-(ve)-.15 G(r\215o).15 E 2.645(wi)-.25 G 2.645(sc)-2.645 G .145
-(urrently silently ignored during con)-2.645 F -.15(ve)-.4 G .145
-(rsion of scaled v).15 F .145(alues, resulting in v)-.25 F .145
-(alues less than)-.25 F(intended, possibly e)72 480 Q -.15(ve)-.25 G 2.5
-(nn).15 G -2.25 -.15(eg a)-2.5 H(ti).15 E -.15(ve)-.25 G 5(.U).15 G
-(sing is the best w)-5 E(ay to safely set a really lar)-.1 E(ge number)
--.18 E(.)-.55 E(Either or The w)72 504 Q
-(ords and are also accepted, as are the numbers)-.1 E/F1 10
-/Times-Italic@0 SF(addr)72 552 Q(ess_matc)-.37 E(h_list)-.15 E F0 2.5
-(=1)10 G(*)-2.5 E F1(addr)A(ess_matc)-.37 E(h_element)-.15 E(addr)72 576
-Q(ess_matc)-.37 E(h_element)-.15 E F0 2.5(=[")2.5 G(!" ] \()-2.5 E F1
-(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(/)2.5 E F1(ip_addr)157 588
-Q(ess)-.37 E F0(/)2.5 E F1(ip_pr)2.5 E(e\214x)-.37 E F0(/)2.5 E F1
-(acl_name)157 600 Q F0 2.5(/")2.5 G -.1(ke)-2.5 G 2.5(y")-.05 G F1 -.1
-(ke)C(y_id)-.2 E F0 2.5(\)")2.5 G(;")-2.5 E .231(Address match lists ar\
-e primarily used to determine access control for v)72 636 R .231
-(arious serv)-.25 F .231(er operations.)-.15 F(The)5.231 E 2.732(ya)-.15
-G .232(re also used)-2.732 F .156
-(to de\214ne priorities for querying other nameserv)72 648 R .156
-(ers and to set the addresses on which will listen for queries.)-.15 F
-.155(The ele-)5.155 F
-(ments which constitute an address match list can be an)72 660 Q 2.5(yo)
--.15 G 2.5(ft)-2.5 G(he follo)-2.5 E(wing:)-.25 E .485(an \(in notation\
-, an \(in the '/'-notation\), A as de\214ned by the statement, the name\
- of an address match list pre)72 684 R(viously)-.25 E
-(de\214ned with the statement, or another)72 696 Q .105
-(Elements can be ne)72 720 R -.05(ga)-.15 G .105(ted with a leading e)
-.05 F .105(xclamation mark \(`)-.15 F(`!')-.74 E .105
-('\), and the match list names and are prede\214ned.)-.74 F(More)5.105 E
-(information on those names can be found in the description of the stat\
-ement.)72 732 Q .02(The addition of the clause made the name of this sy\
-ntactic element something of a misnomer)72 756 R 2.521(,s)-.4 G .021
-(ince security k)-2.521 F -.15(ey)-.1 G 2.521(sc).15 G(an)-2.521 E .007
-(be used to v)72 768 R .007(alidate access without re)-.25 F -.05(ga)
--.15 G .006(rd to a host or netw).05 F .006(ork address.)-.1 F .006
-(Nonetheless, the term `)5.006 F .006(`address match list')-.74 F 2.506
-('i)-.74 G(s)-2.506 E(still used throughout the documentation.)72 780 Q
-EP
+/F0 10/Times-Roman@0 SF -.05(ga)72 12 S .377
+(rdless of whether either is ne).05 F -.05(ga)-.15 G 2.877(ted. F).05 F
+.377(or e)-.15 F .377(xample, in the 1.2.3.13 element is completely useless, because the algo-)
+-.15 F 1.628(rithm will match an)72 24 R 4.128(yl)-.15 G 1.628
+(ookup for 1.2.3.13 to the 1.2.3/24 element.)-4.128 F 1.628(Using \214x)
+6.628 F 1.629(es that problem by ha)-.15 F 1.629(ving 1.2.3.13)-.2 F
+(block)72 36 Q(ed by the ne)-.1 E -.05(ga)-.15 G(tion b).05 E
+(ut all other 1.2.3.* hosts f)-.2 E(all through.)-.1 E(logging {)5 E 2.5
+([c)77 48 S(hannel)-2.5 E/F1 10/Times-Italic@0 SF -.15(ch)2.5 G
+(annel_name).15 E F0({)2.5 E 2.5<288c>82 60 S(le)-2.5 E F1(path_name)2.5
+E F0 2.5([v)89.5 72 S(ersions \()-2.65 E F1(number)2.5 E F0 2.5(|u)2.5 G
+(nlimited \) ])-2.5 E 2.5([s)89.5 84 S(ize)-2.5 E F1(size_spec)2.5 E F0
+(])2.5 E 2.5(|s)84.5 96 S(yslog \( k)-2.5 E
+(ern | user | mail | daemon | auth | syslog | lpr |)-.1 E(ne)112 108 Q
+(ws | uucp | cron | authpri)-.25 E 2.5(v|f)-.25 G(tp |)-2.5 E
+(local0 | local1 | local2 | local3 |)112 120 Q
+(local4 | local5 | local6 | local7 \))112 132 Q 2.5(|n)84.5 144 S
+(ull \);)-2.5 E 2.5([s)82 156 S -2.15 -.25(ev e)-2.5 H
+(rity \( critical | error | w).25 E(arning | notice |)-.1 E 2.5(info |)
+114.5 168 R(deb)2.5 E(ug [)-.2 E F1(le)2.5 E(vel)-.15 E F0 2.5(]|d)2.5 G
+(ynamic \); ])-2.5 E 2.5([p)82 180 S(rint-cate)-2.5 E(gory)-.15 E F1
+(yes_or_no)2.5 E F0 2.5(;])C 2.5([p)82 192 S(rint-se)-2.5 E -.15(ve)-.25
+G(rity).15 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([p)82 204 S(rint-time)
+-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C(}; ])77 216 Q 2.5([c)77 228 S(ate)
+-2.5 E(gory)-.15 E F1(cate)2.5 E(gory_name)-.4 E F0({)2.5 E F1 -.15(ch)
+82 240 S(annel_name).15 E F0 2.5(;[)C F1 -.15(ch)C(annel_name).15 E F0
+2.5(;.)C(.. ])-2.5 E(}; ])77 252 Q 3.19(... };)77 264 R .69
+(The statement con\214gures a wide v)3.19 F .689
+(ariety of logging options for the nameserv)-.25 F(er)-.15 E 5.689(.I)
+-.55 G .689(ts phrase associates output)-5.689 F .315
+(methods, format options and se)72 276 R -.15(ve)-.25 G .315(rity le).15
+F -.15(ve)-.25 G .316
+(ls with a name that can then be used with the phrase to select ho).15 F
+2.816(wv)-.25 G(arious)-3.066 E .009(classes of messages are logged.)72
+288 R .009(Only one statement is used to de\214ne as man)5.009 F 2.509
+(yc)-.15 G .009(hannels and cate)-2.509 F .009(gories as are w)-.15 F
+(anted.)-.1 E .169(If there are multiple logging statements in a con\214guration, the \214rst de\214ned determines the logging, and w)
+72 300 R .17(arnings are)-.1 F(issued for the others.)72 312 Q
+(If there is no logging statement, the logging con\214guration will be:)
+5 E(logging {)82 324 Q(cate)92 336 Q(gory def)-.15 E(ault { def)-.1 E
+(ault_syslog; def)-.1 E(ault_deb)-.1 E(ug; };)-.2 E(cate)92 348 Q
+(gory panic { def)-.15 E(ault_syslog; def)-.1 E(ault_stderr; };)-.1 E
+(cate)92 360 Q(gory pack)-.15 E(et { def)-.1 E(ault_deb)-.1 E(ug; };)-.2
+E(cate)92 372 Q(gory e)-.15 E -.15(ve)-.25 G(ntlib { def).15 E(ault_deb)
+-.1 E(ug; };)-.2 E .773(}; The logging con\214guration is established as soon as the statement is parsed.)
+82 384 R .773(If you w)5.773 F .772(ant to redirect messages)-.1 F .039
+(about processing of the entire con\214guration \214le, the statement must appear \214rst.)
+72 396 R(Ev)5.04 E .04(en if you do not redirect con\214gu-)-.15 F 1.308
+(ration \214le parsing messages, we recommend al)72 408 R -.1(wa)-.1 G
+1.307
+(ys putting the statement \214rst so that this rule need not be con-).1
+F .915(sciously recalled if you e)72 420 R -.15(ve)-.25 G 3.415(rd).15 G
+3.415(ow)-3.415 G .915(ant the parser')-3.515 F 3.415(sm)-.55 G .915
+(essages relocated.)-3.415 F .916(All log output goes to one or more `)
+5.915 F(`chan-)-.74 E(nels')72 432 Q .022('; you can mak)-.74 F 2.522
+(ea)-.1 G 2.522(sm)-2.522 G(an)-2.522 E 2.522(yo)-.15 G 2.522(ft)-2.522
+G .022(hem as you w)-2.522 F 2.521(ant. Ev)-.1 F .021
+(ery channel de\214nition must include a clause that says whether)-.15 F
+.442(messages selected for the channel go to a \214le, to a particular syslog f)
+72 444 R(acility)-.1 E 2.942(,o)-.65 G 2.942(ra)-2.942 G .442
+(re discarded.)-2.942 F .442(It can optionally also)5.442 F .338
+(limit the message se)72 456 R -.15(ve)-.25 G .338(rity le).15 F -.15
+(ve)-.25 G 2.838(lt).15 G .338
+(hat will be accepted by the channel \(def)-2.838 F .337
+(ault is and whether to include a time stamp)-.1 F .341
+(generated by the cate)72 468 R .342(gory name, or se)-.15 F -.15(ve)
+-.25 G .342(rity le).15 F -.15(ve)-.25 G 2.842(l. The).15 F(def)2.842 E
+.342(ault is not to include an)-.1 F 2.842(yo)-.15 G 2.842(ft)-2.842 G
+.342(hose three.)-2.842 F .342(The w)5.342 F .342(ord as the)-.1 F .154
+(destination option for the channel will cause all messages sent to it to be discarded; other options for the channel are)
+72 480 R 2.561(meaningless. The)72 492 R .061
+(clause can include limitations both on ho)2.561 F 2.561(wl)-.25 G(ar)
+-2.561 E .061(ge the \214le is allo)-.18 F .061(wed to become, and ho)
+-.25 F 2.561(wm)-.25 G(an)-2.561 E 2.562(yv)-.15 G(er)-2.712 E(-)-.2 E
+1.391(sions of the \214le will be sa)72 504 R -.15(ve)-.2 G 3.891(de).15
+G 1.391(ach time the \214le is opened.)-3.891 F 1.391
+(The option for \214les is simply a hard ceiling on log)6.391 F(gro)72
+516 Q 2.5(wth. If)-.25 F(the \214le e)2.5 E -.15(ve)-.25 G 2.5(re).15 G
+(xceeds the size, then will just not write an)-2.65 E
+(ything more to it until the \214le is reopened; e)-.15 E(xceed-)-.15 E
+.532(ing the size does not automatically trigger a reopen.)72 528 R .531
+(The def)5.531 F .531(ault beha)-.1 F .531
+(vior is to not limit the size of the \214le.)-.2 F .531(If you)5.531 F
+.68(use the log\214le option, then will retain that man)72 540 R 3.18
+(yb)-.15 G .681(ackup v)-3.18 F .681
+(ersions of the \214le by renaming them when opening.)-.15 F -.15(Fo)
+5.681 G(r).15 E -.15(ex)72 552 S .575(ample, if you choose to k).15 F
+.575(eep 3 old v)-.1 F .575(ersions of the \214le lamers.log then just before it is opened lamers.log.1 is re-)
+-.15 F .129(named to lames.log.2, lamers.log.0 is renamed to lamers.log.1, and lamers.log is renamed to lamers.log.0.)
+72 564 R .13(No rolled)5.13 F -.15(ve)72 576 S .573(rsions are k).15 F
+.573(ept by def)-.1 F .572(ault; an)-.1 F 3.072(ye)-.15 G .572
+(xisting log \214le is simply appended.)-3.222 F .572(The k)5.572 F -.15
+(ey)-.1 G -.1(wo).15 G .572(rd is synon).1 F .572(ymous with in current)
+-.15 F(BIND releases.)72 588 Q(Example usage of size and v)5 E
+(ersions options:)-.15 E(channel an_e)82 600 Q(xample_le)-.15 E -.15(ve)
+-.25 G 2.5(l{).15 G(\214le "lamers.log" v)92 612 Q(ersions 3 size 20m;)
+-.15 E(print-time yes;)92 624 Q(print-cate)92 636 Q(gory yes;)-.15 E
+.887(}; The ar)82 648 R .887(gument for the clause is a syslog f)-.18 F
+.887(acility as described in the manual page.)-.1 F(Ho)5.888 E 3.388(ww)
+-.25 G .888(ill handle messages)-3.388 F .729(sent to this f)72 660 R
+.729(acility is described in the manual page.)-.1 F .729(If you ha)5.729
+F 1.029 -.15(ve a s)-.2 H .728(ystem which uses a v).15 F .728
+(ery old v)-.15 F .728(ersion of syslog)-.15 F 1.136(that only uses tw)
+72 672 R 3.636(oa)-.1 G -.18(rg)-3.636 G 1.136
+(uments to the function, then this clause is silently ignored.).18 F
+1.136(The clause w)6.136 F 1.137(orks lik)-.1 F 3.637(es)-.1 G(yslog')
+-3.637 E(s)-.55 E -.74(``)72 684 S(priorities').74 E .146(', e)-.74 F
+.146(xcept that the)-.15 F 2.646(yc)-.15 G .145(an also be used if you are writing straight to a \214le rather than using syslog.)
+-2.646 F(Messages)5.145 E .09(which are not at least of the se)72 696 R
+-.15(ve)-.25 G .09(rity le).15 F -.15(ve)-.25 G 2.59(lg).15 G -2.15 -.25
+(iv e)-2.59 H 2.59(nw).25 G .09
+(ill not be selected for the channel; messages of higher se)-2.59 F -.15
+(ve)-.25 G .09(rity le).15 F(v-)-.25 E .347(els will be accepted.)72 708
+R .347(If you are using syslog, then the priorities will also determine what e)
+5.347 F -.15(ve)-.25 G .346(ntually passes through.).15 F -.15(Fo)72 720
+S 2.647(re).15 G .147(xample, de\214ning a channel f)-2.797 F .147
+(acility and se)-.1 F -.15(ve)-.25 G .147(rity as and b).15 F .148
+(ut only logging via will cause messages of se)-.2 F -.15(ve)-.25 G .148
+(rity and).15 F .078(to be dropped.)72 732 R .078
+(If the situation were re)5.078 F -.15(ve)-.25 G .077
+(rsed, with writing messages of only or higher).15 F 2.577(,t)-.4 G .077
+(hen w)-2.577 F .077(ould print all messages)-.1 F .203(it recei)72 744
+R -.15(ve)-.25 G 2.703(df).15 G .203(rom the channel.)-2.703 F .203
+(The serv)5.203 F .203(er can supply e)-.15 F(xtensi)-.15 E .504 -.15
+(ve d)-.25 H(eb).15 E .204(ugging information when it is in deb)-.2 F
+.204(ugging mode.)-.2 F .155(If the serv)72 756 R(er')-.15 E 2.655(sg)
+-.55 G .155(lobal deb)-2.655 F .155(ug le)-.2 F -.15(ve)-.25 G 2.655(li)
+.15 G 2.655(sg)-2.655 G .155(reater than zero, then deb)-2.655 F .154
+(ugging mode will be acti)-.2 F -.15(ve)-.25 G 5.154(.T).15 G .154
+(he global deb)-5.154 F .154(ug le)-.2 F -.15(ve)-.25 G 2.654(li).15 G
+(s)-2.654 E .243(set either by starting the serv)72 768 R .244
+(er with the \215ag follo)-.15 F .244(wed by a positi)-.25 F .544 -.15
+(ve i)-.25 H(nte).15 E(ger)-.15 E 2.744(,o)-.4 G 2.744(rb)-2.744 G 2.744
+(ys)-2.744 G .244(ending the running serv)-2.744 F .244(er the sig-)-.15
+F .151(nal \(for e)72 780 R .151(xample, by using The global deb)-.15 F
+.151(ug le)-.2 F -.15(ve)-.25 G 2.651(lc).15 G .151
+(an be set to zero, and deb)-2.651 F .151(ugging mode turned of)-.2 F
+.151(f, by sending the)-.25 F(serv)72 792 Q 1.11
+(er the signal \(as with All deb)-.15 F 1.11
+(ugging messages in the serv)-.2 F 1.11(er ha)-.15 F 1.41 -.15(ve a d)
+-.2 H(eb).15 E 1.11(ug le)-.2 F -.15(ve)-.25 G 1.11(l, and higher deb)
+.15 F 1.11(ug le)-.2 F -.15(ve)-.25 G 1.11(ls gi).15 F -.15(ve)-.25 G EP
 %%Page: 3 3
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF .186(When a gi)72 12 R -.15(ve)-.25 G 2.686(nI)
-.15 G 2.686(Pa)-2.686 G .186(ddress or pre\214x is compared to an addre\
-ss match list, the list is tra)-2.686 F -.15(ve)-.2 G .187
-(rsed in order until an element).15 F 2.98(matches. The)72 24 R .479(in\
-terpretation of a match depends on whether the list is being used for a\
-ccess control, de\214ning ports,)2.98 F(or as a topology)72 36 Q 2.5(,a)
--.65 G(nd whether the element w)-2.5 E(as ne)-.1 E -.05(ga)-.15 G(ted.)
-.05 E .287(When used as an access control list, a non-ne)72 60 R -.05
-(ga)-.15 G .287(ted match allo).05 F .287(ws access and a ne)-.25 F -.05
-(ga)-.15 G .287(ted match denies access.).05 F .287(If there)5.287 F .08
-(is no match at all in the list, access is denied.)72 72 R .08
-(The clauses and all use address match lists lik)5.08 F 2.58(et)-.1 G
-2.58(his. Similarly)-2.58 F 2.58(,t)-.65 G .08(he op-)-2.58 F
-(tion will cause the serv)72 84 Q(er to not accept queries on an)-.15 E
-2.5(yo)-.15 G 2.5(ft)-2.5 G(he machine')-2.5 E 2.5(sa)-.55 G
-(ddresses which do not match the list.)-2.5 E .704
-(When used with the option, a non-ne)72 108 R -.05(ga)-.15 G .705(ted m\
-atch returns a distance based on its position on the list \(the closer \
-the).05 F .777(match is to the start of the list, the shorter the dista\
-nce is between it and the serv)72 120 R 3.277(er\). A)-.15 F(ne)3.277 E
--.05(ga)-.15 G .777(ted match will be as-).05 F .508
-(signed the maximum distance from the serv)72 132 R(er)-.15 E 5.508(.I)
--.55 G 3.008(ft)-5.508 G .509
-(here is no match, the address will get a distance which is further)
--3.008 F(than an)72 144 Q 2.5(yn)-.15 G(on-ne)-2.5 E -.05(ga)-.15 G
-(ted list element, and closer than an).05 E 2.5(yn)-.15 G -2.25 -.15
-(eg a)-2.5 H(ted element.).15 E 1.068(Because of the \214rst-match aspe\
-ct of the algorithm, an element that de\214nes a subset of another elem\
-ent in the list)72 168 R .648
-(should come before the broader element, re)72 180 R -.05(ga)-.15 G .649
-(rdless of whether either is ne).05 F -.05(ga)-.15 G 3.149(ted. F).05 F
-.649(or e)-.15 F .649(xample, in the 1.2.3.13 ele-)-.15 F .073
-(ment is completely useless, because the algorithm will match an)72 192
-R 2.573(yl)-.15 G .073(ookup for 1.2.3.13 to the 1.2.3/24 element.)
--2.573 F(Using)5.072 E<8c78>72 204 Q(es that problem by ha)-.15 E
-(ving 1.2.3.13 block)-.2 E(ed by the ne)-.1 E -.05(ga)-.15 G(tion b).05
-E(ut all other 1.2.3.* hosts f)-.2 E(all through.)-.1 E(logging {)72 240
-Q 2.5([c)77 252 S(hannel)-2.5 E/F1 10/Times-Italic@0 SF -.15(ch)2.5 G
-(annel_name).15 E F0({)2.5 E 2.5<288c>82 264 S(le)-2.5 E F1(path_name)
-2.5 E F0 2.5([v)89.5 276 S(ersions \()-2.65 E F1(number)2.5 E F0 2.5(|u)
-2.5 G(nlimited \) ])-2.5 E 2.5([s)89.5 288 S(ize)-2.5 E F1(size_spec)2.5
-E F0(])2.5 E 2.5(|s)84.5 300 S(yslog \( k)-2.5 E
-(ern | user | mail | daemon | auth | syslog | lpr |)-.1 E(ne)112 312 Q
-(ws | uucp | cron | authpri)-.25 E 2.5(v|f)-.25 G(tp |)-2.5 E
-(local0 | local1 | local2 | local3 |)112 324 Q
-(local4 | local5 | local6 | local7 \))112 336 Q 2.5(|n)84.5 348 S
-(ull \);)-2.5 E 2.5([s)82 372 S -2.15 -.25(ev e)-2.5 H
-(rity \( critical | error | w).25 E(arning | notice |)-.1 E 2.5(info |)
-114.5 384 R(deb)2.5 E(ug [)-.2 E F1(le)2.5 E(vel)-.15 E F0 2.5(]|d)2.5 G
-(ynamic \); ])-2.5 E 2.5([p)82 396 S(rint-cate)-2.5 E(gory)-.15 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([p)82 408 S(rint-se)-2.5 E -.15(ve)-.25
-G(rity).15 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([p)82 420 S(rint-time)
--2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C(}; ])77 432 Q 2.5([c)77 456 S(ate)
--2.5 E(gory)-.15 E F1(cate)2.5 E(gory_name)-.4 E F0({)2.5 E F1 -.15(ch)
-82 468 S(annel_name).15 E F0 2.5(;[)C F1 -.15(ch)C(annel_name).15 E F0
-2.5(;.)C(.. ])-2.5 E(}; ])77 480 Q 2.5(... };)77 492 R .025
-(The statement con\214gures a wide v)72 528 R .026
-(ariety of logging options for the nameserv)-.25 F(er)-.15 E 5.026(.I)
--.55 G .026(ts phrase associates output methods,)-5.026 F .196
-(format options and se)72 540 R -.15(ve)-.25 G .196(rity le).15 F -.15
-(ve)-.25 G .195
-(ls with a name that can then be used with the phrase to select ho).15 F
-2.695(wv)-.25 G .195(arious classes of)-2.945 F(messages are logged.)72
-552 Q .695(Only one statement is used to de\214ne as man)72 576 R 3.195
-(yc)-.15 G .695(hannels and cate)-3.195 F .695(gories as are w)-.15 F
-3.196(anted. If)-.1 F .696(there are multiple logging)3.196 F 1.215(sta\
-tements in a con\214guration, the \214rst de\214ned determines the logg\
-ing, and w)72 588 R 1.215(arnings are issued for the others.)-.1 F(If)
-6.215 E
-(there is no logging statement, the logging con\214guration will be:)72
-600 Q(logging {)82 624 Q(cate)92 636 Q(gory def)-.15 E(ault { def)-.1 E
-(ault_syslog; def)-.1 E(ault_deb)-.1 E(ug; };)-.2 E(cate)92 648 Q
-(gory panic { def)-.15 E(ault_syslog; def)-.1 E(ault_stderr; };)-.1 E
-(cate)92 660 Q(gory pack)-.15 E(et { def)-.1 E(ault_deb)-.1 E(ug; };)-.2
-E(cate)92 672 Q(gory e)-.15 E -.15(ve)-.25 G(ntlib { def).15 E(ault_deb)
--.1 E(ug; };)-.2 E(};)82 684 Q .515(The logging con\214guration is esta\
-blished as soon as the statement is parsed.)72 708 R .515(If you w)5.515
-F .515(ant to redirect messages about)-.1 F .32(processing of the entir\
-e con\214guration \214le, the statement must appear \214rst.)72 720 R
-(Ev)5.319 E .319(en if you do not redirect con\214guration)-.15 F .35
-(\214le parsing messages, we recommend al)72 732 R -.1(wa)-.1 G .351(ys\
- putting the statement \214rst so that this rule need not be consciousl\
-y re-).1 F(called if you e)72 744 Q -.15(ve)-.25 G 2.5(rd).15 G 2.5(on)
--2.5 G(eed w)-2.5 E(ant the parser')-.1 E 2.5(sm)-.55 G
-(essages relocated.)-2.5 E(All log output goes to one or more `)72 780 Q
-(`channels')-.74 E('; you can mak)-.74 E 2.5(ea)-.1 G 2.5(sm)-2.5 G(an)
--2.5 E 2.5(yo)-.15 G 2.5(ft)-2.5 G(hem as you w)-2.5 E(ant.)-.1 E EP
+/F0 10/Times-Roman@0 SF(more more detailed output.)72 12 Q
+(Channels that specify a speci\214c deb)5 E(ug se)-.2 E -.15(ve)-.25 G
+(rity).15 E 2.5(,e)-.65 G(.g.)-2.5 E(channel speci\214c_deb)82 24 Q
+(ug_le)-.2 E -.15(ve)-.25 G 2.5(l{).15 G(\214le "foo";)92 36 Q(se)92 48
+Q -.15(ve)-.25 G(rity deb).15 E(ug 3;)-.2 E .534(}; will get deb)82 60 R
+.534(ugging output of le)-.2 F -.15(ve)-.25 G 3.034(l3o).15 G 3.034(rl)
+-3.034 G .534(ess an)-3.034 F 3.034(yt)-.15 G .534(ime the serv)-3.034 F
+.534(er is in deb)-.15 F .534(ugging mode, re)-.2 F -.05(ga)-.15 G .533
+(rdless of the global).05 F(deb)72 72 Q .941(ugging le)-.2 F -.15(ve)
+-.25 G 3.441(l. Channels).15 F .941(with se)3.441 F -.15(ve)-.25 G .941
+(rity use the serv).15 F(er')-.15 E 3.441(sg)-.55 G .941(lobal le)-3.441
+F -.15(ve)-.25 G 3.441(lt).15 G 3.441(od)-3.441 G .941
+(etermine what messages to print.)-3.441 F .942(If has)5.942 F .089
+(been turned on, then the date and time will be logged.)72 84 R .088
+(may be speci\214ed for a syslog channel, b)5.089 F .088
+(ut is usually pointless)-.2 F .563
+(since syslog also prints the date and time.)72 96 R .563
+(If is requested, then the cate)5.563 F .564
+(gory of the message will be logged as well.)-.15 F(Finally)72 108 Q
+2.695(,i)-.65 G 2.695(fi)-2.695 G 2.695(so)-2.695 G .195(n, then the se)
+-2.695 F -.15(ve)-.25 G .194(rity le).15 F -.15(ve)-.25 G 2.694(lo).15 G
+2.694(ft)-2.694 G .194(he message will be logged.)-2.694 F .194
+(The options may be used in an)5.194 F 2.694(yc)-.15 G(ombination,)
+-2.694 E .715(and will al)72 120 R -.1(wa)-.1 G .716
+(ys be printed in the follo).1 F .716(wing order: time, cate)-.25 F
+(gory)-.15 E 3.216(,s)-.65 G -2.15 -.25(ev e)-3.216 H(rity).25 E 5.716
+(.H)-.65 G .716(ere is an e)-5.716 F .716(xample where all three op-)
+-.15 F(tions are on:)72 132 Q(28-Apr)82 144 Q .581
+(-1997 15:05:32.863 def)-.2 F .581
+(ault: notice: Ready to answer queries.)-.1 F .58
+(There are four prede\214ned channels that are)5.581 F(used for def)72
+156 Q(ault logging as follo)-.1 E 2.5(ws. Ho)-.25 F 2.5(wt)-.25 G(he)
+-2.5 E 2.5(ya)-.15 G(re used used is described in the ne)-2.5 E
+(xt section,)-.15 E(channel def)82 168 Q(ault_syslog {)-.1 E
+(syslog daemon;)92 180 Q 2.5(#s)17.5 G(end to syslog')-2.5 E 2.5(sd)-.55
+G(aemon f)-2.5 E(acility)-.1 E(se)92 192 Q -.15(ve)-.25 G(rity info;).15
+E 2.5(#o)17.5 G(nly send priority info and higher)-2.5 E(};)82 204 Q
+(channel def)82 216 Q(ault_deb)-.1 E(ug {)-.2 E(\214le "named.run";)92
+228 Q 2.5(#w)10 G(rite to named.run in the w)-2.5 E(orking directory)-.1
+E 2.5(#N)144.5 240 S(ote: stderr is used instead of "named.run")-2.5 E
+2.5(#i)144.5 252 S 2.5(ft)-2.5 G(he serv)-2.5 E
+(er is started with the -f option.)-.15 E(se)92 264 Q -.15(ve)-.25 G
+(rity dynamic;).15 E 2.5(#l)10 G(og at the serv)-2.5 E(er')-.15 E 2.5
+(sc)-.55 G(urrent deb)-2.5 E(ug le)-.2 E -.15(ve)-.25 G(l).15 E(};)82
+276 Q(channel def)82 288 Q(ault_stderr { # writes to stderr)-.1 E
+(\214le "<stderr>";)92 300 Q 2.5(#t)12.5 G(his is illustrati)-2.5 E .3
+-.15(ve o)-.25 H(nly; there').15 E 2.5(sc)-.55 G(urrently)-2.5 E 2.5(#n)
+144.5 312 S 2.5(ow)-2.5 G(ay of specifying an internal \214le)-2.6 E 2.5
+(#d)144.5 324 S(escriptor in the con\214guration language.)-2.5 E(se)92
+336 Q -.15(ve)-.25 G(rity info;).15 E 2.5(#o)17.5 G
+(nly send priority info and higher)-2.5 E(};)82 348 Q(channel null {)82
+360 Q 37.5(null; #)92 372 R(toss an)2.5 E(ything sent to this channel)
+-.15 E .417(}; Once a channel is de\214ned, it cannot be rede\214ned.)82
+384 R .418(Thus you cannot alter the b)5.417 F .418
+(uilt-in channels directly)-.2 F 2.918(,b)-.65 G .418(ut you)-3.118 F
+.529(can modify the def)72 396 R .529(ault logging by pointing cate)-.1
+F .529(gories at channels you ha)-.15 F .829 -.15(ve d)-.2 H 3.029
+(e\214ned. There).15 F .528(are man)3.029 F 3.028(yc)-.15 G(ate)-3.028 E
+.528(gories, so)-.15 F .302(you can send the logs you w)72 408 R .302
+(ant to see where)-.1 F -.15(ve)-.25 G 2.802(ry).15 G .302(ou w)-2.802 F
+.303(ant, without seeing logs you don')-.1 F 2.803(tw)-.18 G 2.803
+(ant. If)-2.903 F .303(you don')2.803 F 2.803(ts)-.18 G(pecify)-2.803 E
+2.711(al)72 420 S .211(ist of channels for a cate)-2.711 F(gory)-.15 E
+2.711(,t)-.65 G .211(hen log messages in that cate)-2.711 F .211
+(gory will be sent to the cate)-.15 F .211(gory instead.)-.15 F .21
+(If you don')5.211 F(t)-.18 E(specify a def)72 432 Q(ault cate)-.1 E
+(gory)-.15 E 2.5(,t)-.65 G(he follo)-2.5 E(wing `)-.25 E(`def)-.74 E
+(ault def)-.1 E(ault')-.1 E 2.5('i)-.74 G 2.5(su)-2.5 G(sed:)-2.5 E
+(cate)82 444 Q .403(gory def)-.15 F .403(ault { def)-.1 F .403
+(ault_syslog; def)-.1 F(ault_deb)-.1 E .403(ug; }; As an e)-.2 F .403
+(xample, let')-.15 F 2.903(ss)-.55 G .403(ay you w)-2.903 F .404
+(ant to log security e)-.1 F -.15(ve)-.25 G .404(nts to a).15 F
+(\214le, b)72 456 Q(ut you also w)-.2 E(ant k)-.1 E(eep the def)-.1 E
+(ault logging beha)-.1 E(vior)-.2 E 5(.Y)-.55 G(ou')-6.1 E 2.5(ds)-.5 G
+(pecify the follo)-2.5 E(wing:)-.25 E(channel my_security_channel {)82
+468 Q(\214le "my_security_\214le";)92 480 Q(se)92 492 Q -.15(ve)-.25 G
+(rity info;).15 E(};)82 504 Q(cate)82 516 Q
+(gory security { my_security_channel;)-.15 E(def)132 528 Q
+(ault_syslog; def)-.1 E(ault_deb)-.1 E(ug; }; T)-.2 E 2.5(od)-.8 G
+(iscard all messages in a cate)-2.5 E(gory)-.15 E 2.5(,s)-.65 G
+(pecify the channel:)-2.5 E(cate)82 540 Q(gory lame-serv)-.15 E
+(ers { null; };)-.15 E(cate)82 552 Q .232
+(gory cname { null; }; The follo)-.15 F .231(wing cate)-.25 F .231
+(gories are a)-.15 F -.25(va)-.2 G .231(ilable: The catch-all.).25 F
+(Man)5.231 E 2.731(yt)-.15 G .231(hings still aren')-2.731 F 2.731(tc)
+-.18 G(lassi\214ed)-2.731 E .17(into cate)72 564 R .17(gories, and the)
+-.15 F 2.67(ya)-.15 G .17(ll end up here.)-2.67 F .17(Also, if you don')
+5.17 F 2.67(ts)-.18 G .17(pecify an)-2.67 F 2.67(yc)-.15 G .17
+(hannels for a cate)-2.67 F(gory)-.15 E 2.67(,t)-.65 G .17(he def)-2.67
+F .17(ault cate)-.1 F(gory)-.15 E .565(is used instead.)72 576 R .564
+(If you do not de\214ne the def)5.564 F .564(ault cate)-.1 F(gory)-.15 E
+3.064(,t)-.65 G .564(he follo)-3.064 F .564
+(wing de\214nition is used: High-le)-.25 F -.15(ve)-.25 G 3.064(lc).15 G
+(on\214guration)-3.064 E .06(\214le processing.)72 588 R(Lo)5.06 E(w-le)
+-.25 E -.15(ve)-.25 G 2.56(lc).15 G .06
+(on\214guration \214le processing.)-2.56 F 2.56(As)5.06 G .06
+(hort log message is generated for e)-2.56 F -.15(ve)-.25 G .06
+(ry query the serv).15 F(er)-.15 E(recei)72 600 Q -.15(ve)-.25 G 2.539
+(s. Messages).15 F(lik)2.539 E 2.539(e`)-.1 G .039(`Lame serv)-3.279 F
+.039(er on ...)-.15 F 4.019 -.74('' S)-.7 H 2.539(tatistics. If).74 F
+.039(the serv)2.539 F .038(er has to shut itself do)-.15 F .038
+(wn due to an internal prob-)-.25 F .07
+(lem, it will log the problem in this cate)72 612 R .07
+(gory as well as in the problem')-.15 F 2.571(sn)-.55 G(ati)-2.571 E
+.371 -.15(ve c)-.25 H(ate).15 E(gory)-.15 E 5.071(.I)-.65 G 2.571(fy)
+-5.071 G .071(ou do not de\214ne the pan-)-2.571 F .914(ic cate)72 624 R
+(gory)-.15 E 3.414(,t)-.65 G .913(he follo)-3.414 F .913
+(wing de\214nition is used: Dynamic updates.)-.25 F(Ne)5.913 E -.05(ga)
+-.15 G(ti).05 E 1.213 -.15(ve c)-.25 H 3.413(aching. Zone).15 F .913
+(transfers the serv)3.413 F .913(er is re-)-.15 F(cei)72 636 Q 2.755
+(ving. Zone)-.25 F .255(transfers the serv)2.755 F .255(er is sending.)
+-.15 F .255(All database operations.)5.255 F(Deb)5.255 E .255
+(ugging info from the e)-.2 F -.15(ve)-.25 G .255(nt system.).15 F(On-)
+5.255 E .114(ly one channel may be speci\214ed for this cate)72 648 R
+(gory)-.15 E 2.614(,a)-.65 G .113(nd it must be a \214le channel.)-2.614
+F .113(If you do not de\214ne the e)5.113 F -.15(ve)-.25 G .113
+(ntlib cat-).15 F -.15(eg)72 660 S(ory).15 E 2.833(,t)-.65 G .333
+(he follo)-2.833 F .334(wing de\214nition is used: Dumps of pack)-.25 F
+.334(ets recei)-.1 F -.15(ve)-.25 G 2.834(da).15 G .334(nd sent.)-2.834
+F .334(Only one channel may be speci\214ed for)5.334 F .12(this cate)72
+672 R(gory)-.15 E 2.619(,a)-.65 G .119(nd it must be a \214le channel.)
+-2.619 F .119(If you do not de\214ne the pack)5.119 F .119(et cate)-.1 F
+(gory)-.15 E 2.619(,t)-.65 G .119(he follo)-2.619 F .119
+(wing de\214nition is used:)-.25 F .889(The NO)72 684 R .889
+(TIFY protocol.)-.4 F .889(Messages lik)5.889 F 3.389(e`)-.1 G .889
+(`... points to a CN)-4.129 F(AME')-.35 E 3.389('. Appro)-.74 F -.15(ve)
+-.15 G(d/unappro).15 E -.15(ve)-.15 G 3.39(dr).15 G 3.39
+(equests. Operating)-3.39 F(sys-)3.39 E 1.423(tem problems.)72 696 R
+1.423(Internal consistenc)6.423 F 3.923(yc)-.15 G 1.423(heck f)-3.923 F
+3.923(ailures. Periodic)-.1 F 1.422(maintenance e)3.922 F -.15(ve)-.25 G
+3.922(nts. Zone).15 F 1.422(loading messages.)3.922 F(Mes-)6.422 E .863
+(sages arising from response checking, such as `)72 708 R .863
+(`Malformed response ...)-.74 F -.74('')-.7 G 3.363(,`).74 G .864
+(`wrong ans. name ...)-4.103 F -.74('')-.7 G 3.364(,`).74 G .864
+(`unrelated addi-)-4.104 F(tional info ...)72 720 Q -.74('')-.7 G 2.5
+(,`).74 G(`in)-3.24 E -.25(va)-.4 G(lid RR type ...).25 E -.74('')-.7 G
+2.5(,a).74 G(nd `)-2.5 E(`bad referral ...)-.74 E -.74('')-.7 G 5(.o).74
+G(ptions {)-5 E 2.5([h)77 732 S(ostname)-2.5 E/F1 10/Times-Italic@0 SF
+(hostname_string)2.5 E F0 2.5(;])C 2.5([v)77 744 S(ersion)-2.65 E F1
+(ver)2.5 E(sion_string)-.1 E F0 2.5(;])C 2.5([d)77 756 S(irectory)-2.5 E
+F1(path_name)2.5 E F0 2.5(;])C 2.5([n)77 768 S(amed-xfer)-2.5 E F1
+(path_name)2.5 E F0 2.5(;])C 2.5([d)77 780 S(ump-\214le)-2.5 E F1
+(path_name)2.5 E F0 2.5(;])C 2.5([m)77 792 S(emstatistics-\214le)-2.5 E
+F1(path_name)2.5 E F0 2.5(;])C EP
 %%Page: 4 4
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF(Ev)72 12 Q .37(ery channel de\214nition must in\
-clude a clause that says whether messages selected for the channel go t\
-o a \214le, to a)-.15 F .241(particular syslog f)72 24 R(acility)-.1 E
-2.741(,o)-.65 G 2.741(ra)-2.741 G .241(re discarded.)-2.741 F .242
-(It can optionally also limit the message se)5.241 F -.15(ve)-.25 G .242
-(rity le).15 F -.15(ve)-.25 G 2.742(lt).15 G .242(hat will be accept-)
--2.742 F .347(ed by the channel \(def)72 36 R .347
-(ault is and whether to include a time stamp generated by the cate)-.1 F
-.346(gory name, or se)-.15 F -.15(ve)-.25 G .346(rity le).15 F -.15(ve)
--.25 G(l.).15 E(The def)72 48 Q(ault is not to include an)-.1 E 2.5(yo)
--.15 G 2.5(ft)-2.5 G(hose three.)-2.5 E .685(The w)72 72 R .686(ord as \
-the destination option for the channel will cause all messages sent to \
-it to be discarded; other options)-.1 F
-(for the channel are meaningless.)72 84 Q .756
-(The clause can include limitations both on ho)72 108 R 3.256(wl)-.25 G
-(ar)-3.256 E .756(ge the \214le is allo)-.18 F .756
-(wed to become, and ho)-.25 F 3.256(wm)-.25 G(an)-3.256 E 3.256(yv)-.15
-G .756(ersions of the)-3.406 F(\214le will be sa)72 120 Q -.15(ve)-.2 G
-2.5(de).15 G(ach time the \214le is opened.)-2.5 E .481
-(The option for \214les is simply a hard ceiling on log gro)72 144 R
-2.981(wth. If)-.25 F .481(the \214le e)2.981 F -.15(ve)-.25 G 2.981(re)
-.15 G .482(xceeds the size, then will just not write)-3.131 F(an)72 156
-Q .11(ything more to it until the \214le is reopened; e)-.15 F .109
-(xceeding the size does not automatically trigger a reopen.)-.15 F .109
-(The def)5.109 F(ault)-.1 E(beha)72 168 Q
-(vior is to not limit the size of the \214le.)-.2 E .25
-(If you use the log\214le option, then will retain that man)72 192 R
-2.751(yb)-.15 G .251(ackup v)-2.751 F .251
-(ersions of the \214le by renaming them when opening.)-.15 F -.15(Fo)72
-204 S 2.95(re).15 G .449(xample, if you choose to k)-3.1 F .449
-(eep 3 old v)-.1 F .449(ersions of the \214le lamers.log then just befo\
-re it is opened lamers.log.1 is)-.15 F 1.429(renamed to lames.log.2, la\
-mers.log.0 is renamed to lamers.log.1, and lamers.log is renamed to lam\
-ers.log.0.)72 216 R(No)6.429 E .85(rolled v)72 228 R .85(ersions are k)
--.15 F .85(ept by def)-.1 F .85(ault; an)-.1 F 3.35(ye)-.15 G .849
-(xisting log \214le is simply appended.)-3.5 F .849(The k)5.849 F -.15
-(ey)-.1 G -.1(wo).15 G .849(rd is synon).1 F .849(ymous with in)-.15 F
-(current BIND releases.)72 240 Q(Example usage of size and v)5 E
-(ersions options:)-.15 E(channel an_e)82 264 Q(xample_le)-.15 E -.15(ve)
--.25 G 2.5(l{).15 G(\214le "lamers.log" v)92 276 Q(ersions 3 size 20m;)
--.15 E(print-time yes;)92 288 Q(print-cate)92 300 Q(gory yes;)-.15 E(};)
-82 312 Q .402(The ar)72 336 R .402(gument for the clause is a syslog f)
--.18 F .403(acility as described in the manual page.)-.1 F(Ho)5.403 E
-2.903(ww)-.25 G .403(ill handle messages sent to)-2.903 F .325(this f)72
-348 R .325(acility is described in the manual page.)-.1 F .325
-(If you ha)5.325 F .625 -.15(ve a s)-.2 H .324(ystem which uses a v).15
-F .324(ery old v)-.15 F .324(ersion of syslog that only)-.15 F(uses tw)
-72 360 Q 2.5(oa)-.1 G -.18(rg)-2.5 G
-(uments to the function, then this clause is silently ignored.).18 E
-1.127(The clause w)72 384 R 1.127(orks lik)-.1 F 3.627(es)-.1 G(yslog')
--3.627 E 3.627(s`)-.55 G(`priorities')-4.367 E 1.127(', e)-.74 F 1.127
-(xcept that the)-.15 F 3.627(yc)-.15 G 1.128
-(an also be used if you are writing straight to a \214le)-3.627 F 1.117
-(rather than using syslog.)72 396 R 3.617(Messages which)6.117 F 1.117
-(are not at least of the se)3.617 F -.15(ve)-.25 G 1.116(rity le).15 F
--.15(ve)-.25 G 3.616(lg).15 G -2.15 -.25(iv e)-3.616 H 3.616(nw).25 G
-1.116(ill not be selected for the)-3.616 F
-(channel; messages of higher se)72 408 Q -.15(ve)-.25 G(rity le).15 E
--.15(ve)-.25 G(ls will be accepted.).15 E .531(If you are using syslog,\
- then the priorities will also determine what e)72 432 R -.15(ve)-.25 G
-.531(ntually passes through.).15 F -.15(Fo)5.532 G 3.032(re).15 G .532
-(xample, de\214n-)-3.182 F .292(ing a channel f)72 444 R .292
-(acility and se)-.1 F -.15(ve)-.25 G .292(rity as and b).15 F .291
-(ut only logging via will cause messages of se)-.2 F -.15(ve)-.25 G .291
-(rity and to be dropped.).15 F(If)5.291 E .397(the situation were re)72
-456 R -.15(ve)-.25 G .397(rsed, with writing messages of only or higher)
-.15 F 2.897(,t)-.4 G .397(hen w)-2.897 F .398
-(ould print all messages it recei)-.1 F -.15(ve)-.25 G 2.898(df).15 G
-(rom)-2.898 E(the channel.)72 468 Q .511(The serv)72 492 R .511
-(er can supply e)-.15 F(xtensi)-.15 E .811 -.15(ve d)-.25 H(eb).15 E
-.511(ugging information when it is in deb)-.2 F .51(ugging mode.)-.2 F
-.51(If the serv)5.51 F(er')-.15 E 3.01(sg)-.55 G .51(lobal deb)-3.01 F
-(ug)-.2 E(le)72 504 Q -.15(ve)-.25 G 3.303(li).15 G 3.303(sg)-3.303 G
-.803(reater than zero, then deb)-3.303 F .803(ugging mode will be acti)
--.2 F -.15(ve)-.25 G 5.803(.T).15 G .803(he global deb)-5.803 F .803
-(ug le)-.2 F -.15(ve)-.25 G 3.303(li).15 G 3.303(ss)-3.303 G .803
-(et either by starting the)-3.303 F(serv)72 516 Q .097
-(er with the \215ag follo)-.15 F .097(wed by a positi)-.25 F .397 -.15
-(ve i)-.25 H(nte).15 E(ger)-.15 E 2.597(,o)-.4 G 2.597(rb)-2.597 G 2.597
-(ys)-2.597 G .097(ending the running serv)-2.597 F .097
-(er the signal \(for e)-.15 F .097(xample, by using)-.15 F .402
-(The global deb)72 528 R .402(ug le)-.2 F -.15(ve)-.25 G 2.902(lc).15 G
-.402(an be set to zero, and deb)-2.902 F .402(ugging mode turned of)-.2
-F .403(f, by sending the serv)-.25 F .403(er the signal \(as with)-.15 F
-.7(All deb)72 540 R .7(ugging messages in the serv)-.2 F .7(er ha)-.15 F
-1 -.15(ve a d)-.2 H(eb).15 E .7(ug le)-.2 F -.15(ve)-.25 G .7
-(l, and higher deb).15 F .7(ug le)-.2 F -.15(ve)-.25 G .7(ls gi).15 F 1
--.15(ve m)-.25 H .7(ore more detailed output.).15 F
-(Channels that specify a speci\214c deb)72 552 Q(ug se)-.2 E -.15(ve)
--.25 G(rity).15 E 2.5(,e)-.65 G(.g.)-2.5 E(channel speci\214c_deb)82 576
-Q(ug_le)-.2 E -.15(ve)-.25 G 2.5(l{).15 G(\214le "foo";)92 588 Q(se)92
-600 Q -.15(ve)-.25 G(rity deb).15 E(ug 3;)-.2 E(};)82 612 Q .058
-(will get deb)72 636 R .058(ugging output of le)-.2 F -.15(ve)-.25 G
-2.558(l3o).15 G 2.558(rl)-2.558 G .058(ess an)-2.558 F 2.558(yt)-.15 G
-.058(ime the serv)-2.558 F .058(er is in deb)-.15 F .058
-(ugging mode, re)-.2 F -.05(ga)-.15 G .058(rdless of the global deb).05
-F(ug-)-.2 E(ging le)72 648 Q -.15(ve)-.25 G 2.5(l. Channels).15 F
-(with se)2.5 E -.15(ve)-.25 G(rity use the serv).15 E(er')-.15 E 2.5(sg)
--.55 G(lobal le)-2.5 E -.15(ve)-.25 G 2.5(lt).15 G 2.5(od)-2.5 G
-(etermine what messages to print.)-2.5 E .679
-(If has been turned on, then the date and time will be logged.)72 672 R
-.678(may be speci\214ed for a syslog channel, b)5.679 F .678
-(ut is usually)-.2 F .341
-(pointless since syslog also prints the date and time.)72 684 R .341
-(If is requested, then the cate)5.341 F .341
-(gory of the message will be logged)-.15 F .021(as well.)72 696 R
-(Finally)5.021 E 2.521(,i)-.65 G 2.521(fi)-2.521 G 2.521(so)-2.521 G
-.021(n, then the se)-2.521 F -.15(ve)-.25 G .021(rity le).15 F -.15(ve)
--.25 G 2.521(lo).15 G 2.521(ft)-2.521 G .021(he message will be logged.)
--2.521 F .021(The options may be used in an)5.021 F 2.52(yc)-.15 G(om-)
--2.52 E .785(bination, and will al)72 708 R -.1(wa)-.1 G .785
-(ys be printed in the follo).1 F .786(wing order: time, cate)-.25 F
-(gory)-.15 E 3.286(,s)-.65 G -2.15 -.25(ev e)-3.286 H(rity).25 E 5.786
-(.H)-.65 G .786(ere is an e)-5.786 F .786(xample where all)-.15 F
-(three options are on:)72 720 Q(28-Apr)82 744 Q(-1997 15:05:32.863 def)
--.2 E(ault: notice: Ready to answer queries.)-.1 E .131
-(There are four prede\214ned channels that are used for def)72 768 R .13
-(ault logging as follo)-.1 F 2.63(ws. Ho)-.25 F 2.63(wt)-.25 G(he)-2.63
-E 2.63(ya)-.15 G .13(re used used is described)-2.63 F(in the ne)72 780
-Q(xt section,)-.15 E EP
+/F0 10/Times-Roman@0 SF 2.5([p)77 12 S(id-\214le)-2.5 E/F1 10
+/Times-Italic@0 SF(path_name)2.5 E F0 2.5(;])C 2.5([s)77 24 S
+(tatistics-\214le)-2.5 E F1(path_name)2.5 E F0 2.5(;])C 2.5([a)77 36 S
+(uth-nxdomain)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([d)77 48 S
+(eallocate-on-e)-2.5 E(xit)-.15 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([d)
+77 60 S(ialup)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([f)77 72 S(ak)
+-2.6 E(e-iquery)-.1 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([f)77 84 S
+(etch-glue)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([h)77 96 S
+(as-old-clients)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([h)77 108 S
+(ost-statistics)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([h)77 120 S
+(ost-statistics-max)-2.5 E F1(number)2.5 E F0 2.5(;])C 2.5([m)77 132 S
+(ultiple-cnames)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([n)77 144 S
+(otify \()-2.5 E F1(yes_or_no)2.5 E F0 2.5(|e)2.5 G(xplicit \); ])-2.65
+E 2.5([s)77 156 S(uppress-initial-notify)-2.5 E F1(yes_or_no)2.5 E F0
+2.5(;])C 2.5([r)77 168 S(ecursion)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C
+2.5([r)77 180 S(fc2308-type1)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5
+([u)77 192 S(se-id-pool)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([t)77
+204 S(reat-cr)-2.5 E(-as-space)-.2 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5
+([a)77 216 S(lso-notify)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([f)77
+228 S(orw)-2.5 E(ard \( only | \214rst \); ])-.1 E 2.5([f)77 240 S(orw)
+-2.5 E(arders { [)-.1 E F1(in_addr)2.5 E F0 2.5(;[)2.5 G F1(in_addr)A F0
+2.5(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([c)77 252 S
+(heck-names \( master | sla)-2.5 E .3 -.15(ve | r)-.2 H(esponse \) \( w)
+.15 E(arn | f)-.1 E(ail | ignore \); ])-.1 E 2.5([a)77 264 S(llo)-2.5 E
+(w-query {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])
+2.5 E 2.5([a)77 276 S(llo)-2.5 E(w-recursion {)-.25 E F1(addr)2.5 E
+(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([a)77 288 S(llo)-2.5 E
+(w-transfer {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0
+(}; ])2.5 E 2.5([b)77 300 S(lackhole {)-2.5 E F1(addr)2.5 E(ess_matc)
+-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([l)77 312 S(isten-on [ port)-2.5
+E F1(ip_port)2.5 E F0 2.5(]{)2.5 G F1(addr)A(ess_matc)-.37 E(h_list)-.15
+E F0(}; ])2.5 E 2.5([q)77 324 S(uery-source [ address \()-2.5 E F1
+(ip_addr)2.5 E F0 2.5(|*\)])2.5 G 2.5([p)114.5 336 S(ort \()-2.5 E F1
+(ip_port)2.5 E F0 2.5(|*\)];])2.5 G 2.5([l)77 348 S(ame-ttl)-2.5 E F1
+(number)2.5 E F0 2.5(;])C 2.5([m)77 360 S(ax-transfer)-2.5 E(-time-in)
+-.2 E F1(number)2.5 E F0 2.5(;])C 2.5([m)77 372 S(ax-ncache-ttl)-2.5 E
+F1(number)2.5 E F0 2.5(;])C 2.5([m)77 384 S(in-roots)-2.5 E F1(number)
+2.5 E F0 2.5(;])C 2.5([s)77 396 S(erial-queries)-2.5 E F1(number)2.5 E
+F0 2.5(;])C 2.5([t)77 408 S(ransfer)-2.5 E(-format \( one-answer | man)
+-.2 E(y-answers \); ])-.15 E 2.5([t)77 420 S(ransfers-in)-2.5 E F1
+(number)5 E F0 2.5(;])C 2.5([t)77 432 S(ransfers-out)-2.5 E F1(number)
+2.5 E F0 2.5(;])C 2.5([t)77 444 S(ransfers-per)-2.5 E(-ns)-.2 E F1
+(number)2.5 E F0 2.5(;])C 2.5([t)77 456 S(ransfer)-2.5 E(-source)-.2 E
+F1(ip_addr)2.5 E F0 2.5(;])C 2.5([m)77 468 S(aintain-ixfr)-2.5 E(-base)
+-.2 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([m)77 480 S(ax-ixfr)-2.5 E
+(-log-size)-.2 E F1(number)2.5 E F0 2.5(;])C 2.5([c)77 492 S(oresize)
+-2.5 E F1(size_spec)2.5 E F0 2.5(;])2.5 G 2.5([d)77 504 S(atasize)-2.5 E
+F1(size_spec)2.5 E F0 2.5(;])2.5 G 2.5<5b8c>77 516 S(les)-2.5 E F1
+(size_spec)2.5 E F0 2.5(;])2.5 G 2.5([s)77 528 S(tacksize)-2.5 E F1
+(size_spec)2.5 E F0 2.5(;])2.5 G 2.5([c)77 540 S(leaning-interv)-2.5 E
+(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([h)77 552 S(eartbeat-interv)
+-2.5 E(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([i)77 564 S(nterf)-2.5
+E(ace-interv)-.1 E(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([s)77 576 S
+(tatistics-interv)-2.5 E(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([t)77
+588 S(opology {)-2.5 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0
+(}; ])2.5 E 2.5([s)77 600 S(ortlist {)-2.5 E F1(addr)2.5 E(ess_matc)-.37
+E(h_list)-.15 E F0(}; ])2.5 E 2.5([r)77 612 S(rset-order {)-2.5 E F1(or)
+2.5 E(der_spec)-.37 E F0 2.5(;[)2.5 G F1(or)A(der_spec)-.37 E F0 2.5(;.)
+2.5 G(.. ] }; ])-2.5 E 3.151([p)77 624 S .651(referred-glue \( A | AAAA \); ] }; The options statement sets up global options to be used by BIND. This state-)
+-3.151 F .502(ment may appear at only once in a con\214guration \214le; if more than one occurrence is found, the \214rst occurrence de-)
+72 636 R .24(termines the actual options used, and a w)72 648 R .24
+(arning will be generated.)-.1 F .239
+(If there is no options statement, an options block)5.239 F .114
+(with each option set to its def)72 660 R .114(ault will be used.)-.1 F
+.115(This def)5.114 F .115
+(aults to the hostname of the machine hosting the nameserv)-.1 F(er)-.15
+E .307(as found by gethostname\(\).)72 672 R .307
+(Its prime purpose is to be able to identify which of a number of an)
+5.307 F .306(ycast serv)-.15 F .306(ers is actu-)-.15 F .36(ally answering your queries by sending a txt query for in class chaos to the an)
+72 684 R .36(ycast serv)-.15 F .36(er and geting back a unique)-.15 F
+3.623(name. Setting)72 696 R 1.122(the hostname to a empty string \(""\) will disable processing of the queries.)
+3.623 F 1.122(The v)6.122 F 1.122(ersion the serv)-.15 F(er)-.15 E .278
+(should report via the ndc command or via a query of name in class chaos.)
+72 708 R .278(The def)5.278 F .278(ault is the real v)-.1 F .279
+(ersion number of)-.15 F .878(the serv)72 720 R(er)-.15 E 3.378(,b)-.4 G
+.878(ut some serv)-3.578 F .878(er operators prefer the string \( \).)
+-.15 F .878(The w)5.878 F .878(orking directory of the serv)-.1 F(er)
+-.15 E 5.877(.A)-.55 G 1.177 -.15(ny n)-5.877 H(on-absolute).15 E .896
+(pathnames in the con\214guration \214le will be tak)72 732 R .896
+(en as relati)-.1 F 1.196 -.15(ve t)-.25 H 3.396(ot).15 G .896
+(his directory)-3.396 F 5.896(.T)-.65 G .896(he def)-5.896 F .896
+(ault location for most serv)-.1 F(er)-.15 E .163(output \214les \(e.g.)
+72 744 R .162(is this directory)5.162 F 5.162(.I)-.65 G 2.662(fad)-5.162
+G .162(irectory is not speci\214ed, the w)-2.662 F .162
+(orking directory def)-.1 F .162(aults to the directory from)-.1 F .507
+(which the serv)72 756 R .507(er w)-.15 F .507(as started.)-.1 F .508
+(The directory speci\214ed should be an absolute path.)5.507 F .508
+(The pathname to the named-xfer)5.508 F 1.035(program that the serv)72
+768 R 1.035(er uses for inbound zone transfers.)-.15 F 1.034
+(If not speci\214ed, the def)6.034 F 1.034
+(ault is system dependent \(e.g.)-.1 F(\).)6.034 E .493
+(The pathname of the \214le the serv)72 780 R .494
+(er dumps the database to when it recei)-.15 F -.15(ve)-.25 G 2.994(ss)
+.15 G .494(ignal \(as sent by \). If not speci\214ed, the)-2.994 F(def)
+72 792 Q .41(ault is The pathname of the \214le the serv)-.1 F .41
+(er writes memory usage statistics to on e)-.15 F .41
+(xit, if is If not speci\214ed, the de-)-.15 F EP
 %%Page: 5 5
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF(channel def)82 12 Q(ault_syslog {)-.1 E
-(syslog daemon;)92 24 Q 2.5(#s)17.5 G(end to syslog')-2.5 E 2.5(sd)-.55
-G(aemon f)-2.5 E(acility)-.1 E(se)92 36 Q -.15(ve)-.25 G(rity info;).15
-E 2.5(#o)17.5 G(nly send priority info and higher)-2.5 E(};)82 48 Q
-(channel def)82 72 Q(ault_deb)-.1 E(ug {)-.2 E(\214le "named.run";)92 84
-Q 2.5(#w)10 G(rite to named.run in the w)-2.5 E(orking directory)-.1 E
-2.5(#N)144.5 96 S(ote: stderr is used instead of "named.run")-2.5 E 2.5
-(#i)144.5 108 S 2.5(ft)-2.5 G(he serv)-2.5 E
-(er is started with the -f option.)-.15 E(se)92 120 Q -.15(ve)-.25 G
-(rity dynamic;).15 E 2.5(#l)10 G(og at the serv)-2.5 E(er')-.15 E 2.5
-(sc)-.55 G(urrent deb)-2.5 E(ug le)-.2 E -.15(ve)-.25 G(l).15 E(};)82
-132 Q(channel def)82 156 Q(ault_stderr { # writes to stderr)-.1 E
-(\214le "<stderr>";)92 168 Q 2.5(#t)12.5 G(his is illustrati)-2.5 E .3
--.15(ve o)-.25 H(nly; there').15 E 2.5(sc)-.55 G(urrently)-2.5 E 2.5(#n)
-144.5 180 S 2.5(ow)-2.5 G(ay of specifying an internal \214le)-2.6 E 2.5
-(#d)144.5 192 S(escriptor in the con\214guration language.)-2.5 E(se)92
-204 Q -.15(ve)-.25 G(rity info;).15 E 2.5(#o)17.5 G
-(nly send priority info and higher)-2.5 E(};)82 216 Q(channel null {)82
-240 Q 37.5(null; #)92 252 R(toss an)2.5 E(ything sent to this channel)
--.15 E(};)82 264 Q .612
-(Once a channel is de\214ned, it cannot be rede\214ned.)72 288 R .612
-(Thus you cannot alter the b)5.612 F .612(uilt-in channels directly)-.2
-F 3.112(,b)-.65 G .613(ut you can)-3.312 F(modify the def)72 300 Q
-(ault logging by pointing cate)-.1 E(gories at channels you ha)-.15 E .3
--.15(ve d)-.2 H(e\214ned.).15 E .811(There are man)72 336 R 3.311(yc)
--.15 G(ate)-3.311 E .811(gories, so you can send the logs you w)-.15 F
-.81(ant to see where)-.1 F -.15(ve)-.25 G 3.31(ry).15 G .81(ou w)-3.31 F
-.81(ant, without seeing logs you)-.1 F(don')72 348 Q 2.969(tw)-.18 G
-2.969(ant. If)-3.069 F .469(you don')2.969 F 2.969(ts)-.18 G .469
-(pecify a list of channels for a cate)-2.969 F(gory)-.15 E 2.969(,t)-.65
-G .469(hen log messages in that cate)-2.969 F .469(gory will be sent to)
--.15 F(the cate)72 360 Q(gory instead.)-.15 E(If you don')5 E 2.5(ts)
--.18 G(pecify a def)-2.5 E(ault cate)-.1 E(gory)-.15 E 2.5(,t)-.65 G
-(he follo)-2.5 E(wing `)-.25 E(`def)-.74 E(ault def)-.1 E(ault')-.1 E
-2.5('i)-.74 G 2.5(su)-2.5 G(sed:)-2.5 E(cate)82 384 Q(gory def)-.15 E
-(ault { def)-.1 E(ault_syslog; def)-.1 E(ault_deb)-.1 E(ug; };)-.2 E
-.352(As an e)72 408 R .352(xample, let')-.15 F 2.852(ss)-.55 G .352
-(ay you w)-2.852 F .352(ant to log security e)-.1 F -.15(ve)-.25 G .352
-(nts to a \214le, b).15 F .352(ut you also w)-.2 F .352(ant k)-.1 F .351
-(eep the def)-.1 F .351(ault logging beha)-.1 F(v-)-.2 E(ior)72 420 Q 5
-(.Y)-.55 G(ou')-6.1 E 2.5(ds)-.5 G(pecify the follo)-2.5 E(wing:)-.25 E
-(channel my_security_channel {)82 444 Q(\214le "my_security_\214le";)92
-456 Q(se)92 468 Q -.15(ve)-.25 G(rity info;).15 E(};)82 480 Q(cate)82
-492 Q(gory security { my_security_channel;)-.15 E(def)132 504 Q
-(ault_syslog; def)-.1 E(ault_deb)-.1 E(ug; };)-.2 E 1.6 -.8(To d)72 528
-T(iscard all messages in a cate).8 E(gory)-.15 E 2.5(,s)-.65 G
-(pecify the channel:)-2.5 E(cate)82 552 Q(gory lame-serv)-.15 E
-(ers { null; };)-.15 E(cate)82 564 Q(gory cname { null; };)-.15 E
-(The follo)72 588 Q(wing cate)-.25 E(gories are a)-.15 E -.25(va)-.2 G
-(ilable:).25 E .189(The catch-all.)72 612 R(Man)5.189 E 2.689(yt)-.15 G
-.189(hings still aren')-2.689 F 2.689(tc)-.18 G .189
-(lassi\214ed into cate)-2.689 F .189(gories, and the)-.15 F 2.69(ya)-.15
-G .19(ll end up here.)-2.69 F .19(Also, if you don')5.19 F 2.69(ts)-.18
-G(pecify)-2.69 E(an)72 624 Q 3.122(yc)-.15 G .622(hannels for a cate)
--3.122 F(gory)-.15 E 3.122(,t)-.65 G .622(he def)-3.122 F .622
-(ault cate)-.1 F .622(gory is used instead.)-.15 F .621
-(If you do not de\214ne the def)5.621 F .621(ault cate)-.1 F(gory)-.15 E
-3.121(,t)-.65 G .621(he fol-)-3.121 F(lo)72 636 Q
-(wing de\214nition is used:)-.25 E(High-le)72 660 Q -.15(ve)-.25 G 2.5
-(lc).15 G(on\214guration \214le processing.)-2.5 E(Lo)72 684 Q(w-le)-.25
-E -.15(ve)-.25 G 2.5(lc).15 G(on\214guration \214le processing.)-2.5 E
-2.5(As)72 708 S(hort log message is generated for e)-2.5 E -.15(ve)-.25
-G(ry query the serv).15 E(er recei)-.15 E -.15(ve)-.25 G(s.).15 E
-(Messages lik)72 732 Q 2.5(e`)-.1 G(`Lame serv)-3.24 E(er on ...)-.15 E
--.74('')-.7 G(Statistics.)72 756 Q .392(If the serv)72 780 R .393
-(er has to shut itself do)-.15 F .393
-(wn due to an internal problem, it will log the problem in this cate)
--.25 F .393(gory as well as in)-.15 F(the problem')72 792 Q 2.5(sn)-.55
-G(ati)-2.5 E .3 -.15(ve c)-.25 H(ate).15 E(gory)-.15 E 5(.I)-.65 G 2.5
-(fy)-5 G(ou do not de\214ne the panic cate)-2.5 E(gory)-.15 E 2.5(,t)
--.65 G(he follo)-2.5 E(wing de\214nition is used:)-.25 E EP
+/F0 10/Times-Roman@0 SF -.1(fa)72 12 S .453
+(ult is The pathname of the \214le the serv).1 F .454
+(er writes its process ID in.)-.15 F .454(If not speci\214ed, the def)
+5.454 F .454(ault is operating system)-.1 F .242(dependent, b)72 24 R
+.242(ut is usually or The pid-\214le is used by programs lik)-.2 F 2.741
+(et)-.1 G .241(hat w)-2.741 F .241
+(ant to send signals to the running nameserv-)-.1 F(er)72 36 Q 5.145(.T)
+-.55 G .145(he pathname of the \214le the serv)-5.145 F .145
+(er appends statistics to when it recei)-.15 F -.15(ve)-.25 G 2.645(ss)
+.15 G .145(ignal \(from If not speci\214ed, the def)-2.645 F(ault)-.1 E
+.091(is If then the bit is al)72 48 R -.1(wa)-.1 G .091
+(ys set on responses, e).1 F -.15(ve)-.25 G 2.591(ni).15 G 2.591(ft)
+-2.591 G .091(he serv)-2.591 F .091(er is not actually authoritati)-.15
+F -.15(ve)-.25 G 5.091(.T).15 G .091(he def)-5.091 F .09
+(ault is Do not turn)-.1 F(of)72 60 Q 2.906(fu)-.25 G .406
+(nless you are sure you kno)-2.906 F 2.907(ww)-.25 G .407
+(hat you are doing, as some older softw)-2.907 F .407(are w)-.1 F(on')
+-.1 E 2.907(tl)-.18 G(ik)-2.907 E 2.907(ei)-.1 G 2.907(t. If)-2.907 F
+.407(then when the serv)2.907 F(er)-.15 E -.15(ex)72 72 S .571
+(its it will painstakingly deallocate e).15 F -.15(ve)-.25 G .571(ry object it allocated, and then write a memory usage report to the The de-)
+.15 F -.1(fa)72 84 S .883(ult is because it is f).1 F .883
+(aster to let the operating system clean up.)-.1 F .884
+(is handy for detecting memory leaks.)5.883 F .884(If then the)5.884 F
+(serv)72 96 Q .427(er treats all zones as if the)-.15 F 2.927(ya)-.15 G
+.427(re doing zone transfers across a dial on demand dialup link, which can be brought)
+-2.927 F .13(up by traf)72 108 R .13(\214c originating from this serv)
+-.25 F(er)-.15 E 5.13(.T)-.55 G .13(his has dif)-5.13 F .13(ferent ef)
+-.25 F .13(fects according to zone type and concentrates the zone)-.25 F
+.228(maintenance so that it all happens in a short interv)72 120 R .228
+(al, once e)-.25 F -.15(ve)-.25 G .228
+(ry and hopefully during the one call.).15 F .228(It also suppress-)
+5.228 F .185(es some of the normal zone maintenance traf)72 132 R 2.685
+(\214c. The)-.25 F(def)2.685 E .185
+(ault is The option may also be speci\214ed in the statement, in)-.1 F
+.012(which case it o)72 144 R -.15(ve)-.15 G .012(rrides the statement.)
+.15 F .011(If the zone is a then the serv)5.012 F .011
+(er will send out request to all the sla)-.15 F -.15(ve)-.2 G 2.511
+(s. This).15 F(will)2.511 E .674
+(trigger the zone up to date checking in the sla)72 156 R .974 -.15
+(ve \()-.2 H(pro).15 E .674(viding it supports allo)-.15 F 3.174
+(wing the)-.25 F(sla)3.174 E .974 -.15(ve t)-.2 H 3.174(ov).15 G .674
+(erify the zone while)-3.324 F .178(the call us up.)72 168 R .178
+(If the zone is a or then the serv)5.178 F .178
+(er will suppress the zone re)-.15 F .177
+(gular zone up to date queries and only per)-.15 F(-)-.2 E .012
+(form the when the e)72 180 R 2.512(xpires. If)-.15 F .012(the serv)
+2.512 F .012(er will simulate the obsolete DNS query type The def)-.15 F
+.013(ault is If \(the def)-.1 F .013(ault\), the)-.1 F(serv)72 192 Q
+.082(er will fetch `)-.15 F(`glue')-.74 E 2.582('r)-.74 G .082
+(esource records it doesn')-2.582 F 2.582(th)-.18 G -2.25 -.2(av e)
+-2.582 H .082
+(when constructing the additional data section of a response.)2.782 F
+.167(can be used in conjunction with to pre)72 204 R -.15(ve)-.25 G .167
+(nt the serv).15 F(er')-.15 E 2.667(sc)-.55 G .168(ache from gro)-2.667
+F .168(wing or becoming corrupted \(at the cost of re-)-.25 F .956
+(quiring more w)72 216 R .956(ork from the client\).)-.1 F .956
+(Setting the option to is equi)5.956 F -.25(va)-.25 G .955
+(lent to setting the follo).25 F .955(wing three options: and)-.25 F
+.882(The use of with and is order dependant.)72 228 R .882
+(If then statistics are k)5.882 F .882(ept for e)-.1 F -.15(ve)-.25 G
+.882(ry host that the the nameserv).15 F .882(er interacts)-.15 F 3.229
+(with. The)72 240 R(def)3.229 E .729
+(ault is turning on can consume huge amounts of memory)-.1 F 5.729(.I)
+-.65 G 3.228(faI)-5.729 G .728(XFR database \214le is k)-3.228 F .728
+(ept for all dy-)-.1 F .71(namicaly updated zones.)72 252 R .71
+(This enables the serv)5.71 F .711
+(er to answer IXFR queries which can speed up zone transfers enor)-.15 F
+(-)-.2 E(mously)72 264 Q 5.078(.T)-.65 G .078(he def)-5.078 F .078
+(ault is If then multiple CN)-.1 F .077
+(AME resource records will be allo)-.35 F .077(wed for a domain name.)
+-.25 F .077(The def)5.077 F .077(ault is)-.1 F(Allo)72 276 Q 1.557
+(wing multiple CN)-.25 F 1.557(AME records is ag)-.35 F 1.557
+(ainst standards and is not recommended.)-.05 F 1.557(Multiple CN)6.557
+F 1.558(AME support is)-.35 F -.2(av)72 288 S .698(ailable because pre)
+-.05 F .698(vious v)-.25 F .698(ersions of BIND allo)-.15 F .697
+(wed multiple CN)-.25 F .697(AME records, and these records ha)-.35 F
+.997 -.15(ve b)-.2 H .697(een used).15 F .258
+(for load balancing by a number of sites.)72 300 R .258(If \(the def)
+5.258 F .259(ault\), DNS NO)-.1 F .259
+(TIFY messages are sent when a zone the serv)-.4 F .259(er is)-.15 F
+(authoritati)72 312 Q .54 -.15(ve f)-.25 H .24(or changes.).15 F .24
+(The use of NO)5.24 F .239(TIFY speeds con)-.4 F -.15(ve)-.4 G -.18(rg)
+.15 G .239(ence between the master and its sla).18 F -.15(ve)-.2 G 2.739
+(s. Sla).15 F .539 -.15(ve s)-.2 H(erv).15 E(ers)-.15 E .293(that recei)
+72 324 R .593 -.15(ve a N)-.25 H -.4(OT).15 G .293
+(IFY message and understand it will contact the master serv).4 F .294
+(er for the zone and see if the)-.15 F 2.794(yn)-.15 G .294(eed to)
+-2.794 F .348(do a zone transfer)72 336 R 2.848(,a)-.4 G .348(nd if the)
+-2.848 F 2.848(yd)-.15 G .348(o, the)-2.848 F 2.848(yw)-.15 G .348
+(ill initiate it immediately)-2.848 F 5.348(.I)-.65 G 2.847(ft)-5.348 G
+.347(he DNS NO)-2.847 F .347(TIFY messages will only be sent)-.4 F .662
+(to the addresses in the list.)72 348 R .662(The option may also be speci\214ed in the statement, in which case it o)
+5.662 F -.15(ve)-.15 G .663(rrides the state-).15 F 2.694(ment. If)72
+360 R .194(suppress the initial notify messages when the serv)2.694 F
+.194(er \214rst loads.)-.15 F .194(The def)5.194 F .194
+(ault is If and a DNS query requests)-.1 F .917
+(recursion, then the serv)72 372 R .917(er will attempt to do all the w)
+-.15 F .917(ork required to answer the query)-.1 F 5.917(.I)-.65 G 3.417
+(fr)-5.917 G .918(ecursion is not on, the)-3.417 F(serv)72 384 Q .597
+(er will return a referral to the client if it doesn')-.15 F 3.097(tk)
+-.18 G(no)-3.097 E 3.097(wt)-.25 G .597(he answer)-3.097 F 5.597(.T)-.55
+G .597(he def)-5.597 F .597(ault is See also abo)-.1 F -.15(ve)-.15 G
+5.596(.I).15 G 3.096(ft)-5.596 G .596(he serv)-3.096 F(er)-.15 E .298
+(will send NS records along with the SO)72 396 R 2.798(Ar)-.35 G .298
+(ecord for ne)-2.798 F -.05(ga)-.15 G(ti).05 E .598 -.15(ve a)-.25 H
+2.798(nswers. Y).15 F .298(ou need to set this to no if you ha)-1.1 F
+.599 -.15(ve a)-.2 H 2.799(no).15 G(ld)-2.799 E .64(BIND serv)72 408 R
+.64(er using you as a forw)-.15 F .639
+(arder that does not understand ne)-.1 F -.05(ga)-.15 G(ti).05 E .939
+-.15(ve a)-.25 H .639(nswers which contain both SO).15 F 3.139(Aa)-.35 G
+.639(nd NS)-3.139 F .038(records or you ha)72 420 R .338 -.15(ve a)-.2 H
+2.538(no).15 G .038(ld v)-2.538 F .038(ersion of sendmail.)-.15 F .038
+(The correct \214x is to upgrade the brok)5.038 F .038(en serv)-.1 F
+.038(er or sendmail.)-.15 F .039(The de-)5.039 F -.1(fa)72 432 S .244
+(ult is If the serv).1 F .244(er will k)-.15 F .244(eep track of its o)
+-.1 F .244(wn outstanding query ID')-.25 F 2.743(st)-.55 G 2.743(oa)
+-2.743 G -.2(vo)-2.943 G .243(id duplication and increase randomness.).2
+F .922(This will result in 128KB more memory being consumed by the serv)
+72 444 R(er)-.15 E 5.923(.T)-.55 G .923(he def)-5.923 F .923
+(ault is If the serv)-.1 F .923(er will treat CR)-.15 F .424
+(characters the same w)72 456 R .424(ay it treats a space or tab)-.1 F
+5.423(.T)-.4 G .423
+(his may be necessary when loading zone \214les on a UNIX system)-5.423
+F .119(that were generated on an NT or DOS machine.)72 468 R .119
+(The def)5.119 F .12
+(ault is De\214nes a global list of IP addresses that also get sent)-.1
+F(NO)72 480 Q .714(TIFY messages whene)-.4 F -.15(ve)-.25 G 3.214(raf)
+.15 G .714(resh cop)-3.214 F 3.214(yo)-.1 G 3.214(ft)-3.214 G .713
+(he zone is loaded. This helps to ensure that copies of the zones will)
+-3.214 F .196(quickly con)72 492 R -.15(ve)-.4 G -.18(rg).15 G 2.696(eo)
+.18 G 2.696(n`)-2.696 G(`stealth')-3.436 E 2.696('s)-.74 G(erv)-2.696 E
+2.696(ers. If)-.15 F .196(an list is gi)2.696 F -.15(ve)-.25 G 2.696(ni)
+.15 G 2.696(nas)-2.696 G .196(tatement, it will o)-2.696 F -.15(ve)-.15
+G .196(rride the statement. When a state-).15 F .215(ment is set to the IP addresses in the global list will not get sent NO)
+72 504 R .214(TIFY messages for that zone.)-.4 F .214(The def)5.214 F
+.214(ault is the)-.1 F .103
+(empty list \(no global noti\214cation list\).)72 516 R .103(The forw)
+5.103 F .103(arding f)-.1 F .103(acility can be used to create a lar)-.1
+F .103(ge site-wide cache on a fe)-.18 F(w)-.25 E(serv)72 528 Q .735
+(ers, reducing traf)-.15 F .735(\214c o)-.25 F -.15(ve)-.15 G 3.235(rl)
+.15 G .734(inks to e)-3.235 F .734(xternal nameserv)-.15 F 3.234
+(ers. It)-.15 F .734(can also be used to allo)3.234 F 3.234(wq)-.25 G
+.734(ueries by serv)-3.234 F .734(ers that do)-.15 F .376(not ha)72 540
+R .676 -.15(ve d)-.2 H .376(irect access to the Internet, b).15 F .376
+(ut wish to look up e)-.2 F .376(xterior names an)-.15 F(yw)-.15 E(ay)
+-.1 E 5.377(.F)-.65 G(orw)-5.527 E .377(arding occurs only on those)-.1
+F .097(queries for which the serv)72 552 R .097(er is not authoritati)
+-.15 F .397 -.15(ve a)-.25 H .097(nd does not ha).15 F .397 -.15(ve t)
+-.2 H .097(he answer in its cache.).15 F .096(This option is only mean-)
+5.096 F 1.282(ingful if the list is not empty)72 564 R 6.282(.A)-.65 G
+-.25(va)-2.5 G 1.282(lue of the def).25 F 1.282(ault, causes the serv)
+-.1 F 1.282(er to query the forw)-.15 F 1.283
+(arders \214rst, and if that)-.1 F(doesn')72 576 Q 2.803(ta)-.18 G .303
+(nswer the question the serv)-2.803 F .303
+(er will then look for the answer itself.)-.15 F .303
+(If is speci\214ed, the serv)5.303 F .303(er will only query)-.15 F .425
+(the forw)72 588 R 2.925(arders. Speci\214es)-.1 F .425
+(the IP addresses to be used for forw)2.925 F 2.926(arding. The)-.1 F
+(def)2.926 E .426(ault is the empty list \(no forw)-.1 F(arding\).)-.1 E
+-.15(Fo)72 600 S(rw).15 E .443(arding can also be con\214gured on a per)
+-.1 F .442(-zone basis, allo)-.2 F .442(wing for the global forw)-.25 F
+.442(arding options to be o)-.1 F -.15(ve)-.15 G(rridden).15 E .723
+(in a v)72 612 R .723(ariety of w)-.25 F 3.223(ays. Y)-.1 F .723
+(ou can set particular zones to use dif)-1.1 F .723(ferent forw)-.25 F
+.723(arders, or ha)-.1 F 1.023 -.15(ve d)-.2 H(if).15 E .723
+(ferent beha)-.25 F(vior)-.2 E 3.223(,o)-.4 G 3.223(rt)-3.223 G 3.223
+(on)-3.223 G(ot)-3.223 E(forw)72 624 Q .183(ard at all.)-.1 F .183
+(See section for more information.)5.183 F .183(Future v)5.183 F .183
+(ersions of BIND 8 will pro)-.15 F .182(vide a more po)-.15 F .182
+(werful forw)-.25 F(ard-)-.1 E .551(ing system.)72 636 R .551
+(The syntax described abo)5.551 F .851 -.15(ve w)-.15 H .551
+(ill continue to be supported.).15 F .551(The serv)5.551 F .552
+(er can check domain names based)-.15 F .813(upon their e)72 648 R .813
+(xpected client conte)-.15 F 3.313(xts. F)-.15 F .813(or e)-.15 F .813
+(xample, a domain name used as a hostname can be check)-.15 F .812
+(ed for compli-)-.1 F .374(ance with the RFCs de\214ning v)72 660 R .374
+(alid hostnames.)-.25 F .374(Three checking methods are a)5.374 F -.25
+(va)-.2 G .375(ilable: No checking is done.).25 F(Names)5.375 E 1.353
+(are check)72 672 R 1.353(ed ag)-.1 F 1.352(ainst their e)-.05 F 1.352
+(xpected client conte)-.15 F 3.852(xts. In)-.15 F -.25(va)-.4 G 1.352
+(lid names are logged, b).25 F 1.352(ut processing continues normally)
+-.2 F(.)-.65 E .067(Names are check)72 684 R .067(ed ag)-.1 F .067
+(ainst their e)-.05 F .067(xpected client conte)-.15 F 2.567(xts. In)
+-.15 F -.25(va)-.4 G .067(lid names are logged, and the of).25 F .067
+(fending data is reject-)-.25 F 2.523(ed. The)72 696 R(serv)2.523 E .023
+(er can check names three areas: master zone \214les, sla)-.15 F .322
+-.15(ve z)-.2 H .022(one \214les, and in responses to queries the serv)
+.15 F(er)-.15 E .103(has initiated.)72 708 R .104
+(If has been speci\214ed, and answering the client')5.103 F 2.604(sq)
+-.55 G .104(uestion w)-2.604 F .104(ould require sending an in)-.1 F
+-.25(va)-.4 G .104(lid name to the).25 F(client, the serv)72 720 Q
+(er will send a response code to the client.)-.15 E(The def)5 E
+(aults are:)-.1 E(check-names master f)82 732 Q(ail;)-.1 E
+(check-names sla)82 744 Q .3 -.15(ve w)-.2 H(arn;).05 E 1.149(check-names response ignore; may also be speci\214ed in the statement, in which case it o)
+82 756 R -.15(ve)-.15 G 1.148(rrides the statement.).15 F .704(When used in a statement, the area is not speci\214ed \(because it can be deduced from the zone type\).)
+72 768 R .704(Access to the)5.704 F(serv)72 780 Q .075(er can be restricted based on the IP address of the requesting system or via shared secret k)
+-.15 F -.15(ey)-.1 G 2.574(s. See).15 F .074(for details on)2.574 F(ho)
+72 792 Q 2.606(wt)-.25 G 2.606(os)-2.606 G .106(pecify access criteria.)
+-2.606 F .106(Speci\214es which hosts are allo)5.106 F .106
+(wed to ask ordinary questions.)-.25 F .106(may also be speci\214ed in)
+5.106 F EP
 %%Page: 6 6
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF(Dynamic updates.)72 24 Q(Ne)72 48 Q -.05(ga)-.15
-G(ti).05 E .3 -.15(ve c)-.25 H(aching.).15 E(Zone transfers the serv)72
-72 Q(er is recei)-.15 E(ving.)-.25 E(Zone transfers the serv)72 96 Q
-(er is sending.)-.15 E(All database operations.)72 120 Q(Deb)72 144 Q
-.793(ugging info from the e)-.2 F -.15(ve)-.25 G .793(nt system.).15 F
-.793(Only one channel may be speci\214ed for this cate)5.793 F(gory)-.15
-E 3.292(,a)-.65 G .792(nd it must be a \214le)-3.292 F 2.5(channel. If)
-72 156 R(you do not de\214ne the e)2.5 E -.15(ve)-.25 G(ntlib cate).15 E
-(gory)-.15 E 2.5(,t)-.65 G(he follo)-2.5 E(wing de\214nition is used:)
--.25 E .05(Dumps of pack)72 180 R .05(ets recei)-.1 F -.15(ve)-.25 G
-2.55(da).15 G .05(nd sent.)-2.55 F .05
-(Only one channel may be speci\214ed for this cate)5.05 F(gory)-.15 E
-2.551(,a)-.65 G .051(nd it must be a \214le chan-)-2.551 F 2.5(nel. If)
-72 192 R(you do not de\214ne the pack)2.5 E(et cate)-.1 E(gory)-.15 E
-2.5(,t)-.65 G(he follo)-2.5 E(wing de\214nition is used:)-.25 E(The NO)
-72 216 Q(TIFY protocol.)-.4 E(Messages lik)72 240 Q 2.5(e`)-.1 G
-(`... points to a CN)-3.24 E(AME')-.35 E('.)-.74 E(Appro)72 264 Q -.15
-(ve)-.15 G(d/unappro).15 E -.15(ve)-.15 G 2.5(dr).15 G(equests.)-2.5 E
-(Operating system problems.)72 288 Q(Internal consistenc)72 312 Q 2.5
-(yc)-.15 G(heck f)-2.5 E(ailures.)-.1 E(Periodic maintenance e)72 336 Q
--.15(ve)-.25 G(nts.).15 E(Zone loading messages.)72 360 Q .234
-(Messages arising from response checking, such as `)72 384 R .234
-(`Malformed response ...)-.74 F -.74('')-.7 G 2.734(,`).74 G .234
-(`wrong ans. name ...)-3.474 F -.74('')-.7 G 2.734(,`).74 G .234
-(`unrelated ad-)-3.474 F(ditional info ...)72 396 Q -.74('')-.7 G 2.5
-(,`).74 G(`in)-3.24 E -.25(va)-.4 G(lid RR type ...).25 E -.74('')-.7 G
-2.5(,a).74 G(nd `)-2.5 E(`bad referral ...)-.74 E -.74('')-.7 G(.).74 E
-(options {)72 444 Q 2.5([v)77 456 S(ersion)-2.65 E/F1 10/Times-Italic@0
-SF(ver)2.5 E(sion_string)-.1 E F0 2.5(;])C 2.5([d)77 468 S(irectory)-2.5
-E F1(path_name)2.5 E F0 2.5(;])C 2.5([n)77 480 S(amed-xfer)-2.5 E F1
-(path_name)2.5 E F0 2.5(;])C 2.5([d)77 492 S(ump-\214le)-2.5 E F1
-(path_name)2.5 E F0 2.5(;])C 2.5([m)77 504 S(emstatistics-\214le)-2.5 E
-F1(path_name)2.5 E F0 2.5(;])C 2.5([p)77 516 S(id-\214le)-2.5 E F1
-(path_name)2.5 E F0 2.5(;])C 2.5([s)77 528 S(tatistics-\214le)-2.5 E F1
-(path_name)2.5 E F0 2.5(;])C 2.5([a)77 540 S(uth-nxdomain)-2.5 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([d)77 552 S(eallocate-on-e)-2.5 E(xit)
--.15 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([d)77 564 S(ialup)-2.5 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([f)77 576 S(ak)-2.6 E(e-iquery)-.1 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([f)77 588 S(etch-glue)-2.5 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([h)77 600 S(as-old-clients)-2.5 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([h)77 612 S(ost-statistics)-2.5 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([h)77 624 S(ost-statistics-max)-2.5 E
-F1(number)2.5 E F0 2.5(;])C 2.5([m)77 636 S(ultiple-cnames)-2.5 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([n)77 648 S(otify)-2.5 E F1(yes_or_no)
-2.5 E F0 2.5(;])C 2.5([r)77 660 S(ecursion)-2.5 E F1(yes_or_no)2.5 E F0
-2.5(;])C 2.5([r)77 672 S(fc2308-type1)-2.5 E F1(yes_or_no)2.5 E F0 2.5
-(;])C 2.5([u)77 684 S(se-id-pool)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C
-2.5([t)77 696 S(reat-cr)-2.5 E(-as-space)-.2 E F1(yes_or_no)2.5 E F0 2.5
-(;])C 2.5([a)77 708 S(lso-notify)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C
-2.5([f)77 720 S(orw)-2.5 E(ard \( only | \214rst \); ])-.1 E 2.5([f)77
-732 S(orw)-2.5 E(arders { [)-.1 E F1(in_addr)2.5 E F0 2.5(;[)2.5 G F1
-(in_addr)A F0 2.5(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([c)77 744 S
-(heck-names \( master | sla)-2.5 E .3 -.15(ve | r)-.2 H(esponse \) \( w)
-.15 E(arn | f)-.1 E(ail | ignore\); ])-.1 E 2.5([a)77 756 S(llo)-2.5 E
-(w-query {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])
-2.5 E 2.5([a)77 768 S(llo)-2.5 E(w-recursion {)-.25 E F1(addr)2.5 E
-(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([a)77 780 S(llo)-2.5 E
-(w-transfer {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0
-(}; ])2.5 E 2.5([b)77 792 S(lackhole {)-2.5 E F1(addr)2.5 E(ess_matc)
--.37 E(h_list)-.15 E F0(}; ])2.5 E EP
+/F0 10/Times-Roman@0 SF .116(the statement, in which case it o)72 12 R
+-.15(ve)-.15 G .116(rrides the statement.).15 F .116
+(If not speci\214ed, the def)5.116 F .116(ault is to allo)-.1 F 2.616
+(wq)-.25 G .116(ueries from all hosts.)-2.616 F 1.798
+(Speci\214es which hosts are allo)72 24 R 1.799(wed to ask recursi)-.25
+F 2.099 -.15(ve q)-.25 H 4.299(uestions. If).15 F 1.799
+(not speci\214ed, the def)4.299 F 1.799(ault is to allo)-.1 F 4.299(wr)
+-.25 G(ecursi)-4.299 E -.15(ve)-.25 G 1.204(queries from all hosts.)72
+36 R 1.204(Speci\214es which hosts are allo)6.204 F 1.204(wed to recei)
+-.25 F 1.504 -.15(ve z)-.25 H 1.204(one transfers from the serv).15 F
+(er)-.15 E 6.204(.m)-.55 G 1.203(ay also be)-6.204 F .444
+(speci\214ed in the statement, in which case it o)72 48 R -.15(ve)-.15 G
+.444(rrides the statement.).15 F .444(If not speci\214ed, the def)5.444
+F .445(ault is to allo)-.1 F 2.945(wt)-.25 G(ransfers)-2.945 E .96
+(from all hosts.)72 60 R .959
+(Speci\214es a list of addresses that the serv)5.959 F .959
+(er will not accept queries from or use to resolv)-.15 F 3.459(eaq)-.15
+G(uery)-3.459 E(.)-.65 E .495
+(Queries from these addresses will not be responded to.)72 72 R .495
+(The interf)5.495 F .495(aces and ports that the serv)-.1 F .495
+(er will answer queries)-.15 F .401
+(from may be speci\214ed using the option.)72 84 R(tak)5.401 E .401
+(es an optional port, and an address match list.)-.1 F .401(The serv)
+5.401 F .401(er will listen on)-.15 F .406(all interf)72 96 R .406
+(aces allo)-.1 F .406(wed by the address match list.)-.25 F .406
+(If a port is not speci\214ed, port 53 will be used.)5.406 F .406
+(Multiple statements)5.406 F(are allo)72 108 Q 2.5(wed. F)-.25 F(or e)
+-.15 E(xample,)-.15 E(listen-on { 5.6.7.8; };)82 120 Q .486
+(listen-on port 1234 { !1.2.3.4; 1.2/16; }; will enable the nameserv)82
+132 R .485(er on port 53 for the IP address 5.6.7.8, and on)-.15 F .306
+(port 1234 of an address on the machine in net 1.2 that is not 1.2.3.4.)
+72 144 R .307(If no is speci\214ed, the serv)5.307 F .307
+(er will listen on port)-.15 F .499(53 on all interf)72 156 R 2.999
+(aces. If)-.1 F .499(the serv)2.999 F .499(er doesn')-.15 F 2.999(tk)
+-.18 G(no)-2.999 E 2.999(wt)-.25 G .499
+(he answer to a question, it will query other nameserv)-2.999 F 2.998
+(ers. speci\214es)-.15 F .367
+(the address and port used for such queries.)72 168 R .367
+(If is or is omitted, a wildcard IP address \( will be used.)5.367 F
+.368(If is or is omit-)5.368 F 1.478(ted, a random unpri)72 180 R(vile)
+-.25 E 1.478(ged port will be used.)-.15 F 1.478(The def)6.478 F 1.478
+(ault is Note: currently applies only to UDP queries; TCP)-.1 F .496
+(queries al)72 192 R -.1(wa)-.1 G .496
+(ys use a wildcard IP address and a random unpri).1 F(vile)-.25 E .497
+(ged port.)-.15 F .497(Inbound zone transfers \( processes\) run-)5.497
+F .685(ning longer than this man)72 204 R 3.185(ym)-.15 G .685
+(inutes will be terminated.)-3.185 F .685(The def)5.685 F .685
+(ault is 120 minutes \(2 hours\).)-.1 F .685(The serv)5.685 F .685
+(er supports)-.15 F(tw)72 216 Q 2.643(oz)-.1 G .143
+(one transfer methods.)-2.643 F .143
+(uses one DNS message per resource record transferred.)5.143 F .143
+(packs as man)5.143 F 2.644(yr)-.15 G .144(esource records)-2.644 F .223
+(as possible into a message.)72 228 R .223(is more ef)5.223 F .223
+(\214cient, b)-.25 F .223(ut is only kno)-.2 F .222
+(wn to be understood by BIND 8.1 and patched v)-.25 F(ersions)-.15 E
+.215(of BIND 4.9.5.)72 240 R .215(The def)5.215 F .216(ault is may be o)
+-.1 F -.15(ve)-.15 G .216(rridden on a per).15 F(-serv)-.2 E .216
+(er basis by using the statement.)-.15 F .216(The maximum num-)5.216 F
+.753(ber of inbound zone transfers that can be running concurrently)72
+252 R 5.753(.T)-.65 G .753(he def)-5.753 F .753(ault v)-.1 F .753
+(alue is 10.)-.25 F .752(Increasing may speed up)5.752 F .109(the con)72
+264 R -.15(ve)-.4 G -.18(rg).15 G .109(ence of sla).18 F .409 -.15(ve z)
+-.2 H .109(ones, b).15 F .109
+(ut it also may increase the load on the local system.)-.2 F .109
+(This option will be used in the)5.109 F .311
+(future to limit the number of concurrent outbound zone transfers.)72
+276 R .311(It is check)5.311 F .311(ed for syntax, b)-.1 F .311
+(ut is otherwise ignored.)-.2 F .419(The maximum number of inbound zone transfers \( processes\) that can be concurrently transferring from a gi)
+72 288 R -.15(ve)-.25 G 2.92(nr).15 G(e-)-2.92 E .52(mote nameserv)72
+300 R(er)-.15 E 5.52(.T)-.55 G .52(he def)-5.52 F .52(ault v)-.1 F .52
+(alue is 2.)-.25 F .52(Increasing may speed up the con)5.52 F -.15(ve)
+-.4 G -.18(rg).15 G .52(ence of sla).18 F .82 -.15(ve z)-.2 H .52
+(ones, b).15 F .52(ut it also may)-.2 F 1.214
+(increase the load on the remote nameserv)72 312 R(er)-.15 E 6.215(.m)
+-.55 G 1.215(ay be o)-6.215 F -.15(ve)-.15 G 1.215(rridden on a per).15
+F(-serv)-.2 E 1.215(er basis by using the phrase of the)-.15 F 3.09
+(statement. determines)72 324 R .589(which local address will be bound to the TCP connection used to fetch all zones transferred)
+3.09 F .224(inbound by the serv)72 336 R(er)-.15 E 5.224(.I)-.55 G 2.724
+(fn)-5.224 G .224(ot set, it def)-2.724 F .225
+(aults to a system controlled v)-.1 F .225
+(alue which will usually be the address of the in-)-.25 F(terf)72 348 Q
+.378(ace `)-.1 F .378(`closest to`)-.74 F 2.878(`t)-.74 G .378
+(he remote end.)-2.878 F .378
+(This address must appear in the remote end')5.378 F 2.878(so)-.55 G
+.378(ption for the zones being trans-)-2.878 F .088
+(ferred, if one is speci\214ed.)72 360 R .088
+(This statement sets the for all zones, b)5.088 F .088(ut can be o)-.2 F
+-.15(ve)-.15 G .088(rriden on a per).15 F .089(-zone basis by includin-)
+-.2 F 1.032 -.05(ga s)72 372 T .931
+(tatement within the zone block in the con\214guration \214le.).05 F
+.931(The serv)5.931 F(er')-.15 E 3.431(su)-.55 G .931(sage of man)-3.431
+F 3.431(ys)-.15 G .931(ystem resources can be)-3.431 F 2.731
+(limited. Some)72 384 R .231(operating systems don')2.731 F 2.731(ts)
+-.18 G .231(upport some of the limits.)-2.731 F .232
+(On such systems, a w)5.232 F .232(arning will be issued if the)-.1 F
+.877(unsupported limit is used.)72 396 R .877
+(Some operating systems don')5.877 F 3.377(ts)-.18 G .877
+(upport limiting resources, and on these systems a mes-)-3.377 F .588
+(sage will be logged.)72 408 R .588(Scaled v)5.588 F .588
+(alues are allo)-.25 F .588(wed when specifying resource limits.)-.25 F
+-.15(Fo)5.588 G 3.088(re).15 G .589(xample, can be used instead)-3.238 F
+.42(of to specify a limit of one gig)72 420 R 2.92(abyte. requests)-.05
+F .419(unlimited use, or the maximum a)2.92 F -.25(va)-.2 G .419
+(ilable amount.).25 F .419(uses the limit that)5.419 F -.1(wa)72 432 S
+2.57(si).1 G 2.571(nf)-2.57 G .071(orce when the serv)-2.571 F .071
+(er w)-.15 F .071(as started.)-.1 F .071
+(See the de\214nition of in the section for more details.)5.071 F .071
+(The maximum size of)5.071 F 2.975(ac)72 444 S .475(ore dump.)-2.975 F
+.475(The def)5.475 F .475(ault v)-.1 F .475
+(alue is The maximum amount of data memory the serv)-.25 F .474
+(er may use.)-.15 F .474(The def)5.474 F .474(ault v)-.1 F .474(alue is)
+-.25 F .237(The maximum number of \214les the serv)72 456 R .237
+(er may ha)-.15 F .537 -.15(ve o)-.2 H .237(pen concurrently).15 F 5.237
+(.T)-.65 G .237(he def)-5.237 F .238(ault v)-.1 F .238
+(alue is Note that on some oper)-.25 F(-)-.2 E .378
+(ating systems the serv)72 468 R .377(er cannot set an unlimited v)-.15
+F .377(alue and cannot determine the maximum number of open \214les the)
+-.25 F -.1(ke)72 480 S .523(rnel can support.).1 F .524
+(On such systems, choosing will cause the serv)5.523 F .524
+(er to use the lar)-.15 F .524(ger of the from and the v)-.18 F .524
+(alue re-)-.25 F .384(turned by If the actual k)72 492 R .384
+(ernel limit is lar)-.1 F .384(ger than this v)-.18 F .383
+(alue, use to specify the limit e)-.25 F(xplicitly)-.15 E 5.383(.T)-.65
+G .383(he will be used in a)-5.383 F .063(future release of the serv)72
+504 R .063(er to limit the size of the transaction log k)-.15 F .063
+(ept for Incremental Zone T)-.1 F(ransfer)-.35 E 5.064(.T)-.55 G .064
+(he maximum)-5.064 F .513(amount of stack memory the serv)72 516 R .512
+(er may use.)-.15 F .512(The def)5.512 F .512(ault v)-.1 F .512
+(alue is The serv)-.25 F .512(er will remo)-.15 F .812 -.15(ve ex)-.15 H
+.512(pired resource records).15 F .839(from the cache e)72 528 R -.15
+(ve)-.25 G .839(ry minutes.).15 F .839(The def)5.839 F .839
+(ault is 60 minutes.)-.1 F .84
+(If set to 0, no periodic cleaning will occur)5.839 F 5.84(.T)-.55 G .84
+(he serv)-5.84 F(er)-.15 E .176
+(will perform zone maintenance tasks for all zones mark)72 540 R .175
+(ed whene)-.1 F -.15(ve)-.25 G 2.675(rt).15 G .175(his interv)-2.675 F
+.175(al e)-.25 F 2.675(xpires. The)-.15 F(def)2.675 E .175
+(ault is 60 minutes.)-.1 F .291(Reasonable v)72 552 R .291
+(alues are up to 1 day \(1440 minutes\).)-.25 F .292
+(If set to 0, no zone maintenance for these zones will occur)5.291 F
+5.292(.T)-.55 G(he)-5.292 E(serv)72 564 Q .651(er will scan the netw)
+-.15 F .651(ork interf)-.1 F .651(ace list e)-.1 F -.15(ve)-.25 G .651
+(ry minutes.).15 F .651(The def)5.651 F .651(ault is 60 minutes.)-.1 F
+.651(If set to 0, interf)5.651 F .651(ace scanning)-.1 F .451
+(will only occur when the con\214guration \214le is loaded.)72 576 R
+.452(After the scan, listeners will be started on an)5.452 F 2.952(yn)
+-.15 G .952 -.25(ew i)-2.952 H(nterf).25 E(aces)-.1 E(\(pro)72 588 Q
+.878(vided the)-.15 F 3.377(ya)-.15 G .877(re allo)-3.377 F .877
+(wed by the con\214guration\).)-.25 F .877(Listeners on interf)5.877 F
+.877(aces that ha)-.1 F 1.177 -.15(ve g)-.2 H .877(one a).15 F -.1(wa)
+-.15 G 3.377(yw).1 G .877(ill be cleaned up.)-3.377 F(Nameserv)72 600 Q
+.615(er statistics will be logged e)-.15 F -.15(ve)-.25 G .615
+(ry minutes.).15 F .615(The def)5.615 F .615(ault is 60.)-.1 F .615
+(If set to 0, no statistics will be logged.)5.615 F(All)5.615 E .846
+(other things being equal, when the serv)72 612 R .845
+(er chooses a nameserv)-.15 F .845(er to query from a list of nameserv)
+-.15 F .845(ers, it prefers the)-.15 F .125
+(one that is topologically closest to itself.)72 624 R .125
+(The statement tak)5.125 F .126
+(es an address match list and interprets it in a special w)-.1 F(ay)-.1
+E(.)-.65 E .05(Each top-le)72 636 R -.15(ve)-.25 G 2.55(ll).15 G .05
+(ist element is assigned a distance.)-2.55 F(Non-ne)5.05 E -.05(ga)-.15
+G .049(ted elements get a distance based on their position in the).05 F
+1.142(list, where the closer the match is to the start of the list, the shorter the distance is between it and the serv)
+72 648 R(er)-.15 E 6.143(.A)-.55 G(ne)72 660 Q -.05(ga)-.15 G .63
+(ted match will be assigned the maximum distance from the serv).05 F(er)
+-.15 E 5.629(.I)-.55 G 3.129(ft)-5.629 G .629
+(here is no match, the address will get a)-3.129 F
+(distance which is further than an)72 672 Q 2.5(yn)-.15 G(on-ne)-2.5 E
+-.05(ga)-.15 G(ted list element, and closer than an).05 E 2.5(yn)-.15 G
+-2.25 -.15(eg a)-2.5 H(ted element.).15 E -.15(Fo)5 G 2.5(re).15 G
+(xample,)-2.65 E(topology {)82 684 Q(10/8;)92 696 Q(!1.2.3/24;)92 708 Q
+2.5({1)92 720 S(.2/16; 3/8; };)-2.5 E .913(}; will prefer serv)82 732 R
+.913(ers on netw)-.15 F .913(ork 10 the most, follo)-.1 F .913
+(wed by hosts on netw)-.25 F .913
+(ork 1.2.0.0 \(netmask 255.255.0.0\) and)-.1 F(netw)72 744 Q 1.067
+(ork 3, with the e)-.1 F 1.067(xception of hosts on netw)-.15 F 1.067
+(ork 1.2.3 \(netmask 255.255.255.0\), which is preferred least of all.)
+-.1 F .138(The def)72 756 R .138
+(ault topology is When returning multiple RRs, the nameserv)-.1 F .139
+(er will normally return them in i.e. after each re-)-.15 F .627
+(quest, the \214rst RR is put to the end of the list.)72 768 R .626
+(As the order of RRs is not de\214ned, this should not cause an)5.626 F
+3.126(yp)-.15 G(rob-)-3.126 E 2.824(lems. The)72 780 R .324
+(client resolv)2.824 F .325
+(er code should re-arrange the RRs as appropriate, i.e. using an)-.15 F
+2.825(ya)-.15 G .325(ddresses on the local net in)-2.825 F .38
+(preference to other addresses. Ho)72 792 R(we)-.25 E -.15(ve)-.25 G
+1.18 -.4(r, n).15 H .38(ot all resolv).4 F .379
+(ers can do this, or are not correctly con\214gured.)-.15 F .379
+(When a client)5.379 F EP
 %%Page: 7 7
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF 2.5([l)77 12 S(isten-on [ port)-2.5 E/F1 10
-/Times-Italic@0 SF(ip_port)2.5 E F0 2.5(]{)2.5 G F1(addr)A(ess_matc)-.37
-E(h_list)-.15 E F0(}; ])2.5 E 2.5([q)77 24 S(uery-source [ address \()
--2.5 E F1(ip_addr)2.5 E F0 2.5(|*\)])2.5 G 2.5([p)114.5 36 S(ort \()-2.5
-E F1(ip_port)2.5 E F0 2.5(|*\)];])2.5 G 2.5([l)77 48 S(ame-ttl)-2.5 E F1
-(number)2.5 E F0 2.5(;])C 2.5([m)77 60 S(ax-transfer)-2.5 E(-time-in)-.2
-E F1(number)2.5 E F0 2.5(;])C 2.5([m)77 72 S(ax-ncache-ttl)-2.5 E F1
-(number)2.5 E F0 2.5(;])C 2.5([m)77 84 S(in-roots)-2.5 E F1(number)2.5 E
-F0 2.5(;])C 2.5([s)77 96 S(erial-queries)-2.5 E F1(number)2.5 E F0 2.5
-(;])C 2.5([t)77 108 S(ransfer)-2.5 E(-format \( one-answer | man)-.2 E
-(y-answers \); ])-.15 E 2.5([t)77 120 S(ransfers-in)-2.5 E F1(number)5 E
-F0 2.5(;])C 2.5([t)77 132 S(ransfers-out)-2.5 E F1(number)2.5 E F0 2.5
-(;])C 2.5([t)77 144 S(ransfers-per)-2.5 E(-ns)-.2 E F1(number)2.5 E F0
-2.5(;])C 2.5([t)77 156 S(ransfer)-2.5 E(-source)-.2 E F1(ip_addr)2.5 E
-F0 2.5(;])C 2.5([m)77 168 S(aintain-ixfr)-2.5 E(-base)-.2 E F1
-(yes_or_no)2.5 E F0 2.5(;])C 2.5([m)77 180 S(ax-ixfr)-2.5 E(-log-size)
--.2 E F1(number)2.5 E F0 2.5(;])C 2.5([c)77 192 S(oresize)-2.5 E F1
-(size_spec)2.5 E F0 2.5(;])2.5 G 2.5([d)77 204 S(atasize)-2.5 E F1
-(size_spec)2.5 E F0 2.5(;])2.5 G 2.5<5b8c>77 216 S(les)-2.5 E F1
-(size_spec)2.5 E F0 2.5(;])2.5 G 2.5([s)77 228 S(tacksize)-2.5 E F1
-(size_spec)2.5 E F0 2.5(;])2.5 G 2.5([c)77 240 S(leaning-interv)-2.5 E
-(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([h)77 252 S(eartbeat-interv)
--2.5 E(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([i)77 264 S(nterf)-2.5
-E(ace-interv)-.1 E(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([s)77 276 S
-(tatistics-interv)-2.5 E(al)-.25 E F1(number)2.5 E F0 2.5(;])C 2.5([t)77
-288 S(opology {)-2.5 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0
-(}; ])2.5 E 2.5([s)77 300 S(ortlist {)-2.5 E F1(addr)2.5 E(ess_matc)-.37
-E(h_list|fR }; ])-.15 E 2.5([r)77 312 S -.1(rs)-2.5 G(et-or).1 E
-(der { or)-.37 E(der_spec)-.37 E F0 2.5(;[)2.5 G F1(or)A(der_spec)-.37 E
-F0 2.5(;.)2.5 G(.. [ [ }; };)-2.5 E .304(The options statement sets up \
-global options to be used by BIND. This statement may appear at only on\
-ce in a con-)72 348 R .727(\214guration \214le; if more than one occurr\
-ence is found, the \214rst occurrence determines the actual options use\
-d, and a)72 360 R -.1(wa)72 372 S .426(rning will be generated.).1 F
-.426(If there is no options statement, an options block with each optio\
-n set to its def)5.426 F .426(ault will)-.1 F(be used.)72 384 Q .475
-(The v)72 432 R .475(ersion the serv)-.15 F .475(er should report via t\
-he ndc command or via a query of name in class chaos. The def)-.15 F
-.474(ault is the)-.1 F(real v)72 444 Q(ersion number of ths serv)-.15 E
-(er)-.15 E 2.5(,b)-.4 G(ut some serv)-2.7 E
-(er operators prefer the string \( \).)-.15 E .544(The w)72 468 R .544
-(orking directory of the serv)-.1 F(er)-.15 E 5.544(.A)-.55 G .844 -.15
-(ny n)-5.544 H .544
-(on-absolute pathnames in the con\214guration \214le will be tak).15 F
-.545(en as relati)-.1 F -.15(ve)-.25 G .495(to this directory)72 480 R
-5.495(.T)-.65 G .495(he def)-5.495 F .495(ault location for most serv)
--.1 F .495(er output \214les \(e.g.)-.15 F .494(is this directory)5.494
-F 5.494(.I)-.65 G 2.994(fad)-5.494 G .494(irectory is not speci-)-2.994
-F 1.662(\214ed, the w)72 492 R 1.662(orking directory def)-.1 F 1.662
-(aults to the directory from which the serv)-.1 F 1.663(er w)-.15 F
-1.663(as started.)-.1 F 1.663(The directory speci\214ed)6.663 F
-(should be an absolute path.)72 504 Q .814
-(The pathname to the named-xfer program that the serv)72 528 R .814
-(er uses for inbound zone transfers.)-.15 F .814
-(If not speci\214ed, the de-)5.814 F -.1(fa)72 540 S
-(ult is system dependent \(e.g.).1 E(\).)5 E .493
-(The pathname of the \214le the serv)72 564 R .494
-(er dumps the database to when it recei)-.15 F -.15(ve)-.25 G 2.994(ss)
-.15 G .494(ignal \(as sent by \). If not speci\214ed, the)-2.994 F(def)
-72 576 Q(ault is)-.1 E(The pathname of the \214le the serv)72 600 Q
-(er writes memory usage statistics to on e)-.15 E
-(xit, if is If not speci\214ed, the def)-.15 E(ault is)-.1 E .486
-(The pathname of the \214le the serv)72 624 R .486
-(er writes its process ID in.)-.15 F .486(If not speci\214ed, the def)
-5.486 F .486(ault is operating system depen-)-.1 F(dent, b)72 636 Q
-(ut is usually or The pid-\214le is used by programs lik)-.2 E 2.5(et)
--.1 G(hat w)-2.5 E(ant to send signals to the running nameserv)-.1 E(er)
--.15 E(.)-.55 E(The pathname of the \214le the serv)72 660 Q
-(er appends statistics to when it recei)-.15 E -.15(ve)-.25 G 2.5(ss).15
-G(ignal \(from If not speci\214ed, the def)-2.5 E(ault is)-.1 E .511
-(If then the bit is al)72 696 R -.1(wa)-.1 G .512
-(ys set on responses, e).1 F -.15(ve)-.25 G 3.012(ni).15 G 3.012(ft)
--3.012 G .512(he serv)-3.012 F .512(er is not actually authoritati)-.15
-F -.15(ve)-.25 G 5.512(.T).15 G .512(he def)-5.512 F .512
-(ault is Do not turn)-.1 F(of)72 708 Q 2.5(fu)-.25 G
-(nless you are sure you kno)-2.5 E 2.5(ww)-.25 G
-(hat you are doing, as some older softw)-2.5 E(are w)-.1 E(on')-.1 E 2.5
-(tl)-.18 G(ik)-2.5 E 2.5(ei)-.1 G(t.)-2.5 E .054(If then when the serv)
-72 732 R .053(er e)-.15 F .053(xits it will painstakingly deallocate e)
--.15 F -.15(ve)-.25 G .053
-(ry object it allocated, and then write a memory usage).15 F .539
-(report to the The def)72 744 R .539(ault is because it is f)-.1 F .54
-(aster to let the operating system clean up.)-.1 F .54
-(is handy for detecting memory)5.54 F(leaks.)72 756 Q .496
-(If then the serv)72 780 R .496(er treats all zones as if the)-.15 F
-2.996(ya)-.15 G .496
-(re doing zone transfers across a dial on demand dialup link, which can)
--2.996 F .623(be brought up by traf)72 792 R .623
-(\214c originating from this serv)-.25 F(er)-.15 E 5.623(.T)-.55 G .623
-(his has dif)-5.623 F .623(ferent ef)-.25 F .624
-(fects according to zone type and concen-)-.25 F EP
+/F0 10/Times-Roman@0 SF .695(is using a local serv)72 12 R(er)-.15 E
+3.195(,t)-.4 G .695(he sorting can be performed in the serv)-3.195 F(er)
+-.15 E 3.196(,b)-.4 G .696(ased on the client')-3.196 F 3.196(sa)-.55 G
+.696(ddress. This only requires)-3.196 F 1.298
+(con\214guring the nameserv)72 24 R 1.297(ers, not all the clients.)-.15
+F 1.297(The statement tak)6.297 F 1.297
+(es an address match list and interprets it e)-.1 F -.15(ve)-.25 G(n).15
+E 1.125(more specially than the statement does.)72 36 R 1.125
+(Each top le)6.125 F -.15(ve)-.25 G 3.626(ls).15 G 1.126
+(tatement in the sortlist must itself be an e)-3.626 F 1.126
+(xplicit address)-.15 F .529(match list with one or tw)72 48 R 3.028(oe)
+-.1 G .528(lements. The \214rst element \(which may be an IP address, an IP pre\214x, an A)
+-3.028 F .528(CL name or)-.4 F .768
+(nested address match list\) of each top le)72 60 R -.15(ve)-.25 G 3.268
+(ll).15 G .768(ist is check)-3.268 F .768(ed ag)-.1 F .768
+(ainst the source address of the query until a match is)-.05 F 2.64
+(found. Once)72 72 R .14
+(the source address of the query has been matched, if the top le)2.64 F
+-.15(ve)-.25 G 2.64(ls).15 G .14(tatement contains only one element,)
+-2.64 F .327(the actual primiti)72 84 R .627 -.15(ve e)-.25 H .328(lement that matched the source address is used to select the address in the response to mo)
+.15 F .628 -.15(ve t)-.15 H(o).15 E .044(the be)72 96 R .044
+(ginning of the response. If the statement is a list of tw)-.15 F 2.544
+(oe)-.1 G .044(lements, the second element is treated lik)-2.544 F 2.543
+(et)-.1 G .043(he address)-2.543 F .075
+(match list in a topology statement. Each top le)72 108 R -.15(ve)-.25 G
+2.575(le).15 G .076
+(lement is assigned a distance and the address in the response with)
+-2.575 F .916(the minimum distance is mo)72 120 R -.15(ve)-.15 G 3.416
+(dt).15 G 3.416(ot)-3.416 G .916(he be)-3.416 F .916
+(ginning of the response.)-.15 F .916(In the follo)5.916 F .916(wing e)
+-.25 F .916(xample, an)-.15 F 3.415(yq)-.15 G .915(ueries recei)-3.415 F
+-.15(ve)-.25 G(d).15 E .69(from an)72 132 R 3.19(yo)-.15 G 3.19(ft)-3.19
+G .69(he addresses of the host itself will get responses preferring addresses on an)
+-3.19 F 3.191(yo)-.15 G 3.191(ft)-3.191 G .691(he locally connected)
+-3.191 F(netw)72 144 Q .563(orks. Ne)-.1 F .563
+(xt most preferred are addresses on the 192.168.1/24 netw)-.15 F .562
+(ork, and after that either the 192.168.2/24 or)-.1 F .721
+(192.168.3/24 netw)72 156 R .722(ork with no preference sho)-.1 F .722
+(wn between these tw)-.25 F 3.222(on)-.1 G(etw)-3.222 E .722
+(orks. Queries recei)-.1 F -.15(ve)-.25 G 3.222(df).15 G .722
+(rom a host on the)-3.222 F .895(192.168.1/24 netw)72 168 R .894
+(ork will prefer other addresses on that netw)-.1 F .894
+(ork to the 192.168.2/24 and 192.168.3/24 netw)-.1 F(orks.)-.1 E .782
+(Queries recei)72 180 R -.15(ve)-.25 G 3.282(df).15 G .782
+(rom a host on the 192.168.4/24 or the 192.168.5/24 netw)-3.282 F .783
+(ork will only prefer other addresses on)-.1 F
+(their directly connected netw)72 192 Q 2.5(orks. sortlist)-.1 F({)2.5 E
+2.5({l)99.5 204 S 20(ocalhost; //)-2.5 F 5(IF the)2.5 F(local host)2.5 E
+2.5({l)104.5 216 S 15(ocalnets; //)-2.5 F(THEN \214rst \214t on the)2.5
+E 7.5(192.168.1/24; //)109.5 228 R(follo)15 E(wing nets)-.25 E 2.5({1)
+109.5 240 S(92,168.2/24; 192.168.3/24; }; }; };)-2.5 E 2.5({1)99.5 252 S
+12.5(92.168.1/24; //)-2.5 F 5(IF on)2.5 F(class C 192.168.1)2.5 E 2.5
+({1)104.5 264 S 7.5(92.168.1/24; //)-2.5 F(THEN use .1, or .2 or .3)2.5
+E 2.5({1)109.5 276 S(92.168.2/24; 192.168.3/24; }; }; };)-2.5 E 2.5({1)
+99.5 288 S 12.5(92.168.2/24; //)-2.5 F 5(IF on)2.5 F(class C 192.168.2)
+2.5 E 2.5({1)104.5 300 S 7.5(92.168.2/24; //)-2.5 F
+(THEN use .2, or .1 or .3)2.5 E 2.5({1)109.5 312 S
+(92.168.1/24; 192.168.3/24; }; }; };)-2.5 E 2.5({1)99.5 324 S 12.5
+(92.168.3/24; //)-2.5 F 5(IF on)2.5 F(class C 192.168.3)2.5 E 2.5({1)
+104.5 336 S 7.5(92.168.3/24; //)-2.5 F(THEN use .3, or .1 or .2)2.5 E
+2.5({1)109.5 348 S(92.168.1/24; 192.168.2/24; }; }; };)-2.5 E 2.5({{1)
+99.5 360 S
+(92.168.4/24; 192.168.5/24; }; // if .4 or .5, prefer that net)-2.5 E
+.23(}; }; The follo)99.5 372 R .23(wing e)-.25 F .23(xample will gi)-.15
+F .53 -.15(ve r)-.25 H .23(easonable beha).15 F .23
+(viour for the local host and hosts on directly connected)-.2 F(netw)72
+384 Q .862(orks. It is similar to the beha)-.1 F .862(vior of the address sort in BIND 4.9.x. Responses sent to queries from the local)
+-.2 F .414(host will f)72 396 R -.2(avo)-.1 G 2.914(ra).2 G .714 -.15
+(ny o)-2.914 H 2.914(ft).15 G .414(he directly connected netw)-2.914 F
+.414(orks. Responses sent to queries from an)-.1 F 2.913(yo)-.15 G .413
+(ther hosts on a directly)-2.913 F 2.01(connected netw)72 408 R 2.01
+(ork will prefer addresses on that same netw)-.1 F 2.011
+(ork. Responses to other queries will not be sorted.)-.1 F(sortlist {)72
+420 Q 2.5({l)102 432 S(ocalhost; localnets; };)-2.5 E 2.712({l)102 444 S
+.212(ocalnets; }; }; When multiple records are returned in an answer it may be useful to con\214gure the order the)
+-2.712 F .512(records are placed into the response. F)72 456 R .512
+(or e)-.15 F .512
+(xample the records for a zone might be con\214gured to al)-.15 F -.1
+(wa)-.1 G .513(ys be returned).1 F .116(in the order the)72 468 R 2.616
+(ya)-.15 G .116
+(re de\214ned in the zone \214le. Or perhaps a random shuf)-2.616 F .115
+(\215e of the records as the)-.25 F 2.615(ya)-.15 G .115
+(re returned is w)-2.615 F(ant-)-.1 E 1.522(ed. The rrset-order statement permits con\214guration of the ordering made of the records in a multiple record re-)
+72 480 R(sponse. The def)72 492 Q
+(ault, if no ordering is de\214ned, is a c)-.1 E
+(yclic ordering \(round robin\).)-.15 E(An is de\214ned as follo)5 E
+(ws:)-.25 E([)77 504 Q/F1 10/Times-Italic@0 SF .337(class class_name)
+2.837 F F0(][)2.837 E F1 .337(type type_name)2.837 F F0(][)2.837 E F1
+(name)2.837 E F0 .337("FQDN" ])2.837 F F1(or)2.837 E(der)-.37 E F0 .336
+(ordering If no class is speci\214ed, the def)2.837 F .336
+(ault is If no)-.1 F .051(is speci\214ed, the def)72 516 R .052
+(ault is If no name is speci\214ed, the def)-.1 F .052(ault is "*".)-.1
+F .052(The le)5.052 F -.05(ga)-.15 G 2.552(lv).05 G .052
+(alues for are: Records are returned in)-2.802 F .775(the order the)72
+528 R 3.275(ya)-.15 G .775(re de\214ned in the zone \214le.)-3.275 F
+.774(Records are returned in some random order)5.775 F 5.774(.R)-.55 G
+.774(ecords are returned in a)-5.774 F(round-robin order)72 540 Q 5(.F)
+-.55 G(or e)-5.15 E(xample:)-.15 E(rrset-order {)82 552 Q
+(class IN type A name "rc.vix.com" order random;)92 564 Q(order c)92 576
+Q(yclic;)-.15 E .157(}; will cause an)82 588 R 2.657(yr)-.15 G .158
+(esponses for type A records in class IN that ha)-2.657 F .458 -.15
+(ve ")-.2 H .158(rc.vix.com" as a suf).15 F .158(\214x, to al)-.25 F -.1
+(wa)-.1 G .158(ys be returned).1 F 1.261(in random order)72 600 R 3.761
+(.A)-.55 G 1.261(ll other records are returned in c)-3.761 F 1.261
+(yclic order)-.15 F 6.26(.I)-.55 G 3.76(fm)-6.26 G 1.26
+(ultiple statements appear)-3.76 F 3.76(,t)-.4 G(he)-3.76 E 3.76(ya)-.15
+G 1.26(re not com-)-3.76 F(bined--the last one applies.)72 612 Q
+(If no statement is speci\214ed, a def)5 E(ault one of:)-.1 E .017
+(rrset-order { class ANY type ANY name "*" order c)82 624 R .017
+(yclic ; }; is used.)-.15 F .017(When running a root nameserv)5.017 F
+.018(er it is some-)-.15 F .568
+(times necessary to ensure that other nameserv)72 636 R .568
+(ers that are priming are successful.)-.15 F .567
+(This requires that glue A records)5.567 F .271
+(for at least of the nameserv)72 648 R .271
+(ers are returned in the answer to a priming query)-.15 F 5.272(.T)-.65
+G .272(his can be achie)-5.272 F -.15(ve)-.25 G 2.772(db).15 G 2.772(ys)
+-2.772 G .272(etting which)-2.772 F .635
+(will add A records before other types in the additional section.)72 660
+R .634(Sets the number of seconds to cache a lame serv)5.634 F(er)-.15 E
+3.188(indication. 0)72 672 R .688(disables caching.)3.188 F(Def)5.688 E
+.688(ault is 600 \(10 minutes\).)-.1 F .688(Maximum v)5.688 F .688
+(alue is 1800 \(30 minutes\) T)-.25 F 3.189(or)-.8 G .689(educe net-)
+-3.189 F -.1(wo)72 684 S .049(rk traf).1 F .049
+(\214c and increase performance the serv)-.25 F .049(er store ne)-.15 F
+-.05(ga)-.15 G(ti).05 E .349 -.15(ve a)-.25 H 2.549(nswers. is).15 F
+.049(used to set a maximum retention time for)2.549 F .379
+(these answers in the serv)72 696 R .379(er is seconds.)-.15 F .379
+(The def)5.379 F .38(ault is 10800 seconds \(3 hours\).)-.1 F .38
+(cannot e)5.38 F .38(xceed the maximum reten-)-.15 F .674
+(tion time for ordinary \(positi)72 708 R -.15(ve)-.25 G 3.174(\)a).15 G
+.674(nswers \(7 days\) and will be silently truncated to 7 days if set to a v)
+-3.174 F .673(alue which is)-.25 F .306(greater that 7 days.)72 720 R
+.306(The minimum number of root serv)5.306 F .306
+(ers that is required for a request for the root serv)-.15 F .307
+(ers to be ac-)-.15 F 2.5(cepted. Def)72 732 R(ault is 2.)-.1 E(zone)5 E
+F1(domain_name)2.5 E F0 2.5([\(i)2.5 G 2.5(n|h)-2.5 G 2.5(s|h)-2.5 G
+(esiod | chaos \) ] {)-2.5 E(type master;)77 744 Q(\214le)77 756 Q F1
+(path_name)2.5 E F0(;)A 2.5([c)77 768 S(heck-names \( w)-2.5 E(arn | f)
+-.1 E(ail | ignore \); ])-.1 E 2.5([a)77 780 S(llo)-2.5 E(w-update {)
+-.25 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([a)
+77 792 S(llo)-2.5 E(w-query {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E
+(h_list)-.15 E F0(}; ])2.5 E EP
 %%Page: 8 8
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF .152
-(trates the zone maintenance so that it all happens in a short interv)72
-12 R .151(al, once e)-.25 F -.15(ve)-.25 G .151
-(ry and hopefully during the one call.).15 F(It)5.151 E .224
-(also suppresses some of the normal zone maintenance traf)72 24 R 2.724
-(\214c. The)-.25 F(def)2.724 E .224
-(ault is The option may also be speci\214ed in the)-.1 F
-(statement, in which case it o)72 36 Q -.15(ve)-.15 G
-(rrides the statement.).15 E .381(If the zone is a then the serv)72 60 R
-.38(er will send out request to all the sla)-.15 F -.15(ve)-.2 G 2.88
-(s. This).15 F .38(will trigger the zone up to date checking)2.88 F
-(in the sla)72 72 Q .3 -.15(ve \()-.2 H(pro).15 E
-(viding it supports allo)-.15 E 2.5(wing the)-.25 F(sla)2.5 E .3 -.15
-(ve t)-.2 H 2.5(ov).15 G(erify the zone while the call us up.)-2.65 E
-.426(If the zone is a or then the serv)72 96 R .426
-(er will suppress the zone re)-.15 F .426
-(gular zone up to date queries and only perform the when)-.15 F(the e)72
-108 Q(xpires.)-.15 E(If the serv)72 132 Q
-(er will simulate the obsolete DNS query type The def)-.15 E(ault is)-.1
-E .709(If \(the def)72 156 R .709(ault\), the serv)-.1 F .709
-(er will fetch `)-.15 F(`glue')-.74 E 3.209('r)-.74 G .709
-(esource records it doesn')-3.209 F 3.209(th)-.18 G -2.25 -.2(av e)
--3.209 H .708(when constructing the additional data)3.409 F .289
-(section of a response.)72 168 R .289
-(can be used in conjunction with to pre)5.289 F -.15(ve)-.25 G .289
-(nt the serv).15 F(er')-.15 E 2.789(sc)-.55 G .289(ache from gro)-2.789
-F .289(wing or becoming cor)-.25 F(-)-.2 E
-(rupted \(at the cost of requiring more w)72 180 Q
-(ork from the client\).)-.1 E(Setting the option to is equi)72 204 Q
--.25(va)-.25 G(lent to setting the follo).25 E
-(wing three options: and with and is order dependant.)-.25 E .887
-(If then statistics are k)72 228 R .887(ept for e)-.1 F -.15(ve)-.25 G
-.887(ry host that the the nameserv).15 F .886(er interacts with.)-.15 F
-.886(The def)5.886 F .886(ault is turning on can con-)-.1 F
-(sume huge amounts of memory)72 240 Q(.)-.65 E .651
-(The maximum number of host records that will be k)72 264 R 3.151
-(ept. When)-.1 F .651(this limit is reached no ne)3.151 F 3.151(wh)-.25
-G .651(osts will be added to)-3.151 F(the host statistics.)72 276 Q
-(If the set to zero then there is no limit set.)5 E(The def)5 E(ault v)
--.1 E(alue is zero.)-.25 E .834(If a IXFR database \214le is k)72 300 R
-.834(ept for all dynamicaly updated zones.)-.1 F .833
-(This enables the serv)5.834 F .833(er to answer IXFR queries)-.15 F
-(which can speed up zone transfers enormously)72 312 Q 5(.T)-.65 G
-(he def)-5 E(ault is)-.1 E 1.134(If then multiple CN)72 336 R 1.135
-(AME resource records will be allo)-.35 F 1.135(wed for a domain name.)
--.25 F 1.135(The def)6.135 F 1.135(ault is Allo)-.1 F 1.135
-(wing multiple)-.25 F(CN)72 348 Q .452(AME records is ag)-.35 F .451
-(ainst standards and is not recommended.)-.05 F .451(Multiple CN)5.451 F
-.451(AME support is a)-.35 F -.25(va)-.2 G .451(ilable because pre-).25
-F .032(vious v)72 360 R .032(ersions of BIND allo)-.15 F .032
-(wed multiple CN)-.25 F .032(AME records, and these records ha)-.35 F
-.332 -.15(ve b)-.2 H .033(een used for load balancing by a).15 F
-(number of sites.)72 372 Q .951(If \(the def)72 396 R .951
-(ault\), DNS NO)-.1 F .951(TIFY messages are sent when a zone the serv)
--.4 F .95(er is authoritati)-.15 F 1.25 -.15(ve f)-.25 H .95
-(or changes.).15 F .95(The use of)5.95 F(NO)72 408 Q .473
-(TIFY speeds con)-.4 F -.15(ve)-.4 G -.18(rg).15 G .473
-(ence between the master and its sla).18 F -.15(ve)-.2 G 2.973(s. Sla)
-.15 F .773 -.15(ve s)-.2 H(erv).15 E .473(ers that recei)-.15 F .773
--.15(ve a N)-.25 H -.4(OT).15 G .474(IFY message and).4 F .764
-(understand it will contact the master serv)72 420 R .764
-(er for the zone and see if the)-.15 F 3.264(yn)-.15 G .764
-(eed to do a zone transfer)-3.264 F 3.264(,a)-.4 G .764(nd if the)-3.264
-F 3.263(yd)-.15 G(o,)-3.263 E(the)72 432 Q 3.331(yw)-.15 G .831
-(ill initiate it immediately)-3.331 F 5.831(.T)-.65 G .832
-(he option may also be speci\214ed in the statement, in which case it o)
--5.831 F -.15(ve)-.15 G .832(rrides the).15 F(statement.)72 444 Q .416
-(If and a DNS query requests recursion, then the serv)72 468 R .415
-(er will attempt to do all the w)-.15 F .415
-(ork required to answer the query)-.1 F(.)-.65 E .454
-(If recursion is not on, the serv)72 480 R .454
-(er will return a referral to the client if it doesn')-.15 F 2.954(tk)
--.18 G(no)-2.954 E 2.954(wt)-.25 G .454(he answer)-2.954 F 5.454(.T)-.55
-G .454(he def)-5.454 F .454(ault is See)-.1 F(also abo)72 492 Q -.15(ve)
--.15 G(.).15 E .194(If the serv)72 516 R .194
-(er will send NS records along with the SO)-.15 F 2.694(Ar)-.35 G .193
-(ecord for ne)-2.694 F -.05(ga)-.15 G(ti).05 E .493 -.15(ve a)-.25 H
-2.693(nswers. Y).15 F .193(ou need to set this to no if you)-1.1 F(ha)72
-528 Q 1.279 -.15(ve a)-.2 H 3.479(no).15 G .979(ld BIND serv)-3.479 F
-.979(er using you as a forw)-.15 F .98
-(arder that does not understand ne)-.1 F -.05(ga)-.15 G(ti).05 E 1.28
--.15(ve a)-.25 H .98(nswers which contain both).15 F(SO)72 540 Q 3.613
-(Aa)-.35 G 1.113(nd NS records or you ha)-3.613 F 1.413 -.15(ve a)-.2 H
-3.613(no).15 G 1.112(ld v)-3.613 F 1.112(ersion of sendmail.)-.15 F
-1.112(The correct \214x is to upgrade the brok)6.112 F 1.112(en serv)-.1
-F 1.112(er or)-.15 F 2.5(sendmail. The)72 552 R(def)2.5 E(ault is)-.1 E
-.652(If the serv)72 576 R .652(er will k)-.15 F .653(eep track of its o)
--.1 F .653(wn outstanding query ID')-.25 F 3.153(st)-.55 G 3.153(oa)
--3.153 G -.2(vo)-3.353 G .653(id duplication and increase randomness.).2
-F(This)5.653 E
-(will result in 128KB more memory being consumed by the serv)72 588 Q
-(er)-.15 E 5(.T)-.55 G(he def)-5 E(ault is)-.1 E .02(If the serv)72 612
-R .02(er will treat CR characters the same w)-.15 F .02
-(ay it treats a space or tab)-.1 F 5.02(.T)-.4 G .02
-(his may be necessary when loading zone)-5.02 F
-(\214les on a UNIX system that were generated on an NT or DOS machine.)
-72 624 Q(The def)5 E(ault is)-.1 E .256
-(De\214nes a global list of IP addresses that also get sent NO)72 696 R
-.256(TIFY messages whene)-.4 F -.15(ve)-.25 G 2.756(raf).15 G .256
-(resh cop)-2.756 F 2.756(yo)-.1 G 2.757(ft)-2.756 G .257
-(he zone is load-)-2.757 F .581
-(ed. This helps to ensure that copies of the zones will quickly con)72
-708 R -.15(ve)-.4 G -.18(rg).15 G 3.081(eo).18 G 3.081(n`)-3.081 G
-(`stealth')-3.821 E 3.081('s)-.74 G(erv)-3.081 E 3.081(ers. If)-.15 F
-.581(an list is gi)3.081 F -.15(ve)-.25 G 3.08(ni).15 G 3.08(na)-3.08 G
-.859(statement, it will o)72 720 R -.15(ve)-.15 G .86(rride the stateme\
-nt. When a statement is set to the IP addresses in the global list will\
- not get).15 F(sent NO)72 732 Q(TIFY messages for that zone.)-.4 E
-(The def)5 E(ault is the empty list \(no global noti\214cation list\).)
--.1 E .488(The forw)72 768 R .488(arding f)-.1 F .488
-(acility can be used to create a lar)-.1 F .487
-(ge site-wide cache on a fe)-.18 F 2.987(ws)-.25 G(erv)-2.987 E .487
-(ers, reducing traf)-.15 F .487(\214c o)-.25 F -.15(ve)-.15 G 2.987(rl)
-.15 G .487(inks to)-2.987 F -.15(ex)72 780 S .611(ternal nameserv).15 F
-3.111(ers. It)-.15 F .611(can also be used to allo)3.111 F 3.111(wq)-.25
-G .611(ueries by serv)-3.111 F .611(ers that do not ha)-.15 F .911 -.15
-(ve d)-.2 H .611(irect access to the Internet,).15 F -.2(bu)72 792 S
-2.709(tw).2 G .209(ish to look up e)-2.709 F .209(xterior names an)-.15
-F(yw)-.15 E(ay)-.1 E 5.209(.F)-.65 G(orw)-5.359 E .208
-(arding occurs only on those queries for which the serv)-.1 F .208
-(er is not au-)-.15 F EP
+/F0 10/Times-Roman@0 SF 2.5([a)77 12 S(llo)-2.5 E(w-transfer {)-.25 E/F1
+10/Times-Italic@0 SF(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])
+2.5 E 2.5([f)77 24 S(orw)-2.5 E(ard \( only | \214rst \); ])-.1 E 2.5
+([f)77 36 S(orw)-2.5 E(arders { [)-.1 E F1(ip_addr)2.5 E F0 2.5(;[)2.5 G
+F1(ip_addr)A F0 2.5(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([d)77 48 S(ialup)
+-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([n)77 60 S(otify \()-2.5 E F1
+(yes_or_no)2.5 E F0 2.5(|e)2.5 G(xplicit \); ])-2.65 E 2.5([a)77 72 S
+(lso-notify {)-2.5 E F1(ip_addr)2.5 E F0 2.5(;[)C F1(ip_addr)A F0 2.5
+(;.)C(.. ] };)-2.5 E 2.5([p)77 84 S(ubk)-2.5 E -.15(ey)-.1 G F1
+(number number number string)2.65 E F0 2.5(;]})C 2.5(;z)-2.5 G(one)-2.5
+E F1(domain_name)2.5 E F0 2.5([\(i)2.5 G 2.5(n|h)-2.5 G 2.5(s|h)-2.5 G
+(esiod | chaos \) ] {)-2.5 E(type \( sla)77 96 Q .3 -.15(ve | s)-.2 H
+(tub \);).15 E 2.5<5b8c>77 108 S(le)-2.5 E F1(path_name)2.5 E F0 2.5(;])
+C(masters [ port)77 120 Q F1(ip_port)2.5 E F0 2.5(]{)2.5 G F1(ip_addr)A
+F0 2.5([k)2.5 G -.15(ey)-2.6 G F1 -.1(ke)2.65 G(y_id)-.2 E F0
+(]; [ ... ] };)2.5 E 2.5([c)77 132 S(heck-names \( w)-2.5 E(arn | f)-.1
+E(ail | ignore \); ])-.1 E 2.5([a)77 144 S(llo)-2.5 E(w-update {)-.25 E
+F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([a)77 156
+S(llo)-2.5 E(w-query {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15
+E F0(}; ])2.5 E 2.5([a)77 168 S(llo)-2.5 E(w-transfer {)-.25 E F1(addr)
+2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([f)77 180 S(orw)
+-2.5 E(ard \( only | \214rst \); ])-.1 E 2.5([f)77 192 S(orw)-2.5 E
+(arders { [)-.1 E F1(ip_addr)2.5 E F0 2.5(;[)2.5 G F1(ip_addr)A F0 2.5
+(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([t)77 204 S(ransfer)-2.5 E(-source)-.2
+E F1(ip_addr)2.5 E F0 2.5(;])C 2.5([m)77 216 S(ax-transfer)-2.5 E
+(-time-in)-.2 E F1(number)2.5 E F0 2.5(;])C 2.5([n)77 228 S(otify)-2.5 E
+F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([a)77 240 S(lso-notify {)-2.5 E F1
+(ip_addr)2.5 E F0 2.5(;[)C F1(ip_addr)A F0 2.5(;.)C(.. ] };)-2.5 E 2.5
+([p)77 252 S(ubk)-2.5 E -.15(ey)-.1 G F1(number number number string)
+2.65 E F0 2.5(;]})C 2.5(;z)-2.5 G(one)-2.5 E F1(domain_name)2.5 E F0 2.5
+([\(i)2.5 G 2.5(n|h)-2.5 G 2.5(s|h)-2.5 G(esiod | chaos \) ] {)-2.5 E
+(type forw)77 264 Q(ard;)-.1 E 2.5([f)77 276 S(orw)-2.5 E
+(ard \( only | \214rst \); ])-.1 E 2.5([f)77 288 S(orw)-2.5 E
+(arders { [)-.1 E F1(ip_addr)2.5 E F0 2.5(;[)2.5 G F1(ip_addr)A F0 2.5
+(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([c)77 300 S(heck-names \( w)-2.5 E
+(arn | f)-.1 E
+(ail | ignore \); ] }; zone "." [ \( in | hs | hesiod | chaos \) ] {)-.1
+E(type hint;)77 312 Q(\214le)77 324 Q F1(path_name)2.5 E F0(;)A 3.268
+([c)77 336 S .768(heck-names \( w)-3.268 F .768(arn | f)-.1 F .768
+(ail | ignore \); ] }; The statement is used to de\214ne ho)-.1 F 3.267
+(wi)-.25 G .767(nformation about particular DNS)-3.267 F .103
+(zones is managed by the serv)72 348 R(er)-.15 E 5.103(.T)-.55 G .103
+(here are \214v)-5.103 F 2.603(ed)-.15 G(if)-2.603 E .103
+(ferent zone types.)-.25 F .103(The serv)5.103 F .103
+(er has a master cop)-.15 F 2.603(yo)-.1 G 2.604(ft)-2.603 G .104
+(he data for the)-2.604 F .242(zone and will be able to pro)72 360 R
+.242(vide authoritati)-.15 F .542 -.15(ve a)-.25 H .241(nswers for it.)
+.15 F 2.741(Az)5.241 G .241(one is a replica of a master zone.)-2.741 F
+.241(The list speci\214es)5.241 F .217
+(one or more IP addresses that the sla)72 372 R .517 -.15(ve c)-.2 H
+.217(ontacts to update its cop).15 F 2.717(yo)-.1 G 2.717(ft)-2.717 G
+.217(he zone.)-2.717 F .217(If a is speci\214ed then checks to see if)
+5.217 F .115
+(the zone is current and zone transfers will be done to the port gi)72
+384 R -.15(ve)-.25 G .115
+(n. If is speci\214ed, then the replica will be written to).15 F .228
+(the named \214le.)72 396 R .229
+(Use of the clause is highly recommended, since it often speeds serv)
+5.229 F .229(er startup and eliminates a need-)-.15 F .489(less w)72 408
+R .489(aste of bandwidth.)-.1 F 2.988(Az)5.489 G .488(one is lik)-2.988
+F 2.988(eas)-.1 G(la)-2.988 E .788 -.15(ve z)-.2 H .488(one, e).15 F
+.488(xcept that it replicates only the NS records of a master zone)-.15
+F .967(instead of the entire zone.)72 420 R 3.467(Az)5.967 G .968
+(one is used to direct all queries in it to other serv)-3.467 F .968
+(ers, as described in section.)-.15 F(The)5.968 E .2
+(speci\214cation of options in such a zone will o)72 432 R -.15(ve)-.15
+G .2(rride an).15 F 2.7(yg)-.15 G .2
+(lobal options declared in the statement.)-2.7 F .2(If either no clause)
+5.2 F .554(is present in the zone or an empty list for is gi)72 444 R
+-.15(ve)-.25 G .554(n, then no forw).15 F .555
+(arding will be done for the zone, cancelling the ef-)-.1 F .124
+(fects of an)72 456 R 2.624(yi)-.15 G 2.624(nt)-2.624 G .124
+(he statement.)-2.624 F .124(Thus if you w)5.124 F .123
+(ant to use this type of zone to change only the beha)-.1 F .123
+(vior of the global op-)-.2 F .75(tion, and not the serv)72 468 R .75
+(ers used, then you also need to respecify the global forw)-.15 F 3.25
+(arders. The)-.1 F .75(initial set of root name-)3.25 F(serv)72 480 Q
+.527(ers is speci\214ed using a zone.)-.15 F .527(When the serv)5.527 F
+.526(er starts up, it uses the root hints to \214nd a root nameserv)-.15
+F .526(er and get)-.15 F 1.022(the most recent list of root nameserv)72
+492 R 3.522(ers. Note:)-.15 F(pre)3.522 E 1.023
+(vious releases of BIND used the term for a master zone, for a)-.25 F
+(sla)72 504 Q .72 -.15(ve z)-.2 H .42(one, and for a hint zone.).15 F
+.42(The zone')5.42 F 2.92(sn)-.55 G .42(ame may optionally be follo)
+-2.92 F .42(wed by a class.)-.25 F .42(If a class is not speci\214ed,)
+5.42 F .394(class \(for "internet"\), is assumed.)72 516 R .394
+(This is correct for the v)5.394 F .394(ast majority of cases.)-.25 F
+.394(The class is for an information ser)5.394 F(-)-.2 E 1.258
+(vice from MIT')72 528 R 3.757(sP)-.55 G 1.257(roject Athena.)-3.757 F
+1.257(It is used to share information about v)6.257 F 1.257
+(arious systems databases, such as users,)-.25 F 15.479
+(groups, printers and so on.)72 540 R 15.479
+(More information can be found at ftp://athena-)20.479 F
+(dist.mit.edu/pub/A)72 552 Q(THEN)-1.11 E 3.904
+(A/usenix/athena_changes.PS. The)-.35 F -.1(ke)3.904 G(yw)-.05 E 1.403
+(ord is a synon)-.1 F 1.403(ym for Another MIT de)-.15 F -.15(ve)-.25 G
+(lopment).15 E -.1(wa)72 564 S 3.615(sC).1 G(HA)-3.615 E 1.115
+(OSnet, a LAN protocol created in the mid-1970s.)-.55 F 1.115
+(It is still sometimes seen on LISP stations and other)6.115 F(hardw)72
+576 Q .187(are in the AI community)-.1 F 2.687(,a)-.65 G .187
+(nd zone data for it can be speci\214ed with the class.)-2.687 F .186
+(See the subsection on in See the)5.187 F .361
+(description of in the subsection of Speci\214es which hosts are allo)72
+588 R .361(wed to submit Dynamic DNS updates to the serv)-.25 F(er)-.15
+E(.)-.55 E .249(The def)72 600 R .249(ault is to den)-.1 F 2.749(yu)-.15
+G .249(pdates from all hosts.)-2.749 F .249
+(See the description of in the subsection of determines which local ad-)
+5.249 F .167
+(dress will be bound to the TCP connection used to fetch this zone.)72
+612 R .167(If not set, it def)5.167 F .167
+(aults to a system controlled v)-.1 F(alue)-.25 E .54
+(which will usually be the address of the interf)72 624 R .54(ace `)-.1
+F .54(`closest to')-.74 F 3.039('t)-.74 G .539(he remote end.)-3.039 F
+.539(This address must appear in the re-)5.539 F .317(mote end')72 636 R
+2.817(so)-.55 G .317(ption for this zone if one is speci\214ed.)-2.817 F
+.317(See the description of in the subsection of See the description of)
+5.317 F .384(in the subsection of See the description of in the subsection of the is only meaningful if is acti)
+72 648 R .684 -.15(ve f)-.25 H .384(or this zone.).15 F(The)5.384 E .364
+(set of machines that will recei)72 660 R .664 -.15(ve a D)-.25 H .364
+(NS NO).15 F .364
+(TIFY message for this zone is made up of all the listed nameserv)-.4 F
+.365(ers for)-.15 F .536
+(the zone \(other than the primary master\) plus an)72 672 R 3.036(yI)
+-.15 G 3.036(Pa)-3.036 G .536
+(ddresses speci\214ed with is not meaningful for zones.)-3.036 F .535
+(The de-)5.535 F -.1(fa)72 684 S .562(ult is the empty list.).1 F .563
+(is only meaningful if the zone has a list. The v)5.562 F .563
+(alue causes the lookup to f)-.25 F .563(ail after trying the)-.1 F .452
+(and getting no answer)72 696 R 2.952(,w)-.4 G .452(hile w)-2.952 F .452
+(ould allo)-.1 F 2.952(wan)-.25 G .452(ormal lookup to be tried.)-2.952
+F .452(The option in a zone is used to o)5.452 F -.15(ve)-.15 G .451
+(rride the).15 F .577(list of global forw)72 708 R 3.077(arders. If)-.1
+F .578(it is not speci\214ed in a zone of type forw)3.077 F .578
+(arding is done for the zone; the global options)-.1 F .589
+(are not used.)72 720 R .588(The DNSSEC \215ags, protocol, and algorithm are speci\214ed, as well as a base-64 encoded string repre-)
+5.589 F(senting the k)72 732 Q -.15(ey)-.1 G 5(.a)-.5 G(cl)-5 E F1(name)
+2.5 E F0({)2.5 E F1(addr)77 744 Q(ess_matc)-.37 E(h_list)-.15 E F0 .156
+(}; The statement creates a named address match list.)2.655 F .156
+(It gets its name from a primary use of ad-)5.156 F .145
+(dress match lists:)72 756 R .145(Access Control Lists \(A)5.145 F 2.645
+(CLs\). Note)-.4 F .145(that an address match list')2.645 F 2.645(sn)
+-.55 G .145(ame must be de\214ned with before)-2.645 F .051
+(it can be used else)72 768 R .051(where; no forw)-.25 F .051
+(ard references are allo)-.1 F 2.551(wed. The)-.25 F(follo)2.551 E .051
+(wing A)-.25 F .051(CLs are b)-.4 F .051(uilt-in: Allo)-.2 F .051
+(ws all hosts.)-.25 F(De-)5.052 E .411(nies all hosts.)72 780 R(Allo)
+5.411 E .411(ws the IP addresses of all interf)-.25 F .411
+(aces on the system.)-.1 F(Allo)5.411 E .411(ws an)-.25 F 2.911(yh)-.15
+G .411(ost on a netw)-2.911 F .411(ork for which the)-.1 F
+(system has an interf)72 792 Q 2.5(ace. k)-.1 F -.15(ey)-.1 G F1 -.1(ke)
+2.65 G(y_id)-.2 E F0({)2.5 E EP
 %%Page: 9 9
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF(thoritati)72 12 Q .3 -.15(ve a)-.25 H
-(nd does not ha).15 E .3 -.15(ve t)-.2 H(he answer in its cache.).15 E
-.945(This option is only meaningful if the list is not empty)72 36 R
-5.945(.A)-.65 G -.25(va)-2.5 G .945(lue of the def).25 F .945
-(ault, causes the serv)-.1 F .945(er to query the for)-.15 F(-)-.2 E -.1
-(wa)72 48 S .676(rders \214rst, and if that doesn').1 F 3.176(ta)-.18 G
-.676(nswer the question the serv)-3.176 F .675
-(er will then look for the answer itself.)-.15 F .675
-(If is speci\214ed,)5.675 F(the serv)72 60 Q
-(er will only query the forw)-.15 E(arders.)-.1 E
-(Speci\214es the IP addresses to be used for forw)72 84 Q 2.5
-(arding. The)-.1 F(def)2.5 E(ault is the empty list \(no forw)-.1 E
-(arding\).)-.1 E -.15(Fo)72 108 S(rw).15 E .442
-(arding can also be con\214gured on a per)-.1 F .442(-zone basis, allo)
--.2 F .442(wing for the global forw)-.25 F .443(arding options to be o)
--.1 F -.15(ve)-.15 G(rridden).15 E .723(in a v)72 120 R .723
-(ariety of w)-.25 F 3.223(ays. Y)-.1 F .723
-(ou can set particular zones to use dif)-1.1 F .723(ferent forw)-.25 F
-.723(arders, or ha)-.1 F 1.023 -.15(ve d)-.2 H(if).15 E .723
-(ferent beha)-.25 F(vior)-.2 E 3.223(,o)-.4 G 3.223(rt)-3.223 G 3.223
-(on)-3.223 G(ot)-3.223 E(forw)72 132 Q(ard at all.)-.1 E
-(See section for more information.)5 E .449(Future v)72 156 R .449
-(ersions of BIND 8 will pro)-.15 F .449(vide a more po)-.15 F .449
-(werful forw)-.25 F .45(arding system.)-.1 F .45
-(The syntax described abo)5.45 F .75 -.15(ve w)-.15 H .45(ill con-).15 F
-(tinue to be supported.)72 168 Q .045(The serv)72 204 R .045
-(er can check domain names based upon their e)-.15 F .044
-(xpected client conte)-.15 F 2.544(xts. F)-.15 F .044(or e)-.15 F .044
-(xample, a domain name used as)-.15 F 2.5(ah)72 216 S
-(ostname can be check)-2.5 E
-(ed for compliance with the RFCs de\214ning v)-.1 E(alid hostnames.)-.25
-E(Three checking methods are a)72 240 Q -.25(va)-.2 G(ilable:).25 E
-(No checking is done.)72 264 Q .677(Names are check)72 288 R .677(ed ag)
--.1 F .677(ainst their e)-.05 F .677(xpected client conte)-.15 F 3.177
-(xts. In)-.15 F -.25(va)-.4 G .677(lid names are logged, b).25 F .678
-(ut processing continues nor)-.2 F(-)-.2 E(mally)72 300 Q(.)-.65 E .068
-(Names are check)72 324 R .067(ed ag)-.1 F .067(ainst their e)-.05 F
-.067(xpected client conte)-.15 F 2.567(xts. In)-.15 F -.25(va)-.4 G .067
-(lid names are logged, and the of).25 F .067(fending data is reject-)
--.25 F(ed.)72 336 Q .078(The serv)72 360 R .078
-(er can check names three areas: master zone \214les, sla)-.15 F .378
--.15(ve z)-.2 H .078(one \214les, and in responses to queries the serv)
-.15 F .078(er has)-.15 F 3.542(initiated. If)72 372 R 1.041
-(has been speci\214ed, and answering the client')3.542 F 3.541(sq)-.55 G
-1.041(uestion w)-3.541 F 1.041(ould require sending an in)-.1 F -.25(va)
--.4 G 1.041(lid name to the).25 F(client, the serv)72 384 Q
-(er will send a response code to the client.)-.15 E(The def)72 408 Q
-(aults are:)-.1 E(check-names master f)82 432 Q(ail;)-.1 E
-(check-names sla)82 444 Q .3 -.15(ve w)-.2 H(arn;).05 E
-(check-names response ignore;)82 456 Q .363
-(may also be speci\214ed in the statement, in which case it o)72 480 R
--.15(ve)-.15 G .364(rrides the statement.).15 F .364
-(When used in a statement, the area)5.364 F
-(is not speci\214ed \(because it can be deduced from the zone type\).)72
-492 Q .049(Access to the serv)72 528 R .049(er can be restricted based \
-on the IP address of the requesting system or via shared secret k)-.15 F
--.15(ey)-.1 G 2.548(s. See).15 F(for details on ho)72 540 Q 2.5(wt)-.25
-G 2.5(os)-2.5 G(pecify access criteria.)-2.5 E .203
-(Speci\214es which hosts are allo)72 564 R .203
-(wed to ask ordinary questions.)-.25 F .203
-(may also be speci\214ed in the statement, in which case it)5.203 F -.15
-(ove)72 576 S(rrides the statement.).15 E(If not speci\214ed, the def)5
-E(ault is to allo)-.1 E 2.5(wq)-.25 G(ueries from all hosts.)-2.5 E
-1.799(Speci\214es which hosts are allo)72 600 R 1.799
-(wed to ask recursi)-.25 F 2.099 -.15(ve q)-.25 H 4.299(uestions. If).15
-F 1.799(not speci\214ed, the def)4.299 F 1.798(ault is to allo)-.1 F
-4.298(wr)-.25 G(ecursi)-4.298 E -.15(ve)-.25 G(queries from all hosts.)
-72 612 Q .509(Speci\214es which hosts are allo)72 636 R .509
-(wed to recei)-.25 F .809 -.15(ve z)-.25 H .509
-(one transfers from the serv).15 F(er)-.15 E 5.51(.m)-.55 G .51
-(ay also be speci\214ed in the statement,)-5.51 F(in which case it o)72
-648 Q -.15(ve)-.15 G(rrides the statement.).15 E
-(If not speci\214ed, the def)5 E(ault is to allo)-.1 E 2.5(wt)-.25 G
-(ransfers from all hosts.)-2.5 E .074
-(Speci\214es a list of addresses that the serv)72 672 R .074
-(er will not accept queries from or use to resolv)-.15 F 2.574(ea)-.15 G
-(query)-.001 E 5.073(.Q)-.65 G .073(ueries from these)-5.073 F
-(addresses will not be responded to.)72 684 Q .136(The interf)72 720 R
-.137(aces and ports that the serv)-.1 F .137
-(er will answer queries from may be speci\214ed using the option.)-.15 F
-(tak)5.137 E .137(es an option-)-.1 F .15
-(al port, and an address match list.)72 732 R .15(The serv)5.15 F .15
-(er will listen on all interf)-.15 F .15(aces allo)-.1 F .15
-(wed by the address match list.)-.25 F .15(If a port)5.15 F
-(is not speci\214ed, port 53 will be used.)72 744 Q
-(Multiple statements are allo)72 768 Q 2.5(wed. F)-.25 F(or e)-.15 E
-(xample,)-.15 E(listen-on { 5.6.7.8; };)82 792 Q EP
-%%Page: 10 10
-%%BeginPageSetup
-BP
-%%EndPageSetup
-/F0 10/Times-Roman@0 SF(listen-on port 1234 { !1.2.3.4; 1.2/16; };)82 12
-Q .55(will enable the nameserv)72 36 R .551(er on port 53 for the IP ad\
-dress 5.6.7.8, and on port 1234 of an address on the machine in)-.15 F
-(net 1.2 that is not 1.2.3.4.)72 48 Q(If no is speci\214ed, the serv)72
-72 Q(er will listen on port 53 on all interf)-.15 E(aces.)-.1 E .553
-(If the serv)72 108 R .552(er doesn')-.15 F 3.052(tk)-.18 G(no)-3.052 E
-3.052(wt)-.25 G .552
-(he answer to a question, it will query other nameserv)-3.052 F 3.052
-(ers. speci\214es)-.15 F .552(the address and port)3.052 F .253
-(used for such queries.)72 120 R .254
-(If is or is omitted, a wildcard IP address \( will be used.)5.253 F
-.254(If is or is omitted, a random unpri)5.254 F(vi-)-.25 E(le)72 132 Q
-(ged port will be used.)-.15 E(The def)5 E(ault is)-.1 E .628
-(Note: currently applies only to UDP queries; TCP queries al)72 156 R
--.1(wa)-.1 G .628(ys use a wildcard IP address and a random unpri).1 F
-(vi-)-.25 E(le)72 168 Q(ged port.)-.15 E .832
-(Inbound zone transfers \( processes\) running longer than this man)72
-204 R 3.332(ym)-.15 G .833(inutes will be terminated.)-3.332 F .833
-(The def)5.833 F .833(ault is 120)-.1 F(minutes \(2 hours\).)72 216 Q
-.872(The serv)72 240 R .872(er supports tw)-.15 F 3.372(oz)-.1 G .871
-(one transfer methods.)-3.372 F .871
-(uses one DNS message per resource record transferred.)5.871 F .871
-(packs as)5.871 F(man)72 252 Q 3.173(yr)-.15 G .673
-(esource records as possible into a message.)-3.173 F .674(is more ef)
-5.674 F .674(\214cient, b)-.25 F .674(ut is only kno)-.2 F .674
-(wn to be understood by BIND)-.25 F .464(8.1 and patched v)72 264 R .464
-(ersions of BIND 4.9.5.)-.15 F .464(The def)5.464 F .464
-(ault is may be o)-.1 F -.15(ve)-.15 G .463(rridden on a per).15 F
-(-serv)-.2 E .463(er basis by using the state-)-.15 F(ment.)72 276 Q
-.094(The maximum number of inbound zone transfers that can be running c\
-oncurrently)72 300 R 5.094(.T)-.65 G .094(he def)-5.094 F .094(ault v)
--.1 F .094(alue is 10.)-.25 F(Increas-)5.095 E(ing may speed up the con)
-72 312 Q -.15(ve)-.4 G -.18(rg).15 G(ence of sla).18 E .3 -.15(ve z)-.2
-H(ones, b).15 E(ut it also may increase the load on the local system.)
--.2 E .686(This option will be used in the future to limit the number o\
-f concurrent outbound zone transfers.)72 336 R .686(It is check)5.686 F
-.686(ed for)-.1 F(syntax, b)72 348 Q(ut is otherwise ignored.)-.2 E .419
-(The maximum number of inbound zone transfers \( processes\) that can b\
-e concurrently transferring from a gi)72 372 R -.15(ve)-.25 G 2.92(nr)
-.15 G(e-)-2.92 E .52(mote nameserv)72 384 R(er)-.15 E 5.52(.T)-.55 G .52
-(he def)-5.52 F .52(ault v)-.1 F .52(alue is 2.)-.25 F .52
-(Increasing may speed up the con)5.52 F -.15(ve)-.4 G -.18(rg).15 G .52
-(ence of sla).18 F .82 -.15(ve z)-.2 H .52(ones, b).15 F .52
-(ut it also may)-.2 F 1.214(increase the load on the remote nameserv)72
-396 R(er)-.15 E 6.215(.m)-.55 G 1.215(ay be o)-6.215 F -.15(ve)-.15 G
-1.215(rridden on a per).15 F(-serv)-.2 E 1.215
-(er basis by using the phrase of the)-.15 F(statement.)72 408 Q .448(de\
-termines which local address will be bound to the TCP connection used t\
-o fetch all zones transferred inbound by)72 432 R .051(the serv)72 444 R
-(er)-.15 E 5.051(.I)-.55 G 2.552(fn)-5.051 G .052(ot set, it def)-2.552
-F .052(aults to a system controlled v)-.1 F .052
-(alue which will usually be the address of the interf)-.25 F .052(ace `)
--.1 F(`clos-)-.74 E .05(est to`)72 456 R 2.55(`t)-.74 G .05
-(he remote end.)-2.55 F .05(This address must appear in the remote end')
-5.05 F 2.55(so)-.55 G .05
-(ption for the zones being transferred, if one is)-2.55 F 3.53
-(speci\214ed. This)72 468 R 1.03(statement sets the for all zones, b)
-3.53 F 1.031(ut can be o)-.2 F -.15(ve)-.15 G 1.031(rriden on a per).15
-F 1.031(-zone basis by including)-.2 F 3.531(as)-.05 G(tatement)-3.531 E
-(within the zone block in the con\214guration \214le.)72 480 Q 1.108
-(The serv)72 516 R(er')-.15 E 3.607(su)-.55 G 1.107(sage of man)-3.607 F
-3.607(ys)-.15 G 1.107(ystem resources can be limited.)-3.607 F 1.107
-(Some operating systems don')6.107 F 3.607(ts)-.18 G 1.107
-(upport some of the)-3.607 F 3.253(limits. On)72 528 R .753
-(such systems, a w)3.253 F .753
-(arning will be issued if the unsupported limit is used.)-.1 F .754
-(Some operating systems don')5.754 F(t)-.18 E(support limiting resource\
-s, and on these systems a message will be logged.)72 540 Q .176
-(Scaled v)72 564 R .176(alues are allo)-.25 F .176
-(wed when specifying resource limits.)-.25 F -.15(Fo)5.175 G 2.675(re)
-.15 G .175(xample, can be used instead of to specify a limit of)-2.825 F
-.526(one gig)72 576 R 3.026(abyte. requests)-.05 F .526
-(unlimited use, or the maximum a)3.026 F -.25(va)-.2 G .527
-(ilable amount.).25 F .527(uses the limit that w)5.527 F .527
-(as in force when the)-.1 F(serv)72 588 Q(er w)-.15 E(as started.)-.1 E
-(See the de\214nition of in the section for more details.)5 E
-(The maximum size of a core dump.)72 612 Q(The def)5 E(ault v)-.1 E
-(alue is)-.25 E(The maximum amount of data memory the serv)72 636 Q
-(er may use.)-.15 E(The def)5 E(ault v)-.1 E(alue is)-.25 E .238
-(The maximum number of \214les the serv)72 660 R .238(er may ha)-.15 F
-.537 -.15(ve o)-.2 H .237(pen concurrently).15 F 5.237(.T)-.65 G .237
-(he def)-5.237 F .237(ault v)-.1 F .237(alue is Note that on some oper)
--.25 F(-)-.2 E .377(ating systems the serv)72 672 R .377
-(er cannot set an unlimited v)-.15 F .377
-(alue and cannot determine the maximum number of open \214les the)-.25 F
--.1(ke)72 684 S .524(rnel can support.).1 F .524
-(On such systems, choosing will cause the serv)5.524 F .524
-(er to use the lar)-.15 F .524(ger of the from and the v)-.18 F .523
-(alue re-)-.25 F(turned by If the actual k)72 696 Q(ernel limit is lar)
--.1 E(ger than this v)-.18 E(alue, use to specify the limit e)-.25 E
-(xplicitly)-.15 E(.)-.65 E .758
-(The will be used in a future release of the serv)72 720 R .758
-(er to limit the size of the transaction log k)-.15 F .759
-(ept for Incremental Zone)-.1 F -.35(Tr)72 732 S(ansfer).35 E(.)-.55 E
-(The maximum amount of stack memory the serv)72 756 Q(er may use.)-.15 E
-(The def)5 E(ault v)-.1 E(alue is)-.25 E(The serv)72 792 Q(er will remo)
--.15 E .3 -.15(ve ex)-.15 H(pired resource records from the cache e).15
-E -.15(ve)-.25 G(ry).15 E EP
-%%Page: 11 11
-%%BeginPageSetup
-BP
-%%EndPageSetup
-/F0 10/Times-Roman@0 SF 2.5(minutes. The)72 24 R(def)2.5 E
-(ault is 60 minutes.)-.1 E(If set to 0, no periodic cleaning will occur)
-5 E(.)-.55 E .431(The serv)72 48 R .431
-(er will perform zone maintenance tasks for all zones mark)-.15 F .43
-(ed whene)-.1 F -.15(ve)-.25 G 2.93(rt).15 G .43(his interv)-2.93 F .43
-(al e)-.25 F 2.93(xpires. The)-.15 F(def)2.93 E .43(ault is)-.1 F .198
-(60 minutes. Reasonable v)72 60 R .198
-(alues are up to 1 day \(1440 minutes\).)-.25 F .198
-(If set to 0, no zone maintenance for these zones will)5.198 F(occur)72
-72 Q(.)-.55 E .439(The serv)72 96 R .439(er will scan the netw)-.15 F
-.439(ork interf)-.1 F .439(ace list e)-.1 F -.15(ve)-.25 G .439
-(ry minutes.).15 F .438(The def)5.439 F .438(ault is 60 minutes.)-.1 F
-.438(If set to 0, interf)5.438 F .438(ace scan-)-.1 F .28
-(ning will only occur when the con\214guration \214le is loaded.)72 108
-R .281(After the scan, listeners will be started on an)5.28 F 2.781(yn)
--.15 G .781 -.25(ew i)-2.781 H(nter).25 E(-)-.2 E -.1(fa)72 120 S .41
-(ces \(pro).1 F .41(vided the)-.15 F 2.91(ya)-.15 G .41(re allo)-2.91 F
-.41(wed by the con\214guration\).)-.25 F .41(Listeners on interf)5.41 F
-.41(aces that ha)-.1 F .71 -.15(ve g)-.2 H .41(one a).15 F -.1(wa)-.15 G
-2.91(yw).1 G .41(ill be cleaned)-2.91 F(up.)72 132 Q(Nameserv)72 156 Q
-(er statistics will be logged e)-.15 E -.15(ve)-.25 G(ry minutes.).15 E
-(The def)5 E(ault is 60.)-.1 E
-(If set to 0, no statistics will be logged.)5 E .039
-(All other things being equal, when the serv)72 192 R .039
-(er chooses a nameserv)-.15 F .039(er to query from a list of nameserv)
--.15 F .039(ers, it prefers the)-.15 F .126
-(one that is topologically closest to itself.)72 204 R .126
-(The statement tak)5.126 F .125
-(es an address match list and interprets it in a special w)-.1 F(ay)-.1
-E(.)-.65 E .049(Each top-le)72 216 R -.15(ve)-.25 G 2.549(ll).15 G .049
-(ist element is assigned a distance.)-2.549 F(Non-ne)5.049 E -.05(ga)
--.15 G .05(ted elements get a distance based on their position in the)
-.05 F 1.142(list, where the closer the match is to the start of the lis\
-t, the shorter the distance is between it and the serv)72 228 R(er)-.15
-E 6.142(.A)-.55 G(ne)72 240 Q -.05(ga)-.15 G .629
-(ted match will be assigned the maximum distance from the serv).05 F(er)
--.15 E 5.63(.I)-.55 G 3.13(ft)-5.63 G .63
-(here is no match, the address will get a)-3.13 F
-(distance which is further than an)72 252 Q 2.5(yn)-.15 G(on-ne)-2.5 E
--.05(ga)-.15 G(ted list element, and closer than an).05 E 2.5(yn)-.15 G
--2.25 -.15(eg a)-2.5 H(ted element.).15 E -.15(Fo)5 G 2.5(re).15 G
-(xample,)-2.65 E(topology {)82 276 Q(10/8;)92 288 Q(!1.2.3/24;)92 300 Q
-2.5({1)92 312 S(.2/16; 3/8; };)-2.5 E(};)82 324 Q .026(will prefer serv)
-72 348 R .026(ers on netw)-.15 F .025(ork 10 the most, follo)-.1 F .025
-(wed by hosts on netw)-.25 F .025
-(ork 1.2.0.0 \(netmask 255.255.0.0\) and netw)-.1 F(ork)-.1 E
-(3, with the e)72 360 Q(xception of hosts on netw)-.15 E
-(ork 1.2.3 \(netmask 255.255.255.0\), which is preferred least of all.)
--.1 E(The def)72 384 Q(ault topology is)-.1 E .241
-(When returning multiple RRs, the nameserv)72 420 R .242(er will normal\
-ly return them in i.e. after each request, the \214rst RR is put)-.15 F
-(to the end of the list.)72 432 Q
-(As the order of RRs is not de\214ned, this should not cause an)5 E 2.5
-(yp)-.15 G(roblems.)-2.5 E .162(The client resolv)72 456 R .161
-(er code should re-arrange the RRs as appropriate, i.e. using an)-.15 F
-2.661(ya)-.15 G .161(ddresses on the local net in prefer)-2.661 F(-)-.2
-E(ence to other addresses. Ho)72 468 Q(we)-.25 E -.15(ve)-.25 G .8 -.4
-(r, n).15 H(ot all resolv).4 E
-(ers can do this, or are not correctly con\214gured.)-.15 E .517
-(When a client is using a local serv)72 492 R(er)-.15 E 3.017(,t)-.4 G
-.517(he sorting can be performed in the serv)-3.017 F(er)-.15 E 3.017
-(,b)-.4 G .517(ased on the client')-3.017 F 3.018(sa)-.55 G .518
-(ddress. This)-3.018 F(only requires con\214guring the nameserv)72 504 Q
-(ers, not all the clients.)-.15 E(The statement tak)72 528 Q
-(es an address match list and interprets it e)-.1 E -.15(ve)-.25 G 2.5
-(nm).15 G(ore specially than the statement does.)-2.5 E .837
-(Each top le)72 552 R -.15(ve)-.25 G 3.337(ls).15 G .837
-(tatement in the sortlist must itself be an e)-3.337 F .837
-(xplicit address match list with one or tw)-.15 F 3.337(oe)-.1 G .837
-(lements. The)-3.337 F .151
-(\214rst element \(which may be an IP address, an IP pre\214x, an A)72
-564 R .152(CL name or nested address match list\) of each top le)-.4 F
--.15(ve)-.25 G(l).15 E(list is check)72 576 Q(ed ag)-.1 E
-(ainst the source address of the query until a match is found.)-.05 E
-.203
-(Once the source address of the query has been matched, if the top le)72
-600 R -.15(ve)-.25 G 2.703(ls).15 G .203
-(tatement contains only one element, the ac-)-2.703 F .007(tual primiti)
-72 612 R .307 -.15(ve e)-.25 H .008(lement that matched the source addr\
-ess is used to select the address in the response to mo).15 F .308 -.15
-(ve t)-.15 H 2.508(ot).15 G .008(he be-)-2.508 F 1.247
-(ginning of the response. If the statement is a list of tw)72 624 R
-3.746(oe)-.1 G 1.246(lements, the second element is treated lik)-3.746 F
-3.746(et)-.1 G 1.246(he address)-3.746 F .075
-(match list in a topology statement. Each top le)72 636 R -.15(ve)-.25 G
-2.575(le).15 G .076
-(lement is assigned a distance and the address in the response with)
--2.575 F(the minimum distance is mo)72 648 Q -.15(ve)-.15 G 2.5(dt).15 G
-2.5(ot)-2.5 G(he be)-2.5 E(ginning of the response.)-.15 E .262
-(In the follo)72 672 R .261(wing e)-.25 F .261(xample, an)-.15 F 2.761
-(yq)-.15 G .261(ueries recei)-2.761 F -.15(ve)-.25 G 2.761(df).15 G .261
-(rom an)-2.761 F 2.761(yo)-.15 G 2.761(ft)-2.761 G .261
-(he addresses of the host itself will get responses prefer)-2.761 F(-)
--.2 E .173(ring addresses on an)72 684 R 2.673(yo)-.15 G 2.673(ft)-2.673
-G .173(he locally connected netw)-2.673 F .174(orks. Ne)-.1 F .174
-(xt most preferred are addresses on the 192.168.1/24 net-)-.15 F -.1(wo)
-72 696 S .696
-(rk, and after that either the 192.168.2/24 or 192.168.3/24 netw).1 F
-.696(ork with no preference sho)-.1 F .696(wn between these tw)-.25 F(o)
--.1 E(netw)72 708 Q .582(orks. Queries recei)-.1 F -.15(ve)-.25 G 3.082
-(df).15 G .582(rom a host on the 192.168.1/24 netw)-3.082 F .583
-(ork will prefer other addresses on that netw)-.1 F .583(ork to)-.1 F
-.385(the 192.168.2/24 and 192.168.3/24 netw)72 720 R .385
-(orks. Queries recei)-.1 F -.15(ve)-.25 G 2.885(df).15 G .384
-(rom a host on the 192.168.4/24 or the 192.168.5/24)-2.885 F(netw)72 732
-Q(ork will only prefer other addresses on their directly connected netw)
--.1 E(orks.)-.1 E(sortlist {)72 756 Q 2.5({l)99.5 768 S 20(ocalhost; //)
--2.5 F 5(IF the)2.5 F(local host)2.5 E 2.5({l)104.5 780 S 15
-(ocalnets; //)-2.5 F(THEN \214rst \214t on the)2.5 E 7.5
-(192.168.1/24; //)109.5 792 R(follo)15 E(wing nets)-.25 E EP
-%%Page: 12 12
-%%BeginPageSetup
-BP
-%%EndPageSetup
-/F0 10/Times-Roman@0 SF 2.5({1)109.5 12 S
-(92,168.2/24; 192.168.3/24; }; }; };)-2.5 E 2.5({1)99.5 24 S 12.5
-(92.168.1/24; //)-2.5 F 5(IF on)2.5 F(class C 192.168.1)2.5 E 2.5({1)
-104.5 36 S 7.5(92.168.1/24; //)-2.5 F(THEN use .1, or .2 or .3)2.5 E 2.5
-({1)109.5 48 S(92.168.2/24; 192.168.3/24; }; }; };)-2.5 E 2.5({1)99.5 60
-S 12.5(92.168.2/24; //)-2.5 F 5(IF on)2.5 F(class C 192.168.2)2.5 E 2.5
-({1)104.5 72 S 7.5(92.168.2/24; //)-2.5 F(THEN use .2, or .1 or .3)2.5 E
-2.5({1)109.5 84 S(92.168.1/24; 192.168.3/24; }; }; };)-2.5 E 2.5({1)99.5
-96 S 12.5(92.168.3/24; //)-2.5 F 5(IF on)2.5 F(class C 192.168.3)2.5 E
-2.5({1)104.5 108 S 7.5(92.168.3/24; //)-2.5 F(THEN use .3, or .1 or .2)
-2.5 E 2.5({1)109.5 120 S(92.168.1/24; 192.168.2/24; }; }; };)-2.5 E 2.5
-({{1)99.5 132 S
-(92.168.4/24; 192.168.5/24; }; // if .4 or .5, prefer that net)-2.5 E
-(}; };)99.5 144 Q .082(The follo)72 168 R .082(wing e)-.25 F .082
-(xample will gi)-.15 F .382 -.15(ve r)-.25 H .082(easonable beha).15 F
-.082(viour for the local host and hosts on directly connected netw)-.2 F
-.083(orks. It)-.1 F .338(is similar to the beha)72 180 R .337(vior of t\
-he address sort in BIND 4.9.x. Responses sent to queries from the local\
- host will f)-.2 F -.2(avo)-.1 G(r).2 E(an)72 192 Q 2.894(yo)-.15 G
-2.894(ft)-2.894 G .394(he directly connected netw)-2.894 F .394
-(orks. Responses sent to queries from an)-.1 F 2.895(yo)-.15 G .395
-(ther hosts on a directly connected net-)-2.895 F -.1(wo)72 204 S
-(rk will prefer addresses on that same netw).1 E
-(ork. Responses to other queries will not be sorted.)-.1 E(sortlist {)72
-228 Q 2.5({l)102 240 S(ocalhost; localnets; };)-2.5 E 2.5({l)102 252 S
-(ocalnets; }; };)-2.5 E .462(When multiple records are returned in an a\
-nswer it may be useful to con\214gure the order the records are placed \
-into)72 288 R .232(the response. F)72 300 R .232(or e)-.15 F .232
-(xample the records for a zone might be con\214gured to al)-.15 F -.1
-(wa)-.1 G .233(ys be returned in the order the).1 F 2.733(ya)-.15 G .233
-(re de-)-2.733 F 1.181
-(\214ned in the zone \214le. Or perhaps a random shuf)72 312 R 1.181
-(\215e of the records as the)-.25 F 3.681(ya)-.15 G 1.181
-(re returned is w)-3.681 F 1.181(anted. The rrset-order)-.1 F .269(stat\
-ement permits con\214guration of the ordering made of the records in a \
-multiple record response. The def)72 324 R .27(ault, if no)-.1 F
-(ordering is de\214ned, is a c)72 336 Q(yclic ordering \(round robin\).)
--.15 E(An is de\214ned as follo)72 360 Q(ws:)-.25 E([)77 384 Q/F1 10
-/Times-Italic@0 SF(class class_name)2.5 E F0(][)2.5 E F1(type type_name)
-2.5 E F0(][)2.5 E F1(name)2.5 E F0("FQDN" ])2.5 E F1(or)2.5 E(der)-.37 E
-F0(ordering)2.5 E(If no class is speci\214ed, the def)72 408 Q
-(ault is If no is speci\214ed, the def)-.1 E
-(ault is If no name is speci\214ed, the def)-.1 E(ault is "*".)-.1 E
-(The le)72 432 Q -.05(ga)-.15 G 2.5(lv).05 G(alues for are:)-2.75 E
-(Records are returned in the order the)84.5 456 Q 2.5(ya)-.15 G
-(re de\214ned in the zone \214le.)-2.5 E
-(Records are returned in some random order)84.5 468 Q(.)-.55 E
-(Records are returned in a round-robin order)84.5 480 Q(.)-.55 E -.15
-(Fo)72 504 S 2.5(re).15 G(xample:)-2.65 E(rrset-order {)82 528 Q
-(class IN type A name "rc.vix.com" order random;)92 540 Q(order c)92 552
-Q(yclic;)-.15 E(};)82 564 Q .625(will cause an)72 588 R 3.125(yr)-.15 G
-.624(esponses for type A records in class IN that ha)-3.125 F .924 -.15
-(ve ")-.2 H .624(rc.vix.com" as a suf).15 F .624(\214x, to al)-.25 F -.1
-(wa)-.1 G .624(ys be returned in).1 F(random order)72 600 Q 2.5(.A)-.55
-G(ll other records are returned in c)-2.5 E(yclic order)-.15 E(.)-.55 E
-(If multiple statements appear)72 624 Q 2.5(,t)-.4 G(he)-2.5 E 2.5(ya)
--.15 G(re not combined--the last one applies.)-2.5 E
-(If no statement is speci\214ed, a def)72 648 Q(ault one of:)-.1 E
-(rrset-order { class ANY type ANY name "*" order c)82 672 Q(yclic ; };)
--.15 E(is used.)72 696 Q 1.342
-(Sets the number of seconds to cache a lame serv)72 732 R 1.342
-(er indication.)-.15 F 3.842(0d)6.342 G 1.342(isables caching.)-3.842 F
-(Def)6.342 E 1.343(ault is 600 \(10 minutes\).)-.1 F .607(Maximum v)72
-744 R .607(alue is 1800 \(30 minutes\) T)-.25 F 3.107(or)-.8 G .607
-(educe netw)-3.107 F .607(ork traf)-.1 F .607
-(\214c and increase performance the serv)-.25 F .606(er store ne)-.15 F
--.05(ga)-.15 G(ti).05 E -.15(ve)-.25 G 3.082(answers. is)72 756 R .582
-(used to set a maximum retention time for these answers in the serv)
-3.082 F .583(er is seconds.)-.15 F .583(The def)5.583 F .583
-(ault is 10800)-.1 F .558(seconds \(3 hours\).)72 768 R .557(cannot e)
-5.557 F .557(xceed the maximum retention time for ordinary \(positi)-.15
-F -.15(ve)-.25 G 3.057(\)a).15 G .557(nswers \(7 days\) and will be)
--3.057 F .017(silently truncated to 7 days if set to a v)72 780 R .017
-(alue which is greater that 7 days.)-.25 F .018
-(The minimum number of root serv)5.018 F .018(ers that is)-.15 F
-(required for a request for the root serv)72 792 Q(ers to be accepted.)
--.15 E(Def)5 E(ault is 2.)-.1 E EP
-%%Page: 13 13
-%%BeginPageSetup
-BP
-%%EndPageSetup
-/F0 10/Times-Roman@0 SF(zone)72 36 Q/F1 10/Times-Italic@0 SF
-(domain_name)2.5 E F0 2.5([\(i)2.5 G 2.5(n|h)-2.5 G 2.5(s|h)-2.5 G
-(esiod | chaos \) ] {)-2.5 E(type master;)77 48 Q(\214le)77 60 Q F1
-(path_name)2.5 E F0(;)A 2.5([c)77 72 S(heck-names \( w)-2.5 E(arn | f)
--.1 E(ail | ignore \); ])-.1 E 2.5([a)77 84 S(llo)-2.5 E(w-update {)-.25
-E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([a)77 96
-S(llo)-2.5 E(w-query {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15
-E F0(}; ])2.5 E 2.5([a)77 108 S(llo)-2.5 E(w-transfer {)-.25 E F1(addr)
-2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([f)77 120 S(orw)
--2.5 E(ard \( only | \214rst \); ])-.1 E 2.5([f)77 132 S(orw)-2.5 E
-(arders { [)-.1 E F1(ip_addr)2.5 E F0 2.5(;[)2.5 G F1(ip_addr)A F0 2.5
-(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([d)77 144 S(ialup)-2.5 E F1(yes_or_no)
-2.5 E F0 2.5(;])C 2.5([n)77 156 S(otify)-2.5 E F1(yes_or_no)2.5 E F0 2.5
-(;])C 2.5([a)77 168 S(lso-notify {)-2.5 E F1(ip_addr)2.5 E F0 2.5(;[)C
-F1(ip_addr)A F0 2.5(;.)C(.. ] };)-2.5 E 2.5([p)77 180 S(ubk)-2.5 E -.15
-(ey)-.1 G F1(number number number string)2.65 E F0 2.5(;]})C(;)-2.5 E
-(zone)72 204 Q F1(domain_name)2.5 E F0 2.5([\(i)2.5 G 2.5(n|h)-2.5 G 2.5
-(s|h)-2.5 G(esiod | chaos \) ] {)-2.5 E(type \( sla)77 216 Q .3 -.15
-(ve | s)-.2 H(tub \);).15 E 2.5<5b8c>77 228 S(le)-2.5 E F1(path_name)2.5
-E F0 2.5(;])C(masters [ port)77 240 Q F1(ip_port)2.5 E F0 2.5(]{)2.5 G
-F1(ip_addr)A F0 2.5(;[)C F1(ip_addr)A F0 2.5(;.)C(.. ] };)-2.5 E 2.5([c)
-77 252 S(heck-names \( w)-2.5 E(arn | f)-.1 E(ail | ignore \); ])-.1 E
-2.5([a)77 264 S(llo)-2.5 E(w-update {)-.25 E F1(addr)2.5 E(ess_matc)-.37
-E(h_list)-.15 E F0(}; ])2.5 E 2.5([a)77 276 S(llo)-2.5 E(w-query {)-.25
-E F1(addr)2.5 E(ess_matc)-.37 E(h_list)-.15 E F0(}; ])2.5 E 2.5([a)77
-288 S(llo)-2.5 E(w-transfer {)-.25 E F1(addr)2.5 E(ess_matc)-.37 E
-(h_list)-.15 E F0(}; ])2.5 E 2.5([f)77 300 S(orw)-2.5 E
-(ard \( only | \214rst \); ])-.1 E 2.5([f)77 312 S(orw)-2.5 E
-(arders { [)-.1 E F1(ip_addr)2.5 E F0 2.5(;[)2.5 G F1(ip_addr)A F0 2.5
-(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([t)77 324 S(ransfer)-2.5 E(-source)-.2
-E F1(ip_addr)2.5 E F0 2.5(;])C 2.5([m)77 336 S(ax-transfer)-2.5 E
-(-time-in)-.2 E F1(number)2.5 E F0 2.5(;])C 2.5([n)77 348 S(otify)-2.5 E
-F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([a)77 360 S(lso-notify {)-2.5 E F1
-(ip_addr)2.5 E F0 2.5(;[)C F1(ip_addr)A F0 2.5(;.)C(.. ] };)-2.5 E 2.5
-([p)77 372 S(ubk)-2.5 E -.15(ey)-.1 G F1(number number number string)
-2.65 E F0 2.5(;]})C(;)-2.5 E(zone)72 396 Q F1(domain_name)2.5 E F0 2.5
-([\(i)2.5 G 2.5(n|h)-2.5 G 2.5(s|h)-2.5 G(esiod | chaos \) ] {)-2.5 E
-(type forw)77 408 Q(ard;)-.1 E 2.5([f)77 420 S(orw)-2.5 E
-(ard \( only | \214rst \); ])-.1 E 2.5([f)77 432 S(orw)-2.5 E
-(arders { [)-.1 E F1(ip_addr)2.5 E F0 2.5(;[)2.5 G F1(ip_addr)A F0 2.5
-(;.)2.5 G(.. ] ] }; ])-2.5 E 2.5([c)77 444 S(heck-names \( w)-2.5 E
-(arn | f)-.1 E(ail | ignore \); ] };)-.1 E
-(zone "." [ \( in | hs | hesiod | chaos \) ] {)72 468 Q(type hint;)77
-480 Q(\214le)77 492 Q F1(path_name)2.5 E F0(;)A 2.5([c)77 504 S
-(heck-names \( w)-2.5 E(arn | f)-.1 E(ail | ignore \); ] };)-.1 E .842
-(The statement is used to de\214ne ho)72 540 R 3.342(wi)-.25 G .842
-(nformation about particular DNS zones is managed by the serv)-3.342 F
-(er)-.15 E 5.841(.T)-.55 G .841(here are)-5.841 F<8c76>72 552 Q 2.5(ed)
--.15 G(if)-2.5 E(ferent zone types.)-.25 E(The serv)72 576 Q
-(er has a master cop)-.15 E 2.5(yo)-.1 G 2.5(ft)-2.5 G
-(he data for the zone and will be able to pro)-2.5 E(vide authoritati)
--.15 E .3 -.15(ve a)-.25 H(nswers for it.).15 E 2.758(Az)72 600 S .258
-(one is a replica of a master zone.)-2.758 F .258
-(The list speci\214es one or more IP addresses that the sla)5.258 F .559
--.15(ve c)-.2 H .259(ontacts to update its).15 F(cop)72 612 Q 2.618(yo)
--.1 G 2.618(ft)-2.618 G .118(he zone.)-2.618 F .117(If a is speci\214ed\
- then checks to see if the zone is current and zone transfers will be d\
-one to the port)5.118 F(gi)72 624 Q -.15(ve)-.25 G .77(n. If is speci\
-\214ed, then the replica will be written to the named \214le.).15 F .771
-(Use of the clause is highly recommended,)5.771 F
-(since it often speeds serv)72 636 Q
-(er startup and eliminates a needless w)-.15 E(aste of bandwidth.)-.1 E
-2.5(Az)72 660 S(one is lik)-2.5 E 2.5(eas)-.1 G(la)-2.5 E .3 -.15(ve z)
--.2 H(one, e).15 E(xcept that it replicates only the NS records of a ma\
-ster zone instead of the entire zone.)-.15 E 2.609(Az)72 684 S .108
-(one is used to direct all queries in it to other serv)-2.609 F .108
-(ers, as described in section.)-.15 F .108
-(The speci\214cation of options in such)5.108 F 2.5(az)72 696 S
-(one will o)-2.5 E -.15(ve)-.15 G(rride an).15 E 2.5(yg)-.15 G
-(lobal options declared in the statement.)-2.5 E .427
-(If either no clause is present in the zone or an empty list for is gi)
-72 720 R -.15(ve)-.25 G .427(n, then no forw).15 F .427
-(arding will be done for the zone,)-.1 F .273(cancelling the ef)72 732 R
-.273(fects of an)-.25 F 2.773(yi)-.15 G 2.773(nt)-2.773 G .273
-(he statement.)-2.773 F .273(Thus if you w)5.273 F .272
-(ant to use this type of zone to change only the beha)-.1 F(vior)-.2 E
-(of the global option, and not the serv)72 744 Q
-(ers used, then you also need to respecify the global forw)-.15 E
-(arders.)-.1 E .073(The initial set of root nameserv)72 768 R .073
-(ers is speci\214ed using a zone.)-.15 F .073(When the serv)5.073 F .074
-(er starts up, it uses the root hints to \214nd a)-.15 F(root nameserv)
-72 780 Q(er and get the most recent list of root nameserv)-.15 E(ers.)
--.15 E EP
-%%Page: 14 14
-%%BeginPageSetup
-BP
-%%EndPageSetup
-/F0 10/Times-Roman@0 SF(Note: pre)72 12 Q
-(vious releases of BIND used the term for a master zone, for a sla)-.25
-E .3 -.15(ve z)-.2 H(one, and for a hint zone.).15 E .161(The zone')72
-48 R 2.661(sn)-.55 G .161(ame may optionally be follo)-2.661 F .161
-(wed by a class.)-.25 F .161
-(If a class is not speci\214ed, class \(for "internet"\), is assumed.)
-5.161 F(This is correct for the v)72 60 Q(ast majority of cases.)-.25 E
-.043(The class is for an information service from MIT')72 84 R 2.543(sP)
--.55 G .043(roject Athena.)-2.543 F .043
-(It is used to share information about v)5.043 F .044(arious sys-)-.25 F
-3.022(tems databases, such as users, groups, printers and so on.)72 96 R
-3.022(More information can be found at ftp://athena-)8.022 F
-(dist.mit.edu/pub/A)72 108 Q(THEN)-1.11 E 2.5
-(A/usenix/athena_changes.PS. The)-.35 F -.1(ke)2.5 G(yw)-.05 E
-(ord is a synon)-.1 E(ym for)-.15 E .371(Another MIT de)72 132 R -.15
-(ve)-.25 G .371(lopment w).15 F .371(as CHA)-.1 F .372
-(OSnet, a LAN protocol created in the mid-1970s.)-.55 F .372
-(It is still sometimes seen on)5.372 F(LISP stations and other hardw)72
-144 Q(are in the AI community)-.1 E 2.5(,a)-.65 G
-(nd zone data for it can be speci\214ed with the class.)-2.5 E
-(See the subsection on in)72 180 Q
-(See the description of in the subsection of)72 204 Q 1.101
-(Speci\214es which hosts are allo)72 228 R 1.101
-(wed to submit Dynamic DNS updates to the serv)-.25 F(er)-.15 E 6.1(.T)
--.55 G 1.1(he def)-6.1 F 1.1(ault is to den)-.1 F 3.6(yu)-.15 G(pdates)
--3.6 E(from all hosts.)72 240 Q
-(See the description of in the subsection of)72 264 Q .15(determines wh\
-ich local address will be bound to the TCP connection used to fetch thi\
-s zone.)72 288 R .15(If not set, it def)5.15 F .15(aults to)-.1 F 3.213
-(as)72 300 S .713(ystem controlled v)-3.213 F .712
-(alue which will usually be the address of the interf)-.25 F .712(ace `)
--.1 F .712(`closest to')-.74 F 3.212('t)-.74 G .712(he remote end.)
--3.212 F .712(This ad-)5.712 F(dress must appear in the remote end')72
-312 Q 2.5(so)-.55 G(ption for this zone if one is speci\214ed.)-2.5 E
-(See the description of in the subsection of)72 336 Q
-(See the description of in the subsection of)72 360 Q
-(See the description of in the subsection of the)72 384 Q .322
-(is only meaningful if is acti)72 408 R .622 -.15(ve f)-.25 H .322
-(or this zone.).15 F .322(The set of machines that will recei)5.322 F
-.623 -.15(ve a D)-.25 H .323(NS NO).15 F .323(TIFY message for this)-.4
-F 1.142(zone is made up of all the listed nameserv)72 420 R 1.142
-(ers for the zone \(other than the primary master\) plus an)-.15 F 3.642
-(yI)-.15 G 3.642(Pa)-3.642 G(ddresses)-3.642 E
-(speci\214ed with is not meaningful for zones.)72 432 Q(The def)5 E
-(ault is the empty list.)-.1 E .552
-(is only meaningful if the zone has a list. The v)72 456 R .552
-(alue causes the lookup to f)-.25 F .553
-(ail after trying the and getting no answer)-.1 F(,)-.4 E(while w)72 468
-Q(ould allo)-.1 E 2.5(wan)-.25 G(ormal lookup to be tried.)-2.5 E .219
-(The option in a zone is used to o)72 492 R -.15(ve)-.15 G .219
-(rride the list of global forw).15 F 2.719(arders. If)-.1 F .218
-(it is not speci\214ed in a zone of type forw)2.719 F(ard-)-.1 E
-(ing is done for the zone; the global options are not used.)72 504 Q(Th\
-e DNSSEC \215ags, protocol, and algorithm are speci\214ed, as well as a\
- base-64 encoded string representing the k)72 528 Q -.15(ey)-.1 G(.)-.5
-E(acl)72 564 Q/F1 10/Times-Italic@0 SF(name)2.5 E F0({)2.5 E F1(addr)77
-576 Q(ess_matc)-.37 E(h_list)-.15 E F0(};)2.5 E .612
-(The statement creates a named address match list.)72 612 R .613
-(It gets its name from a primary use of address match lists:)5.612 F
-(Ac-)5.613 E(cess Control Lists \(A)72 624 Q(CLs\).)-.4 E .402
-(Note that an address match list')72 648 R 2.902(sn)-.55 G .402
-(ame must be de\214ned with before it can be used else)-2.902 F .401
-(where; no forw)-.25 F .401(ard references)-.1 F(are allo)72 660 Q(wed.)
--.25 E(The follo)72 684 Q(wing A)-.25 E(CLs are b)-.4 E(uilt-in:)-.2 E
-(Allo)72 708 Q .813(ws all hosts.)-.25 F .813(Denies all hosts.)5.813 F
-(Allo)5.813 E .813(ws the IP addresses of all interf)-.25 F .813
-(aces on the system.)-.1 F(Allo)5.813 E .813(ws an)-.25 F 3.313(yh)-.15
-G .813(ost on a)-3.313 F(netw)72 720 Q
-(ork for which the system has an interf)-.1 E(ace.)-.1 E -.1(ke)72 756 S
-(y)-.05 E F1 -.1(ke)2.5 G(y_id)-.2 E F0({)2.5 E(algorithm)77 768 Q F1
-(algorithm_id)2.5 E F0(;)A(secret)77 780 Q F1(secr)2.5 E(et_string)-.37
-E F0 2.5(;})C(;)-2.5 E EP
-%%Page: 15 15
-%%BeginPageSetup
-BP
-%%EndPageSetup
-/F0 10/Times-Roman@0 SF .288(The statement de\214nes a k)72 24 R .588
--.15(ey I)-.1 H 2.788(Dw).15 G .287(hich can be used in a statement to \
-associate a method of authentication with a par)-2.788 F(-)-.2 E .229
-(ticular name serv)72 36 R .229
-(er that is more rigorous than simple IP address matching.)-.15 F 2.73
-(Ak)5.23 G .53 -.15(ey I)-2.83 H 2.73(Dm).15 G .23
-(ust be created with the state-)-2.73 F
-(ment before it can be used in a de\214nition or an address match list.)
-72 48 Q 1.038
-(The is a string that speci\214es a security/authentication algorithm.)
-72 72 R 1.037(is the secret to be used by the algorithm, and is)6.037 F
-.352(treated as a base-64 encoded string.)72 84 R .352
-(It should go without saying, b)5.352 F .352(ut probably can')-.2 F .353
-(t, that if you ha)-.18 F .653 -.15(ve i)-.2 H 2.853(ny).15 G .353
-(our then it)-2.853 F(should not be readable by an)72 96 Q(yone b)-.15 E
-(ut the superuser)-.2 E(.)-.55 E(trusted-k)72 132 Q -.15(ey)-.1 G 2.5
-(s{).15 G([)77 144 Q/F1 10/Times-Italic@0 SF(domain_name \215a)2.5 E
-(gs pr)-.1 E(otocol algorithm k)-.45 E -.3(ey)-.1 G F0 2.5(;]}).3 G(;)
--2.5 E .477(The statement is for use with DNSSEC-style security)72 180 R
-2.977(,o)-.65 G .476(riginally speci\214ed in RFC 2065.)-2.977 F .476
-(DNSSEC is meant to pro-)5.476 F .825(vide three distinct services: k)72
-192 R 1.125 -.15(ey d)-.1 H(istrib).15 E .826(ution, data origin authen\
-tication, and transaction and request authentication.)-.2 F 2.611(Ac)72
-204 S .111(omplete description of DNSSEC and its use is be)-2.611 F .11
-(yond the scope of this document, and readers interested in more)-.15 F
-6.439(information should start with RFC 2065 and then continue with the\
- Internet Drafts a)72 216 R -.25(va)-.2 G 6.44(ilable at).25 F
-(http://www)72 228 Q(.ietf.or)-.65 E(g/ids.by)-.18 E(.wg/dnssec.html.)
--.65 E 1.381(Each trusted k)72 252 R 1.681 -.15(ey i)-.1 H 3.881(sa).15
-G 1.381(ssociated with a domain name.)-3.881 F 1.381(Its attrib)6.381 F
-1.38(utes are the non-ne)-.2 F -.05(ga)-.15 G(ti).05 E 1.68 -.15(ve i)
--.25 H(nte).15 E 1.38(gral and as well as a)-.15 F
-(base-64 encoded string representing the)72 264 Q(An)72 288 Q 2.5(yn)
--.15 G(umber of trusted k)-2.5 E -.15(ey)-.1 G 2.5(sc).15 G
-(an be speci\214ed.)-2.5 E(serv)72 324 Q(er)-.15 E F1(ip_addr)2.5 E F0
-({)2.5 E 2.5([b)77 336 S(ogus)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5
-([t)77 348 S(ransfers)-2.5 E F1(number)2.5 E F0 2.5(;])C 2.5([t)77 360 S
-(ransfer)-2.5 E(-format \( one-answer | man)-.2 E(y-answers \); ])-.15 E
-2.5([k)77 372 S -.15(ey)-2.6 G 2.5(s{).15 G F1 -.1(ke)C(y_id)-.2 E F0([)
-2.5 E F1 -.1(ke)2.5 G(y_id)-.2 E F0(... ] }; ] };)2.5 E(The serv)72 408
-Q(er statement de\214nes the characteristics to be associated with a re\
-mote name serv)-.15 E(er)-.15 E(.)-.55 E .193(If you disco)72 432 R -.15
-(ve)-.15 G 2.693(rt).15 G .193(hat a serv)-2.693 F .193(er is gi)-.15 F
-.193(ving out bad data, marking it as will pre)-.25 F -.15(ve)-.25 G
-.193(nt further queries to it.).15 F .194(The def)5.194 F .194(ault v)
--.1 F(alue)-.25 E .619(of is Marking a serv)72 444 R .619
-(er as will mark all other addresses for that serv)-.15 F .618
-(er as when a match is made when looking up a)-.15 F(serv)72 456 Q(er')
--.15 E 2.5(sa)-.55 G(ddress by name.)-2.5 E .87(The serv)72 480 R .87
-(er supports tw)-.15 F 3.37(oz)-.1 G .87(one transfer methods.)-3.37 F
-.871(The \214rst, uses one DNS message per resource record transferred.)
-5.871 F .182(packs as man)72 492 R 2.682(yr)-.15 G .182
-(esource records as possible into a message.)-2.682 F .182(is more ef)
-5.182 F .182(\214cient, b)-.25 F .182(ut is only kno)-.2 F .182
-(wn to be understood by)-.25 F .001(BIND 8.1 and patched v)72 504 R .002
-(ersions of BIND 4.9.5.)-.15 F -1.1(Yo)5.002 G 2.502(uc)1.1 G .002
-(an specify which method to use for a serv)-2.502 F .002
-(er with the option.)-.15 F(If)5.002 E
-(is not speci\214ed, the speci\214ed by the statement will be used.)72
-516 Q .301(The will be used in a future release of the serv)72 540 R .3
-(er to limit the number of concurrent in-bound zone transfers from the)
--.15 F(speci\214ed serv)72 552 Q(er)-.15 E 5(.I)-.55 G 2.5(ti)-5 G 2.5
-(sc)-2.5 G(heck)-2.5 E(ed for syntax b)-.1 E(ut is otherwise ignored.)
--.2 E .517(The clause is used to identify a de\214ned by the statement,\
- to be used for transaction security when talking to the re-)72 576 R
-(mote serv)72 588 Q(er)-.15 E 5(.T)-.55 G
-(he statememnt must come before the statement that references it.)-5 E
-(The statement is intended for future use by the serv)72 612 Q(er)-.15 E
-5(.I)-.55 G 2.5(ti)-5 G 2.5(sc)-2.5 G(heck)-2.5 E(ed for syntax b)-.1 E
-(ut is otherwise ignored.)-.2 E(controls {)72 648 Q 2.5([i)77 660 S(net)
--2.5 E F1(ip_addr)2.5 E F0(port)82 672 Q F1(ip_port)2.5 E F0(allo)82 684
-Q 2.5(w{)-.25 G F1(addr)A(ess_matc)-.37 E(h_list)-.15 E F0 2.5(;})C 2.5
-(;])-2.5 G 2.5([u)77 696 S(nix)-2.5 E F1(path_name)2.5 E F0(perm)82 708
-Q F1(number)2.5 E F0 -.25(ow)82 720 S(ner).25 E F1(number)2.5 E F0
-(group)82 732 Q F1(number)2.5 E F0 2.5(;]})C(;)-2.5 E .031(The statemen\
-t declares control channels to be used by system administrators to af)72
-768 R .031(fect the operation of the local name)-.25 F(serv)72 780 Q(er)
--.15 E 6.127(.T)-.55 G 1.127(hese control channels are used by the util\
-ity to send commands to and retrie)-6.127 F 1.428 -.15(ve n)-.25 H 1.128
-(on-DNS results from a).15 F(name serv)72 792 Q(er)-.15 E(.)-.55 E EP
-%%Page: 16 16
-%%BeginPageSetup
-BP
-%%EndPageSetup
-/F0 10/Times-Roman@0 SF 2.751(Ac)72 24 S .251(ontrol channel is a FIFO \
-in the \214le system, and access to it is controlled by normal \214le s\
-ystem permissions.)-2.751 F .25(It is)5.25 F .323(created by with the s\
-peci\214ed \214le mode bits \(see user and group o)72 36 R(wner)-.25 E
-5.324(.N)-.55 G .324(ote that, unlik)-5.324 F 2.824(et)-.1 G .324
-(he mode bits speci\214ed for)-2.824 F 1.202(will normally ha)72 48 R
-1.502 -.15(ve a l)-.2 H 1.202
-(eading so the number is interpreted as octal.).15 F 1.201
-(Also note that the user and group o)6.201 F(wnership)-.25 E .591
-(speci\214ed as and must be gi)72 60 R -.15(ve)-.25 G 3.091(na).15 G
-3.091(sn)-3.091 G .591(umbers, not names.)-3.091 F .592
-(It is recommended that the permissions be restricted to ad-)5.592 F
-(ministrati)72 72 Q .3 -.15(ve p)-.25 H(ersonnel only).15 E 2.5(,o)-.65
-G 2.5(re)-2.5 G(lse an)-2.5 E 2.5(yu)-.15 G
-(ser on the system might be able to manage the local name serv)-2.5 E
-(er)-.15 E(.)-.55 E .964(An control channel is a TCP/IP sock)72 96 R
-.964(et accessible to the Internet, created at the speci\214ed on the s\
-peci\214ed Modern)-.1 F .189
-(clients are capable of speaking directly to these sock)72 108 R .19
-(ets, and the control protocol is ARP)-.1 F .19(Anet-style te)-.92 F
-2.69(xt. It)-.15 F .19(is recom-)2.69 F .468(mended that 127.0.0.1 be t\
-he only used, and this only if you trust all non-pri)72 120 R(vile)-.25
-E .467(ged users on the local host to man-)-.15 F(age your name serv)72
-132 Q(er)-.15 E(.)-.55 E(include)72 168 Q/F1 10/Times-Italic@0 SF
-(path_name)2.5 E F0(;)A .117(The statement inserts the speci\214ed \214\
-le at the point that the statement is encountered.)72 204 R .117
-(It cannot be used within anoth-)5.117 F
-(er statement, though, so a line such as is not allo)72 216 Q(wed.)-.25
-E(Use to break the con\214guration up into easily-managed chunks.)72 240
-Q -.15(Fo)5 G 2.5(re).15 G(xample:)-2.65 E(include "/etc/security/k)72
-264 Q -.15(ey)-.1 G(s.bind"; include "/etc/acls.bind";).15 E(could be u\
-sed at the top of a BIND con\214guration \214le in order to include an)
-72 288 Q 2.5(yA)-.15 G(CL or k)-2.9 E .3 -.15(ey i)-.1 H(nformation.).15
-E(Be careful not to type `)72 312 Q(`#include')-.74 E(', lik)-.74 E 2.5
-(ey)-.1 G(ou w)-2.5 E(ould in a C program, because `)-.1 E(`#')-.74 E
-2.5('i)-.74 G 2.5(su)-2.5 G(sed to start a comment.)-2.5 E .429(The sim\
-plest con\214guration \214le that is still realistically useful is one \
-which simply de\214nes a hint zone that has a full)72 348 R
-(path to the root serv)72 360 Q(ers \214le.)-.15 E(zone "." in {)5 E
-(type hint;)92 372 Q(\214le "/v)92 384 Q(ar/named/root.cache"; };)-.25 E
-(Here')72 408 Q 2.5(sam)-.55 G(ore typical real-w)-2.5 E(orld e)-.1 E
-(xample.)-.15 E(/*)72 432 Q 2.5(*As)74.5 444 S
-(imple BIND 8 con\214guration)-2.5 E(*/)74.5 456 Q(logging {)72 480 Q
-(cate)38.5 E(gory lame-serv)-.15 E(ers { null; };)-.15 E(cate)38.5 E
-(gory cname { null; }; };)-.15 E(options {)72 504 Q(directory "/v)38.5 E
-(ar/named"; };)-.25 E .7(controls {)72 528 R .7(inet * port 52 allo)39.2
-F 3.201(w{a)-.25 G -.15(ny)-3.201 G 3.201(;}).15 G 100.97(;/)-3.201 G
-3.201(/ab)-100.97 G .701(ad idea)-3.201 F .701(unix "/v)39.201 F
-(ar/run/ndc")-.25 E(perm 0600 o)72 540 Q(wner 0 group 0;)-.25 E
-(// the def)15.22 E(ault };)-.1 E(zone "isc.or)72 564 Q(g" in {)-.18 E
-(type master;)38.5 E(\214le "master/isc.or)38.5 E(g"; };)-.18 E
-(zone "vix.com" in {)72 588 Q(type sla)38.5 E -.15(ve)-.2 G 38.5<3b8c>
-.15 G(le "sla)-38.5 E -.15(ve)-.2 G 36(/vix.com"; masters).15 F 2.5({1)
-2.5 G(0.0.0.53; }; };)-2.5 E(zone "0.0.127.in-addr)72 612 Q(.arpa" in {)
--.55 E(type master;)38.5 E(\214le "master/127.0.0"; };)38.5 E
-(zone "." in {)72 636 Q(type hint;)38.5 E(\214le "root.cache"; };)38.5 E
-(The BIND 8 con\214guration \214le.)72 660 Q EP
+/F0 10/Times-Roman@0 SF(algorithm)77 12 Q/F1 10/Times-Italic@0 SF
+(algorithm_id)2.5 E F0(;)A(secret)77 24 Q F1(secr)3.139 E(et_string)-.37
+E F0 3.139(;})C 3.139(;T)-3.139 G .639(he statement de\214nes a k)-3.139
+F .939 -.15(ey I)-.1 H 3.139(Dw).15 G .64
+(hich can be used in a statement to associate a method of)-3.139 F .44
+(authentication with a particular name serv)72 36 R .439
+(er that is more rigorous than simple IP address matching.)-.15 F 2.939
+(Ak)5.439 G .739 -.15(ey I)-3.039 H 2.939(Dm).15 G(ust)-2.939 E .122(be created with the statement before it can be used in a de\214nition or an address match list.)
+72 48 R .122(The is a string that speci-)5.122 F .016
+(\214es a security/authentication algorithm.)72 60 R .016(is the secret to be used by the algorithm, and is treated as a base-64 encoded)
+5.016 F 3.406(string. It)72 72 R .906(should go without saying, b)3.406
+F .906(ut probably can')-.2 F .907(t, that if you ha)-.18 F 1.207 -.15
+(ve i)-.2 H 3.407(ny).15 G .907(our then it should not be readable by)
+-3.407 F(an)72 84 Q(yone b)-.15 E(ut the superuser)-.2 E 5(.t)-.55 G
+(rusted-k)-5 E -.15(ey)-.1 G 2.5(s{).15 G([)77 96 Q F1 .528
+(domain_name \215a)3.028 F .528(gs pr)-.1 F .528(otocol algorithm k)-.45
+F -.3(ey)-.1 G F0 3.028(;]}).3 G 3.028(;T)-3.028 G .527
+(he statement is for use with DNSSEC-style security)-3.028 F 3.027(,o)
+-.65 G(riginally)-3.027 E .07(speci\214ed in RFC 2065.)72 108 R .07
+(DNSSEC is meant to pro)5.07 F .07(vide three distinct services: k)-.15
+F .37 -.15(ey d)-.1 H(istrib).15 E .07(ution, data origin authentica-)
+-.2 F .058(tion, and transaction and request authentication.)72 120 R
+2.558(Ac)5.058 G .058(omplete description of DNSSEC and its use is be)
+-2.558 F .057(yond the scope)-.15 F .215(of this document, and readers interested in more information should start with RFC 2065 and then continue with the)
+72 132 R .414(Internet Drafts a)72 144 R -.25(va)-.2 G .414
+(ilable at http://www).25 F(.ietf.or)-.65 E(g/ids.by)-.18 E 2.913
+(.wg/dnssec.html. Each)-.65 F .413(trusted k)2.913 F .713 -.15(ey i)-.1
+H 2.913(sa).15 G .413(ssociated with a domain)-2.913 F 2.671(name. Its)
+72 156 R(attrib)2.671 E .171(utes are the non-ne)-.2 F -.05(ga)-.15 G
+(ti).05 E .471 -.15(ve i)-.25 H(nte).15 E .172
+(gral and as well as a base-64 encoded string representing the An)-.15 F
+2.672(yn)-.15 G(um-)-2.672 E(ber of trusted k)72 168 Q -.15(ey)-.1 G 2.5
+(sc).15 G(an be speci\214ed.)-2.5 E(serv)5 E(er)-.15 E F1(ip_addr)2.5 E
+F0({)2.5 E 2.5([e)77 180 S(dns)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5
+([b)77 192 S(ogus)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([s)77 204 S
+(upport-ixfr)-2.5 E F1(yes_or_no)2.5 E F0 2.5(;])C 2.5([t)77 216 S
+(ransfers)-2.5 E F1(number)2.5 E F0 2.5(;])C 2.5([t)77 228 S(ransfer)
+-2.5 E(-format \( one-answer | man)-.2 E(y-answers \); ])-.15 E 3.115
+([k)77 240 S -.15(ey)-3.215 G 3.115(s{).15 G F1 -.1(ke)C(y_id)-.2 E F0
+([)3.115 E F1 -.1(ke)3.115 G(y_id)-.2 E F0 .615(... ] }; ] }; The serv)
+3.115 F .614(er statement de\214nes the characteristics to be associated with a remote)
+-.15 F .317(name serv)72 252 R(er)-.15 E 5.317(.I)-.55 G 2.817(fy)-5.317
+G .317(ou disco)-2.817 F -.15(ve)-.15 G 2.817(rt).15 G .317(hat a serv)
+-2.817 F .317(er does not support EDNS you can pre)-.15 F -.15(ve)-.25 G
+.318(nt named making EDNS queries to).15 F .173
+(it by specifying The def)72 264 R .172(ault v)-.1 F .172
+(alue of is If you disco)-.25 F -.15(ve)-.15 G 2.672(rt).15 G .172
+(hat a serv)-2.672 F .172(er is gi)-.15 F .172
+(ving out bad data, marking it as will pre)-.25 F -.15(ve)-.25 G(nt).15
+E .39(further queries to it.)72 276 R .39(The def)5.39 F .39(ault v)-.1
+F .39(alue of is If the serv)-.25 F .39
+(er supports IXFR you can tell named to attempt to perform a)-.15 F .761
+(IXFR style zone transfer by speci\214ng The def)72 288 R .761(ault v)
+-.1 F .761(alue of is The serv)-.25 F .76(er supports tw)-.15 F 3.26(oz)
+-.1 G .76(one transfer methods.)-3.26 F(The)5.76 E .105
+(\214rst, uses one DNS message per resource record transferred.)72 300 R
+.105(packs as man)5.105 F 2.605(yr)-.15 G .105
+(esource records as possible into a mes-)-2.605 F 2.889(sage. is)72 312
+R .389(more ef)2.889 F .389(\214cient, b)-.25 F .389(ut is only kno)-.2
+F .389(wn to be understood by BIND 8.1 and patched v)-.25 F .389
+(ersions of BIND 4.9.5.)-.15 F -1.1(Yo)5.389 G(u)1.1 E .391
+(can specify which method to use for a serv)72 324 R .391
+(er with the option.)-.15 F .391
+(If is not speci\214ed, the speci\214ed by the statement will)5.391 F
+.248(be used.)72 336 R .248
+(The will be used in a future release of the serv)5.248 F .247
+(er to limit the number of concurrent in-bound zone transfers)-.15 F
+.343(from the speci\214ed serv)72 348 R(er)-.15 E 5.343(.I)-.55 G 2.843
+(ti)-5.343 G 2.843(sc)-2.843 G(heck)-2.843 E .343(ed for syntax b)-.1 F
+.343(ut is otherwise ignored.)-.2 F .343
+(The clause is used to identify a de\214ned)5.343 F .472(by the statement, to be used for transaction security when talking to the remote serv)
+72 360 R(er)-.15 E 5.471(.T)-.55 G .471(he statememnt must come)-5.471 F
+.307(before the statement that references it.)72 372 R .307
+(The statement is intended for future use by the serv)5.307 F(er)-.15 E
+5.307(.I)-.55 G 2.807(ti)-5.307 G 2.807(sc)-2.807 G(heck)-2.807 E .307
+(ed for syn-)-.1 F(tax b)72 384 Q(ut is otherwise ignored.)-.2 E
+(controls {)5 E 2.5([i)77 396 S(net)-2.5 E F1(ip_addr)2.5 E F0(port)82
+408 Q F1(ip_port)2.5 E F0(allo)82 420 Q 2.5(w{)-.25 G F1(addr)A
+(ess_matc)-.37 E(h_list)-.15 E F0 2.5(;})C 2.5(;])-2.5 G 2.5([u)77 432 S
+(nix)-2.5 E F1(path_name)2.5 E F0(perm)82 444 Q F1(number)2.5 E F0 -.25
+(ow)82 456 S(ner).25 E F1(number)2.5 E F0(group)82 468 Q F1(number)2.584
+E F0 2.584(;]})C 2.584(;T)-2.584 G .084(he statement declares control channels to be used by system administrators to af)
+-2.584 F .083(fect the oper)-.25 F(-)-.2 E .181
+(ation of the local name serv)72 480 R(er)-.15 E 5.181(.T)-.55 G .182(hese control channels are used by the utility to send commands to and retrie)
+-5.181 F .482 -.15(ve n)-.25 H(on-).15 E .028
+(DNS results from a name serv)72 492 R(er)-.15 E 5.028(.A)-.55 G .027(control channel is a FIFO in the \214le system, and access to it is controlled by nor)
+-2.5 F(-)-.2 E .317(mal \214le system permissions.)72 504 R .318(It is created by with the speci\214ed \214le mode bits \(see user and group o)
+5.317 F(wner)-.25 E 5.318(.N)-.55 G .318(ote that,)-5.318 F(unlik)72 516
+Q 2.87(et)-.1 G .37(he mode bits speci\214ed for will normally ha)-2.87
+F .67 -.15(ve a l)-.2 H .369
+(eading so the number is interpreted as octal.).15 F .369
+(Also note that)5.369 F .955(the user and group o)72 528 R .956
+(wnership speci\214ed as and must be gi)-.25 F -.15(ve)-.25 G 3.456(na)
+.15 G 3.456(sn)-3.456 G .956(umbers, not names.)-3.456 F .956
+(It is recommended that the)5.956 F .684
+(permissions be restricted to administrati)72 540 R .984 -.15(ve p)-.25
+H .684(ersonnel only).15 F 3.184(,o)-.65 G 3.184(re)-3.184 G .684
+(lse an)-3.184 F 3.184(yu)-.15 G .684
+(ser on the system might be able to manage)-3.184 F .643
+(the local name serv)72 552 R(er)-.15 E 5.643(.A)-.55 G 3.143(nc)-5.643
+G .644(ontrol channel is a TCP/IP sock)-3.143 F .644
+(et accessible to the Internet, created at the speci\214ed on)-.1 F .372
+(the speci\214ed Modern clients are capable of speaking directly to these sock)
+72 564 R .371(ets, and the control protocol is ARP)-.1 F(Anet-)-.92 E
+.623(style te)72 576 R 3.123(xt. It)-.15 F .624(is recommended that 127.0.0.1 be the only used, and this only if you trust all non-pri)
+3.123 F(vile)-.25 E .624(ged users on)-.15 F .549
+(the local host to manage your name serv)72 588 R(er)-.15 E 5.548(.i)
+-.55 G(nclude)-5.548 E F1(path_name)3.048 E F0 3.048(;T)C .548
+(he statement inserts the speci\214ed \214le at the point)-3.048 F .986
+(that the statement is encountered.)72 600 R .986(It cannot be used within another statement, though, so a line such as is not al-)
+5.986 F(lo)72 612 Q 5.99(wed. Use)-.25 F 3.49
+(to break the con\214guration up into easily-managed chunks.)5.99 F -.15
+(Fo)8.49 G 5.99(re).15 G 3.49(xample: include "/etc/securi-)-6.14 F
+(ty/k)72 624 Q -.15(ey)-.1 G .437(s.bind"; include "/etc/acls.bind"; could be used at the top of a BIND con\214guration \214le in order to include an)
+.15 F(y)-.15 E -.4(AC)72 636 S 2.71(Lo).4 G 2.709(rk)-2.71 G .509 -.15
+(ey i)-2.809 H 2.709(nformation. Be).15 F .209(careful not to type `)
+2.709 F(`#include')-.74 E .209(', lik)-.74 F 2.709(ey)-.1 G .209(ou w)
+-2.709 F .209(ould in a C program, because `)-.1 F(`#')-.74 E 2.709('i)
+-.74 G 2.709(su)-2.709 G .209(sed to)-2.709 F .846(start a comment.)72
+648 R .846(The simplest con\214guration \214le that is still realistically useful is one which simply de\214nes a hint)
+5.846 F(zone that has a full path to the root serv)72 660 Q(ers \214le.)
+-.15 E(zone "." in {)5 E(type hint;)92 672 Q(\214le "/v)92 684 Q
+(ar/named/root.cache"; }; Here')-.25 E 2.5(sam)-.55 G
+(ore typical real-w)-2.5 E(orld e)-.1 E 2.5(xample. /*)-.15 F 2.5(*As)
+74.5 696 S(imple BIND 8 con\214guration)-2.5 E .136(*/ logging {)74.5
+708 R(cate)38.636 E .136(gory lame-serv)-.15 F .136(ers { null; };)-.15
+F(cate)38.636 E .135(gory cname { null; }; }; options {)-.15 F(direc-)
+38.635 E 2.567(tory "/v)72 720 R 2.567(ar/named"; }; controls {)-.25 F
+2.567(inet * port 52 allo)41.067 F -7.566 5.067(w{ a)-.25 H -.15(ny)
+-5.067 G 5.068(;}).15 G 100.97(;/)-5.068 G 5.068(/ab)-100.97 G 2.568
+(ad idea)-5.068 F .09(unix "/v)108 732 R .09(ar/run/ndc" perm 0600 o)
+-.25 F .09(wner 0 group 0;)-.25 F .09(// the def)22.52 F .09
+(ault }; zone "isc.or)-.1 F .09(g" in {)-.18 F .09(type mas-)38.59 F
+39.65(ter; \214le)72 744 R("master/isc.or)6.15 E 3.65
+(g"; }; zone "vix.com" in {)-.18 F 3.65(type sla)42.15 F -.15(ve)-.2 G
+42.15<3b8c>.15 G 3.65(le "sla)-42.15 F -.15(ve)-.2 G(/vix.com";).15 E
+3.008(masters { 10.0.0.53; }; }; zone "0.0.127.in-addr)108 756 R 3.007
+(.arpa" in {)-.55 F 3.007(type master;)41.507 F 3.007(\214le "mas-)
+41.507 F(ter/127.0.0"; }; zone "." in {)72 768 Q(type hint;)38.5 E
+(\214le "root.cache"; }; The BIND 8 con\214guration \214le.)38.5 E EP
 %%Trailer
 end
 %%EOF

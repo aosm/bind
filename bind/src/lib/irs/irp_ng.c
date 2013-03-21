@@ -16,7 +16,7 @@
  */
 
 #if !defined(LINT) && !defined(CODECENTER)
-static const char rcsid[] = "$Id: irp_ng.c,v 1.1.1.2 2000/06/09 23:13:38 wsanchez Exp $";
+static const char rcsid[] = "$Id: irp_ng.c,v 1.1.1.3 2002/11/18 22:27:32 bbraun Exp $";
 #endif
 
 /* Imports */
@@ -52,7 +52,8 @@ struct pvt {
 
 static void		ng_rewind(struct irs_ng *, const char*);
 static void		ng_close(struct irs_ng *);
-static int		ng_next(struct irs_ng *, char **, char **, char **);
+static int		ng_next(struct irs_ng *, const char **, const char **,
+				const char **);
 static int		ng_test(struct irs_ng *, const char *,
 				const char *, const char *,
 				const char *);
@@ -158,7 +159,8 @@ ng_rewind(struct irs_ng *this, const char *group) {
 
 
 /*
- * int ng_next(struct irs_ng *this, char **host, char **user, char **domain)
+ * int ng_next(struct irs_ng *this, const char **host, const char **user,
+ *	       const char **domain)
  *
  * Notes:
  *
@@ -167,7 +169,9 @@ ng_rewind(struct irs_ng *this, const char *group) {
  */
 
 static int
-ng_next(struct irs_ng *this, char **host, char **user, char **domain) {
+ng_next(struct irs_ng *this, const char **host, const char **user,
+        const char **domain)
+{
 	struct pvt *pvt = (struct pvt *)this->private;
 	int code;
 	char *body = NULL;
@@ -223,6 +227,8 @@ ng_test(struct irs_ng *this, const char *name,
 	int code;
 	char text[256];
 	int rval = 0;
+
+	UNUSED(name);
 
 	if (irs_irp_connection_setup(pvt->girpdata, &pvt->warned) != 0) {
 		return (0);

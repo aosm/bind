@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char rcsid[] = "$Id: dns_pw.c,v 1.1.1.2 2000/06/09 23:13:35 wsanchez Exp $";
+static const char rcsid[] = "$Id: dns_pw.c,v 1.1.1.3 2002/11/18 22:27:27 bbraun Exp $";
 #endif
 
 #include "port_before.h"
@@ -133,17 +133,20 @@ pw_byuid(struct irs_pw *this, uid_t uid) {
 
 static struct passwd *
 pw_next(struct irs_pw *this) {
+	UNUSED(this);
 	errno = ENODEV;
 	return (NULL);
 }
 
 static void
 pw_rewind(struct irs_pw *this) {
+	UNUSED(this);
 	/* NOOP */
 }
 
 static void
 pw_minimize(struct irs_pw *this) {
+	UNUSED(this);
 	/* NOOP */
 }
 

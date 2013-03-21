@@ -16,7 +16,7 @@
  */
 
 #if !defined(LINT) && !defined(CODECENTER)
-static const char rcsid[] = "$Id: gen.c,v 1.1.1.2 2000/06/09 23:13:35 wsanchez Exp $";
+static const char rcsid[] = "$Id: gen.c,v 1.1.1.3 2002/11/18 22:27:28 bbraun Exp $";
 #endif
 
 /*
@@ -399,7 +399,10 @@ init_map_rules(struct gen_p *irs, const char *conf_file) {
 		char *tmp;
 		int n;
 
-		for (tmp = line; isascii(*tmp) && isspace(*tmp); tmp++)
+		for (tmp = line;
+		     isascii((unsigned char)*tmp) &&
+		     isspace((unsigned char)*tmp);
+		     tmp++)
 			(void)NULL;
 		if (*tmp == '#' || *tmp == '\n' || *tmp == '\0')
 			continue;

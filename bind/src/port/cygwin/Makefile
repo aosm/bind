@@ -13,12 +13,12 @@
 # ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 # SOFTWARE.
 
-# $Id: Makefile,v 1.1.1.1 2001/01/31 04:00:37 zarzycki Exp $
+# $Id: Makefile,v 1.1.1.2 2002/11/18 22:27:53 bbraun Exp $
 
 # these are only appropriate for BSD 4.4 or derivatives, and are used in
 # development.  normal builds will be done in the top level directory and
 # this Makefile will be invoked with a lot of overrides for the following:
-SYSTYPE= bsd
+SYSTYPE= cygwin 
 DESTDIR =
 DESTLIB = /usr/local/lib
 O=o

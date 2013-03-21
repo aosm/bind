@@ -2611,6 +2611,7 @@ lbnDoubleExpMod_16(BNWORD16 *result,
 	unsigned i;			/* Loop counter */
 	int isone;			/* Flag: accum. is implicitly one */
 	BNWORD16 *a, *b;		/* Working buffers/accumulators */
+	const BNWORD16 *ct;		/* Temp pointer */
 	BNWORD16 *t;			/* Pointer into the working buffers */
 	BNWORD16 inv;			/* mod^-1 modulo 2^16 */
 
@@ -2628,8 +2629,8 @@ lbnDoubleExpMod_16(BNWORD16 *result,
 	if (e1bits < e2bits) {
 		i = e1len; e1len = e2len; e2len = i;
 		i = e1bits; e1bits = e2bits; e2bits = i;
-		t = (BNWORD16 *)n1; n1 = n2; n2 = t; 
-		t = (BNWORD16 *)e1; e1 = e2; e2 = t; 
+		ct = (const BNWORD16 *)n1; n1 = n2; n2 = ct; 
+		ct = (const BNWORD16 *)e1; e1 = e2; e2 = ct; 
 	}
 	assert(e1bits >= e2bits);
 

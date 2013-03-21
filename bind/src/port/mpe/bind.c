@@ -1,6 +1,8 @@
 /* This is a substitute for bind() that if called for an AF_INET socket
 port less than 1024, GETPRIVMODE() and GETUSERMODE() calls will be done. */
 
+#include "port_before.h"
+#undef bind
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>

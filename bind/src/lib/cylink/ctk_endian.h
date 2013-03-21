@@ -125,7 +125,7 @@
 #  else 
 #    if ULONG_MAX == 0xffffffff
 #      define ORD_16
-#    elif ULONG_MAX > 0xffffffff
+#    else
 #      define ORD_32
 #    endif
 #  endif

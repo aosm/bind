@@ -23,7 +23,7 @@
 
 static int RSA_CRT2 PROTO_LIST
   ((A_RSA_CRT2_CTX *, unsigned char *, unsigned int *, unsigned int,
-    unsigned char *, A_SURRENDER_CTX *));
+    const unsigned char *, A_SURRENDER_CTX *));
 
 int A_RSA_CRT2Init (context, key)
 A_RSA_CRT2_CTX *context;
@@ -82,7 +82,7 @@ A_RSA_CRT2_CTX *context;
 unsigned char *partOut;
 unsigned int *partOutLen;
 unsigned int maxPartOutLen;
-unsigned char *partIn;
+const unsigned char *partIn;
 unsigned int partInLen;
 A_SURRENDER_CTX *surrenderContext;
 {
@@ -96,7 +96,7 @@ A_SURRENDER_CTX *surrenderContext;
     /* Not enough to encrypt - just accumulate.
      */
     T_memcpy
-      ((POINTER)(context->input + context->inputLen), (POINTER)partIn,
+      ((POINTER)(context->input + context->inputLen), (CPOINTER)partIn,
        partInLen);
     context->inputLen += partInLen;
     return (0);
@@ -109,7 +109,7 @@ A_SURRENDER_CTX *surrenderContext;
      */
     partialLen = context->blockLen - context->inputLen;
     T_memcpy
-      ((POINTER)(context->input + context->inputLen), (POINTER)partIn,
+      ((POINTER)(context->input + context->inputLen), (CPOINTER)partIn,
        partialLen);
     partIn += partialLen;
     partInLen -= partialLen;
@@ -166,7 +166,7 @@ A_RSA_CRT2_CTX *context;
 unsigned char *output;
 unsigned int *outputLen;
 unsigned int maxOutputLen;
-unsigned char *input;
+const unsigned char *input;
 A_SURRENDER_CTX *surrenderContext;
 {
   struct ModExpCRTFrame {

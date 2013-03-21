@@ -8,35 +8,33 @@
  */
 
 #include "port_before.h"
+#include <unistd.h>
+#include <errno.h>
 #include <fcntl.h>
-#include "port_after.h"
+#include <stdio.h>
+#include <mpe.h>
+#include "longpointer.h"
 
-extern FCONTROL(short, short, short);
+extern void FCONTROL(short, short, longpointer);
+extern void PRINTFILEINFO(int);
 
-int
-__bind_mpe_ftruncate(int fd, long wantsize) {
-	long cursize;
+int __bind_mpe_ftruncate(int fd, long wantsize);
 
-	/* determine current file size */
-	if ((cursize = lseek(fd, 0L, 2)) == -1)
-		return (-1);
+int __bind_mpe_ftruncate(int fd, long wantsize) {
 
-	/* maybe lengthen... */
-	if (cursize < wantsize) {
-		if (lseek(fd, wantsize - 1, 0) == -1 ||
-		    write(fd, "", 1) == -1) {
-			return (-1);
-		}
-		return (0);
-	}
+int ccode_return,dummy=0;
 
-	/* maybe shorten... */
-	if (wantsize < cursize) {
-		if (lseek(fd, wantsize - 1, 0) == -1) {
-			return (-1);
-		}
-		FCONTROL(_MPE_FILENO(fd),6,0); /* Write smaller EOF */
-		return (0);
-	}
-	return (0);
+if (lseek(fd, wantsize, SEEK_SET) < 0) {
+        return (-1);
+}
+
+FCONTROL(_mpe_fileno(fd),6,__bind_mpe_longaddr(&dummy)); /* Write new EOF */
+if ((ccode_return=ccode()) != CCE) {
+        fprintf(stderr,"MPE ftruncate failed, ccode=%d, wantsize=%ld\n",ccode_return,wantsize);
+        PRINTFILEINFO(_mpe_fileno(fd));
+	errno = ESYSERR;
+	return (-1);
+}
+
+return (0);
 }

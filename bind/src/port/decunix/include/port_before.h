@@ -4,11 +4,15 @@ typedef u_int16_t uint16_t;
 typedef u_int32_t uint32_t;
 typedef u_int64_t uint64_t;
 
+/* 4.0 has the old sockaddr_storage w/ __ss_family. */
+#define __ss_family ss_family
+
 #define WANT_IRS_NIS
 #undef WANT_IRS_PW
 #undef WANT_IRS_GR
 #define _SOCKADDR_LEN
 #define HAS_PTHREADS
+#define ISC_SOCKLEN_T int
 
 #if defined(HAS_PTHREADS) && defined(_REENTRANT)
 #define DO_PTHREADS
@@ -23,6 +27,8 @@ typedef u_int64_t uint64_t;
 #define GROUP_R_ENT_ARGS FILE **f
 #define GROUP_R_OK 0
 #define GROUP_R_BAD (-1)
+#define GETGROUPLIST_ARGS const char *name, gid_t basegid, gid_t *groups, \
+		      int *ngroups
 
 #define HOST_R_RETURN int
 #define HOST_R_SET_RETURN int
@@ -101,3 +107,9 @@ typedef u_int64_t uint64_t;
 #define SERV_R_BAD (-1)
 #define SERVENT_DATA
 
+#ifdef __GNUC__
+#define ISC_FORMAT_PRINTF(fmt, args) \
+	__attribute__((__format__(__printf__, fmt, args)))
+#else
+#define ISC_FORMAT_PRINTF(fmt, args)
+#endif

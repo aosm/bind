@@ -13,7 +13,7 @@
 # ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS
 # SOFTWARE.
 
-# $Id: Makefile,v 1.1.1.2 2001/01/31 04:00:52 zarzycki Exp $
+# $Id: Makefile,v 1.1.1.3 2002/11/18 22:28:15 bbraun Exp $
 
 # these are only appropriate for BSD 4.4 or derivatives, and are used in
 # development.  normal builds will be done in the top level directory and
@@ -47,9 +47,9 @@ INSTALL= install
 
 SUBDIRS= include
 
-SRCS=	
+SRCS=	posix-compat.c
 
-OBJS=	
+OBJS=	posix-compat.${O}
 
 MARGS= DESTDIR="${DESTDIR}" DESTINC="${DESTINC}" INSTALL="${INSTALL}"
 
@@ -62,7 +62,7 @@ all:: ${LIBBIND}
 
 ${LIBBIND}: ${OBJS}
 	${AR} ${LIBBIND} ${ARPREF} ${OBJS} ${ARSUFF}
-	${RANLIB} ${LIBBIND}
+	-${RANLIB} ${LIBBIND}
 
 .c.${O}:
 	${CC} ${CPPFLAGS} ${CFLAGS} -c $*.c

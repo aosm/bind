@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:57 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:49 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -199,14 +199,13 @@ def/PL 792 def/LS false def/ENC0[/asciicircum/asciitilde/Scaron/Zcaron
 %%BeginPageSetup
 BP
 %%EndPageSetup
-/F0 10/Times-Roman@0 SF 2.549(|i)72 12 S 2.549(sa)-2.549 G 2.549(na)
--2.549 G .049(ncillary program e)-2.549 F -.15(xe)-.15 G .049
-(cuted by to perform an inbound zone transfer).15 F 5.048(.I)-.55 G
-2.548(ti)-5.048 G 2.548(sr)-2.548 G .048(arely e)-2.548 F -.15(xe)-.15 G
-.048(cuted directly).15 F 2.548(,a)-.65 G .048(nd then on-)-2.548 F .478
-(ly by system administrators who are trying to deb)72 24 R .478
-(ug a zone transfer problem.)-.2 F .478(See RFC')5.478 F 2.978(s1)-.55 G
-.478(033, 1034, and 1035 for)-2.978 F 1.309
+/F0 10/Times-Roman@0 SF .054(is an ancillary program e)72 12 R -.15(xe)
+-.15 G .054(cuted by to perform an inbound zone transfer).15 F 5.054(.I)
+-.55 G 2.554(ti)-5.054 G 2.553(sr)-2.554 G .053(arely e)-2.553 F -.15
+(xe)-.15 G .053(cuted directly).15 F 2.553(,a)-.65 G .053(nd then only)
+-2.553 F 1.075(by system administrators who are trying to deb)72 24 R
+1.076(ug a zone transfer problem.)-.2 F 1.076(See RFC')6.076 F 3.576(s1)
+-.55 G 1.076(033, 1034, and 1035 for)-3.576 F 1.309
 (more information on the Internet name-domain system.)72 36 R 1.308
 (Options are: speci\214es the name of the zone to be trans-)6.308 F
 2.696(ferred. speci\214es)72 48 R .196

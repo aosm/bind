@@ -1,0 +1,35 @@
+	Windows NT BIND 8.2.4 fixes:
+
+Date:1-May-2001
+
+
+  The following changes were made to BIND 8.2.4 to support the Windows NT
+  build.  A few of the fixes were bugs in the generic code.  The rest are
+  NT-specific.  No IP V6 testing has been done so it is not known if the
+  NT version will listen on IP V6 sockets.
+ 
+  A great deal of effort has gone into minimizing changes to non-Windows
+  NT specific code, however, in a few places this was found to be necessary
+  and macros have been used to #ifdef the code and provide generic
+  style of content.
+
+	There has not been a lot of testing of all of the features of
+  BIND as I have limited resources. This will be up to the people
+  installing this release to test.
+
+
+LIBBIND:
+Fixes for the accept error in socket.c.
+Added proper error messaging in unistd.c.
+Redirect fstat to use dll data space for file descriptor information.
+General cleanup of the socket and unistd code.
+
+NAMED-XFER
+path-separator in named-xfer to get name into the event log without the path
+name.
+
+	If I have missed anything, please let me know.
+
+	Danny Mayer
+	mayer@gis.net
+

@@ -21,7 +21,7 @@
 int CanonicalToBig (wordPointer, wordCount, bytePointer, numBytes)
 UINT2 *wordPointer;
 unsigned int wordCount;
-unsigned char *bytePointer;
+const unsigned char *bytePointer;
 unsigned int numBytes;
 {
   unsigned int copyCount;

@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:43:00 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:55:01 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -222,21 +222,18 @@ BP
 (ault method \(using RFC 1535 guidelines\) follo)-.1 F .649
 (ws: If the name consists of a single compo-)-.25 F .282
 (nent, i.e. contains no dot, and if the en)72 96 R .282(vironment v)-.4
-F .282(ariable is set to the name of a \214le, that \214le is searched \
-for a string)-.25 F .438(matching the input hostname.)72 108 R .437
+F .282(ariable is set to the name of a \214le, that \214le is searched for a string)
+-.25 F .438(matching the input hostname.)72 108 R .437
 (The \214le should consist of lines made up of tw)5.438 F 2.937(os)-.1 G
-.437(trings separated by white-space, the)-2.937 F 1.166(\214rst of whi\
-ch is the hostname alias, and the second of which is the complete hostn\
-ame to be substituted for that)72 120 R 2.652(alias. If)72 132 R 2.652
-(ac)2.652 G(ase-insensiti)-2.652 E .452 -.15(ve m)-.25 H .152
+.437(trings separated by white-space, the)-2.937 F 1.166(\214rst of which is the hostname alias, and the second of which is the complete hostname to be substituted for that)
+72 120 R 2.652(alias. If)72 132 R 2.652(ac)2.652 G(ase-insensiti)-2.652
+E .452 -.15(ve m)-.25 H .152
 (atch is found between the hostname to be resolv).15 F .152
 (ed and the \214rst \214eld of a line in the \214le,)-.15 F .358
 (the substituted name is look)72 144 R .358
 (ed up with no further processing.)-.1 F .358
-(If there is at least one dot in the name, then the name)5.358 F .422(i\
-s \214rst tried The number of dots to cause this action is con\214gurab\
-le by setting the threshold using the option in \(de-)72 156 R -.1(fa)72
-168 S 2.89(ult: 1\). If).1 F .391
+(If there is at least one dot in the name, then the name)5.358 F .422(is \214rst tried The number of dots to cause this action is con\214gurable by setting the threshold using the option in \(de-)
+72 156 R -.1(fa)72 168 S 2.89(ult: 1\). If).1 F .391
 (the name ends with a dot, the trailing dot is remo)2.891 F -.15(ve)-.15
 G .391(d, and the remaining name is look).15 F .391(ed up \(re)-.1 F
 -.05(ga)-.15 G(rdless).05 E 1.216
@@ -245,13 +242,11 @@ G .391(d, and the remaining name is look).15 F .391(ed up \(re)-.1 F
 (look)72 192 Q .076
 (ed up by searching through a list of domains until a match is found.)
 -.1 F .077(If neither the search option in the \214le or the)5.077 F(en)
-72 204 Q .745(vironment v)-.4 F .745(ariable is used, then the search l\
-ist of domains contains only the full domain speci\214ed by the option)
+72 204 Q .745(vironment v)-.4 F .745(ariable is used, then the search list of domains contains only the full domain speci\214ed by the option)
 -.25 F .845(\(in or the domain used in the local hostname \(see and F)72
 216 R .845(or e)-.15 F .845
-(xample, if the option is set to then only will be in the)-.15 F .304(s\
-earch list, and this will be the only domain appended to the partial ho\
-stname.)72 228 R -.15(Fo)5.304 G 2.804(re).15 G .304
+(xample, if the option is set to then only will be in the)-.15 F .304(search list, and this will be the only domain appended to the partial hostname.)
+72 228 R -.15(Fo)5.304 G 2.804(re).15 G .304
 (xample, if is the name to be re-)-2.954 F(solv)72 240 Q .538
 (ed, this w)-.15 F .538(ould mak)-.1 F 3.038(et)-.1 G .538
 (he only name to be tried using the search list.)-3.038 F .538
@@ -259,23 +254,20 @@ stname.)72 228 R -.15(Fo)5.304 G 2.804(re).15 G .304
 252 S .434(riable is set by the user).25 F 2.934(,t)-.4 G .434
 (hen the search list will include what is set by these methods.)-2.934 F
 -.15(Fo)5.434 G 2.934(re).15 G .434(xample, if the option)-3.084 F .032
-(contained then the partial hostname \(e.g., will be tried with domain \
-name appended \(in the same order speci\214ed\); the)72 264 R .003
-(resulting hostnames that w)72 276 R .002
+(contained then the partial hostname \(e.g., will be tried with domain name appended \(in the same order speci\214ed\); the)
+72 264 R .003(resulting hostnames that w)72 276 R .002
 (ould be tried are: lithium.CS.Berk)-.1 F(ele)-.1 E -.65(y.)-.15 G .002
 (EDU lithium.CChem.Berk).65 F(ele)-.1 E -.65(y.)-.15 G .002
 (EDU lithium.Berk).65 F(e-)-.1 E(le)72 288 Q -.65(y.)-.15 G .122
 (EDU The en).65 F .122(vironment v)-.4 F .122(ariable o)-.25 F -.15(ve)
--.15 G .123(rrides the and options, and if both and options are present\
- in the resolv).15 F .123(er con-)-.15 F .192(\214guration \214le, then\
- only the one listed is used \(see If the name w)72 300 R .191
-(as not pre)-.1 F .191(viously tried \(i.e., it fell belo)-.25 F 2.691
-(wt)-.25 G .191(he thresh-)-2.691 F .094
+-.15 G .123(rrides the and options, and if both and options are present in the resolv)
+.15 F .123(er con-)-.15 F .192(\214guration \214le, then only the one listed is used \(see If the name w)
+72 300 R .191(as not pre)-.1 F .191(viously tried \(i.e., it fell belo)
+-.25 F 2.691(wt)-.25 G .191(he thresh-)-2.691 F .094
 (old or did not contain a dot\), then the name as originally pro)72 312
 R .094(vided is attempted.)-.15 F(Af)5.094 E .095
 (fects domains appended to partial)-.25 F 2.5(hostnames. Name)72 324 R
-(of \214le containing pairs.)2.5 E(See Name of \214le containing pairs.)
-5 E EP
+(of \214le containing pairs.)2.5 E(See)5 E EP
 %%Trailer
 end
 %%EOF

@@ -5,6 +5,7 @@
 #define SIOCGIFCONF_ADDR
 
 #define SIG_FN void
+#define ISC_SOCKLEN_T int
 
 /* #define EVENTLIB_DEBUG 1 /**/
 
@@ -33,3 +34,11 @@ struct timespec {
 #define NO_SOCKADDR_UN
 #endif
 
+#define GETGROUPLIST_ARGS const char *name, gid_t basegid, gid_t *groups, \
+		      int *ngroups
+#ifdef __GNUC__
+#define ISC_FORMAT_PRINTF(fmt, args) \
+	__attribute__((__format__(__printf__, fmt, args)))
+#else
+#define ISC_FORMAT_PRINTF(fmt, args)
+#endif

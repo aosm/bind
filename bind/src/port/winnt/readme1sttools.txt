@@ -1,8 +1,8 @@
-		Window NT/2000 implementation of BIND8.2.3 Tools
+		Window NT/2000 implementation of BIND8 Tools
 
-Date: 6-Jan-2001.
+Date: 31-Jan-2002.
 
-  This is a release of BIND 8.2.3 for Windows NT/2000 systems. This
+  This is a release of BIND 8 Tools for Windows NT/2000 systems. This
   release has undergone a fair amount of testing. While I have cleaned
   up all of the NT-specific issues and bugs that I know about, you
   should report any issues to the bind-users@isc.org mailing list.

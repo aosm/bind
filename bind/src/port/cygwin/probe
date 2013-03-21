@@ -4,7 +4,7 @@ uname=/bin/uname
 
 if [ -f $uname ]; then
 	case `$uname -s` in
-	CYGWIN_NT-5.0) exit 0 ;;
+	CYGWIN*) exit 0 ;;
 	esac
 fi
 

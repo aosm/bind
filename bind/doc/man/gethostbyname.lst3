@@ -1,5 +1,4 @@
-
-GETHOSTBYNAME(3)       FreeBSD Library Functions Manual       GETHOSTBYNAME(3)
+GETHOSTBYNAME(3)            BSD Programmer's Manual           GETHOSTBYNAME(3)
 
 NNAAMMEE
      ggeetthhoossttbbyynnaammee, ggeetthhoossttbbyyaaddddrr, ggeetthhoosstteenntt, sseetthhoosstteenntt, eennddhhoosstteenntt, hheerrrroorr
@@ -8,7 +7,7 @@ NNAAMMEE
 SSYYNNOOPPSSIISS
      ##iinncclluuddee <<nneettddbb..hh>>
 
-     _e_x_t_e_r_n _i_n_t _h___e_r_r_n_o_;
+     _e_x_t_e_r_n _i_n_t _h___e_r_r_n_o;
 
      _s_t_r_u_c_t _h_o_s_t_e_n_t _*
      ggeetthhoossttbbyynnaammee(_c_h_a_r _*_n_a_m_e);
@@ -20,11 +19,11 @@ SSYYNNOOPPSSIISS
      ggeetthhoossttbbyyaaddddrr(_c_h_a_r _*_a_d_d_r, _i_n_t _l_e_n_, _t_y_p_e);
 
      _s_t_r_u_c_t _h_o_s_t_e_n_t _*
-     ggeetthhoosstteenntt()
+     ggeetthhoosstteenntt();
 
      sseetthhoosstteenntt(_i_n_t _s_t_a_y_o_p_e_n);
 
-     eennddhhoosstteenntt()
+     eennddhhoosstteenntt();
 
      hheerrrroorr(_c_h_a_r _*_s_t_r_i_n_g);
 
@@ -62,7 +61,6 @@ DDEESSCCRRIIPPTTIIOONN
      h_addr       The first address in h_addr_list; this is for backward com-
                   patibility.
 
-
      When using the nameserver, ggeetthhoossttbbyynnaammee() will search for the named host
      in each parent domain given in the ``search'' directive of resolv.conf(5)
      unless the name contains a dot (``.''). If the name contains no dot, and
@@ -89,8 +87,6 @@ EENNVVIIRROONNMMEENNTT
 
 FFIILLEESS
      /etc/hosts     See hosts(5).
-
-     HOSTALIASES    Name of file containing (_h_o_s_t _a_l_i_a_s, _f_u_l_l _h_o_s_t_n_a_m_e) pairs.
 
 DDIIAAGGNNOOSSTTIICCSS
      Error return status from ggeetthhoossttbbyynnaammee() and ggeetthhoossttbbyyaaddddrr() is indicated

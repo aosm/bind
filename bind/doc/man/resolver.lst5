@@ -1,5 +1,4 @@
-
-RESOLVER(5)               FreeBSD File Formats Manual              RESOLVER(5)
+RESOLVER(5)                 BSD Programmer's Manual                RESOLVER(5)
 
 NNAAMMEE
      rreessoollvveerr - resolver configuration file
@@ -64,6 +63,7 @@ DDEESSCCRRIIPPTTIIOONN
                     sortlist 130.155.160.0/255.255.240.0 130.155.0.0
 
 
+
      options  Allows certain internal rreessoollvveerr variables to be modified.  The
               syntax is
                     options _o_p_t_i_o_n _._._.
@@ -83,13 +83,13 @@ DDEESSCCRRIIPPTTIIOONN
                         sets the amount of time the resolver will wait for a
                         response from a remote name server before retrying the
                         query via a different name server.  Measured in sec-
-                        onds, the default is RES_TIMEOUT (see _<_r_e_s_o_l_v_._h_> _)_.
+                        onds, the default is RES_TIMEOUT (see _<_r_e_s_o_l_v_._h_>).
 
               attempts:_n
                         sets the number of times the resolver will send a
                         query to its name servers before giving up and return-
                         ing an error to the calling application.  The default
-                        is RES_DFLRETRY (see _<_r_e_s_o_l_v_._h_> _)_.
+                        is RES_DFLRETRY (see _<_r_e_s_o_l_v_._h_>).
 
               rotate    sets RES_ROTATE in ___r_e_s_._o_p_t_i_o_n_s _, which causes round
                         robin selection of nameservers from among those list-
@@ -108,6 +108,15 @@ DDEESSCCRRIIPPTTIIOONN
                         the _g_e_t_h_o_s_t_b_y_n_a_m_e function, and of mapping IPv4 re-
                         sponses in IPv6 ``tunnelled form'' if no AAAA records
                         are found but an A record set exists.
+
+              no-tld-query
+                        sets RES_NOTLDQUERY in ___r_e_s_._o_p_t_i_o_n_s _.  This option
+                        causes rreess__nnsseeaarrcchh() to not attempt to resolve a un-
+                        qualified name as if it were a top level domain (TLD).
+                        This option can cause problems if the site has "local-
+                        host" as a TLD rather than having localhost on one or
+                        more elements of the search list.  This option has no
+                        effect if neither RES_DEFNAMES or RES_DNSRCH is set.
 
      The domain and search keywords are mutually exclusive.  If more than one
      instance of these keywords is present, the last instance wins.

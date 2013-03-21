@@ -3,8 +3,8 @@
 
 
 #ifndef HAVE_DEV_RANDOM
- # define HAVE_DEV_RANDOM 1
- #endif /* HAVE_DEV_RANDOM */
+# define HAVE_DEV_RANDOM 1
+#endif /* HAVE_DEV_RANDOM */
 
 const char *cmds[] = {
 	"/bin/ps -axlw 2>&1",

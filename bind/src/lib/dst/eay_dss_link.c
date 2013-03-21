@@ -1,5 +1,5 @@
 #ifdef EAY_DSS
-static const char rcsid[] = "$Header: /cvs/Darwin/src/live/bind/bind/src/lib/dst/eay_dss_link.c,v 1.1.1.3 2001/01/31 04:00:14 zarzycki Exp $";
+static const char rcsid[] = "$Header: /cvs/Darwin/src/live/bind/bind/src/lib/dst/eay_dss_link.c,v 1.1.1.4 2002/11/18 22:27:23 bbraun Exp $";
 
 /*
  * Portions Copyright (c) 1995-1998 by Trusted Information Systems, Inc.
@@ -44,6 +44,7 @@ static const char rcsid[] = "$Header: /cvs/Darwin/src/live/bind/bind/src/lib/dst
 
 #include "port_after.h"
 
+
 static int dst_eay_dss_sign(const int mode, DST_KEY *dkey, void **context,
 			    const u_char *data, const int len,
 			    u_char *signature, const int sig_len);
@@ -71,7 +72,7 @@ static int dst_eay_dss_compare_keys(const DST_KEY *key1, const DST_KEY *key2);
  *	    EAY DSS related functions 
  */
 int
-dst_eay_dss_init()
+dst_eay_dss_init(void)
 {
 	if (dst_t_func[KEY_DSA] != NULL)
 		return (1);
@@ -341,7 +342,6 @@ dst_eay_dss_from_dns_key(DST_KEY *s_key, const u_char *key, const int len)
 	d_key->pub_key = BN_bin2bn(key_ptr, p_bytes, NULL);
 	key_ptr += p_bytes;
 
-	s_key->dk_id = dst_s_id_calc(key, len); 
 	s_key->dk_key_size = p_bytes * 8;
 	return (1);
 }
@@ -442,9 +442,7 @@ dst_eay_dss_key_from_file_format(DST_KEY *d_key, const u_char *buff,
 				const int buff_len)
 {
 	char s[128];
-	char dns[1024];
 	int len, s_len = sizeof(s);
-	int foot = -1, dnslen;
 	const char *p = buff;
 	DSA *dsa_key;
 
@@ -499,10 +497,8 @@ dst_eay_dss_key_from_file_format(DST_KEY *d_key, const u_char *buff,
 	}			/* while p */
 
 	d_key->dk_key_size = BN_num_bytes(dsa_key->p);
-	dnslen = d_key->dk_func->to_dns_key(d_key, dns, sizeof(dns));
-	foot = dst_s_id_calc(dns, dnslen);
 
-	return (foot);
+	return (0);
 }
 
 
@@ -543,10 +539,9 @@ dst_eay_dss_free_key_structure(void *key)
 static int
 dst_eay_dss_generate_keypair(DST_KEY *key, int nothing)
 {
-	int status, dnslen, n;
+	int status, n;
 	DSA *dsa;
 	u_char rand[SHA_DIGEST_LENGTH];
-	char dns[1024];
 
 	if (key == NULL || key->dk_alg != KEY_DSA)
 		return (0);
@@ -572,8 +567,6 @@ dst_eay_dss_generate_keypair(DST_KEY *key, int nothing)
 		return(0);
 	}
 	key->dk_KEY_struct = (void *) dsa;
-	dnslen = key->dk_func->to_dns_key(key, dns, sizeof(dns));
-	key->dk_id = dst_s_id_calc(dns, dnslen);
 	return (1);
 }
 
@@ -616,8 +609,21 @@ dst_eay_dss_compare_keys(const DST_KEY *key1, const DST_KEY *key2)
 		return (0);
 }
 #else 
+#include "port_before.h"
+
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <string.h>
+#include <memory.h>
+#include <sys/param.h>
+#include <sys/time.h>
+#include <netinet/in.h>
+
+#include "dst_internal.h"
+#include "port_after.h"
 int
-dst_eay_dss_init() 
+dst_eay_dss_init(void) 
 {
 	return (0);
 }

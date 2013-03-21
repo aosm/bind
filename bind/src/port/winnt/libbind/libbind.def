@@ -153,7 +153,7 @@ sigaction						@162
 sigprocmask						@163
 alarm							@164
 kill							@165
-isc_movefile						@166
+isc_movefile					@166
 __ns_samedomain					@167
 irs_destroy						@168
 __res_nsendsigned				@169
@@ -172,7 +172,7 @@ __ns_parserr					@181
 _ns_flagdata					@182
 __ns_initparse					@183
 __res_init						@184
-__res_state						@185
+
 __ns_sprintrr					@186
 _res							@187
 __res_nupdate					@188
@@ -186,7 +186,7 @@ __ctl_command					@195
 dst_write_key					@196
 dst_check_algorithm				@197
 dst_generate_key				@198
-
+__res_nopt					@199
 
 ; NT Specific
 unistdInit						@300
@@ -199,7 +199,9 @@ get_nameserver_addr				@305
 get_host_domain					@306
 NTfopen							@307
 NTfclose						@308
-NTrename						@309
+NTstrerror						@310
+NTperror						@311
+NTfstat							@312
 
 ; Sockets
 htons							@400
@@ -215,6 +217,7 @@ ntohs							@409
 htonl							@410
 getsockname						@411
 bind							@412
+WSAGetLastError					@413
 
 __ns_sprintrrf					@500
 getservbyport					@501
@@ -230,17 +233,34 @@ fchown							@510
 __log_set_file_owner			@511
 __ns_name_rollback				@512
 __p_fqnname						@513
+__res_nametotype				@514
+__res_nametoclass				@515
+isc_puthexstring				@516
+isc_gethexstring				@517
+__memactive						@518
+__log_close_debug_channels		@519
+__res_getservers				@520
+__res_setservers				@521
+__res_randomid					@522
+__res_ndestroy					@523
+res_get_nibblesuffix			@524
+res_get_bitstringsuffix			@525
+freeaddrinfo					@526
+getaddrinfo						@527
+__ns_sign2						@528
 
 
 ; Exported Data
 EXPORTS
-optind			DATA
-optopt			DATA
-optarg			DATA
+optind					DATA
+optopt					DATA
+optarg					DATA
 
-__p_class_syms	DATA
-__p_type_syms	DATA
-__p_cert_syms	DATA
-__p_key_syms	DATA
-_res_opcodes	DATA
+__p_class_syms			DATA
+__p_type_syms			DATA
+__p_cert_syms			DATA
+__p_key_syms			DATA
+_res_opcodes			DATA
 
+isc_in6addr_any			DATA
+isc_in6addr_loopback	DATA

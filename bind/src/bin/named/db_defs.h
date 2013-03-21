@@ -1,6 +1,6 @@
 /*
  *	from db.h	4.16 (Berkeley) 6/1/90
- *	$Id: db_defs.h,v 1.1.1.3 2001/01/31 03:59:44 zarzycki Exp $
+ *	$Id: db_defs.h,v 1.1.1.4 2002/11/18 22:26:48 bbraun Exp $
  */
 
 /*
@@ -78,7 +78,7 @@
  */
 
 	/* max length of data in RR data field */
-#define MAXDATA		(2*MAXDNAME + 5*INT32SZ)
+#define MAXDATA		(3*MAXDNAME + 5*INT32SZ)
 
 	/* max length of data in a TXT RR segment */
 #define MAXCHARSTRING 255
@@ -111,7 +111,14 @@
  * indicate what the union is being used for.  This should require less
  * memory than making d_addr a union of struct in6_addr and struct in_addr.
  */
+#ifdef CHECK_MAGIC
+#define DATABUF_MAGIC (('D'<<24)|('A'<<16)|('T'<<8)|'A')
+#endif
+
 struct databuf {
+#ifdef CHECK_MAGIC
+	u_int32_t	d_magic;	/* magic number */
+#endif
 	struct databuf	*d_next;	/* linked list */
 	struct in_addr	d_addr;		/* NS from whence this came */
 	u_int32_t	d_ttl;		/* time to live */
@@ -119,7 +126,7 @@ struct databuf {
 					 * d_ttl is actually the time when
 					 * the record will expire.
 					 * otherwise (for authoritative
-					 * primary and secondary zones),
+					 * master and slave zones),
 					 * d_ttl is the time to live.
 					 */
 	unsigned	d_zone :ZONE_BITS; /* zone number or 0 for the cache */
@@ -130,6 +137,7 @@ struct databuf {
 	unsigned	d_clev :6;
 	unsigned	d_rcode :4;	/* rcode for negative caching */
 	unsigned	d_mark :3;	/* place to mark data */
+	unsigned	d_noedns :1;	/* this server does not support edns */
 	int16_t		d_type;		/* type number */
 	int16_t		d_size;		/* size of data area */
 	u_int32_t	d_rcnt;
@@ -139,7 +147,7 @@ struct databuf {
 	u_int16_t	d_nstime;	/* NS response time, milliseconds */
 	u_char		d_data[sizeof(void*)]; /* dynamic (padded) */
 };
-#define DATASIZE(n) (sizeof(struct databuf) - sizeof(void*) + n)
+#define BIND_DATASIZE(n) (sizeof(struct databuf) - sizeof(void*) + n)
 
 #ifdef HITCOUNTS
 extern u_int32_t	db_total_hits;
@@ -184,11 +192,14 @@ struct namebuf {
 	struct databuf	*n_data;	/* data records */
 	struct namebuf	*n_parent;	/* parent domain */
 	struct hashbuf	*n_hash;	/* hash table for children */
-	char		_n_name[sizeof(void*)];	/* Counted str (dynamic). */
+	union {
+		char		_n_name[sizeof(void*)];
+		unsigned char	_n_len[sizeof(void*)];
+	} _n;				/* Counted str (dynamic). */
 };
 #define	NAMESIZE(n)	(sizeof(struct namebuf) - sizeof(void*) + 1 + n + 1)
-#define	NAMELEN(nb)	(((u_char *)((nb)._n_name))[0])
-#define	NAME(nb)	((nb)._n_name + 1)
+#define	NAMELEN(nb)	((((nb)._n._n_len))[0])
+#define	NAME(nb)	((nb)._n._n_name + 1)
 
 struct hashbuf {
 	int		h_size;		/* size of hash table */
@@ -211,6 +222,7 @@ struct tsig_record {
 	u_int8_t	sig[TSIG_SIG_SIZE];
 	struct dst_key	*key;
 	int		siglen;
+	int		tsig_size;
 };
 
 struct sig_record {
@@ -227,7 +239,7 @@ struct dnode {
 	struct databuf	*dp;
 	struct dnode	*dn_next;
 	int		line;
-	char		*file;
+	const char	*file;
 };
 
 typedef struct dnode * dlist;
@@ -280,6 +292,7 @@ struct db_rrset {
 #endif
 #define CNAMEANDOTHER	(-12)
 #define DNSSECFAIL	(-13)	/* db_set_update */
+#define NONGLUE		(-14)
 
 /*
  * getnum() options

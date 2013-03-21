@@ -66,7 +66,6 @@ all depend::	resolv.h
 resolv.h:: ../../../include/resolv.h resolv.h.diffs Makefile
 	rm -f resolv.h
 	cp -p ../../../include/resolv.h resolv.h
-	/usr/bin/patch -p0 -c -i resolv.h.diffs
 
 all depend clean distclean install::
 	@for x in ${SUBDIRS}; do \

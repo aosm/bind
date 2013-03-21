@@ -96,8 +96,10 @@ const FileData installFiles[] =
 	{"named-xfer.exe", FileData::BinDir, FileData::Critical, FALSE},
 	{"nsupdate.exe", FileData::BinDir, FileData::Normal, FALSE},
 	{"BINDCtrl.exe", FileData::BinDir, FileData::Normal, FALSE},
+	{"BINDCmd.exe", FileData::BinDir, FileData::Normal, FALSE},
 	{"BINDInstall.exe", FileData::BinDir, FileData::Normal, FALSE},
-	{"readme.txt", FileData::TargetDir, FileData::Trivial, FALSE},
+	{"readme1st.txt", FileData::EtcDir, FileData::Trivial, FALSE},
+	{"nslookup.help", FileData::WinSystem, FileData::Trivial, FALSE},
 	{NULL, -1, -1}
 };
 

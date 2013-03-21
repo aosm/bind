@@ -32,7 +32,7 @@
 
 /*
  *      from nameser.h	8.1 (Berkeley) 6/2/93
- *	$Id: nameser_compat.h,v 1.1.1.1 1999/10/04 22:24:42 wsanchez Exp $
+ *	$Id: nameser_compat.h,v 1.1.1.2 2002/11/18 22:27:02 bbraun Exp $
  */
 
 #ifndef _ARPA_NAMESER_COMPAT_
@@ -64,6 +64,7 @@
     defined(apollo) || defined(__convex__) || defined(_CRAY) || \
     defined(__hppa) || defined(__hp9000) || \
     defined(__hp9000s300) || defined(__hp9000s700) || \
+    defined(__hp3000s900) || defined(__hpux) || defined(MPE) || \
     defined (BIT_ZERO_ON_LEFT) || defined(m68k) || \
     (defined(__Lynx__) && \
      (defined(__68k__) || defined(__sparc__) || defined(__powerpc__)))
@@ -207,6 +208,7 @@ typedef struct {
 #define	T_SRV		ns_t_srv
 #define T_ATMA		ns_t_atma
 #define T_NAPTR		ns_t_naptr
+#define T_A6		ns_t_a6
 #define	T_TSIG		ns_t_tsig
 #define	T_IXFR		ns_t_ixfr
 #define T_AXFR		ns_t_axfr

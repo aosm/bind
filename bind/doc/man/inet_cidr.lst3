@@ -1,5 +1,4 @@
-
-INET_CIDR(3)           FreeBSD Library Functions Manual           INET_CIDR(3)
+INET_CIDR(3)                BSD Programmer's Manual               INET_CIDR(3)
 
 NNAAMMEE
      iinneett__cciiddrr__nnttoopp, iinneett__cciiddrr__ppttoonn - network translation routines
@@ -10,9 +9,10 @@ SSYYNNOOPPSSIISS
      ##iinncclluuddee <<nneettiinneett//iinn..hh>>
      ##iinncclluuddee <<aarrppaa//iinneett..hh>>
 
-     iinneett__cciiddrr__nnttoopp(_i_n_t _a_f, _c_o_n_s_t _v_o_i_d _*_s_r_c, _i_n_t _b_i_t_s, _c_h_a_r _*_d_s_t, _s_i_z_e___t _s_i_z_e)
+     iinneett__cciiddrr__nnttoopp(_i_n_t _a_f, _c_o_n_s_t _v_o_i_d _*_s_r_c, _i_n_t _b_i_t_s, _c_h_a_r _*_d_s_t,
+             _s_i_z_e___t _s_i_z_e);
 
-     iinneett__cciiddrr__ppttoonn(_i_n_t _a_f, _c_o_n_s_t _c_h_a_r _*_s_r_c, _v_o_i_d _*_d_s_t, _i_n_t _*_b_i_t_s)
+     iinneett__cciiddrr__ppttoonn(_i_n_t _a_f, _c_o_n_s_t _c_h_a_r _*_s_r_c, _v_o_i_d _*_d_s_t, _i_n_t _*_b_i_t_s);
 
 DDEESSCCRRIIPPTTIIOONN
      These routines are used for converting addresses to and from network and
@@ -23,11 +23,11 @@ DDEESSCCRRIIPPTTIIOONN
 
      iinneett__cciiddrr__nnttoopp() converts an address from network to presentation format.
 
-     _a_f describes the type of address that is being passed in _s_r_c_.  Currently
+     _a_f describes the type of address that is being passed in _s_r_c _.  Currently
      only AF_INET is supported.
 
-     _s_r_c is an address in network byte order, its length is determined from
-     _a_f_.
+     _s_r_c is an address in network byte order, its length is determined from _a_f
+     _.
 
      _b_i_t_s specifies the number of bits in the netmask unless it is -1 in which
      case the CIDR representation is omitted.
@@ -38,10 +38,10 @@ DDEESSCCRRIIPPTTIIOONN
 
      iinneett__cciiddrr__ppttoonn() converts and address from presentation format, with op-
      tional CIDR reperesentation, to network format.  The resulting address is
-     zero filled if there were insufficint bits in _s_r_c_.
+     zero filled if there were insufficint bits in _s_r_c _.
 
      _a_f describes the type of address that is being passed in via _s_r_c and de-
-     termines the size of _d_s_t_.
+     termines the size of _d_s_t _.
 
      _s_r_c is an address in presentation format.
 

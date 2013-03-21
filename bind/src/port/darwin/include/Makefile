@@ -66,7 +66,7 @@ all depend clean distclean install::
 	done
 
 all depend::
-	probe_ipv6
+	CC='${CC}' probe_ipv6
 
 distclean:: clean
 

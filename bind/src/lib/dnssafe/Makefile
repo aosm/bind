@@ -82,7 +82,7 @@ ${LIBBIND}: ${OBJS}
 
 
 .c.${O}:
-	if test ! -d ${THREADED} ; then mkdir ${THREADED} ; else true ; fi
+	mkdir ${THREADED} 2> /dev/null || test -d ${THREADED} -a -w ${THREADED}
 	${CC} ${CPPFLAGS} ${CFLAGS} ${BOUNDS} ${REENTRANT} -c $*.c \
 	 -o ${THREADED}/$*.${O}
 	-${LDS} ${LD} ${LD_LIBFLAGS} ${THREADED}/$*.${O} \

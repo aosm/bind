@@ -1,5 +1,4 @@
-
-NSLOOKUP(8)             FreeBSD System Manager's Manual            NSLOOKUP(8)
+NSLOOKUP(8)               BSD System Manager's Manual              NSLOOKUP(8)
 
 NNAAMMEE
      nnssllooookkuupp - query Internet name servers interactively
@@ -63,6 +62,7 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
               the current default server.  If an authoritative answer can't be
               found, the names of servers that might have the answer are re-
 
+
               turned.
 
      rroooott     Changes the default server to the server for the root of the do-
@@ -77,7 +77,7 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
               Connects with the finger server on the current host.  The cur-
               rent host is defined when a previous lookup for a host was suc-
               cessful and returned address information (see the ``sseett
-              qquueerryyttyyppee==AA'' command).  The _n_a_m_e is optional.  >> and >>>> can be
+              qquueerryyttyyppee=A'' command).  The _n_a_m_e is optional.  >> and >>>> can be
               used to redirect output in the usual manner.
 
      llss [_o_p_t_i_o_n] _d_o_m_a_i_n [>> _f_i_l_e_n_a_m_e]
@@ -116,7 +116,7 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
 
      eexxiitt     Exits the program.
 
-     sseett _k_e_y_w_o_r_d [=_v_a_l_u_e]
+     sseett _k_e_y_w_o_r_d[=_v_a_l_u_e]
               This command is used to change state information that affects
               the lookups.  Valid keywords are:
 
@@ -124,7 +124,7 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
                        tions to sseett. Information about the  current default
                        server and host is also printed.
 
-              ccllaassss==_v_a_l_u_e
+              ccllaassss=_v_a_l_u_e
                        Change the query class to one of:
 
 
@@ -142,19 +142,19 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
 
                        (Default = IN; abbreviation = ccll)
 
-              [nnoo] ddeebbuugg
+              [nnoo]ddeebbuugg
                        Turn debugging mode on.  A lot more information is
                        printed about the packet sent to the server and the re-
                        sulting answer.
 
                        (Default = nnooddeebbuugg; abbreviation = [nnoo]ddeebb)
 
-              [nnoo] dd22  Turn exhaustive debugging mode on.  Essentially all
+              [nnoo]dd22   Turn exhaustive debugging mode on.  Essentially all
                        fields of every packet are printed.
 
                        (Default = nnoodd22)
 
-              ddoommaaiinn==_n_a_m_e
+              ddoommaaiinn=_n_a_m_e
                        Change the default domain name to _n_a_m_e. The default do-
                        main name is appended to a lookup request depending on
                        the state of the ddeeffnnaammee and sseeaarrcchh options.  The do-
@@ -168,7 +168,7 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
                        (Default = value from hostname(1),  _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f,
                        or LOCALDOMAIN; abbreviation = ddoo)
 
-              ssrrcchhlliisstt==_n_a_m_e_1_/_n_a_m_e_2_/_._._.
+              ssrrcchhlliisstt=_n_a_m_e_1/_n_a_m_e_2/_._._.
                        Change the default domain name to _n_a_m_e_1 and the domain
                        search list to _n_a_m_e_1, _n_a_m_e_2, etc.  A maximum of 6 names
                        separated by slashes (/) can be specified.  For exam-
@@ -184,14 +184,14 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
                        (Default = value based on hostname(1),
                        _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f, or LOCALDOMAIN; abbreviation = ssrrcchhll)
 
-              [nnoo] ddeeffnnaammee
+              [nnoo]ddeeffnnaammee
                        If set, append the default domain name to a single-com-
                        ponent lookup request (i.e., one that does not contain
                        a period).
 
                        (Default = ddeeffnnaammee; abbreviation = [nnoo]ddeeffnnaammee)
 
-              [nnoo] sseeaarrcchh
+              [nnoo]sseeaarrcchh
                        If the lookup request contains at least one period but
                        _d_o_e_s_n_'_t end with a trailing period, append the domain
                        names in the domain search list to the request until an
@@ -199,14 +199,14 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
 
                        (Default = sseeaarrcchh; abbreviation = [nnoo]sseeaa)
 
-              ppoorrtt==_v_a_l_u_e
+              ppoorrtt=_v_a_l_u_e
                        Change the default TCP/UDP name server port to _v_a_l_u_e.
 
                        (Default = 53; abbreviation = ppoo)
 
-              qquueerryyttyyppee==_v_a_l_u_e
+              qquueerryyttyyppee=_v_a_l_u_e
 
-              ttyyppee==_v_a_l_u_e
+              ttyyppee=_v_a_l_u_e
                        Change the type of information query to one of:
 
                        A         the host's Internet address.
@@ -239,13 +239,13 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
 
                        (Default = A; abbreviations = qq, ttyy)
 
-              [nnoo] rreeccuurrssee
+              [nnoo]rreeccuurrssee
                        Tell the name server to query other servers if it does
                        not have the information.
 
                        (Default = rreeccuurrssee; abbreviation = [nnoo]rreecc)
 
-              rreettrryy==_n_u_m_b_e_r
+              rreettrryy=_n_u_m_b_e_r
                        Set the number of retries to _n_u_m_b_e_r. When a reply to a
                        request is not received within a certain amount of time
                        (changed with ``sseett ttiimmeeoouutt''), the timeout period is
@@ -255,7 +255,7 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
 
                        (Default = 4, abbreviation = rreett)
 
-              rroooott==_h_o_s_t
+              rroooott=_h_o_s_t
                        Change the name of the root server to _h_o_s_t. This af-
                        fects the ``rroooott'' command.
 
@@ -263,19 +263,19 @@ IINNTTEERRAACCTTIIVVEE CCOOMMMMAANNDDSS
 
                        (Default = nnss..iinntteerrnniicc..nneett..; abbreviation = rroo)
 
-              ttiimmeeoouutt==_n_u_m_b_e_r
+              ttiimmeeoouutt=_n_u_m_b_e_r
                        Change the initial timeout interval for waiting for a
                        reply to _n_u_m_b_e_r seconds. Each retry doubles the timeout
                        period.
 
                        (Default = 5 seconds; abbreviation = ttii)
 
-              [nnoo] vvcc  Always use a virtual circuit when sending requests to
+              [nnoo]vvcc   Always use a virtual circuit when sending requests to
                        the server.
 
                        (Default = nnoovvcc; abbreviation = [nnoo]vv)
 
-              [nnoo] iiggnnoorreettcc
+              [nnoo]iiggnnoorreettcc
                        Ignore packet truncation errors.
 
                        (Default = nnooiiggnnoorreettcc; abbreviation = [nnoo]iigg)
@@ -286,8 +286,8 @@ DDIIAAGGNNOOSSTTIICCSS
 
      Timed out
             The server did not respond to a request after a certain amount of
-            time (changed with ``sseett ttiimmeeoouutt==_v_a_l_u_e'') and a certain number of
-            retries (changed with ``sseett rreettrryy==_v_a_l_u_e'').
+            time (changed with ``sseett ttiimmeeoouutt=_v_a_l_u_e'') and a certain number of
+            retries (changed with ``sseett rreettrryy=_v_a_l_u_e'').
 
      No response from server
             No name server is running on the server machine.

@@ -9,6 +9,7 @@
 #include "port_before.h"
 #include "global.h"
 #include "algae.h"
+#include "surrendr.h"
 #include "port_after.h"
 
 /* Returns 0, AE_CANCEL.

@@ -117,7 +117,7 @@ void ServiceControl(DWORD dwCtrlCode)
 			break;
 
         case SERVICE_CONTROL_DUMPDB:
-			sigraise(SIGINT);
+			doadump();
 			break;
 
         case SERVICE_CONTROL_RELOAD:
@@ -125,7 +125,7 @@ void ServiceControl(DWORD dwCtrlCode)
 			break;
 
         case SERVICE_CONTROL_STATS:
-			sigraise(SIGILL);
+			ns_stats();
 			break;
 
         case SERVICE_CONTROL_TRACE:

@@ -1,6 +1,6 @@
 #if !defined(lint) && !defined(SABER)
 static const char sccsid[] = "@(#)ns_stats.c	4.10 (Berkeley) 6/27/90";
-static const char rcsid[] = "$Id: ns_stats.c,v 1.1.1.3 2001/01/31 03:59:51 zarzycki Exp $";
+static const char rcsid[] = "$Id: ns_stats.c,v 1.1.1.4 2002/11/18 22:26:56 bbraun Exp $";
 #endif /* not lint */
 
 /*
@@ -381,6 +381,11 @@ ns_logstats(evContext ctx, void *uap, struct timespec due,
 #ifdef HAVE_GETRUSAGE
 # define tv_float(tv) ((tv).tv_sec + ((tv).tv_usec / 1000000.0))
 
+	UNUSED(ctx);
+	UNUSED(uap);
+	UNUSED(due);
+	UNUSED(inter);
+
 	getrusage(RUSAGE_SELF, &usage);
 	getrusage(RUSAGE_CHILDREN, &childu);
 
@@ -407,13 +412,13 @@ ns_logstats(evContext ctx, void *uap, struct timespec due,
 			sprintf(buffer2, " %s=%lu", p_type(i), typestats[i]);
 			if (strlen(buffer) + strlen(buffer2) >
 			    sizeof(buffer) - 1) {
-				ns_info(ns_log_statistics, buffer);
+				ns_info(ns_log_statistics, "%s", buffer);
 				strcpy(buffer, header);
 			}
 			strcat(buffer, buffer2);
 		}
 	}
-	ns_info(ns_log_statistics, buffer);
+	ns_info(ns_log_statistics, "%s", buffer);
 
 	sprintf(header, "XSTATS %lu %lu", (u_long)timenow, (u_long)boottime);
 	strcpy(buffer, header);
@@ -421,12 +426,12 @@ ns_logstats(evContext ctx, void *uap, struct timespec due,
 		sprintf(buffer2, " %s=%lu",
 			statNames[i]?statNames[i]:"?", (u_long)globalStats[i]);
 		if (strlen(buffer) + strlen(buffer2) > sizeof(buffer) - 1) {
-			ns_info(ns_log_statistics, buffer);
+			ns_info(ns_log_statistics, "%s", buffer);
 			strcpy(buffer, header);
 		}
 		strcat(buffer, buffer2);
 	}
-	ns_info(ns_log_statistics, buffer);
+	ns_info(ns_log_statistics, "%s", buffer);
 }
 
 static void

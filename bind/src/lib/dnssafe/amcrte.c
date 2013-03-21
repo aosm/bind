@@ -20,7 +20,7 @@ static int RSA_CRT2Init PROTO_LIST
   ((POINTER, POINTER, POINTER, A_SURRENDER_CTX *));
 static int RSA_CRT2Update PROTO_LIST
   ((POINTER, unsigned char *, unsigned int *, unsigned int,
-    unsigned char *, unsigned int, A_SURRENDER_CTX *));
+    const unsigned char *, unsigned int, A_SURRENDER_CTX *));
 static int RSA_CRT2Final PROTO_LIST
   ((POINTER, unsigned char *, unsigned int *, unsigned int,
     A_SURRENDER_CTX *));
@@ -76,7 +76,7 @@ POINTER context;
 unsigned char *output;
 unsigned int *outputLen;
 unsigned int maxOutputLen;
-unsigned char *input;
+const unsigned char *input;
 unsigned int inputLen;
 A_SURRENDER_CTX *surrenderContext;
 {

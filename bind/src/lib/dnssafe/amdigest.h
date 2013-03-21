@@ -10,7 +10,7 @@ typedef struct {
   int (*Query) PROTO_LIST ((unsigned int *, POINTER));
   int (*Init) PROTO_LIST ((POINTER, POINTER, A_SURRENDER_CTX *));
   int (*Update) PROTO_LIST
-    ((POINTER, unsigned char *, unsigned int, A_SURRENDER_CTX *));
+    ((POINTER, const unsigned char *, unsigned int, A_SURRENDER_CTX *));
   int (*Final) PROTO_LIST
     ((POINTER, unsigned char *, unsigned int *, unsigned int,
       A_SURRENDER_CTX *));

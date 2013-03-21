@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:57 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:47 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -225,11 +225,11 @@ G 5.857(.m)-.5 G .856(ust be one of [512, 576, 640, 704, 768, 832, 896,)
 (wed to be one of these.)-.25 F .488(Indicates that the k)5.488 F .788
 -.15(ey b)-.1 H 2.988(eu).15 G .488(sed for authentication.)-2.988 F
 .487(Indicates that the k)5.487 F .787 -.15(ey b)-.1 H 2.987(eu).15 G
-.487(sed for en-)-2.987 F 2.664(cryption. Sets)72 96 R .164(the k)2.664
-F -.15(ey)-.1 G 1.264 -.55('s p).15 H .164(rotocol \214eld to ; the def)
-.55 F .164
+.487(sed for en-)-2.987 F 2.966(cryption. Sets)72 96 R .466(the k)2.966
+F -.15(ey)-.1 G 1.566 -.55('s p).15 H .466(rotocol \214eld to the def)
+.55 F .467
 (ault is \(DNSSEC\) if or is speci\214ed and \(EMAIL\) otherwise.)-.1 F
-(Other)5.165 E .057(accepted v)72 108 R .057
+(Other)5.467 E .057(accepted v)72 108 R .057
 (alues are \(TLS\), \(IPSEC\), and \(ANY\).)-.25 F .057(Sets the k)5.057
 F -.15(ey)-.1 G 1.157 -.55('s s).15 H .057(trength \214eld to the def)
 .55 F .057(ault is Sets the k)-.1 F -.15(ey)-.1 G 1.157 -.55('s n).15 H

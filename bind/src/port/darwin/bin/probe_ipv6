@@ -2,10 +2,15 @@
 
 set -e
 PATH=/bin:/usr/bin:$PATH; export PATH
-trap "rm -f tmp$$a.c tmp$$b.c tmp$$a.o tmp$$b.o" 0
+trap "rm -f tmp$$[abc].c tmp$$[abc].o a.out" 0
 target=port_ipv6
 new=new_${target}.h
 old=${target}.h
+
+if test X"${CC}" = "X"
+then
+	exit 1;
+fi
 
 cat > tmp$$a.c <<EOF
 #include <sys/types.h>
@@ -17,6 +22,15 @@ cat > tmp$$b.c <<EOF
 #include <sys/types.h>
 #include <netinet/in.h>
 struct in6_addr xx;
+EOF
+
+cat > tmp$$c.c <<EOF
+#include <sys/types.h>
+#include <netinet/in.h>
+int
+main() {
+	return (in6addr_any.s6_addr[0]);
+}
 EOF
 
 cat > ${new} <<EOF
@@ -37,6 +51,12 @@ then
 	else
                 echo "#define in6_addr in_addr6" >> ${new}
         fi
+        if ${CC} tmp$$c.c > /dev/null 2>& 1
+	then
+		echo "#undef NEED_IN6ADDR_ANY" >> ${new}
+	else
+		echo "#define NEED_IN6ADDR_ANY" >> ${new}
+	fi
 else
         echo "#undef HAS_INET6_STRUCTS" >> ${new}
 fi

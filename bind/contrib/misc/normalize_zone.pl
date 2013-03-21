@@ -18,6 +18,7 @@
 ($Origin, $Class) = @ARGV;
 $Domain = '';
 $Partial = '';
+$DefTtl = -1;
 $Ttl = -1;
 $NumSOA = 0;
 @SOA = ();
@@ -33,6 +34,8 @@ while (<STDIN>) {
 			$_ = $_[0];
 			$Origin = '' if (/\.$/);
 			$Origin = $_.'.'.$Origin;
+		} elsif ($_ eq 'TTL') {
+			$DefTtl = 0 + $_[0];
 		} else {
 			print STDERR "unsupported directive: \$".$_."\n";
 			exit(1);
@@ -93,7 +96,8 @@ while (<STDIN>) {
 		}
 		$NumSOA++;
 		@SOA = &normalize_soa($_);
-		$Ttl = $SOA[6] if ($Ttl == -1);		# minimum == default
+		$DefTtl = $SOA[6] if $DefTtl == -1;	# minimum == default
+		$Ttl = $DefTtl if $Ttl == -1;	
 		$SOAclass = $Class;
 		if ($SOAclass eq '') {
 			print STDERR "can't default CLASS on first SOA RR\n";

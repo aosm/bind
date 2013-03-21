@@ -19,7 +19,7 @@ static int RSAQuery PROTO_LIST ((unsigned int *, POINTER, POINTER));
 static int RSAInit PROTO_LIST ((POINTER, POINTER, POINTER, A_SURRENDER_CTX *));
 static int RSAUpdate PROTO_LIST
   ((POINTER, unsigned char *, unsigned int *, unsigned int,
-    unsigned char *, unsigned int, A_SURRENDER_CTX *));
+    const unsigned char *, unsigned int, A_SURRENDER_CTX *));
 static int RSAFinal PROTO_LIST
   ((POINTER, unsigned char *, unsigned int *, unsigned int,
     A_SURRENDER_CTX *));
@@ -74,7 +74,7 @@ POINTER context;
 unsigned char *output;
 unsigned int *outputLen;
 unsigned int maxOutputLen;
-unsigned char *input;
+const unsigned char *input;
 unsigned int inputLen;
 A_SURRENDER_CTX *surrenderContext;
 {

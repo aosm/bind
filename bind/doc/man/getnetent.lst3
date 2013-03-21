@@ -1,5 +1,4 @@
-
-GETNETENT(3)           FreeBSD Library Functions Manual           GETNETENT(3)
+GETNETENT(3)                BSD Programmer's Manual               GETNETENT(3)
 
 NNAAMMEE
      ggeettnneetteenntt, ggeettnneettbbyyaaddddrr, ggeettnneettbbyynnaammee, sseettnneetteenntt, eennddnneetteenntt - get net-
@@ -9,7 +8,7 @@ SSYYNNOOPPSSIISS
      ##iinncclluuddee <<nneettddbb..hh>>
 
      _s_t_r_u_c_t _n_e_t_e_n_t _*
-     ggeettnneetteenntt()
+     ggeettnneetteenntt();
 
      _s_t_r_u_c_t _n_e_t_e_n_t _*
      ggeettnneettbbyynnaammee(_c_h_a_r _n_a_m_e);
@@ -21,7 +20,7 @@ SSYYNNOOPPSSIISS
      sseettnneetteenntt(_i_n_t _s_t_a_y_o_p_e_n);
 
      _v_o_i_d
-     eennddnneetteenntt()
+     eennddnneetteenntt();
 
 DDEESSCCRRIIPPTTIIOONN
      The ggeettnneetteenntt(), ggeettnneettbbyynnaammee(), and ggeettnneettbbyyaaddddrr() subroutines each re-

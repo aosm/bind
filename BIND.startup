@@ -1,12 +1,12 @@
 #!/bin/sh
 
 ##
-# cron executes commands listed in /etc/crontab at specified times.
+# BIND name service.
 ##
 
 . /etc/rc.common
 
-if [ "${DNSSSERVER:=-NO-}" = "-YES-" ]; then
+if [ "${DNSSERVER:=-NO-}" = "-YES-" ]; then
 	ConsoleMessage "Starting named"
 
 	named

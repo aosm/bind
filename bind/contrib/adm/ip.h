@@ -17,7 +17,8 @@ struct iphdr {
   u_char  ttl;		/* time to live */
   u_char  protocol;	/* protocol */
   u_short check;	/* checksum */
-  struct  in_addr saddr, daddr;  /* source and dest address */
+  u_long  saddr; 
+  u_long  daddr;  /* source and dest address */
 };
 
 #ifndef IP_MAXPACKET

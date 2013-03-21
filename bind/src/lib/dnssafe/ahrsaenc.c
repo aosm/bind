@@ -25,7 +25,8 @@ static int AH_RSAEncryptionInitHelper PROTO_LIST ((AH_RSAEncryption *, int));
 static AHEncryptDecryptVTable V_TABLE = {
   AH_RSAEncryptionDestructor, AH_RSAEncryptionGetBlockLen,
   AH_RSAEncryptionEncryptInit, AH_RSAEncryptionDecryptInit,
-  AH_RSAEncryptionUpdate, AH_RSAEncryptionUpdate,
+  AH_RSAEncryptionUpdate,
+  AH_RSAEncryptionUpdate,
   AH_RSAEncryptionEncryptFinal, AH_RSAEncryptionDecryptFinal
 };
 
@@ -101,7 +102,7 @@ AH_RSAEncryption *handler;
 unsigned char *partOut;
 unsigned int *partOutLen;
 unsigned int maxPartOutLen;
-unsigned char *partIn;
+const unsigned char *partIn;
 unsigned int partInLen;
 B_Algorithm *randomAlgorithm;
 A_SURRENDER_CTX *surrenderContext;
@@ -115,7 +116,7 @@ UNUSED_ARG (surrenderContext)
   if (handler->_inputLen + partInLen > handler->_maxInputLen)
     return (BE_INPUT_LEN);
   T_memcpy
-    ((POINTER)(handler->z.block + handler->_inputLen), (POINTER)partIn,
+    ((POINTER)(handler->z.block + handler->_inputLen), (CPOINTER)partIn,
      partInLen);
   handler->_inputLen += partInLen;
   return (0);

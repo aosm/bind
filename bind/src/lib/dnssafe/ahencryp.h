@@ -58,10 +58,10 @@ typedef struct {
       A_SURRENDER_CTX *));
   int (*EncryptUpdate) PROTO_LIST
     ((THIS_ENCRYPT_DECRYPT *, unsigned char *, unsigned int *, unsigned int,
-      unsigned char *, unsigned int, B_Algorithm *, A_SURRENDER_CTX *));
+      const unsigned char *, unsigned int, B_Algorithm *, A_SURRENDER_CTX *));
   int (*DecryptUpdate) PROTO_LIST
     ((THIS_ENCRYPT_DECRYPT *, unsigned char *, unsigned int *, unsigned int,
-      unsigned char *, unsigned int, B_Algorithm *, A_SURRENDER_CTX *));
+      const unsigned char *, unsigned int, B_Algorithm *, A_SURRENDER_CTX *));
   int (*EncryptFinal) PROTO_LIST
     ((THIS_ENCRYPT_DECRYPT *, unsigned char *, unsigned int *, unsigned int,
       B_Algorithm *, A_SURRENDER_CTX *));

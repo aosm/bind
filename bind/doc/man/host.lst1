@@ -1,5 +1,4 @@
-
-HOST(1)                 FreeBSD General Commands Manual                HOST(1)
+HOST(1)                      BSD Reference Manual                      HOST(1)
 
 NNAAMMEE
      hhoosstt - look up host names using domain server
@@ -10,17 +9,17 @@ SSYYNNOOPPSSIISS
 DDEESSCCRRIIPPTTIIOONN
      HHoosstt looks for information about Internet hosts.  It gets this informa-
      tion from a set of interconnected servers that are spread across the
-     country.  By default, it simply converts between host names and Internet
+     world.  By default, it simply converts between host names and Internet
      addresses.  However, with the ``--tt'' or ``--aa'' options, it can be used to
      find all of the information about this host that is maintained by the do-
      main server.
 
      The arguments can be either host names or host numbers.  The program
      first attempts to interpret them as host numbers.  If this fails, it will
-     treat them as host names.  A host number consists of first decimal num-
-     bers separated by dots, e.g. 128.6.4.194 A host name consists of names
-     separated by dots, e.g. topaz.rutgers.edu.  Unless the name ends in a
-     dot, the local domain is automatically tacked on the end.  Thus, a Rut-
+     treat them as host names.  A host number consists of IPv4 dotted decimal
+     quad (127.0.0.1) or IPv6 raw address (::1).  A host name consists of
+     names separated by dots, e.g. topaz.rutgers.edu.  Unless the name ends in
+     a dot, the local domain is automatically tacked on the end.  Thus, a Rut-
      gers user can say
 
            hhoosstt ttooppaazz
@@ -99,17 +98,17 @@ OOPPTTIIOONNSS
                  Allows you to specify a particular _q_u_e_r_y_t_y_p_e of information
                  to be looked up.  The arguments are defined in the man page
                  for named(8).  Currently-supported types include: ``aa'',
-                 ``nnss'', ``mmdd'', ``mmff'', ``ccnnaammee'', ``ssooaa'', ``mmbb'', ``mmgg'',
-                 ``mmrr'', ``nnuullll'', ``wwkkss'', ``ppttrr'', ``hhiinnffoo'', ``mmiinnffoo'',
-                 ``mmxx'', ``uuiinnffoo'', ``uuiidd'', ``ggiidd'', ``uunnssppeecc''. Additional-
-                 ly, the wildcard, which may be written as either ``aannyy'' or
-                 ``**'', can be used to specify any (all) of the above types.
-                 Types must be given in lower case.  Note that the default is
-                 to look first for ``aa'', and then ``mmxx'', except that if the
-                 verbose option is turned on, the default is only ``aa''. The
-                 ``--tt'' option is particularly useful for filtering informa-
-                 tion returned by hhoosstt; see the explanation of the ``--ll'' op-
-                 tion, below, for more information.
+                 ``aaaaaaaa'', ``nnss'', ``mmdd'', ``mmff'', ``ccnnaammee'', ``ssooaa'', ``mmbb'',
+                 ``mmgg'', ``mmrr'', ``nnuullll'', ``wwkkss'', ``ppttrr'', ``hhiinnffoo'',
+                 ``mmiinnffoo'', ``mmxx'', ``uuiinnffoo'', ``uuiidd'', ``ggiidd'', ``uunnssppeecc''.
+                 Additionally, the wildcard, which may be written as either
+                 ``aannyy'' or ``**'', can be used to specify any (all) of the
+                 above types.  Types must be given in lower case.  Note that
+                 the default is to look first for ``aa'', and then ``mmxx'', ex-
+                 cept that if the verbose option is turned on, the default is
+                 only ``aa''. The ``--tt'' option is particularly useful for fil-
+                 tering information returned by hhoosstt; see the explanation of
+                 the ``--ll'' option, below, for more information.
 
      --aa          ``all''; this is equivalent to ``--vv --tt aannyy''.
 
@@ -128,8 +127,7 @@ OOPPTTIIOONNSS
                  gers.edu, in the official master file format.  (However the
                  SOA record is listed twice, for arcane reasons.)
 
-
-                 NNOOTTEE:: ``--ll'' is implemented by doing a complete zone transfer
+                 NNOOTTEE: ``--ll'' is implemented by doing a complete zone transfer
                  and then filtering out the information the you have asked
                  for.  This command should be used only if it is absolutely
                  necessary.
@@ -151,9 +149,6 @@ EENNVVIIRROONNMMEENNTT
 
 FFIILLEESS
      /etc/resolv.conf    See resolver(5).
-
-     HOSTALIASES         Name of file containing (_h_o_s_t _a_l_i_a_s, _f_u_l_l _h_o_s_t_n_a_m_e)
-                         pairs.
 
 SSEEEE AALLSSOO
      named(8),  resolver(5).

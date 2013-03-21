@@ -1,11 +1,10 @@
-
-NAMED(8)                FreeBSD System Manager's Manual               NAMED(8)
+named(8)                  BSD System Manager's Manual                 named(8)
 
 NNAAMMEE
      nnaammeedd - Internet domain name server (DNS)
 
 SSYYNNOOPPSSIISS
-     NNAAMMEEDD [--dd _d_e_b_u_g_l_e_v_e_l] [--pp _p_o_r_t_#] [--(bb|cc) _c_o_n_f_i_g___f_i_l_e] [--ff --qq --rr --vv] [--uu
+     nnaammeedd [--dd _d_e_b_u_g_l_e_v_e_l] [--pp _p_o_r_t_#] [--(bb|cc) _c_o_n_f_i_g___f_i_l_e] [--ff --qq --rr --vv] [--uu
            _u_s_e_r___n_a_m_e] [--gg _g_r_o_u_p___n_a_m_e] [--tt _d_i_r_e_c_t_o_r_y] [--ww _d_i_r_e_c_t_o_r_y]
            [_c_o_n_f_i_g___f_i_l_e]
 
@@ -17,7 +16,7 @@ DDEESSCCRRIIPPTTIIOONN
      given at the end of the command line will override any _c_o_n_f_i_g___f_i_l_e speci-
      fied by using the ``--bb'' or ``--cc'' flags.
 
-     NNOOTTEE:: Several of nnaammeedd's options, and much more of its behaviour, can be
+     NNOOTTEE: Several of nnaammeedd's options, and much more of its behaviour, can be
      controlled in the configuration file.  Please refer to the configuration
      file guide included with this BBIINNDD distribution for further information.
 
@@ -28,8 +27,8 @@ DDEESSCCRRIIPPTTIIOONN
                  termines the level of messages printed.  If negative,
                  _d_e_b_u_g_l_e_v_e_l is set to ``1''.
 
-                 NNOOTTEE:: The new debugging framework is considerably more so-
-                 phisticated than it was in older versions of NNAAMMEEDD. The con-
+                 NNOOTTEE: The new debugging framework is considerably more so-
+                 phisticated than it was in older versions of nnaammeedd. The con-
                  figuration file's ``logging'' statement allows for multiple,
                  distinct levels of debugging for each of a large set of cate-
                  gories of events (such as queries, transfers in or out,
@@ -38,14 +37,14 @@ DDEESSCCRRIIPPTTIIOONN
                  these extensive new capabilities.
 
      --pp _p_o_r_t_#    Use the specified remote port number; this is the port number
-                 to which NNAAMMEEDD will send queries.  The default value is the
+                 to which nnaammeedd will send queries.  The default value is the
                  standard port number, i.e., the port number returned by get-
                  servbyname(3) for service ``domain''.
 
-                 NNOOTTEE:: Previously, the syntax ``--pp _p_o_r_t_#[_/_l_o_c_a_l_p_o_r_t_#]'' was
+                 NNOOTTEE: Previously, the syntax ``--pp _p_o_r_t_#[_/_l_o_c_a_l_p_o_r_t_#]'' was
                  supported; the first port was that used when contacting
                  _r_e_m_o_t_e servers, and the second one was the service port bound
-                 by the _l_o_c_a_l instance of NNAAMMEEDD. The current usage is equiva-
+                 by the _l_o_c_a_l instance of nnaammeedd. The current usage is equiva-
                  lent to the old usage without the _l_o_c_a_l_p_o_r_t_# specified; this
                  functionality can be specified with the ``listen-on'' clause
                  of the configuration file's ``options'' statement.
@@ -58,19 +57,20 @@ DDEESSCCRRIIPPTTIIOONN
      --ff          Run this process in the foreground; don't fork(2) and daemo-
                  nize.  (The default is to daemonize.)
 
-     --qq          Trace all incoming queries if NNAAMMEEDD has been compiled with
+     --qq          Trace all incoming queries if nnaammeedd has been compiled with
                  QRYLOG defined.
 
-                 NNOOTTEE:: This option is deprecated in favor of the ``queries''
+                 NNOOTTEE: This option is deprecated in favor of the ``queries''
                  _l_o_g_g_i_n_g _c_a_t_e_g_o_r_y of the configuration file's ``logging''
                  statement; for more information, please refer to the configu-
+
                  ration file guide included with this distribution of BBIINNDD.
 
      --rr          Turns recursion off in the server.  Answers can come only
                  from local (primary or secondary) zones.  This can be used on
                  root servers.  The default is to use recursion.
 
-                 NNOOTTEE:: This option can be overridden by and is deprecated in
+                 NNOOTTEE: This option can be overridden by and is deprecated in
                  favor of the ``recursion'' clause of the configuration file's
                  ``options'' statement.
 
@@ -134,8 +134,8 @@ DDEESSCCRRIIPPTTIIOONN
 
      _o_p_t___t_t_l       An optional integer number for the time-to-live field.  If
                    not set the ttl is taken from the last $TTL statement.  If
-                   no $TTL statement has occured then the SOA minimum value is
-                   used and a warning is generated.
+                   no $TTL statement has occurred then the SOA minimum value
+                   is used and a warning is generated.
 
      _o_p_t___c_l_a_s_s     The object address type; currently only one type is sup-
                    ported, IN, for objects connected to the DARPA Internet.
@@ -175,7 +175,7 @@ DDEESSCCRRIIPPTTIIOONN
      across lines between opening and closing parentheses.  Comments are in-
      troduced by semicolons and continue to the end of the line.
 
-     NNOOTTEE:: There are other resource record types not shown here.  You should
+     NNOOTTEE: There are other resource record types not shown here.  You should
      consult the BBIINNDD Operations Guide (``BOG'') for the complete list.  Some
      resource record types may have been standardized in newer RFC's but not
      yet implemented in this version of BBIINNDD.
@@ -238,12 +238,12 @@ NNOOTTEESS
                down the server.
 
      SIGUSR1   Turns on debugging; each SIGUSR1 increments debug level.
-               (SIGEMTon older systems without SIGUSR1.)
+               (SIGEMT on older systems without SIGUSR1.)
 
-     SIGUSR2   Turns off debugging completely.   (SIGFPEon older systems
+     SIGUSR2   Turns off debugging completely.  (SIGFPE on older systems
                without SIGUSR2.)
 
-     SIGWINCH  Toggles logging of all incoming queries via syslog(8) (requires
+     SIGWINCH  Toggles logging of all incoming queries via syslog(3) (requires
                server to have been built with the QRYLOG option).
 
 FFIILLEESS
@@ -256,8 +256,9 @@ FFIILLEESS
      /var/tmp/named.stats (file: _PATH_STATS)    nameserver statistics data
 
 SSEEEE AALLSSOO
-     gethostbyname(3),  hostname(7),  kill(1),  resolver(3),  resolver(5),
-     signal(2),  RFC 882, RFC 883, RFC 973, RFC 974, RFC 1033, RFC 1034, RFC
-     1035, RFC 1123, RFC 2308 ``Name Server Operations Guide for BBIINNDD''
+     named.conf(5),  gethostbyname(3),  hostname(7),  kill(1),  resolver(3),
+     resolver(5),  signal(3),  RFC 882, RFC 883, RFC 973, RFC 974, RFC 1033,
+     RFC 1034, RFC 1035, RFC 1123, RFC 2308 ``Name Server Operations Guide for
+     BBIINNDD''
 
 4th Berkeley Distribution      February 1, 1996                              4

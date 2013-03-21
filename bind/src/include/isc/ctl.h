@@ -19,7 +19,7 @@
  */
 
 /*
- * $Id: ctl.h,v 1.1.1.2 2000/06/09 23:13:10 wsanchez Exp $
+ * $Id: ctl.h,v 1.1.1.3 2002/11/18 22:27:03 bbraun Exp $
  */
 
 #include <sys/types.h>
@@ -46,7 +46,7 @@ typedef void (*ctl_logfunc)(enum ctl_severity, const char *fmt, ...);
 
 typedef void (*ctl_verbfunc)(struct ctl_sctx *, struct ctl_sess *,
 			     const struct ctl_verb *, const char *rest,
-			     u_int respflags, void *respctx, void *uctx);
+			     u_int respflags, const void *respctx, void *uctx);
 
 typedef void (*ctl_srvrdone)(struct ctl_sctx *, struct ctl_sess *, void *);
 
@@ -62,7 +62,12 @@ struct ctl_verb {
 
 #define	ctl_logger	__ctl_logger
 
+#ifdef __GNUC__
+void			ctl_logger(enum ctl_severity, const char *, ...)
+				__attribute__((__format__(__printf__, 2, 3)));
+#else
 void			ctl_logger(enum ctl_severity, const char *, ...);
+#endif
 
 /* Client symbols. */
 
@@ -94,7 +99,7 @@ struct ctl_sctx *	ctl_server(evContext, const struct sockaddr *, size_t,
 				   ctl_logfunc, void *);
 void			ctl_endserver(struct ctl_sctx *);
 void			ctl_response(struct ctl_sess *, u_int,
-				     const char *, u_int, void *,
+				     const char *, u_int, const void *,
 				     ctl_srvrdone, void *,
 				     const char *, size_t);
 void			ctl_sendhelp(struct ctl_sess *, u_int);

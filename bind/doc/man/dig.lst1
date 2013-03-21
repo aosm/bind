@@ -1,5 +1,4 @@
-
-DIG(1)                  FreeBSD General Commands Manual                 DIG(1)
+DIG(1)                       BSD Reference Manual                       DIG(1)
 
 NNAAMMEE
      ddiigg - send domain name query packets to name servers
@@ -21,18 +20,18 @@ DDEESSCCRRIIPPTTIIOONN
 
      where:
 
-     _s_e_r_v_e_r      may be either a domain name or a dot-notation Internet ad-
-                 dress. If this optional field is omitted, ddiigg will attempt to
-                 use the default name server for your machine.
+     _s_e_r_v_e_r      may be either a domain name or a raw (IPv4 / IPv6) Internet
+                 address. If this optional field is omitted, ddiigg will attempt
+                 to use the default name server for your machine.
 
-                 _N_o_t_e_: If a domain name is specified, this will be resolved
+                 _N_o_t_e: If a domain name is specified, this will be resolved
                  using the domain name system resolver (i.e., BIND). If your
                  system does not support DNS, you may _h_a_v_e to specify a dot-
                  notation address.  Alternatively, if there is a server at
                  your disposal somewhere,  all that is required is that
                  _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f be present and indicate where the default
                  name servers reside,  so that _s_e_r_v_e_r itself can be resolved.
-                 See resolver(5) for information on _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f. WWAARRNNIINNGG::
+                 See resolver(5) for information on _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f. WWAARRNNIINNGG:
                  Changing _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f will affect both the standard re-
                  solver library and (potentially) several programs which use
                  it.  As an option, the user may set the environment variable
@@ -44,7 +43,7 @@ DDEESSCCRRIIPPTTIIOONN
 
      _d_o_m_a_i_n      is the domain name for which you are requesting information.
                  See the --xx option (documented in the _O_T_H_E_R _O_P_T_I_O_N_S subsection
-                 of this section) for convenient way to specify inverse ad-
+                 of this section) for convenient way to specify reverse ad-
                  dress query.
 
      _q_u_e_r_y_-_t_y_p_e  is the type of information (DNS query type) that you are re-
@@ -61,8 +60,6 @@ DDEESSCCRRIIPPTTIIOONN
                                     server)
                  _t_x_t     T_TXT      arbitrary number of strings
 
-
-
                  (See RFC 1035 for the complete list.)
 
      _q_u_e_r_y_-_c_l_a_s_s
@@ -75,7 +72,7 @@ DDEESSCCRRIIPPTTIIOONN
 
                  (See RFC 1035 for the complete list.)
 
-                 _N_o_t_e_: ``_A_n_y'' can be used to specify a _c_l_a_s_s and/or a _t_y_p_e of
+                 _N_o_t_e: ``_A_n_y'' can be used to specify a _c_l_a_s_s and/or a _t_y_p_e of
                  query.  DDiigg will parse the first occurrence of ``_a_n_y'' to
                  mean _q_u_e_r_y_-_t_y_p_e _= T_ANY. To specify _q_u_e_r_y_-_c_l_a_s_s _= C_ANY, you
                  must either specify ``any'' twice, or set _q_u_e_r_y_-_c_l_a_s_s using
@@ -100,9 +97,14 @@ DDEESSCCRRIIPPTTIIOONN
 
                  --xx _d_o_t_-_n_o_t_a_t_i_o_n_-_a_d_d_r_e_s_s
                              Convenient form to specify inverse address map-
-                             ping.  Instead of ``ddiigg 3322..00..99..112288..iinn--
-                             aaddddrr..aarrppaa'', one can simply ``ddiigg --xx
-                             112288..99..00..3322''.
+                             ping.  Instead of ``ddiigg 3322..00..99..2288..iinn--aaddddrr..aarrppaa'',
+                             one can simply ``ddiigg --xx 2288..99..00..3322''.
+
+                 --xx _I_P_v_6_-_a_d_d_r_e_s_s
+                             Convenient form to specify inverse address map-
+                             ping.  Instead of ``ddiigg 11..00..00..00..00..00..00..00..00..00..00..00..
+                             00..00..00..00..00..00..00..00..00..00..00..00..00..00..00..00..00..00..00..00..iipp66..aarrppaa'',
+                             one can simply ``ddiigg --xx ::::11''.
 
                  --ff _f_i_l_e     File for ddiigg batch mode. The file contains a list
                              of query specifications ( ddiigg command lines)
@@ -127,8 +129,8 @@ DDEESSCCRRIIPPTTIIOONN
 
                                          ppiinngg --ss --sseerrvveerr__nnaammee --5566 --33
 
-                             If the optional ``_p_i_n_g___s_t_r_i_n_g'' is present, it
 
+                             If the optional ``_p_i_n_g___s_t_r_i_n_g'' is present, it
                              replaces ``ppiinngg --ss'' in the shell command.
 
                  --tt _q_u_e_r_y_-_t_y_p_e
@@ -162,7 +164,7 @@ DDEESSCCRRIIPPTTIIOONN
                              ment is saved.  If not, the file ``_D_i_G_._e_n_v'' is
                              created in the current working directory.
 
-                             _N_o_t_e_: LOCALDEF is specific to the ddiigg resolver,
+                             _N_o_t_e: LOCALDEF is specific to the ddiigg resolver,
                              and will not affect operation of the standard re-
                              solver library.
 
@@ -228,6 +230,7 @@ DDEESSCCRRIIPPTTIIOONN
                  [nnoo] HHeeaaddeerr    (HH)      print basic header [HH]
                  [nnoo] hheeaaddeerr    (hhee)     print header flags [hhee]
                  [nnoo] ttttlliidd     (tttt)     print TTLs [tttt]
+                 [nnoo] ttrruunncc     (ttrr)     truncate origin from names [ttrr]
                  [nnoo] ccll                 print class info [nnooccll]
                  [nnoo] qqrr                 print outgoing query [nnooqqrr]
                  [nnoo] rreeppllyy     (rreepp)    print reply [rreepp]
@@ -235,6 +238,8 @@ DDEESSCCRRIIPPTTIIOONN
                  [nnoo] aannsswweerr    (aann)     print answer section [aann]
                  [nnoo] aauutthhoorr    (aauu)     print authoritative section [aauu]
                  [nnoo] aaddddiitt     (aadd)     print additional section [aadd]
+                 [nnoo] ddnnsssseecc    (ddnn)     set the DNSSEC OK bit in the OPT
+                                         pseudo record [nnooddnn]
                  ppffddeeff                   set to default print flags
                  ppffmmiinn                   set to minimal default print flags
                  ppffsseett==_#                 set print flags to # (# can be
@@ -255,6 +260,7 @@ DDEESSCCRRIIPPTTIIOONN
 
                  (Note: ddiigg always uses a value of 1 for ``num_servers''.)
 
+
    DDEETTAAIILLSS
      DDiigg once required a slightly modified version of the BIND resolver(3) li-
      brary.  As of BIND 4.9, BIND's resolver has been augmented to work prop-
@@ -271,8 +277,7 @@ EENNVVIIRROONNMMEENNTT
      tions, above.
 
 FFIILLEESS
-     /etc/resolv.conf
-                         initial domain name and name server addresses
+     /etc/resolv.conf    initial domain name and name server addresses
      ./DiG.env           default save file for default options
 
 SSEEEE AALLSSOO
@@ -294,7 +299,7 @@ BBUUGGSS
      of the items they specify make evident their rather ad hoc genesis.
 
      DDiigg does not consistently exit nicely (with appropriate status) when a
-     problem occurs somewhere in the resolver (NNOOTTEE::most of the common exit
+     problem occurs somewhere in the resolver (NNOOTTEE: most of the common exit
      cases are handled). This is particularly annoying when running in batch
      mode.  If it exits abnormally (and is not caught), the entire batch
      aborts; when such an event is trapped, ddiigg simply continues with the next

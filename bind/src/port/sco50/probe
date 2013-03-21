@@ -11,6 +11,7 @@ if [ -f $uname -a -f $grep ]; then
 	"SCO_SV-Release = 3.2v5.0.2") exit 0 ;;
 	"SCO_SV-Release = 3.2v5.0.4") exit 0 ;;
 	"SCO_SV-Release = 3.2v5.0.5") exit 0 ;;
+	"SCO_SV-Release = 3.2v5.0.6") exit 0 ;;
 	esac
 fi
 

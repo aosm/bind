@@ -1,8 +1,10 @@
 #undef WANT_IRS_NIS
 #define WANT_IRS_PW
+#define HAVE_PW_CLASS
 #define WANT_IRS_GR
 #define SIG_FN void
 #undef HAS_PTHREADS
+#define ISC_SOCKLEN_T int
 
 #if defined(HAS_PTHREADS) && defined(_REENTRANT)
 #define DO_PTHREADS
@@ -17,6 +19,8 @@
 #undef GROUP_R_ENT_ARGS /*empty*/
 #define GROUP_R_OK gptr
 #define GROUP_R_BAD NULL
+#define GETGROUPLIST_ARGS const char *name, gid_t basegid, gid_t *groups, \
+		      int *ngroups
 
 #define HOST_R_RETURN struct hostent *
 #define HOST_R_SET_RETURN void
@@ -93,3 +97,9 @@
 
 #define IRS_LCL_SV_DB
 
+#ifdef __GNUC__
+#define ISC_FORMAT_PRINTF(fmt, args) \
+	__attribute__((__format__(__printf__, fmt, args)))
+#else
+#define ISC_FORMAT_PRINTF(fmt, args)
+#endif

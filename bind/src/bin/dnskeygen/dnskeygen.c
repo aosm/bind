@@ -1,5 +1,5 @@
 #if !defined(lint) && !defined(SABER)
-static const char rcsid[] = "$Id: dnskeygen.c,v 1.1.1.3 2001/01/31 03:59:42 zarzycki Exp $";
+static const char rcsid[] = "$Id: dnskeygen.c,v 1.1.1.4 2002/11/18 22:26:46 bbraun Exp $";
 #endif /* not lint */
 
 /*
@@ -33,8 +33,11 @@ static const char rcsid[] = "$Id: dnskeygen.c,v 1.1.1.3 2001/01/31 03:59:42 zarz
 #include "port_after.h"
 
 #define PRINT_SUPPORTED 2
+#ifndef PATH_SEP
+#define PATH_SEP '/'
+#endif
 
-static void usage(char *str, int full);
+static void usage(const char *str, int full);
 
 static short dsa_sizes[] = {512, 576, 640, 704, 768, 832, 896, 960, 1024, 0};
 static char *prog;
@@ -54,7 +57,7 @@ main(int argc, char **argv) {
 	extern char *optarg;
 
 	dst_init();
-	if ((prog = strrchr(argv[0],'/')) == NULL)
+	if ((prog = strrchr(argv[0], PATH_SEP)) == NULL)
 		prog = strdup(argv[0]);
 	else
 		prog = strdup(++prog);
@@ -271,9 +274,10 @@ main(int argc, char **argv) {
 }
 
 static void
-usage(char *str, int flag){
+usage(const char *str, int flag) {
 	int i;
-	printf ("\nNo key generated\n");
+
+	printf("\nNo key generated\n");
 	if (*str != '\0')
 		printf("Usage:%s: %s\n",prog, str);
 	printf("Usage:%s -{DHR} <size> [-F] -{zhu} [-ac]  [-p <no>]"
@@ -313,7 +317,5 @@ usage(char *str, int flag){
 		printf("\n");
 	}
 
-	exit (-3);
+	exit (3);
 }
-
-

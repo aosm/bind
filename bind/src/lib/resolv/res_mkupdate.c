@@ -21,7 +21,7 @@
  */
 
 #if !defined(lint) && !defined(SABER)
-static const char rcsid[] = "$Id: res_mkupdate.c,v 1.1.1.3 2001/01/31 04:00:28 zarzycki Exp $";
+static const char rcsid[] = "$Id: res_mkupdate.c,v 1.1.1.4 2002/11/18 22:27:44 bbraun Exp $";
 #endif /* not lint */
 
 #include "port_before.h"
@@ -328,7 +328,7 @@ res_nmkupdate(res_state statp, ns_updrec *rrecp_in, u_char *buf, int buflen) {
 			break;
 		case T_WKS: {
 			char bm[MAXPORT/8];
-			int maxbm = 0;
+			unsigned int maxbm = 0;
 
 			if (!getword_str(buf2, sizeof buf2, &startp, endp))
 				return (-1);
@@ -890,7 +890,7 @@ struct valuelist {
 };
 static struct valuelist *servicelist, *protolist;
 
-void
+static void
 res_buildservicelist() {
 	struct servent *sp;
 	struct valuelist *slp;
@@ -936,7 +936,7 @@ res_destroyservicelist() {
 }
 
 void
-res_buildprotolist() {
+res_buildprotolist(void) {
 	struct protoent *pp;
 	struct valuelist *slp;
 
@@ -965,7 +965,7 @@ res_buildprotolist() {
 }
 
 void
-res_destroyprotolist() {
+res_destroyprotolist(void) {
 	struct valuelist *plp, *plp_next;
 
 	for (plp = protolist; plp != NULL; plp = plp_next) {

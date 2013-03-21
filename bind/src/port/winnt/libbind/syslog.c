@@ -12,7 +12,7 @@
 #include "port_after.h"
 
 static HANDLE hAppLog = NULL;
-static FILE *log_stream;
+static FILE *log_stream = NULL;
 static int debug_level = 0;
 
 /*
@@ -30,19 +30,21 @@ void syslog(int level, const char *fmt, ...)
 	vsprintf(buf, fmt, ap);
 	va_end(ap);
 
-	switch (level)
-	{
-		case LOG_INFO:
-		case LOG_NOTICE:
-		case LOG_DEBUG:
-			ReportEvent(hAppLog, EVENTLOG_INFORMATION_TYPE, 0, BIND_INFO_MSG, NULL, 1, 0, str, NULL);
-			break;
-		case LOG_WARNING:
-			ReportEvent(hAppLog, EVENTLOG_WARNING_TYPE, 0, BIND_WARN_MSG, NULL, 1, 0, str, NULL);
-			break;
-		default:
-			ReportEvent(hAppLog, EVENTLOG_ERROR_TYPE, 0, BIND_ERR_MSG, NULL, 1, 0, str, NULL);
-			break;
+	if(hAppLog != NULL) { /* Only if it's open */
+		switch (level)
+		{
+			case LOG_INFO:
+			case LOG_NOTICE:
+			case LOG_DEBUG:
+				ReportEvent(hAppLog, EVENTLOG_INFORMATION_TYPE, 0, BIND_INFO_MSG, NULL, 1, 0, str, NULL);
+				break;
+			case LOG_WARNING:
+				ReportEvent(hAppLog, EVENTLOG_WARNING_TYPE, 0, BIND_WARN_MSG, NULL, 1, 0, str, NULL);
+				break;
+			default:
+				ReportEvent(hAppLog, EVENTLOG_ERROR_TYPE, 0, BIND_ERR_MSG, NULL, 1, 0, str, NULL);
+				break;
+		}
 	}
 }
 

@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:43:00 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:55:01 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -201,12 +201,11 @@ BP
 %%EndPageSetup
 /F0 10/Times-Roman@0 SF .723(Mail addresses are based on the ARP)72 12 R
 .723(ANET protocol listed at the end of this manual page.)-.92 F .722
-(These addresses are in)5.722 F .673(the general format where a domain \
-is a hierarchical, dot-separated list of subdomains.)72 24 R -.15(Fo)
-5.674 G 3.174(re).15 G .674(xample, the address is)-3.324 F .715(normal\
-ly interpreted from right to left: the message should go to the ARP)72
-36 R 3.214(An)-.92 G .714(ame tables \(which do not correspond)-3.214 F
--.15(ex)72 48 S .771(actly to the ph).15 F .771(ysical ARP)-.05 F .771
+(These addresses are in)5.722 F .673(the general format where a domain is a hierarchical, dot-separated list of subdomains.)
+72 24 R -.15(Fo)5.674 G 3.174(re).15 G .674(xample, the address is)
+-3.324 F .715(normally interpreted from right to left: the message should go to the ARP)
+72 36 R 3.214(An)-.92 G .714(ame tables \(which do not correspond)-3.214
+F -.15(ex)72 48 S .771(actly to the ph).15 F .771(ysical ARP)-.05 F .771
 (ANET\), then to the Berk)-.92 F(ele)-.1 E 3.271(yg)-.15 G(ate)-3.321 E
 -.1(wa)-.25 G 2.071 -.65(y, a).1 H .771
 (fter which it should go to the local host When).65 F .394
@@ -234,9 +233,8 @@ ly interpreted from right to left: the message should go to the ARP)72
 (ving hosts.)-.25 F .114(Certain other abbre)5.114 F .114
 (viations may be permitted as special)-.25 F 3.005(cases. F)72 144 R
 .505(or e)-.15 F .505(xample, at Berk)-.15 F(ele)-.1 E 1.805 -.65(y, A)
--.15 H(RP).65 E .505(ANET hosts may be referenced without adding the as\
- long as their names do)-.92 F .11
-(not con\215ict with a local host name.)72 156 R .109
+-.15 H(RP).65 E .505(ANET hosts may be referenced without adding the as long as their names do)
+-.92 F .11(not con\215ict with a local host name.)72 156 R .109
 (Certain old address formats are con)5.11 F -.15(ve)-.4 G .109
 (rted to the ne).15 F 2.609(wf)-.25 G .109(ormat to pro)-2.609 F .109
 (vide compati-)-.15 F .571(bility with the pre)72 168 R .571
@@ -265,18 +263,15 @@ ly interpreted from right to left: the message should go to the ARP)72
 (Normally this routing is done automatically)5.9 F 3.4(,b)-.65 G(ut)-3.6
 E .61(sometimes it is desirable to route the message manually)72 264 R
 5.61(.A)-.65 G .61(ddresses which sho)-5.61 F 3.11(wt)-.25 G .61
-(hese relays are termed These use)-3.11 F .535(the syntax: This speci\
-\214es that the message should be sent to from there to and \214nally t\
-o This path is forced e)72 276 R -.15(ve)-.25 G 3.035(ni).15 G(f)-3.035
-E .067(there is a more ef)72 288 R .068(\214cient path to Route-addrs o\
-ccur frequently on return addresses, since these are generally augment-)
+(hese relays are termed These use)-3.11 F .535(the syntax: This speci\214es that the message should be sent to from there to and \214nally to This path is forced e)
+72 276 R -.15(ve)-.25 G 3.035(ni).15 G(f)-3.035 E .067
+(there is a more ef)72 288 R .068(\214cient path to Route-addrs occur frequently on return addresses, since these are generally augment-)
 -.25 F .015(ed by the softw)72 300 R .015(are at each host.)-.1 F .014
 (It is generally possible to ignore all b)5.015 F .014
 (ut the part of the address to determine the actu-)-.2 F .209(al sender)
 72 312 R 5.209(.E)-.55 G -.15(ve)-5.209 G .209
-(ry site is required to ha).15 F .509 -.15(ve a u)-.2 H .21(ser or user\
- alias designated to which problems with the mail system may).15 F .4
-(be addressed.)72 324 R .4(Some other netw)5.4 F .4
+(ry site is required to ha).15 F .509 -.15(ve a u)-.2 H .21(ser or user alias designated to which problems with the mail system may)
+.15 F .4(be addressed.)72 324 R .4(Some other netw)5.4 F .4
 (orks can be reached by gi)-.1 F .399(ving the name of the netw)-.25 F
 .399(ork as the last component of the)-.1 F 2.792(domain. and)72 336 R
 .292(may be supported at all sites.)2.792 F -.15(Fo)5.292 G 2.792(re).15

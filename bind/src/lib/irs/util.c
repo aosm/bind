@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char rcsid[] = "$Id: util.c,v 1.1.1.2 2001/01/31 04:00:22 zarzycki Exp $";
+static const char rcsid[] = "$Id: util.c,v 1.1.1.3 2002/11/18 22:27:36 bbraun Exp $";
 #endif
 
 #include "port_before.h"
@@ -89,7 +89,7 @@ make_group_list(struct irs_gr *this, const char *name,
 	 */
 	(*this->rewind)(this);
 	while ((grp = (*this->next)(this)) != NULL) {
-		if (grp->gr_gid == basegid)
+		if ((gid_t)grp->gr_gid == basegid)
 			continue;
 		for (i = 0; grp->gr_mem[i]; i++) {
 			if (!strcmp(grp->gr_mem[i], name)) {

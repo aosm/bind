@@ -1,6 +1,6 @@
 #if !defined(lint) && !defined(SABER)
 static const char sccsid[] = "@(#)db_dump.c	4.33 (Berkeley) 3/3/91";
-static const char rcsid[] = "$Id: db_dump.c,v 1.1.1.3 2001/01/31 03:59:44 zarzycki Exp $";
+static const char rcsid[] = "$Id: db_dump.c,v 1.1.1.4 2002/11/18 22:26:48 bbraun Exp $";
 #endif /* not lint */
 
 /*
@@ -120,6 +120,7 @@ static const char rcsid[] = "$Id: db_dump.c,v 1.1.1.3 2001/01/31 03:59:44 zarzyc
 
 #include <isc/eventlib.h>
 #include <isc/logging.h>
+#include <isc/misc.h>
 
 #include "port_after.h"
 
@@ -177,7 +178,8 @@ zt_dump(FILE *fp) {
 
 	fprintf(fp, ";; ++zone table++\n");
 	for (zp = &zones[0]; zp < &zones[nzones]; zp++) {
-		char *pre, buf[64];
+		const char *pre;
+		char buf[64];
 		u_int cnt;
 
 		if (!zp->z_origin)
@@ -217,18 +219,20 @@ zt_dump(FILE *fp) {
 static int
 fwd_dump(FILE *fp) {
 	int i;
+
 	fprintf(fp, ";; ++forwarders table++\n");
-	for (i=0;i<fwddata_count;i++) {
-		fprintf(fp,"; %s rtt=%d\n",
-			inet_ntoa(fwddata[i]->fwdaddr.sin_addr),
-			fwddata[i]->nsdata->d_nstime);
+	for (i = 0; i < fwddata_count; i++) {
+		if (fwddata[i] != NULL)
+			fprintf(fp,"; %s rtt=%d\n",
+				inet_ntoa(fwddata[i]->fwdaddr.sin_addr),
+				fwddata[i]->nsdata->d_nstime);
 	}
 	fprintf(fp, ";; --forwarders table--\n");
 	return (0);
 }
 
 int
-db_dump(struct hashbuf *htp, FILE *fp, int zone, char *origin) {
+db_dump(struct hashbuf *htp, FILE *fp, int zone, const char *origin) {
 	struct databuf *dp = NULL;
 	struct namebuf *np;
 	struct namebuf **npp, **nppend;
@@ -619,9 +623,14 @@ db_dump(struct hashbuf *htp, FILE *fp, int zone, char *origin) {
 				break;
 
 			default:
-				fprintf(fp, "%s?d_type=%d?",
-					sep, dp->d_type);
-				sep = " ";
+				fprintf(fp, "\\# %u", dp->d_size);
+				if (dp->d_size != 0) {
+					fputs(" ( ", fp);
+					isc_puthexstring(fp, dp->d_data,
+							 dp->d_size, 40, 48,
+							 "\n\t\t\t\t");
+					fputs(" ) ", fp);
+				}
 			}
 			if (dp->d_cred < DB_C_ZONE) {
 				fprintf(fp, "%sCr=%s",

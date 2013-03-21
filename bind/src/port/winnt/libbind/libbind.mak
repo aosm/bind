@@ -301,6 +301,8 @@ CLEAN :
 	-@erase "$(INTDIR)\herror.sbr"
 	-@erase "$(INTDIR)\hesiod.obj"
 	-@erase "$(INTDIR)\hesiod.sbr"
+	-@erase "$(INTDIR)\hex.obj"
+	-@erase "$(INTDIR)\hex.sbr"
 	-@erase "$(INTDIR)\hmac_link.obj"
 	-@erase "$(INTDIR)\hmac_link.sbr"
 	-@erase "$(INTDIR)\inet_addr.obj"
@@ -309,6 +311,8 @@ CLEAN :
 	-@erase "$(INTDIR)\inet_cidr_ntop.sbr"
 	-@erase "$(INTDIR)\inet_cidr_pton.obj"
 	-@erase "$(INTDIR)\inet_cidr_pton.sbr"
+	-@erase "$(INTDIR)\inet_data.obj"
+	-@erase "$(INTDIR)\inet_data.sbr"
 	-@erase "$(INTDIR)\inet_lnaof.obj"
 	-@erase "$(INTDIR)\inet_lnaof.sbr"
 	-@erase "$(INTDIR)\inet_makeaddr.obj"
@@ -395,6 +399,7 @@ CLEAN :
 	-@erase "$(INTDIR)\lcl_sv.sbr"
 	-@erase "$(INTDIR)\legal.obj"
 	-@erase "$(INTDIR)\legal.sbr"
+	-@erase "$(INTDIR)\libbind.res"
 	-@erase "$(INTDIR)\logging.obj"
 	-@erase "$(INTDIR)\logging.sbr"
 	-@erase "$(INTDIR)\math.obj"
@@ -407,8 +412,6 @@ CLEAN :
 	-@erase "$(INTDIR)\md5rand.sbr"
 	-@erase "$(INTDIR)\memcluster.obj"
 	-@erase "$(INTDIR)\memcluster.sbr"
-	-@erase "$(INTDIR)\movefile.obj"
-	-@erase "$(INTDIR)\movefile.sbr"
 	-@erase "$(INTDIR)\nameserver.obj"
 	-@erase "$(INTDIR)\nameserver.sbr"
 	-@erase "$(INTDIR)\nis.obj"
@@ -535,13 +538,15 @@ CLEAN :
 	-@erase "$(OUTDIR)\libbind.bsc"
 	-@erase "$(OUTDIR)\libbind.exp"
 	-@erase "$(OUTDIR)\libbind.lib"
+	-@erase "$(OUTDIR)\libbind.map"
 	-@erase "..\bin\Release\libbind.dll"
 
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "NDEBUG" /mktyplib203 /o "NUL" /win32 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\libbind.res" /d "NDEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\libbind.bsc" 
 BSC32_SBRS= \
@@ -570,6 +575,7 @@ BSC32_SBRS= \
 	"$(INTDIR)\ev_waits.sbr" \
 	"$(INTDIR)\eventlib.sbr" \
 	"$(INTDIR)\heap.sbr" \
+	"$(INTDIR)\hex.sbr" \
 	"$(INTDIR)\logging.sbr" \
 	"$(INTDIR)\memcluster.sbr" \
 	"$(INTDIR)\tree.sbr" \
@@ -658,6 +664,7 @@ BSC32_SBRS= \
 	"$(INTDIR)\inet_addr.sbr" \
 	"$(INTDIR)\inet_cidr_ntop.sbr" \
 	"$(INTDIR)\inet_cidr_pton.sbr" \
+	"$(INTDIR)\inet_data.sbr" \
 	"$(INTDIR)\inet_lnaof.sbr" \
 	"$(INTDIR)\inet_makeaddr.sbr" \
 	"$(INTDIR)\inet_net_ntop.sbr" \
@@ -696,7 +703,6 @@ BSC32_SBRS= \
 	"$(INTDIR)\getopt.sbr" \
 	"$(INTDIR)\interface.sbr" \
 	"$(INTDIR)\ioctl_if.sbr" \
-	"$(INTDIR)\movefile.sbr" \
 	"$(INTDIR)\nameserver.sbr" \
 	"$(INTDIR)\signal.sbr" \
 	"$(INTDIR)\socket.sbr" \
@@ -797,7 +803,7 @@ BSC32_SBRS= \
 <<
 
 LINK32=link.exe
-LINK32_FLAGS=user32.lib advapi32.lib netapi32.lib /nologo /subsystem:windows /dll /pdb:none /machine:I386 /def:".\libbind.def" /out:"..\bin\Release\libbind.dll" /implib:"$(OUTDIR)\libbind.lib" 
+LINK32_FLAGS=user32.lib advapi32.lib netapi32.lib /nologo /subsystem:windows /dll /pdb:none /map:"$(INTDIR)\libbind.map" /machine:I386 /def:".\libbind.def" /out:"..\bin\Release\libbind.dll" /implib:"$(OUTDIR)\libbind.lib" 
 DEF_FILE= \
 	".\libbind.def"
 LINK32_OBJS= \
@@ -826,6 +832,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\ev_waits.obj" \
 	"$(INTDIR)\eventlib.obj" \
 	"$(INTDIR)\heap.obj" \
+	"$(INTDIR)\hex.obj" \
 	"$(INTDIR)\logging.obj" \
 	"$(INTDIR)\memcluster.obj" \
 	"$(INTDIR)\tree.obj" \
@@ -914,6 +921,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\inet_addr.obj" \
 	"$(INTDIR)\inet_cidr_ntop.obj" \
 	"$(INTDIR)\inet_cidr_pton.obj" \
+	"$(INTDIR)\inet_data.obj" \
 	"$(INTDIR)\inet_lnaof.obj" \
 	"$(INTDIR)\inet_makeaddr.obj" \
 	"$(INTDIR)\inet_net_ntop.obj" \
@@ -952,7 +960,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\getopt.obj" \
 	"$(INTDIR)\interface.obj" \
 	"$(INTDIR)\ioctl_if.obj" \
-	"$(INTDIR)\movefile.obj" \
 	"$(INTDIR)\nameserver.obj" \
 	"$(INTDIR)\signal.obj" \
 	"$(INTDIR)\socket.obj" \
@@ -1045,7 +1052,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\rsakeygn.obj" \
 	"$(INTDIR)\seccbcd.obj" \
 	"$(INTDIR)\seccbce.obj" \
-	"$(INTDIR)\surrendr.obj"
+	"$(INTDIR)\surrendr.obj" \
+	"$(INTDIR)\libbind.res"
 
 "..\bin\Release\libbind.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -1324,6 +1332,8 @@ CLEAN :
 	-@erase "$(INTDIR)\herror.sbr"
 	-@erase "$(INTDIR)\hesiod.obj"
 	-@erase "$(INTDIR)\hesiod.sbr"
+	-@erase "$(INTDIR)\hex.obj"
+	-@erase "$(INTDIR)\hex.sbr"
 	-@erase "$(INTDIR)\hmac_link.obj"
 	-@erase "$(INTDIR)\hmac_link.sbr"
 	-@erase "$(INTDIR)\inet_addr.obj"
@@ -1332,6 +1342,8 @@ CLEAN :
 	-@erase "$(INTDIR)\inet_cidr_ntop.sbr"
 	-@erase "$(INTDIR)\inet_cidr_pton.obj"
 	-@erase "$(INTDIR)\inet_cidr_pton.sbr"
+	-@erase "$(INTDIR)\inet_data.obj"
+	-@erase "$(INTDIR)\inet_data.sbr"
 	-@erase "$(INTDIR)\inet_lnaof.obj"
 	-@erase "$(INTDIR)\inet_lnaof.sbr"
 	-@erase "$(INTDIR)\inet_makeaddr.obj"
@@ -1418,6 +1430,7 @@ CLEAN :
 	-@erase "$(INTDIR)\lcl_sv.sbr"
 	-@erase "$(INTDIR)\legal.obj"
 	-@erase "$(INTDIR)\legal.sbr"
+	-@erase "$(INTDIR)\libbind.res"
 	-@erase "$(INTDIR)\logging.obj"
 	-@erase "$(INTDIR)\logging.sbr"
 	-@erase "$(INTDIR)\math.obj"
@@ -1430,8 +1443,6 @@ CLEAN :
 	-@erase "$(INTDIR)\md5rand.sbr"
 	-@erase "$(INTDIR)\memcluster.obj"
 	-@erase "$(INTDIR)\memcluster.sbr"
-	-@erase "$(INTDIR)\movefile.obj"
-	-@erase "$(INTDIR)\movefile.sbr"
 	-@erase "$(INTDIR)\nameserver.obj"
 	-@erase "$(INTDIR)\nameserver.sbr"
 	-@erase "$(INTDIR)\nis.obj"
@@ -1564,8 +1575,9 @@ CLEAN :
 "$(OUTDIR)" :
     if not exist "$(OUTDIR)/$(NULL)" mkdir "$(OUTDIR)"
 
-CPP_PROJ=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_PROJ=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 MTL_PROJ=/nologo /D "_DEBUG" /mktyplib203 /o "NUL" /win32 
+RSC_PROJ=/l 0x409 /fo"$(INTDIR)\libbind.res" /d "_DEBUG" 
 BSC32=bscmake.exe
 BSC32_FLAGS=/nologo /o"$(OUTDIR)\libbind.bsc" 
 BSC32_SBRS= \
@@ -1594,6 +1606,7 @@ BSC32_SBRS= \
 	"$(INTDIR)\ev_waits.sbr" \
 	"$(INTDIR)\eventlib.sbr" \
 	"$(INTDIR)\heap.sbr" \
+	"$(INTDIR)\hex.sbr" \
 	"$(INTDIR)\logging.sbr" \
 	"$(INTDIR)\memcluster.sbr" \
 	"$(INTDIR)\tree.sbr" \
@@ -1682,6 +1695,7 @@ BSC32_SBRS= \
 	"$(INTDIR)\inet_addr.sbr" \
 	"$(INTDIR)\inet_cidr_ntop.sbr" \
 	"$(INTDIR)\inet_cidr_pton.sbr" \
+	"$(INTDIR)\inet_data.sbr" \
 	"$(INTDIR)\inet_lnaof.sbr" \
 	"$(INTDIR)\inet_makeaddr.sbr" \
 	"$(INTDIR)\inet_net_ntop.sbr" \
@@ -1720,7 +1734,6 @@ BSC32_SBRS= \
 	"$(INTDIR)\getopt.sbr" \
 	"$(INTDIR)\interface.sbr" \
 	"$(INTDIR)\ioctl_if.sbr" \
-	"$(INTDIR)\movefile.sbr" \
 	"$(INTDIR)\nameserver.sbr" \
 	"$(INTDIR)\signal.sbr" \
 	"$(INTDIR)\socket.sbr" \
@@ -1850,6 +1863,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\ev_waits.obj" \
 	"$(INTDIR)\eventlib.obj" \
 	"$(INTDIR)\heap.obj" \
+	"$(INTDIR)\hex.obj" \
 	"$(INTDIR)\logging.obj" \
 	"$(INTDIR)\memcluster.obj" \
 	"$(INTDIR)\tree.obj" \
@@ -1938,6 +1952,7 @@ LINK32_OBJS= \
 	"$(INTDIR)\inet_addr.obj" \
 	"$(INTDIR)\inet_cidr_ntop.obj" \
 	"$(INTDIR)\inet_cidr_pton.obj" \
+	"$(INTDIR)\inet_data.obj" \
 	"$(INTDIR)\inet_lnaof.obj" \
 	"$(INTDIR)\inet_makeaddr.obj" \
 	"$(INTDIR)\inet_net_ntop.obj" \
@@ -1976,7 +1991,6 @@ LINK32_OBJS= \
 	"$(INTDIR)\getopt.obj" \
 	"$(INTDIR)\interface.obj" \
 	"$(INTDIR)\ioctl_if.obj" \
-	"$(INTDIR)\movefile.obj" \
 	"$(INTDIR)\nameserver.obj" \
 	"$(INTDIR)\signal.obj" \
 	"$(INTDIR)\socket.obj" \
@@ -2069,7 +2083,8 @@ LINK32_OBJS= \
 	"$(INTDIR)\rsakeygn.obj" \
 	"$(INTDIR)\seccbcd.obj" \
 	"$(INTDIR)\seccbce.obj" \
-	"$(INTDIR)\surrendr.obj"
+	"$(INTDIR)\surrendr.obj" \
+	"$(INTDIR)\libbind.res"
 
 "..\bin\Debug\libbind.dll" : "$(OUTDIR)" $(DEF_FILE) $(LINK32_OBJS)
     $(LINK32) @<<
@@ -2266,6 +2281,12 @@ SOURCE=..\..\..\lib\isc\eventlib.c
 SOURCE=..\..\..\lib\isc\heap.c
 
 "$(INTDIR)\heap.obj"	"$(INTDIR)\heap.sbr" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
+SOURCE=..\..\..\lib\isc\hex.c
+
+"$(INTDIR)\hex.obj"	"$(INTDIR)\hex.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
@@ -2797,6 +2818,12 @@ SOURCE=..\..\..\lib\inet\inet_cidr_pton.c
 	$(CPP) $(CPP_PROJ) $(SOURCE)
 
 
+SOURCE=..\..\..\lib\inet\inet_data.c
+
+"$(INTDIR)\inet_data.obj"	"$(INTDIR)\inet_data.sbr" : $(SOURCE) "$(INTDIR)"
+	$(CPP) $(CPP_PROJ) $(SOURCE)
+
+
 SOURCE=..\..\..\lib\inet\inet_lnaof.c
 
 "$(INTDIR)\inet_lnaof.obj"	"$(INTDIR)\inet_lnaof.sbr" : $(SOURCE) "$(INTDIR)"
@@ -3019,11 +3046,6 @@ SOURCE=.\ioctl_if.c
 "$(INTDIR)\ioctl_if.obj"	"$(INTDIR)\ioctl_if.sbr" : $(SOURCE) "$(INTDIR)"
 
 
-SOURCE=.\movefile.c
-
-"$(INTDIR)\movefile.obj"	"$(INTDIR)\movefile.sbr" : $(SOURCE) "$(INTDIR)"
-
-
 SOURCE=.\nameserver.c
 
 "$(INTDIR)\nameserver.obj"	"$(INTDIR)\nameserver.sbr" : $(SOURCE) "$(INTDIR)"
@@ -3053,7 +3075,7 @@ SOURCE=..\..\..\lib\dnssafe\ahcbcpad.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahcbcpad.obj"	"$(INTDIR)\ahcbcpad.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3063,7 +3085,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahcbcpad.obj"	"$(INTDIR)\ahcbcpad.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3077,7 +3099,7 @@ SOURCE=..\..\..\lib\dnssafe\ahchdig.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchdig.obj"	"$(INTDIR)\ahchdig.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3087,7 +3109,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchdig.obj"	"$(INTDIR)\ahchdig.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3101,7 +3123,7 @@ SOURCE=..\..\..\lib\dnssafe\ahchencr.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchencr.obj"	"$(INTDIR)\ahchencr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3111,7 +3133,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchencr.obj"	"$(INTDIR)\ahchencr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3125,7 +3147,7 @@ SOURCE=..\..\..\lib\dnssafe\ahchgen.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchgen.obj"	"$(INTDIR)\ahchgen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3135,7 +3157,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchgen.obj"	"$(INTDIR)\ahchgen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3149,7 +3171,7 @@ SOURCE=..\..\..\lib\dnssafe\ahchrand.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchrand.obj"	"$(INTDIR)\ahchrand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3159,7 +3181,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahchrand.obj"	"$(INTDIR)\ahchrand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3173,7 +3195,7 @@ SOURCE=..\..\..\lib\dnssafe\ahdigest.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahdigest.obj"	"$(INTDIR)\ahdigest.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3183,7 +3205,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahdigest.obj"	"$(INTDIR)\ahdigest.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3197,7 +3219,7 @@ SOURCE=..\..\..\lib\dnssafe\ahencryp.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahencryp.obj"	"$(INTDIR)\ahencryp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3207,7 +3229,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahencryp.obj"	"$(INTDIR)\ahencryp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3221,7 +3243,7 @@ SOURCE=..\..\..\lib\dnssafe\ahgen.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahgen.obj"	"$(INTDIR)\ahgen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3231,7 +3253,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahgen.obj"	"$(INTDIR)\ahgen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3245,7 +3267,7 @@ SOURCE=..\..\..\lib\dnssafe\ahrandom.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrandom.obj"	"$(INTDIR)\ahrandom.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3255,7 +3277,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrandom.obj"	"$(INTDIR)\ahrandom.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3269,7 +3291,7 @@ SOURCE=..\..\..\lib\dnssafe\ahrsaenc.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrsaenc.obj"	"$(INTDIR)\ahrsaenc.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3279,7 +3301,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrsaenc.obj"	"$(INTDIR)\ahrsaenc.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3293,7 +3315,7 @@ SOURCE=..\..\..\lib\dnssafe\ahrsaepr.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrsaepr.obj"	"$(INTDIR)\ahrsaepr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3303,7 +3325,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrsaepr.obj"	"$(INTDIR)\ahrsaepr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3317,7 +3339,7 @@ SOURCE=..\..\..\lib\dnssafe\ahrsaepu.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrsaepu.obj"	"$(INTDIR)\ahrsaepu.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3327,7 +3349,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ahrsaepu.obj"	"$(INTDIR)\ahrsaepu.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3341,7 +3363,7 @@ SOURCE=..\..\..\lib\dnssafe\aichdig.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichdig.obj"	"$(INTDIR)\aichdig.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3351,7 +3373,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichdig.obj"	"$(INTDIR)\aichdig.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3365,7 +3387,7 @@ SOURCE=..\..\..\lib\dnssafe\aichenc8.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichenc8.obj"	"$(INTDIR)\aichenc8.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3375,7 +3397,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichenc8.obj"	"$(INTDIR)\aichenc8.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3389,7 +3411,7 @@ SOURCE=..\..\..\lib\dnssafe\aichencn.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichencn.obj"	"$(INTDIR)\aichencn.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3399,7 +3421,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichencn.obj"	"$(INTDIR)\aichencn.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3413,7 +3435,7 @@ SOURCE=..\..\..\lib\dnssafe\aichencr.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichencr.obj"	"$(INTDIR)\aichencr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3423,7 +3445,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichencr.obj"	"$(INTDIR)\aichencr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3437,7 +3459,7 @@ SOURCE=..\..\..\lib\dnssafe\aichgen.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichgen.obj"	"$(INTDIR)\aichgen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3447,7 +3469,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichgen.obj"	"$(INTDIR)\aichgen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3461,7 +3483,7 @@ SOURCE=..\..\..\lib\dnssafe\aichrand.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichrand.obj"	"$(INTDIR)\aichrand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3471,7 +3493,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aichrand.obj"	"$(INTDIR)\aichrand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3485,7 +3507,7 @@ SOURCE=..\..\..\lib\dnssafe\aimd5.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aimd5.obj"	"$(INTDIR)\aimd5.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3495,7 +3517,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aimd5.obj"	"$(INTDIR)\aimd5.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3509,7 +3531,7 @@ SOURCE=..\..\..\lib\dnssafe\aimd5ran.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aimd5ran.obj"	"$(INTDIR)\aimd5ran.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3519,7 +3541,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\aimd5ran.obj"	"$(INTDIR)\aimd5ran.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3533,7 +3555,7 @@ SOURCE=..\..\..\lib\dnssafe\ainfotyp.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ainfotyp.obj"	"$(INTDIR)\ainfotyp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3543,7 +3565,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ainfotyp.obj"	"$(INTDIR)\ainfotyp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3557,7 +3579,7 @@ SOURCE=..\..\..\lib\dnssafe\ainull.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ainull.obj"	"$(INTDIR)\ainull.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3567,7 +3589,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ainull.obj"	"$(INTDIR)\ainull.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3581,7 +3603,7 @@ SOURCE=..\..\..\lib\dnssafe\airsaepr.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsaepr.obj"	"$(INTDIR)\airsaepr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3591,7 +3613,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsaepr.obj"	"$(INTDIR)\airsaepr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3605,7 +3627,7 @@ SOURCE=..\..\..\lib\dnssafe\airsaepu.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsaepu.obj"	"$(INTDIR)\airsaepu.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3615,7 +3637,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsaepu.obj"	"$(INTDIR)\airsaepu.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3629,7 +3651,7 @@ SOURCE=..\..\..\lib\dnssafe\airsakgn.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsakgn.obj"	"$(INTDIR)\airsakgn.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3639,7 +3661,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsakgn.obj"	"$(INTDIR)\airsakgn.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3653,7 +3675,7 @@ SOURCE=..\..\..\lib\dnssafe\airsaprv.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsaprv.obj"	"$(INTDIR)\airsaprv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3663,7 +3685,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsaprv.obj"	"$(INTDIR)\airsaprv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3677,7 +3699,7 @@ SOURCE=..\..\..\lib\dnssafe\airsapub.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsapub.obj"	"$(INTDIR)\airsapub.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3687,7 +3709,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\airsapub.obj"	"$(INTDIR)\airsapub.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3701,7 +3723,7 @@ SOURCE=..\..\..\lib\dnssafe\algchoic.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\algchoic.obj"	"$(INTDIR)\algchoic.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3711,7 +3733,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\algchoic.obj"	"$(INTDIR)\algchoic.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3725,7 +3747,7 @@ SOURCE=..\..\..\lib\dnssafe\algobj.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\algobj.obj"	"$(INTDIR)\algobj.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3735,7 +3757,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\algobj.obj"	"$(INTDIR)\algobj.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3749,7 +3771,7 @@ SOURCE=..\..\..\lib\dnssafe\amcrte.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\amcrte.obj"	"$(INTDIR)\amcrte.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3759,7 +3781,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\amcrte.obj"	"$(INTDIR)\amcrte.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3773,7 +3795,7 @@ SOURCE=..\..\..\lib\dnssafe\ammd5.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ammd5.obj"	"$(INTDIR)\ammd5.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3783,7 +3805,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ammd5.obj"	"$(INTDIR)\ammd5.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3797,7 +3819,7 @@ SOURCE=..\..\..\lib\dnssafe\ammd5r.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ammd5r.obj"	"$(INTDIR)\ammd5r.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3807,7 +3829,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ammd5r.obj"	"$(INTDIR)\ammd5r.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3821,7 +3843,7 @@ SOURCE=..\..\..\lib\dnssafe\amrkg.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\amrkg.obj"	"$(INTDIR)\amrkg.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3831,7 +3853,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\amrkg.obj"	"$(INTDIR)\amrkg.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3845,7 +3867,7 @@ SOURCE=..\..\..\lib\dnssafe\amrsae.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\amrsae.obj"	"$(INTDIR)\amrsae.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3855,7 +3877,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\amrsae.obj"	"$(INTDIR)\amrsae.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3869,7 +3891,7 @@ SOURCE=..\..\..\lib\dnssafe\balg.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\balg.obj"	"$(INTDIR)\balg.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3879,7 +3901,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\balg.obj"	"$(INTDIR)\balg.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3893,7 +3915,7 @@ SOURCE=..\..\..\lib\dnssafe\bgclrbit.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgclrbit.obj"	"$(INTDIR)\bgclrbit.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3903,7 +3925,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgclrbit.obj"	"$(INTDIR)\bgclrbit.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3917,7 +3939,7 @@ SOURCE=..\..\..\lib\dnssafe\bgmdmpyx.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgmdmpyx.obj"	"$(INTDIR)\bgmdmpyx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3927,7 +3949,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgmdmpyx.obj"	"$(INTDIR)\bgmdmpyx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3941,7 +3963,7 @@ SOURCE=..\..\..\lib\dnssafe\bgmdsqx.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgmdsqx.obj"	"$(INTDIR)\bgmdsqx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3951,7 +3973,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgmdsqx.obj"	"$(INTDIR)\bgmdsqx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3965,7 +3987,7 @@ SOURCE=..\..\..\lib\dnssafe\bgmodexp.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgmodexp.obj"	"$(INTDIR)\bgmodexp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3975,7 +3997,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgmodexp.obj"	"$(INTDIR)\bgmodexp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3989,7 +4011,7 @@ SOURCE=..\..\..\lib\dnssafe\bgpegcd.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgpegcd.obj"	"$(INTDIR)\bgpegcd.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -3999,7 +4021,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bgpegcd.obj"	"$(INTDIR)\bgpegcd.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4013,7 +4035,7 @@ SOURCE=..\..\..\lib\dnssafe\big2exp.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\big2exp.obj"	"$(INTDIR)\big2exp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4023,7 +4045,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\big2exp.obj"	"$(INTDIR)\big2exp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4037,7 +4059,7 @@ SOURCE=..\..\..\lib\dnssafe\bigabs.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigabs.obj"	"$(INTDIR)\bigabs.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4047,7 +4069,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigabs.obj"	"$(INTDIR)\bigabs.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4061,7 +4083,7 @@ SOURCE=..\..\..\lib\dnssafe\bigacc.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigacc.obj"	"$(INTDIR)\bigacc.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4071,7 +4093,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigacc.obj"	"$(INTDIR)\bigacc.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4085,7 +4107,7 @@ SOURCE=..\..\..\lib\dnssafe\bigarith.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigarith.obj"	"$(INTDIR)\bigarith.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4095,7 +4117,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigarith.obj"	"$(INTDIR)\bigarith.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4109,7 +4131,7 @@ SOURCE=..\..\..\lib\dnssafe\bigcmp.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigcmp.obj"	"$(INTDIR)\bigcmp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4119,7 +4141,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigcmp.obj"	"$(INTDIR)\bigcmp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4133,7 +4155,7 @@ SOURCE=..\..\..\lib\dnssafe\bigconst.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigconst.obj"	"$(INTDIR)\bigconst.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4143,7 +4165,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigconst.obj"	"$(INTDIR)\bigconst.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4157,7 +4179,7 @@ SOURCE=..\..\..\lib\dnssafe\biginv.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\biginv.obj"	"$(INTDIR)\biginv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4167,7 +4189,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\biginv.obj"	"$(INTDIR)\biginv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4181,7 +4203,7 @@ SOURCE=..\..\..\lib\dnssafe\biglen.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\biglen.obj"	"$(INTDIR)\biglen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4191,7 +4213,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\biglen.obj"	"$(INTDIR)\biglen.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4205,7 +4227,7 @@ SOURCE=..\..\..\lib\dnssafe\bigmodx.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigmodx.obj"	"$(INTDIR)\bigmodx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4215,7 +4237,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigmodx.obj"	"$(INTDIR)\bigmodx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4229,7 +4251,7 @@ SOURCE=..\..\..\lib\dnssafe\bigmpy.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigmpy.obj"	"$(INTDIR)\bigmpy.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4239,7 +4261,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigmpy.obj"	"$(INTDIR)\bigmpy.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4253,7 +4275,7 @@ SOURCE=..\..\..\lib\dnssafe\bigpdiv.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpdiv.obj"	"$(INTDIR)\bigpdiv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4263,7 +4285,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpdiv.obj"	"$(INTDIR)\bigpdiv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4277,7 +4299,7 @@ SOURCE=..\..\..\lib\dnssafe\bigpmpy.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpmpy.obj"	"$(INTDIR)\bigpmpy.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4287,7 +4309,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpmpy.obj"	"$(INTDIR)\bigpmpy.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4301,7 +4323,7 @@ SOURCE=..\..\..\lib\dnssafe\bigpmpyh.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpmpyh.obj"	"$(INTDIR)\bigpmpyh.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4311,7 +4333,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpmpyh.obj"	"$(INTDIR)\bigpmpyh.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4325,7 +4347,7 @@ SOURCE=..\..\..\lib\dnssafe\bigpmpyl.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpmpyl.obj"	"$(INTDIR)\bigpmpyl.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4335,7 +4357,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpmpyl.obj"	"$(INTDIR)\bigpmpyl.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4349,7 +4371,7 @@ SOURCE=..\..\..\lib\dnssafe\bigpsq.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpsq.obj"	"$(INTDIR)\bigpsq.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4359,7 +4381,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigpsq.obj"	"$(INTDIR)\bigpsq.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4373,7 +4395,7 @@ SOURCE=..\..\..\lib\dnssafe\bigqrx.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigqrx.obj"	"$(INTDIR)\bigqrx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4383,7 +4405,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigqrx.obj"	"$(INTDIR)\bigqrx.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4397,7 +4419,7 @@ SOURCE=..\..\..\lib\dnssafe\bigsmod.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigsmod.obj"	"$(INTDIR)\bigsmod.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4407,7 +4429,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigsmod.obj"	"$(INTDIR)\bigsmod.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4421,7 +4443,7 @@ SOURCE=..\..\..\lib\dnssafe\bigtocan.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigtocan.obj"	"$(INTDIR)\bigtocan.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4431,7 +4453,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigtocan.obj"	"$(INTDIR)\bigtocan.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4445,7 +4467,7 @@ SOURCE=..\..\..\lib\dnssafe\bigu.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigu.obj"	"$(INTDIR)\bigu.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4455,7 +4477,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigu.obj"	"$(INTDIR)\bigu.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4469,7 +4491,7 @@ SOURCE=..\..\..\lib\dnssafe\bigunexp.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigunexp.obj"	"$(INTDIR)\bigunexp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4479,7 +4501,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bigunexp.obj"	"$(INTDIR)\bigunexp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4493,7 +4515,7 @@ SOURCE=..\..\..\lib\dnssafe\binfocsh.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\binfocsh.obj"	"$(INTDIR)\binfocsh.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4503,7 +4525,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\binfocsh.obj"	"$(INTDIR)\binfocsh.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4517,7 +4539,7 @@ SOURCE=..\..\..\lib\dnssafe\bkey.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bkey.obj"	"$(INTDIR)\bkey.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4527,7 +4549,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bkey.obj"	"$(INTDIR)\bkey.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4541,7 +4563,7 @@ SOURCE=..\..\..\lib\dnssafe\bmempool.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bmempool.obj"	"$(INTDIR)\bmempool.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4551,7 +4573,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\bmempool.obj"	"$(INTDIR)\bmempool.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4565,7 +4587,7 @@ SOURCE=..\..\..\lib\dnssafe\cantobig.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\cantobig.obj"	"$(INTDIR)\cantobig.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4575,7 +4597,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\cantobig.obj"	"$(INTDIR)\cantobig.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4589,7 +4611,7 @@ SOURCE=..\..\..\lib\dnssafe\crt2.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\crt2.obj"	"$(INTDIR)\crt2.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4599,7 +4621,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\crt2.obj"	"$(INTDIR)\crt2.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4613,7 +4635,7 @@ SOURCE=..\..\..\lib\dnssafe\digest.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\digest.obj"	"$(INTDIR)\digest.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4623,7 +4645,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\digest.obj"	"$(INTDIR)\digest.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4637,7 +4659,7 @@ SOURCE=..\..\..\lib\dnssafe\digrand.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\digrand.obj"	"$(INTDIR)\digrand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4647,7 +4669,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\digrand.obj"	"$(INTDIR)\digrand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4661,7 +4683,7 @@ SOURCE=..\..\..\lib\dnssafe\encrypt.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\encrypt.obj"	"$(INTDIR)\encrypt.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4671,7 +4693,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\encrypt.obj"	"$(INTDIR)\encrypt.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4685,7 +4707,7 @@ SOURCE=..\..\..\lib\dnssafe\generate.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\generate.obj"	"$(INTDIR)\generate.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4695,7 +4717,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\generate.obj"	"$(INTDIR)\generate.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4709,7 +4731,7 @@ SOURCE=..\..\..\lib\dnssafe\intbits.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\intbits.obj"	"$(INTDIR)\intbits.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4719,7 +4741,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\intbits.obj"	"$(INTDIR)\intbits.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4733,7 +4755,7 @@ SOURCE=..\..\..\lib\dnssafe\intitem.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\intitem.obj"	"$(INTDIR)\intitem.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4743,7 +4765,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\intitem.obj"	"$(INTDIR)\intitem.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4757,7 +4779,7 @@ SOURCE=..\..\..\lib\dnssafe\keyobj.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\keyobj.obj"	"$(INTDIR)\keyobj.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4767,7 +4789,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\keyobj.obj"	"$(INTDIR)\keyobj.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4781,7 +4803,7 @@ SOURCE=..\..\..\lib\dnssafe\ki8byte.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ki8byte.obj"	"$(INTDIR)\ki8byte.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4791,7 +4813,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\ki8byte.obj"	"$(INTDIR)\ki8byte.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4805,7 +4827,7 @@ SOURCE=..\..\..\lib\dnssafe\kifulprv.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kifulprv.obj"	"$(INTDIR)\kifulprv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4815,7 +4837,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kifulprv.obj"	"$(INTDIR)\kifulprv.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4829,7 +4851,7 @@ SOURCE=..\..\..\lib\dnssafe\kiitem.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kiitem.obj"	"$(INTDIR)\kiitem.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4839,7 +4861,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kiitem.obj"	"$(INTDIR)\kiitem.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4853,7 +4875,7 @@ SOURCE=..\..\..\lib\dnssafe\kinfotyp.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kinfotyp.obj"	"$(INTDIR)\kinfotyp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4863,7 +4885,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kinfotyp.obj"	"$(INTDIR)\kinfotyp.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4877,7 +4899,7 @@ SOURCE=..\..\..\lib\dnssafe\kipkcrpr.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kipkcrpr.obj"	"$(INTDIR)\kipkcrpr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4887,7 +4909,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kipkcrpr.obj"	"$(INTDIR)\kipkcrpr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4901,7 +4923,7 @@ SOURCE=..\..\..\lib\dnssafe\kirsacrt.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kirsacrt.obj"	"$(INTDIR)\kirsacrt.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4911,7 +4933,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kirsacrt.obj"	"$(INTDIR)\kirsacrt.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4925,7 +4947,7 @@ SOURCE=..\..\..\lib\dnssafe\kirsapub.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kirsapub.obj"	"$(INTDIR)\kirsapub.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4935,7 +4957,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\kirsapub.obj"	"$(INTDIR)\kirsapub.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4949,7 +4971,7 @@ SOURCE=..\..\..\lib\dnssafe\md5.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\md5.obj"	"$(INTDIR)\md5.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4959,7 +4981,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\md5.obj"	"$(INTDIR)\md5.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4973,7 +4995,7 @@ SOURCE=..\..\..\lib\dnssafe\md5rand.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\md5rand.obj"	"$(INTDIR)\md5rand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4983,7 +5005,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\md5rand.obj"	"$(INTDIR)\md5rand.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -4997,7 +5019,7 @@ SOURCE=..\..\..\lib\dnssafe\prime.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\prime.obj"	"$(INTDIR)\prime.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5007,7 +5029,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\prime.obj"	"$(INTDIR)\prime.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5021,7 +5043,7 @@ SOURCE=..\..\..\lib\dnssafe\random.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\random.obj"	"$(INTDIR)\random.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5031,7 +5053,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\random.obj"	"$(INTDIR)\random.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5045,7 +5067,7 @@ SOURCE=..\..\..\lib\dnssafe\rsa.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\rsa.obj"	"$(INTDIR)\rsa.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5055,7 +5077,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\rsa.obj"	"$(INTDIR)\rsa.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5069,7 +5091,7 @@ SOURCE=..\..\..\lib\dnssafe\rsakeygn.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\rsakeygn.obj"	"$(INTDIR)\rsakeygn.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5079,7 +5101,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\rsakeygn.obj"	"$(INTDIR)\rsakeygn.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5093,7 +5115,7 @@ SOURCE=..\..\..\lib\dnssafe\seccbcd.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\seccbcd.obj"	"$(INTDIR)\seccbcd.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5103,7 +5125,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\seccbcd.obj"	"$(INTDIR)\seccbcd.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5117,7 +5139,7 @@ SOURCE=..\..\..\lib\dnssafe\seccbce.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\seccbce.obj"	"$(INTDIR)\seccbce.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5127,7 +5149,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\seccbce.obj"	"$(INTDIR)\seccbce.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5141,7 +5163,7 @@ SOURCE=..\..\..\lib\dnssafe\surrendr.c
 
 !IF  "$(CFG)" == "libbind - Win32 Release"
 
-CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "NDEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fp"$(INTDIR)\libbind.pch" /YX /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\surrendr.obj"	"$(INTDIR)\surrendr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5151,7 +5173,7 @@ CPP_SWITCHES=/nologo /MD /W3 /GX /O2 /I "..\include" /I "..\..\..\include" /I ".
 
 !ELSEIF  "$(CFG)" == "libbind - Win32 Debug"
 
-CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
+CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\include" /I "..\..\..\lib\cylink" /I "..\..\..\lib\dnssafe" /D "_DEBUG" /D "HAVE_CONFIG_H" /D "WIN32" /D "_WINDOWS" /D "LIB" /D "CYLINK_DSS" /D "HMAC_MD5" /D "USE_MD5" /D "DNSSAFE" /D "i386" /FR"$(INTDIR)\\" /Fo"$(INTDIR)\\" /Fd"$(INTDIR)\\" /FD /c 
 
 "$(INTDIR)\surrendr.obj"	"$(INTDIR)\surrendr.sbr" : $(SOURCE) "$(INTDIR)"
 	$(CPP) @<<
@@ -5160,6 +5182,12 @@ CPP_SWITCHES=/nologo /MDd /W3 /Gm /GX /Zi /Od /I "..\include" /I "..\..\..\inclu
 
 
 !ENDIF 
+
+SOURCE=.\libbind.rc
+
+"$(INTDIR)\libbind.res" : $(SOURCE) "$(INTDIR)"
+	$(RSC) $(RSC_PROJ) $(SOURCE)
+
 
 
 !ENDIF 

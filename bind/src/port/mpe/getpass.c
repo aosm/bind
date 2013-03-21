@@ -1,3 +1,5 @@
+#include "port_before.h"
+
 /* Copyright (C) 1992, 93, 94, 95, 96, 97 Free Software Foundation, Inc.
    This file is part of the GNU C Library.
 

@@ -16,7 +16,7 @@
  */
 
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char rcsid[] = "$Id: nis.c,v 1.1.1.2 2001/01/31 04:00:21 zarzycki Exp $";
+static const char rcsid[] = "$Id: nis.c,v 1.1.1.3 2002/11/18 22:27:35 bbraun Exp $";
 #endif
 
 /* Imports */
@@ -62,6 +62,8 @@ irs_nis_acc(const char *options) {
 	struct nis_p *nis;
 	struct irs_acc *acc;
 	char *domain;
+
+	UNUSED(options);
 
 	if (yp_get_default_domain(&domain) != 0)
 		return (NULL);

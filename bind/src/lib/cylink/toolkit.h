@@ -160,7 +160,7 @@ extern  "C" {
 
 /* Update Secure Hash Function */
  int SHAUpdate( SHA_context *hash_context,
-                uchar        *message,
+                const uchar        *message,
                 u_int16_t      message_bytes );
 /* Finalize Secure Hash Function */
  int SHAFinal( SHA_context *hash_context,
@@ -352,9 +352,38 @@ int SAFERDecrypt( uchar  *iv, uchar  *key, u_int16_t mode, u_int16_t r_length,
                uchar  *data_array, u_int16_t data_array_bytes );
 
 
-#ifdef WIN32
-	void ByteSwap32( uchar  *X, u_int16_t X_len );
-#endif
+	void ByteSwap( uchar  *X, u_int16_t X_len);
+	void ByteSwap32( uchar  *X, u_int16_t X_len);
+	void WordSwap( uchar  *X, u_int16_t X_len);
+	void BigSwap( uchar *buffer, u_int16_t bufferLength);
+	 int Sum_big (ord *X, ord *Y, ord *Z, u_int16_t len_X);
+	 int Sum_Q(ord *X, u_int16_t src, u_int16_t len_X);
+	void  LShiftL_big( ord *X, u_int32_t len_X, u_int32_t n_bit );
+	int Sub_big  (ord *X, ord *Y, ord *Z, u_int16_t len_X);
+	int DivRem( u_int16_t X_bytes, ord *X, u_int16_t P_bytes, ord *P,
+		   ord *Z, ord *D);
+	int  SteinGCD (ord *m, ord *n, u_int16_t len);
+	 int Add( ord *X, ord *Y, u_int16_t P_len, ord *P);
+	int Inverse(u_int16_t X_bytes, ord *X, u_int16_t P_bytes, ord *P,
+		    ord *Z);
+	int DoubleExpo(u_int16_t X1_bytes, ord *X1, u_int16_t Y1_bytes,
+		       ord *Y1, u_int16_t X2_bytes, ord *X2,
+		       u_int16_t Y2_bytes, ord *Y2, u_int16_t P_bytes,
+		       ord *P, ord *Z);
+	int Sum (ord *X, ord *Y, u_int16_t len_X);
+	void  Mul_big_1( ord  X, ord *Y, ord *XY, u_int16_t ly);
+	int Mul( u_int16_t X_bytes, ord *X, u_int16_t Y_bytes, ord *Y,
+                 u_int16_t P_bytes, ord *P, ord *Z );
+
+	int Square(u_int16_t X_bytes, ord *X, u_int16_t P_bytes, ord *P,
+		   ord *Z);
+
+	int PartReduct(u_int16_t X_bytes, ord *X, u_int16_t P_bytes, ord *P,
+			 ord *Z);
+	int Expo(u_int16_t X_bytes, ord *X, u_int16_t Y_bytes, ord *Y,
+		 u_int16_t P_bytes, ord *P, ord *Z);
+
+
 #ifdef  __cplusplus
 }
 #endif

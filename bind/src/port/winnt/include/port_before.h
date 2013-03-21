@@ -58,6 +58,11 @@
  */
 #undef NOERROR
 
+/* This Macro is used for events which are not used in BIND 8
+ * so it is safe to undefine
+ */
+#undef EV_ERR
+
 /* This _should_ be safe. */
 #undef DELETE
 
@@ -111,6 +116,12 @@ struct  group {
 #undef _REENTRANT
 
 /*
+ * We don't have unix sockets.
+ */
+#define NO_SOCKADDR_UN
+
+
+/*
  * We do libbind as a DLL, so the externs found in resolv.h 
  * make everything break when compiled.  This #ifdefs out
  * those externs
@@ -161,7 +172,7 @@ int init_nameserver_list();
 /*
  * Functions
  */
-#define fstat	_fstat
+
 #define isascii	__isascii
 #define getpid	_getpid
 #define popen	_popen
@@ -174,11 +185,17 @@ int init_nameserver_list();
 #define OpenFile ISCOpenFile
 
 /*NT needs to handle these functions separately */
-#define rename  NTrename
-#define fopen   NTfopen
-#define fclose  NTfclose
+
+#define fopen    NTfopen
+#define fclose   NTfclose
+#define fstat	 NTfstat
+#define strerror NTstrerror
+#define perror	 NTperror
+char *  __cdecl NTstrerror(int err);
+
 
 FILE *NTfopen( const char *filename, const char *mode);
+int   NTfstat( int handle, struct _stat *buffer );
 
 /*
  * Define these other functions the other way
@@ -202,7 +219,7 @@ typedef long uid_t;
 typedef long gid_t;
 typedef int mode_t;
 typedef unsigned short ushort;
-
+typedef __int64 int64_t;
 /*
  * Structs 
  */
@@ -231,6 +248,17 @@ struct iovec {
 /* MSVC is a c++ compiler.  Undef this just in case */
 #undef try
 
-#endif /* WIN32 */
 
+#define GETGROUPLIST_ARGS const char *name, gid_t basegid, gid_t *groups, \
+		      int *ngroups
+
+#define ISC_SOCKLEN_T int
+
+#endif /* WIN32 */
+#ifdef __GNUC__
+#define ISC_FORMAT_PRINTF(fmt, args) \
+	__attribute__((__format__(__printf__, fmt, args)))
+#else
+#define ISC_FORMAT_PRINTF(fmt, args)
+#endif
 #endif /* _PORT_BEFORE_H */

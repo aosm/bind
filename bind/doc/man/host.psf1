@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:57 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:46 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -202,21 +202,21 @@ BP
 /F0 10/Times-Roman@0 SF 1.448
 (looks for information about Internet hosts.)72 12 R 1.448
 (It gets this information from a set of interconnected serv)6.448 F
-1.447(ers that are)-.15 F .096(spread across the country)72 24 R 5.097
-(.B)-.65 G 2.597(yd)-5.097 G(ef)-2.597 E .097(ault, it simply con)-.1 F
--.15(ve)-.4 G .097(rts between host names and Internet addresses.).15 F
-(Ho)5.097 E(we)-.25 E -.15(ve)-.25 G .897 -.4(r, w).15 H(ith).4 E .649(\
-the or options, it can be used to \214nd all of the information about t\
-his host that is maintained by the domain serv)72 36 R(er)-.15 E(.)-.55
-E .214(The ar)72 48 R .214
+1.447(ers that are)-.15 F .513(spread across the w)72 24 R 3.013
+(orld. By)-.1 F(def)3.014 E .514(ault, it simply con)-.1 F -.15(ve)-.4 G
+.514(rts between host names and Internet addresses.).15 F(Ho)5.514 E(we)
+-.25 E -.15(ve)-.25 G 1.314 -.4(r, w).15 H(ith).4 E .649(the or options, it can be used to \214nd all of the information about this host that is maintained by the domain serv)
+72 36 R(er)-.15 E(.)-.55 E .214(The ar)72 48 R .214
 (guments can be either host names or host numbers.)-.18 F .214
 (The program \214rst attempts to interpret them as host num-)5.214 F
-3.366(bers. If)72 60 R .866(this f)3.366 F .866
-(ails, it will treat them as host names.)-.1 F 3.365(Ah)5.865 G .865
-(ost number consists of \214rst decimal numbers separated by)-3.365 F
-1.216(dots, e.g. 128.6.4.194 A host name consists of names separated by\
- dots, e.g. topaz.rutgers.edu.)72 72 R 1.216(Unless the name)6.216 F
-.346(ends in a dot, the local domain is automatically tack)72 84 R .345
+2.879(bers. If)72 60 R .379(this f)2.879 F .379
+(ails, it will treat them as host names.)-.1 F 2.879(Ah)5.379 G .379
+(ost number consists of IPv4 dotted decimal quad \(127.0.0.1\))-2.879 F
+.071(or IPv6 ra)72 72 R 2.571(wa)-.15 G .071(ddress \(::1\).)-2.571 F
+2.571(Ah)5.071 G .072
+(ost name consists of names separated by dots, e.g. topaz.rutgers.edu.)
+-2.571 F .072(Unless the name)5.072 F .346
+(ends in a dot, the local domain is automatically tack)72 84 R .345
 (ed on the end.)-.1 F .345
 (Thus, a Rutgers user can say and it will actually)5.345 F .418
 (look up "topaz.rutgers.edu".)72 96 R .419(If this f)5.418 F .419
@@ -241,12 +241,11 @@ F(query)72 156 Q 5.093(.I)-.65 G 2.593(fy)-5.093 G .093(ou don')-2.593 F
 -.15 F .093(If a name is spec-)5.093 F .131
 (i\214ed, you may see output of three dif)72 168 R .131(ferent kinds.)
 -.25 F .131(Here is an e)5.131 F .131(xample that sho)-.15 F .132
-(ws all of them: The user has typed the)-.25 F .317(command The \214rst\
- line indicates that the name is actually a nickname.)72 180 R .316
-(The of)5.316 F .316(\214cial host name is The ne)-.25 F .316(xt tw)-.15
-F 2.816(ol)-.1 G(ines)-2.816 E(sho)72 192 Q 3.137(wt)-.25 G .637
-(he address.)-3.137 F .637(If a system has more than one netw)5.637 F
-.638(ork interf)-.1 F .638
+(ws all of them: The user has typed the)-.25 F .317(command The \214rst line indicates that the name is actually a nickname.)
+72 180 R .316(The of)5.316 F .316(\214cial host name is The ne)-.25 F
+.316(xt tw)-.15 F 2.816(ol)-.1 G(ines)-2.816 E(sho)72 192 Q 3.137(wt)
+-.25 G .637(he address.)-3.137 F .637
+(If a system has more than one netw)5.637 F .638(ork interf)-.1 F .638
 (ace, there will be a separate address for each.)-.1 F(The)5.638 E .432
 (last line indicates that does not recei)72 204 R .732 -.15(ve i)-.25 H
 .431(ts o).15 F .431(wn mail.)-.25 F .431(Mail for it is tak)5.431 F
@@ -264,9 +263,9 @@ F(we)-.25 E -.15(ve)-.25 G 1.08 -.4(r, m).15 H(an).4 E 2.781(ys)-.15 G
 .281(ystems that recei)-2.781 F .581 -.15(ve t)-.25 H .281(heir o).15 F
 .281(wn mail do not bother to)-.25 F .28(mention that f)72 252 R 2.78
 (act. If)-.1 F 2.78(as)2.78 G .28(ystem has a entry)-2.78 F 2.78(,b)-.65
-G .279(ut no address, this indicates that it is not really part of the \
-Internet, b)-2.98 F .279(ut a)-.2 F .75(system that is on the netw)72
-264 R .75(ork will forw)-.1 F .75(ard mail to it.)-.1 F .75
+G .279(ut no address, this indicates that it is not really part of the Internet, b)
+-2.98 F .279(ut a)-.2 F .75(system that is on the netw)72 264 R .75
+(ork will forw)-.1 F .75(ard mail to it.)-.1 F .75
 (Systems on Usenet, Bitnet, and a number of other netw)5.75 F(orks)-.1 E
 (ha)72 276 Q .911 -.15(ve e)-.2 H .611(ntries of this kind.).15 F .611
 (There are a number of options that can be used before the host name.)
@@ -278,15 +277,13 @@ Internet, b)-2.98 F .279(ut a)-.2 F .75(system that is on the netw)72
 3.303(response. Normally)72 300 R .803
 (it will time out after approximate one minute.)3.303 F .803(Use "v)
 5.803 F .803(erbose" format for printout.)-.15 F .803(This is the)5.803
-F(of)72 312 Q .187(\214cial domain master \214le format, which is docum\
-ented in the man page for W)-.25 F .187
-(ithout this option, output still follo)-.4 F(ws)-.25 E .036
+F(of)72 312 Q .187(\214cial domain master \214le format, which is documented in the man page for W)
+-.25 F .187(ithout this option, output still follo)-.4 F(ws)-.25 E .036
 (this format in general terms, b)72 324 R .036
 (ut some attempt is made to mak)-.2 F 2.536(ei)-.1 G 2.536(tm)-2.536 G
 .036(ore intelligible to normal users.)-2.536 F -.4(Wi)5.036 G .036
-(thout an).4 F 2.536(y")-.15 G(a",)-2.536 E .531("mx", and "cname" reco\
-rds are written out as "has address", "mail is handled by", and "is a n\
-ickname for" \(respec-)72 336 R(ti)72 348 Q -.15(ve)-.25 G .382
+(thout an).4 F 2.536(y")-.15 G(a",)-2.536 E .531("mx", and "cname" records are written out as "has address", "mail is handled by", and "is a nickname for" \(respec-)
+72 336 R(ti)72 348 Q -.15(ve)-.25 G .382
 (ly\), and TTL and class \214elds are not sho).15 F 2.882(wn. T)-.25 F
 .382(urn of)-.45 F 2.882(fr)-.25 G .382(ecursion in the request.)-2.882
 F .382(This means that the name serv)5.382 F(er)-.15 E .553
@@ -299,21 +296,20 @@ F .382(This means that the name serv)5.382 F(er)-.15 E .553
 (specify a particular of information to be look)72 384 R .619(ed up.)-.1
 F .619(The ar)5.619 F .62
 (guments are de\214ned in the man page for Currently-sup-)-.18 F .028
-(ported types include: Additionally)72 396 R 2.528(,t)-.65 G .027(he wi\
-ldcard, which may be written as either or can be used to specify an)
+(ported types include: Additionally)72 396 R 2.528(,t)-.65 G .027(he wildcard, which may be written as either or can be used to specify an)
 -2.528 F 2.527(y\()-.15 G .027(all\) of)-2.527 F .401(the abo)72 408 R
 .701 -.15(ve t)-.15 H 2.901(ypes. T).15 F .401(ypes must be gi)-.8 F
 -.15(ve)-.25 G 2.901(ni).15 G 2.901(nl)-2.901 G -.25(ow)-2.901 G .401
 (er case.).25 F .401(Note that the def)5.401 F .402
 (ault is to look \214rst for and then e)-.1 F .402(xcept that if)-.15 F
 .168(the v)72 420 R .168(erbose option is turned on, the def)-.15 F .168
-(ault is only The option is particularly useful for \214ltering informa\
-tion returned)-.1 F .168(by see the e)72 432 R .168
-(xplanation of the option, belo)-.15 F 1.468 -.65(w, f)-.25 H .168
-(or more information.).65 F .169(this is equi)5.168 F -.25(va)-.25 G
-.169(lent to List a complete domain; e.g.:).25 F .532(will gi)72 444 R
-.832 -.15(ve a l)-.25 H .532
-(isting of all hosts in the rutgers.edu domain.).15 F .532
+(ault is only The option is particularly useful for \214ltering information returned)
+-.1 F .168(by see the e)72 432 R .168(xplanation of the option, belo)
+-.15 F 1.468 -.65(w, f)-.25 H .168(or more information.).65 F .169
+(this is equi)5.168 F -.25(va)-.25 G .169
+(lent to List a complete domain; e.g.:).25 F .532(will gi)72 444 R .832
+-.15(ve a l)-.25 H .532(isting of all hosts in the rutgers.edu domain.)
+.15 F .532
 (The option is used to \214lter what information is presented,)5.532 F
 .691(as you w)72 456 R .691(ould e)-.1 F 3.191(xpect. The)-.15 F(def)
 3.191 E .691
@@ -323,10 +319,9 @@ F .692(The command)5.692 F .132(will gi)72 468 R .431 -.15(ve a c)-.25 H
 (wnload of the zone data for rutgers.edu, in the of)-.25 F .131
 (\214cial master \214le format.)-.25 F(\(Ho)5.131 E(we)-.25 E -.15(ve)
 -.25 G 2.631(rt).15 G .131(he SO)-2.631 F(A)-.35 E .588
-(record is listed twice, for arcane reasons.\))72 480 R .589(is impleme\
-nted by doing a complete zone transfer and then \214ltering out)5.588 F
-.219(the information the you ha)72 492 R .519 -.15(ve a)-.2 H(sk).15 E
-.219(ed for)-.1 F 5.219(.T)-.55 G .219
+(record is listed twice, for arcane reasons.\))72 480 R .589(is implemented by doing a complete zone transfer and then \214ltering out)
+5.588 F .219(the information the you ha)72 492 R .519 -.15(ve a)-.2 H
+(sk).15 E .219(ed for)-.1 F 5.219(.T)-.55 G .219
 (his command should be used only if it is absolutely necessary)-5.219 F
 5.219(.I)-.65 G 2.718(ng)-5.219 G(eneral,)-2.718 E .303
 (if the name supplied by the user does not ha)72 504 R .603 -.15(ve a)
@@ -344,23 +339,22 @@ nted by doing a complete zone transfer and then \214ltering out)5.588 F
 F 3.148(viation. Each)-.25 F .648(line contains an)3.148 F(abbre)72 552
 Q 1.007(viation, a space, and then the full host name.)-.25 F 1.008
 (The name \214le must be contained in the en)6.008 F 1.008(vironment v)
--.4 F(ariable.)-.25 E .565(Name of \214le containing pairs.)72 564 R
-.565(See Name of \214le containing pairs.)5.565 F(Une)5.565 E .565
-(xpected ef)-.15 F .565(fects can happen when you type a)-.25 F .364
-(name that is not part of the local domain.)72 576 R .364(Please al)
-5.364 F -.1(wa)-.1 G .364(ys k).1 F .364(eep in mind the f)-.1 F .364
-(act that the local domain name is tack)-.1 F(ed)-.1 E .396
-(onto the end of e)72 588 R -.15(ve)-.25 G .396
-(ry name, unless it ends in a dot.).15 F .396(Only if this f)5.396 F
-.395(ails is the name used unchanged.)-.1 F .395(The option only)5.395 F
-.056(tries the \214rst name serv)72 600 R .056
-(er listed for the domain that you ha)-.15 F .356 -.15(ve r)-.2 H 2.556
-(equested. If).15 F .057(this serv)2.556 F .057
-(er is dead, you may need to spec-)-.15 F .423(ify a serv)72 612 R .422
-(er manually)-.15 F 2.922(.E)-.65 G .422(.g., to get a listing of foo.e\
-du, you could try to get a list of all the name serv)-2.922 F .422
-(ers for foo.edu,)-.15 F(and then try for all on the list of name serv)
-72 624 Q(ers, until you \214nd one that w)-.15 E(orks.)-.1 E EP
+-.4 F(ariable.)-.25 E .128(Name of \214le containing pairs.)72 564 R
+.127(See Une)5.127 F .127(xpected ef)-.15 F .127
+(fects can happen when you type a name that is not part of the local)
+-.25 F 2.98(domain. Please)72 576 R(al)2.98 E -.1(wa)-.1 G .48(ys k).1 F
+.48(eep in mind the f)-.1 F .48(act that the local domain name is tack)
+-.1 F .481(ed onto the end of e)-.1 F -.15(ve)-.25 G .481(ry name, un-)
+.15 F .228(less it ends in a dot.)72 588 R .228(Only if this f)5.228 F
+.227(ails is the name used unchanged.)-.1 F .227
+(The option only tries the \214rst name serv)5.227 F .227(er listed)-.15
+F .685(for the domain that you ha)72 600 R .985 -.15(ve r)-.2 H 3.185
+(equested. If).15 F .685(this serv)3.185 F .685
+(er is dead, you may need to specify a serv)-.15 F .686(er manually)-.15
+F 3.186(.E)-.65 G .686(.g., to)-3.186 F .027(get a listing of foo.edu, you could try to get a list of all the name serv)
+72 612 R .026(ers for foo.edu, and then try for all on the list of)-.15
+F(name serv)72 624 Q(ers, until you \214nd one that w)-.15 E(orks.)-.1 E
+EP
 %%Trailer
 end
 %%EOF

@@ -1,5 +1,4 @@
-
-NAMED-XFER(8)           FreeBSD System Manager's Manual          NAMED-XFER(8)
+NAMED-XFER(8)             BSD System Manager's Manual            NAMED-XFER(8)
 
 NNAAMMEE
      nnaammeedd--xxffeerr - ancillary agent for inbound zone transfers
@@ -7,7 +6,7 @@ NNAAMMEE
 SSYYNNOOPPSSIISS
      nnaammeedd--xxffeerr --zz _z_o_n_e___t_o___t_r_a_n_s_f_e_r --ff _d_b___f_i_l_e --ss _s_e_r_i_a_l___n_o [--dd _d_e_b_u_g_l_e_v_e_l]
                 [--ll _d_e_b_u_g___l_o_g___f_i_l_e] [--ii _i_x_f_r___f_i_l_e] [--tt _t_r_a_c_e___f_i_l_e] [--pp _p_o_r_t_#]
-                [--SS] _n_a_m_e_s_e_r_v_e_r [[aaxxffrr] | [iixxffrr]]
+                [--SS] _n_a_m_e_s_e_r_v_e_r [aaxxffrr | iixxffrr]
 
 DDEESSCCRRIIPPTTIIOONN
      NNaammeedd--xxffeerr is an ancillary program executed by named(8) to perform an in-
@@ -59,7 +58,7 @@ DDEESSCCRRIIPPTTIIOONN
                  more information.
 
      Additional arguments are taken as name server addresses in so-called
-     ``dotted-quad'' syntax _o_n_l_y_; no host name are allowed here.  At least one
+     ``dotted-quad'' syntax _o_n_l_y; no host name are allowed here.  At least one
      address must be specified.  Any additional addresses will be tried, in
      order, if the first one fails to transfer to us successfully.  The aaxxffrr
      or iixxffrr after name server address designates the type of zone transfer to

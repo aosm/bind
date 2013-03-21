@@ -56,7 +56,7 @@ int AH_RSAEncryptionDecryptInit PROTO_LIST
     A_SURRENDER_CTX *));
 int AH_RSAEncryptionUpdate PROTO_LIST
   ((THIS_ENCRYPT_DECRYPT *, unsigned char *, unsigned int *,
-    unsigned int, unsigned char *, unsigned int, B_Algorithm *,
+    unsigned int, const unsigned char *, unsigned int, B_Algorithm *,
     A_SURRENDER_CTX *));
 int AH_RSAEncryptionEncryptFinal PROTO_LIST
   ((THIS_ENCRYPT_DECRYPT *, unsigned char *, unsigned int *,

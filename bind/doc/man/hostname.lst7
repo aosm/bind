@@ -1,5 +1,4 @@
-
-HOSTNAME(7)        FreeBSD Miscellaneous Information Manual        HOSTNAME(7)
+HOSTNAME(7)                  BSD Reference Manual                  HOSTNAME(7)
 
 NNAAMMEE
      hhoossttnnaammee - host name resolution description
@@ -85,9 +84,6 @@ EENNVVIIRROONNMMEENNTT
 
 FFIILLEESS
      /etc/resolv.conf    See resolve(5).
-
-     HOSTALIASES         Name of file containing (_h_o_s_t _a_l_i_a_s, _f_u_l_l _h_o_s_t_n_a_m_e)
-                         pairs.
 
 SSEEEE AALLSSOO
      gethostbyname(3),  resolver(5),  mailaddr(7),  named(8).

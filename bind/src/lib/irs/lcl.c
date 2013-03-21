@@ -16,7 +16,7 @@
  */
 
 #if !defined(LINT) && !defined(CODECENTER)
-static const char rcsid[] = "$Id: lcl.c,v 1.1.1.3 2001/01/31 04:00:21 zarzycki Exp $";
+static const char rcsid[] = "$Id: lcl.c,v 1.1.1.4 2002/11/18 22:27:33 bbraun Exp $";
 #endif
 
 /* Imports */
@@ -54,6 +54,8 @@ struct irs_acc *
 irs_lcl_acc(const char *options) {
 	struct irs_acc *acc;
 	struct lcl_p *lcl;
+
+	UNUSED(options);
 
 	if (!(acc = memget(sizeof *acc))) {
 		errno = ENOMEM;

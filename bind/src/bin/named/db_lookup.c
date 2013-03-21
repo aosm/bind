@@ -1,6 +1,6 @@
 #if !defined(lint) && !defined(SABER)
 static const char sccsid[] = "@(#)db_lookup.c	4.18 (Berkeley) 3/21/91";
-static const char rcsid[] = "$Id: db_lookup.c,v 1.1.1.3 2001/01/31 03:59:45 zarzycki Exp $";
+static const char rcsid[] = "$Id: db_lookup.c,v 1.1.1.4 2002/11/18 22:26:49 bbraun Exp $";
 #endif /* not lint */
 
 /*
@@ -258,7 +258,7 @@ match(struct databuf *dp, int class, int type) {
 		return (0);
 	if (dp->d_type != type && dp->d_type != T_SIG && type != T_ANY)
 		return (0);
-	if (type != T_SIG && dp->d_type == T_SIG && SIG_COVERS(dp) != type)
+	if (type != T_SIG && dp->d_type == T_SIG && (int)SIG_COVERS(dp) != type)
 		return (0);
 	return (1);
 }

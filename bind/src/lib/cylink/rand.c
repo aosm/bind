@@ -90,7 +90,6 @@
 #include "toolkit.h"
 #include "cencrint.h"
 #include "sha.h"
-#include "c_asm.h"
 
 #include "port_after.h"
 extern u_int16_t DataOrder;

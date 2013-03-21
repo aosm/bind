@@ -30,6 +30,7 @@ extern "C" {
 
 /* POINTER defines a generic pointer type */
 typedef unsigned char *POINTER;
+typedef const unsigned char *CPOINTER;
 
 /* UINT2 defines a two byte word */
 typedef u_int16_t UINT2;

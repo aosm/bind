@@ -73,7 +73,6 @@
 #include <sys/types.h>
 #include "cylink.h"
 #include "ctk_endian.h"
-#include "c_asm.h"
 
 /* system files */
 #ifdef VXD

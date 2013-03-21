@@ -173,7 +173,7 @@ int SHA( uchar   *message,
 ****************************************************************************/
 
  void shaTransform( u_int32_t *state,
-					uchar *block )
+					const uchar *block )
 {
    u_int32_t W[80];
    u_int32_t A,B,C,D,E;  /*,temp;*/
@@ -483,7 +483,7 @@ int MySHA( uchar   *message,
 ****************************************************************************/
 
 int SHAUpdate( SHA_context *hash_context,
-            uchar        *message,
+            const uchar        *message,
           u_int16_t      message_bytes )
 
 {

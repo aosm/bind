@@ -3,7 +3,7 @@ Microsoft Developer Studio Workspace File, Format Version 6.00
 
 ###############################################################################
 
-Project: "BINDCtrl"=..\BINDCtrl\BINDCtrl.dsp - Package Owner=<4>
+Project: "BINDCmd"="..\BINDCmd\BINDCmd.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -15,7 +15,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "BINDInstall"=..\BINDInstall\BINDInstall.dsp - Package Owner=<4>
+Project: "BINDCtrl"="..\BINDCtrl\BINDCtrl.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -27,7 +27,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "bindevt"=..\bindevt\bindevt.dsp - Package Owner=<4>
+Project: "BINDInstall"="..\BINDInstall\BINDInstall.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -39,7 +39,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "libbind"=..\libbind\libbind.dsp - Package Owner=<4>
+Project: "bindevt"="..\bindevt\bindevt.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -51,7 +51,19 @@ Package=<4>
 
 ###############################################################################
 
-Project: "named"=.\named.dsp - Package Owner=<4>
+Project: "libbind"="..\libbind\libbind.dsp" - Package Owner=<4>
+
+Package=<5>
+{{{
+}}}
+
+Package=<4>
+{{{
+}}}
+
+###############################################################################
+
+Project: "named"=".\named.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -66,7 +78,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "nsupdate"=..\nsupdate\nsupdate.dsp - Package Owner=<4>
+Project: "nsupdate"="..\nsupdate\nsupdate.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{
@@ -81,7 +93,7 @@ Package=<4>
 
 ###############################################################################
 
-Project: "xfer"=..\xfer\xfer.dsp - Package Owner=<4>
+Project: "xfer"="..\xfer\xfer.dsp" - Package Owner=<4>
 
 Package=<5>
 {{{

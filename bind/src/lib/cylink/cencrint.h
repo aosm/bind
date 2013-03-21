@@ -197,7 +197,7 @@ int Mul_Mont( ord    *X, ord    *Y,
 
 /* Perform  SHS transformation */
  void shaTransform( u_int32_t *state,
-                                       uchar *block );
+                                       const uchar *block );
 
 /* Compute modulo addition
  int Add( ord    *X,

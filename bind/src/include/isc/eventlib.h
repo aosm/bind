@@ -18,7 +18,7 @@
 /* eventlib.h - exported interfaces for eventlib
  * vix 09sep95 [initial]
  *
- * $Id: eventlib.h,v 1.1.1.2 2000/06/09 23:13:10 wsanchez Exp $
+ * $Id: eventlib.h,v 1.1.1.3 2002/11/18 22:27:03 bbraun Exp $
  */
 
 #ifndef _EVENTLIB_H
@@ -106,7 +106,7 @@ int  evHighestFD __P((evContext ctx));
 
 int evListen __P((evContext ctx, int fd, int maxconn,
 		  evConnFunc func, void *uap, evConnID *id));
-int evConnect __P((evContext ctx, int fd, void *ra, int ralen,
+int evConnect __P((evContext ctx, int fd, const void *ra, int ralen,
 		   evConnFunc func, void *uap, evConnID *id));
 int evCancelConn __P((evContext ctx, evConnID id));
 int evHold __P((evContext, evConnID));

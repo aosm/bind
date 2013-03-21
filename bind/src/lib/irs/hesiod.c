@@ -1,5 +1,5 @@
 #if defined(LIBC_SCCS) && !defined(lint)
-static const char rcsid[] = "$Id: hesiod.c,v 1.1.1.2 2001/01/31 04:00:20 zarzycki Exp $";
+static const char rcsid[] = "$Id: hesiod.c,v 1.1.1.3 2002/11/18 22:27:32 bbraun Exp $";
 #endif
 
 /*
@@ -258,6 +258,8 @@ hesiod_resolve(void *context, const char *name, const char *type) {
 void
 hesiod_free_list(void *context, char **list) {
 	char **p;
+
+	UNUSED(context);
 
 	for (p = list; *p; p++)
 		free(*p);

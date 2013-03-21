@@ -18,6 +18,7 @@
 #ifndef __BIT_TYPES_DEFINED__
 #define __BIT_TYPES_DEFINED__
 
+#if NS_TARGET_MAJOR < 4
 #ifndef _TYPES_STD32_H_
 	/*
 	 * Basic integral types.  Omit the typedef if
@@ -34,5 +35,6 @@
 	typedef long long                 int64_t;
 	typedef unsigned long long      u_int64_t;
 # endif
+#endif
 #endif
 #endif	/* __BIT_TYPES_DEFINED__ */

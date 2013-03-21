@@ -1,5 +1,4 @@
-
-DNSQUERY(1)             FreeBSD General Commands Manual            DNSQUERY(1)
+DNSQUERY(1)                  BSD Reference Manual                  DNSQUERY(1)
 
 NNAAMMEE
      ddnnssqquueerryy - query domain name servers using resolver
@@ -18,9 +17,9 @@ DDEESSCCRRIIPPTTIIOONN
 OOPPTTIIOONNSS
      --nn _n_a_m_e_s_e_r_v_e_r
                  The nameserver to be used in the query.  Nameservers can ap-
-                 pear as either Internet addresses of the form _w_._x_._y_._z or can
-                 appear as domain names.  (Default: as specified in
-                 _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f.)
+                 pear as either Internet addresses of the form (_w_._x_._y_._z or
+                 _x_x_x_x_:_x_x_x_x_:_x_x_x_x_:_x_x_x_x_:_x_x_x_x_:_x_x_x_x_:_x_x_x_x_:_x_x_x_x) or can appear as do-
+                 main names.  (Default: as specified in _/_e_t_c_/_r_e_s_o_l_v_._c_o_n_f.)
 
      --tt _t_y_p_e     The type of resource record of interest.  Types include:
                        _A        address
@@ -34,8 +33,7 @@ OOPPTTIIOONNSS
                        _M_X       mail exchange
                        _R_P       responsible person
                        _M_G       mail group member
-                       _A_F_S_D_B
-                                DCE or AFS server
+                       _A_F_S_D_B    DCE or AFS server
                        _A_N_Y      wildcard
 
                  Note that any case may be used.  (Default: _A_N_Y.)
@@ -61,18 +59,14 @@ OOPPTTIIOONNSS
                  This sets the RES_USEVC bit of the resolver's _o_p_t_i_o_n_s field.
                  (Default:  UDP datagram.)
 
-
-
      --vv          Synonym for the ``--ss'' flag.
 
      _h_o_s_t        The name of the host (or domain) of interest.
 
 FFIILLEESS
      /etc/resolv.conf    to get the default ns and search lists
-     <arpa/nameser.h>
-                         list of usable RR types and classes
-     <resolv.h>
-                         list of resolver flags
+     <arpa/nameser.h>    list of usable RR types and classes
+     <resolv.h>          list of resolver flags
 
 DDIIAAGGNNOOSSTTIICCSS
      If the resolver fails to answer the query and debugging has not been

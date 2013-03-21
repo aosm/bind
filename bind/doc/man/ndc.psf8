@@ -1,14 +1,14 @@
 %!PS-Adobe-3.0
-%%Creator: groff version 1.15
-%%CreationDate: Thu Jan 25 23:42:57 2001
+%%Creator: groff version 1.10
+%%CreationDate: Wed Jun 26 22:54:49 2002
 %%DocumentNeededResources: font Times-Roman
-%%DocumentSuppliedResources: procset grops 1.15 0
+%%DocumentSuppliedResources: procset grops 1.10 0
 %%Pages: 1
 %%PageOrder: Ascend
 %%Orientation: Portrait
 %%EndComments
 %%BeginProlog
-%%BeginResource: procset grops 1.15 0
+%%BeginResource: procset grops 1.10 0
 /setpacking where{
 pop
 currentpacking
@@ -212,10 +212,9 @@ BP
 (If the desired control channel is a)6.704 F .421(TCP/IP sock)72 48 R
 .421(et, then the format of the ar)-.1 F .421(gument is \(for e)-.18 F
 .421(xample, w)-.15 F .422(ould be TCP port 54 on the local host.\))-.1
-F .422(This op-)5.422 F .39(tion will the client side of the control ch\
-annel to a speci\214c address.)72 60 R(Serv)5.389 E .389
-(ers can be con\214gured to reject connections)-.15 F .295
-(which do not come from speci\214c addresses.)72 72 R .295
+F .422(This op-)5.422 F .39(tion will the client side of the control channel to a speci\214c address.)
+72 60 R(Serv)5.389 E .389(ers can be con\214gured to reject connections)
+-.15 F .295(which do not come from speci\214c addresses.)72 72 R .295
 (The format is the same as for \(see abo)5.295 F -.15(ve)-.15 G 2.795
 (\). F).15 F .295(or backw)-.15 F .295(ard compatibility)-.1 F 1.299
 (with older name serv)72 84 R 1.299
@@ -246,9 +245,8 @@ F 2.9(Al)5.4 G(ik)-2.9 E .4(ely ar)-.1 F .4(gument w)-.18 F .4
 180 R -.15(ve)-.15 G 3.586(\). If).15 F 1.086(running in mode, an)3.586
 F 3.586(ya)-.15 G -.18(rg)-3.586 G 1.086
 (uments to and commands are passed to the ne).18 F 3.585(wo)-.25 G 3.585
-(ni)-3.585 G(ts)-3.585 E .32(command line.)72 192 R .32(If running in m\
-ode, there is no command and the command just tells the name serv)5.32 F
-.32(er to itself.)-.15 F -.15(Pa)5.32 G(ul).15 E -.6(Vi)72 204 S
+(ni)-3.585 G(ts)-3.585 E .32(command line.)72 192 R .32(If running in mode, there is no command and the command just tells the name serv)
+5.32 F .32(er to itself.)-.15 F -.15(Pa)5.32 G(ul).15 E -.6(Vi)72 204 S
 (xie \(Internet Softw).6 E(are Consortium\))-.1 E EP
 %%Trailer
 end

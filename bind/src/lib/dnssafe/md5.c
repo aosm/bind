@@ -31,9 +31,9 @@
 #define S43 15
 #define S44 21
 
-static void MD5Transform PROTO_LIST ((UINT4 [4], unsigned char [64]));
+static void MD5Transform PROTO_LIST ((UINT4 [4], const unsigned char [64]));
 static void Encode PROTO_LIST ((unsigned char *, UINT4 *, unsigned int));
-static void Decode PROTO_LIST ((UINT4 *, unsigned char *, unsigned int));
+static void Decode PROTO_LIST ((UINT4 *, const unsigned char *, unsigned int));
 
 /* F, G, H and I are basic MD5 functions.
  */
@@ -91,7 +91,7 @@ A_MD5_CTX *context;
  */
 void A_MD5Update (context, input, inputLen)
 A_MD5_CTX *context;
-unsigned char *input;                                         /* input block */
+const unsigned char *input;                         /* input block */
 unsigned int inputLen;                              /* length of input block */
 {
   unsigned int i, index, partLen;
@@ -109,7 +109,7 @@ unsigned int inputLen;                              /* length of input block */
   /* Transform as many times as possible.
    */
   if (inputLen >= partLen) {
-    T_memcpy ((POINTER)&context->buffer[index], (POINTER)input, partLen);
+    T_memcpy ((POINTER)&context->buffer[index], (CPOINTER)input, partLen);
     MD5Transform (context->state, context->buffer);
   
     for (i = partLen; i + 63 < inputLen; i += 64)
@@ -121,7 +121,7 @@ unsigned int inputLen;                              /* length of input block */
     i = 0;
   
   /* Buffer remaining input */
-  T_memcpy ((POINTER)&context->buffer[index], (POINTER)&input[i], inputLen-i);
+  T_memcpy ((POINTER)&context->buffer[index], (CPOINTER)&input[i], inputLen-i);
 }
 
 /* MD5 finalization. Ends an MD5 message-digest operation, writing the
@@ -160,7 +160,7 @@ unsigned char *digest;
  */
 static void MD5Transform (state, block)
 UINT4 state[4];
-unsigned char block[64];
+const unsigned char block[64];
 {
   UINT4 a = state[0], b = state[1], c = state[2], d = state[3], x[16];
 
@@ -271,7 +271,7 @@ unsigned int len;
  */
 static void Decode (output, input, len)
 UINT4 *output;
-unsigned char *input;
+const unsigned char *input;
 unsigned int len;
 {
   unsigned int i, j;

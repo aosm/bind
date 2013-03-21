@@ -1,6 +1,6 @@
 #if defined(LIBC_SCCS) && !defined(lint)
 static const char sccsid[] = "@(#)strerror.c	8.1 (Berkeley) 6/4/93";
-static const char rcsid[] = "$Id: strerror.c,v 1.1.1.1 1999/10/04 22:24:45 wsanchez Exp $";
+static const char rcsid[] = "$Id: strerror.c,v 1.1.1.2 2002/11/18 22:27:05 bbraun Exp $";
 #endif /* LIBC_SCCS and not lint */
 
 /*
@@ -45,24 +45,34 @@ static const char rcsid[] = "$Id: strerror.c,v 1.1.1.1 1999/10/04 22:24:45 wsanc
 
 #include "port_after.h"
 
-extern int sys_nerr;
-extern char *sys_errlist[];
-
 #ifndef NEED_STRERROR
 int __strerror_unneeded__;
 #else
 
+#ifdef USE_SYSERROR_LIST
+extern int sys_nerr;
+extern char *sys_errlist[];
+#endif
+
 const char *
-strerror(int num) {
+isc_strerror(int num) {
 #define	UPREFIX	"Unknown error: "
 	static char ebuf[40] = UPREFIX;		/* 64-bit number + slop */
 	u_int errnum;
 	char *p, *t;
+	const char *ret;
 	char tmp[40];
 
 	errnum = num;				/* convert to unsigned */
+#ifdef USE_SYSERROR_LIST
 	if (errnum < sys_nerr)
 		return (sys_errlist[errnum]);
+#else
+#undef strerror
+	ret = strerror(num);			/* call strerror() in libc */
+	if (ret != NULL)
+		return(ret);
+#endif
 
 	/* Do this by hand, so we don't include stdio(3). */
 	t = tmp;

@@ -65,6 +65,9 @@ all depend clean distclean install::
 		(cd $$x; pwd; ${MAKE} ${MARGS} $@) || exit 1; \
 	done
 
+all depend::
+	make_os_version
+
 distclean:: clean
 
 clean::
