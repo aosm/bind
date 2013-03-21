@@ -70,7 +70,7 @@
 
 #if defined(LIBC_SCCS) && !defined(lint)
 static const char sccsid[] = "@(#)res_init.c	8.1 (Berkeley) 6/7/93";
-static const char rcsid[] = "$Id: res_init.c,v 1.1.1.3 2001/01/31 04:00:27 zarzycki Exp $";
+static const char rcsid[] = "$Id: res_init.c,v 1.2 2001/03/19 19:55:11 ajn Exp $";
 #endif /* LIBC_SCCS and not lint */
 
 #include "port_before.h"
@@ -92,6 +92,36 @@ static const char rcsid[] = "$Id: res_init.c,v 1.1.1.3 2001/01/31 04:00:27 zarzy
 #include <unistd.h>
 
 #include "port_after.h"
+
+/*-------------------------------------- info about "sortlist" --------------
+ * Marc Majka		1994/04/16
+ * Allan Nathanson	1994/10/29 (BIND 4.9.3.x)
+ * Allan Nathanson	2001/02/27 (BIND 8.2.3)
+ *
+ * NetInfo resolver configuration directory support.
+ *
+ * Allow a NetInfo directory to be created in the hierarchy which
+ * contains the same information as the resolver configuration file.
+ *
+ * - The local domain name is stored as the value of the "domain" property.
+ * - The Internet address(es) of the name server(s) are stored as values
+ *   of the "nameserver" property.
+ * - The name server addresses are stored as values of the "nameserver"
+ *   property.
+ * - The search list for host-name lookup is stored as values of the
+ *   "search" property.
+ * - The sortlist comprised of IP address netmask pairs are stored as
+ *   values of the "sortlist" property. The IP address and optional netmask
+ *   should be seperated by a slash (/) or ampersand (&) character.
+ * - Internal resolver variables can be set from the value of the "options"
+ *   property.
+ */
+#if defined(HAVE_NETINFO)
+#  include <netinfo/ni.h>
+#  define NI_PATH_RESCONF "/locations/resolver"
+#  define NI_TIMEOUT 10
+static int netinfo_res_init __P((res_state, int *, int *));
+#endif	/* HAVE_NETINFO */
 
 /* Options.  Should all be left alone. */
 #define RESOLVSORT
@@ -350,6 +380,12 @@ __res_vinit(res_state statp, int preinit) {
 #endif
 	    (void) fclose(fp);
 	}
+
+#ifdef	HAVE_NETINFO
+	else
+	    nserv = netinfo_res_init(statp, &haveenv, &havesearch);
+#endif	/* HAVE_NETINFO */
+
 /*
  * Last chance to get a nameserver.  This should not normally
  * be necessary
@@ -476,6 +512,143 @@ net_mask(in)		/* XXX - should really use system's version of this */
 	return (htonl(IN_CLASSC_NET));
 }
 #endif
+
+#ifdef	HAVE_NETINFO
+static int
+netinfo_res_init(res_state statp, int *haveenv, int *havesearch)
+{
+	register    int n;
+	void        *domain, *parent;
+	ni_id       dir;
+	ni_status   status;
+	ni_namelist nl;
+	int         nserv = 0;
+#ifdef RESOLVSORT
+	int         nsort = 0;
+#endif
+
+	status = ni_open(NULL, ".", &domain);
+	if (status == NI_OK) {
+	    ni_setreadtimeout(domain, NI_TIMEOUT);
+	    ni_setabort(domain, 1);
+
+	    /* climb the NetInfo hierarchy to find a resolver directory */
+	    while (status == NI_OK) {
+		status = ni_pathsearch(domain, &dir, NI_PATH_RESCONF);
+		if (status == NI_OK) {
+		    /* found a resolver directory */
+		    if (*haveenv == 0) {
+			/* get the default domain name */
+			status = ni_lookupprop(domain, &dir, "domain", &nl);
+			if (status == NI_OK && nl.ni_namelist_len > 0) {
+			    (void)strncpy(statp->defdname, nl.ni_namelist_val[0], sizeof(statp->defdname) - 1);
+			    statp->defdname[sizeof(statp->defdname) - 1] = '\0';
+			    ni_namelist_free(&nl);
+			    *havesearch = 0;
+		    }
+
+		    /* get search list */
+		    status = ni_lookupprop(domain, &dir, "search", &nl);
+		    if (status == NI_OK && nl.ni_namelist_len > 0) {
+			(void)strncpy(statp->defdname, nl.ni_namelist_val[0], sizeof(statp->defdname) - 1);
+			statp->defdname[sizeof(statp->defdname) - 1] = '\0';
+			/* copy  */
+			for (n = 0; n < nl.ni_namelist_len && n < MAXDNSRCH; n++) {
+			    /* duplicate up to MAXDNSRCH servers */
+			    char *cp = nl.ni_namelist_val[n];
+			    statp->dnsrch[n] = strcpy((char *)malloc(strlen(cp) + 1), cp);
+			}
+			ni_namelist_free(&nl);
+			*havesearch = 1;
+		    }
+		}
+
+		/* get list of nameservers */
+		status = ni_lookupprop(domain, &dir, "nameserver", &nl);
+		if (status == NI_OK && nl.ni_namelist_len > 0) {
+		    /* copy up to MAXNS servers */
+		    for (n = 0; n < nl.ni_namelist_len && nserv < MAXNS; n++) {
+			struct in_addr a;
+
+			if (inet_aton(nl.ni_namelist_val[n], &a)) {
+			    statp->nsaddr_list[nserv].sin_addr = a;
+			    statp->nsaddr_list[nserv].sin_family = AF_INET;
+			    statp->nsaddr_list[nserv].sin_port = htons(NAMESERVER_PORT);
+			    nserv++;
+			}
+		    }
+		    ni_namelist_free(&nl);
+		}
+		
+		if (nserv > 1)
+			statp->nscount = nserv;
+
+#ifdef RESOLVSORT
+		/* get sort order */
+		status = ni_lookupprop(domain, &dir, "sortlist", &nl);
+		if (status == NI_OK && nl.ni_namelist_len > 0) {
+
+		    /* copy up to MAXRESOLVSORT address/netmask pairs */
+		    for (n = 0; n < nl.ni_namelist_len && nsort < MAXRESOLVSORT; n++) {
+			char ch;
+			char *cp;
+			const char *sp;
+			struct in_addr a;
+
+			cp = NULL;
+			for (sp = sort_mask; *sp; sp++) {
+			    char *cp1;
+			    cp1 = strchr(nl.ni_namelist_val[n], *sp);
+			    if (cp && cp1)
+				cp = (cp < cp1) ? cp : cp1;
+			    else if (cp1)
+				cp = cp1;
+			}
+			if (cp != NULL) {
+			    ch = *cp;
+			    *cp = '\0';
+			    break;
+			}
+			if (inet_aton(nl.ni_namelist_val[n], &a)) {
+			    statp->sort_list[nsort].addr = a;
+			    if (*cp && ISSORTMASK(ch)) {
+				*cp++ = ch;
+				if (inet_aton(cp, &a)) {
+				    statp->sort_list[nsort].mask = a.s_addr;
+				} else {
+				    statp->sort_list[nsort].mask = net_mask(statp->sort_list[nsort].addr);
+				}
+			    } else {
+				statp->sort_list[nsort].mask = net_mask(statp->sort_list[nsort].addr);
+			    }
+			    nsort++;
+			}
+		    }
+		    ni_namelist_free(&nl);
+		}
+
+		statp->nsort = nsort;
+#endif
+
+		/* get resolver options */
+		status = ni_lookupprop(domain, &dir, "options", &nl);
+		if (status == NI_OK && nl.ni_namelist_len > 0) {
+			res_setoptions(statp, nl.ni_namelist_val[0], "conf");
+			ni_namelist_free(&nl);
+		}
+		ni_free(domain);
+		return nserv;	  /* using DNS configuration from NetInfo */
+	    }
+
+	    status = ni_open(domain, "..", &parent);
+	    ni_free(domain);
+	    if (status == NI_OK)
+		domain = parent;
+	    }
+	}
+	return 0;  /* if not using DNS configuration from NetInfo */
+}
+#endif	/* HAVE_NETINFO */
 
 u_int
 res_randomid(void) {
